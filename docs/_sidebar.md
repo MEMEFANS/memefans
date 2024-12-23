@@ -1,6 +1,7 @@
 # MEMEFANS Documentation
 
 * [Home](/)
+* [Introduction](whitepaper/README.md)
 * Whitepaper
   * [Executive Summary](whitepaper/executive-summary.md)
   * [Technical Architecture](whitepaper/technical-architecture.md)

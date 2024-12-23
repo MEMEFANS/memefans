@@ -2,8 +2,9 @@
 
 Welcome to the official MEMEFANS documentation. This documentation includes our whitepaper, technical guides, and platform information.
 
-## Quick Navigation
+## Navigation
 
+* [Introduction](whitepaper/README.md)
 * [Executive Summary](whitepaper/executive-summary.md)
 * [Technical Architecture](whitepaper/technical-architecture.md)
 * [Token Economics](whitepaper/token-economics.md)
@@ -11,14 +12,27 @@ Welcome to the official MEMEFANS documentation. This documentation includes our 
 * [Product Features](whitepaper/product-features.md)
 * [Business Model](whitepaper/business-model.md)
 * [Risk Analysis](whitepaper/risk-analysis.md)
-* [Community Governance](whitepaper/governance.md)
-* [Integration Guide](whitepaper/integration-guide.md)
-* [Use Cases](whitepaper/use-cases.md)
-* [Privacy & Security](whitepaper/privacy-security.md)
+* [Community & Ecosystem](whitepaper/community-ecosystem.md)
 * [Future Development](whitepaper/future-development.md)
+
+## Technical Documentation
+
+* [Integration Guide](whitepaper/integration-guide.md)
+* [Smart Contracts](whitepaper/smart-contracts.md)
+* [Security & Risk Control](whitepaper/security-risk-control.md)
+* [System Maintenance](whitepaper/system-maintenance.md)
+
+## User Documentation
+
+* [Quick Start](quick-start/README.md)
+* [User Guide](whitepaper/user-guide.md)
+* [Use Cases](whitepaper/use-cases.md)
+
+## Legal & Privacy
+
+* [Privacy Policy](privacy.md)
+* [Security Audit](whitepaper/security-audit.md)
 
 ## Additional Resources
 
-* [Quick Start Guide](quick-start/README.md)
-* [Privacy Policy](privacy.md)
 * [GitHub Repository](https://github.com/MEMEFANS/twitter-token-plugin)
