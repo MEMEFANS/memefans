@@ -1,8 +1,8 @@
-# MEMEFANS Whitepaper
+# MEMEFANS Documentation
 
-Welcome to the official MEMEFANS whitepaper. This document outlines our vision for revolutionizing social token distribution through blockchain technology.
+Welcome to the official MEMEFANS documentation. This documentation includes our whitepaper, technical guides, and platform information.
 
-## Table of Contents
+## Quick Navigation
 
 * [Executive Summary](whitepaper/executive-summary.md)
 * [Technical Architecture](whitepaper/technical-architecture.md)
@@ -17,7 +17,8 @@ Welcome to the official MEMEFANS whitepaper. This document outlines our vision f
 * [Privacy & Security](privacy-security.md)
 * [Future Development](future-development.md)
 
-## Quick Links
+## Additional Resources
 
-* [GitHub Repository](https://github.com/MEMEFANS/twitter-token-plugin)
+* [Quick Start Guide](quick-start/README.md)
 * [Privacy Policy](privacy-policy.md)
+* [GitHub Repository](https://github.com/MEMEFANS/twitter-token-plugin)
