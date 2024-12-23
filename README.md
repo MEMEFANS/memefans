@@ -1,6 +1,6 @@
-# MEMEFANS: Social Token Distribution Platform
+# MEMEFANS: FANS Token Distribution Platform
 
-MEMEFANS is a Chrome extension that enables seamless token distribution through X (Twitter) posts.
+MEMEFANS is a Chrome extension that enables seamless FANS token distribution through X (Twitter) posts.
 
 ## Documentation
 
@@ -9,7 +9,7 @@ Visit our comprehensive documentation and whitepaper at:
 
 ## Key Features
 
-- Create token distribution posts on X
+- Create FANS token distribution posts on X
 - Set custom distribution rules
 - Support for requirement-based and free distributions
 - Integrated with Solana blockchain

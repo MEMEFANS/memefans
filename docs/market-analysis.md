@@ -145,23 +145,25 @@
 ## Token Launch Strategy
 
 ### Fair Launch Model
-- **No Private Sale**
-  - 坚持公平发射原则
-  - 没有私募轮次
-  - 没有机构投资
-  - 没有早期投资者
+- **FANS Token Distribution**
+  - 100% Market Distribution
+  - No private sale rounds
+  - No institutional investors
+  - No early investor allocations
+  - Pure market-driven pricing
 
-- **No Team Allocation**
-  - 没有团队预留
-  - 没有顾问分配
-  - 没有基金会预留
-  - 完全市场化分配
+### Community First Approach
+- **Equal Opportunity**
+  - All participants start equal
+  - No privileged access
+  - No price advantages
+  - Fair market competition
 
-### Market-Driven Distribution
+### Launch Mechanism
 ```mermaid
 graph TD
-    A[Token Launch] -->|100% Market| B[Public Trading]
-    B -->|Natural Price Discovery| C[Market Value]
+    A[FANS Launch] -->|Equal Access| B[Public Trading]
+    B -->|Natural Price| C[Market Value]
     C -->|Community Driven| D[Organic Growth]
     D -->|User Adoption| E[Ecosystem Development]
 ```

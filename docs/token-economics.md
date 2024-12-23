@@ -2,11 +2,11 @@
 
 ## Token Overview
 
-The PUMP token is the core of the PUMP ecosystem, adopting a community-driven distribution model via X posts.
+The FANS token is the core of the FANS ecosystem, adopting a community-driven distribution model via X posts.
 
-### PUMP Token
-- **Name**: PUMP Token
-- **Symbol**: PUMP
+### FANS Token
+- **Name**: FANS Token
+- **Symbol**: FANS
 - **Blockchain**: Solana
 - **Standard**: SPL Token
 
@@ -20,7 +20,7 @@ The PUMP token is the core of the PUMP ecosystem, adopting a community-driven di
 
 ### Chrome Extension Features
 1. **Token Distribution**
-   - Any user can distribute PUMP tokens via X posts
+   - Any user can distribute FANS tokens via X posts
    - Flexible distribution rules
    - Custom requirements setting
    - No-requirement airdrops supported
@@ -68,7 +68,7 @@ The PUMP token is the core of the PUMP ecosystem, adopting a community-driven di
 1. **Post Creation**
    ```typescript
    interface DistributionPost {
-     amount: number;        // Amount of PUMP to distribute
+     amount: number;        // Amount of FANS to distribute
      recipients: number;    // Number of recipients
      requirements: {
        likes?: boolean;     // Require likes
@@ -156,9 +156,9 @@ graph TD
 2. **User Interface**
    ```
    ┌─────────────────────────────┐
-   │ PUMP Distribution Creator   │
+   │ FANS Distribution Creator   │
    ├─────────────────────────────┤
-   │ Amount: ___ PUMP           │
+   │ Amount: ___ FANS           │
    │ Recipients: ___            │
    │ Requirements:              │
    │ □ Likes                    │
