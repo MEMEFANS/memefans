@@ -6,13 +6,14 @@
 
 1. **Chrome Extension**
    - User interface
-   - Twitter integration
-   - Wallet connection
+   - Built-in SOL wallet
+   - Twitter/X page detection
    - Distribution logic
+   - Security module
 
 2. **Backend Services**
    - API gateway
-   - Authentication service
+   - Wallet service
    - Distribution service
    - Analytics service
 
@@ -26,67 +27,62 @@
 
 ```mermaid
 graph TD
-    A[Chrome Extension] -->|API| B[API Gateway]
-    B -->|Auth| C[Auth Service]
-    B -->|Distribution| D[Distribution Service]
-    B -->|Analytics| E[Analytics Service]
-    D -->|Blockchain| F[Smart Contracts]
-    F -->|Token| G[Token Contract]
-    F -->|Distribution| H[Distribution Contract]
-    F -->|Verification| I[Verification Contract]
+    A[Chrome Extension] -->|Built-in| B[SOL Wallet]
+    A -->|Page Detection| C[Twitter/X Page]
+    A -->|API| D[API Gateway]
+    D -->|Wallet| E[Wallet Service]
+    D -->|Distribution| F[Distribution Service]
+    D -->|Analytics| G[Analytics Service]
+    F -->|Blockchain| H[Smart Contracts]
+    H -->|Token| I[Token Contract]
+    H -->|Distribution| J[Distribution Contract]
 ```
 
 ## Component Details
 
 ### Chrome Extension
 
-1. **User Interface**
+1. **Page Detection**
    ```typescript
-   // UI Components
-   interface UIComponents {
-       // Distribution interface
-       DistributionPanel: {
-           createDistribution(): void;
-           viewStatus(): void;
-           trackProgress(): void;
-       };
+   // Page Detector
+   class PageDetector {
+       // Detect Twitter/X page
+       async detectPage(): Promise<TwitterPage> {
+           const url = window.location.href;
+           if (this.isTwitterPage(url)) {
+               return this.analyzePage(url);
+           }
+           return null;
+       }
        
-       // Wallet interface
-       WalletPanel: {
-           connect(): Promise<void>;
-           disconnect(): void;
-           getBalance(): Promise<number>;
-       };
-       
-       // Settings interface
-       SettingsPanel: {
-           configure(): void;
-           updatePreferences(): void;
-           viewHistory(): void;
-       };
+       // Extract post info
+       async extractPostInfo(): Promise<PostInfo> {
+           const elements = document.querySelectorAll('[data-testid="tweet"]');
+           return this.parseElements(elements);
+       }
    }
    ```
 
-2. **Twitter Integration**
+2. **Wallet Management**
    ```typescript
-   // Twitter Service
-   class TwitterService {
-       // Post detection
-       async detectPosts() {
-           const posts = await this.scanPage();
-           return this.filterRelevantPosts(posts);
+   // Wallet Manager
+   class WalletManager {
+       // Generate new wallet
+       async generateWallet(): Promise<SolanaWallet> {
+           const keyPair = await this.generateKeyPair();
+           return this.createWallet(keyPair);
        }
        
-       // Engagement tracking
-       async trackEngagement(postId: string) {
-           const stats = await this.getEngagementStats(postId);
-           return this.processEngagement(stats);
+       // Import wallet
+       async importWallet(privateKey: string): Promise<SolanaWallet> {
+           const keyPair = await this.importKeyPair(privateKey);
+           return this.createWallet(keyPair);
        }
        
-       // Action verification
-       async verifyAction(action: Action) {
-           const proof = await this.generateProof(action);
-           return this.validateProof(proof);
+       // Export wallet
+       async exportWallet(): Promise<string> {
+           const wallet = await this.getCurrentWallet();
+           return this.exportPrivateKey(wallet);
        }
    }
    ```
@@ -97,11 +93,9 @@ graph TD
    class DistributionManager {
        // Create distribution
        async createDistribution(params: DistributionParams) {
-           const validation = await this.validateParams(params);
-           if (validation.success) {
-               return this.executeDistribution(params);
-           }
-           throw new ValidationError(validation.errors);
+           const wallet = await this.getWallet();
+           const postInfo = await this.getPostInfo();
+           return this.executeDistribution(wallet, postInfo, params);
        }
        
        // Track distribution
@@ -109,392 +103,204 @@ graph TD
            const status = await this.getStatus(id);
            return this.updateUI(status);
        }
-       
-       // Process claims
-       async processClaim(claim: Claim) {
-           const verification = await this.verifyClaim(claim);
-           if (verification.valid) {
-               return this.executeClaim(claim);
-           }
-           throw new ClaimError(verification.reason);
-       }
    }
    ```
 
 ### Backend Services
 
-1. **API Gateway**
+1. **Wallet Service**
    ```typescript
-   // Gateway Service
-   class GatewayService {
-       // Request routing
-       async routeRequest(request: Request) {
-           const service = this.determineService(request);
-           return this.forwardRequest(service, request);
+   // Wallet Service
+   class WalletService {
+       // Create wallet
+       async createWallet(): Promise<WalletResponse> {
+           const wallet = await this.generateSolanaWallet();
+           return this.registerWallet(wallet);
        }
        
-       // Response handling
-       async handleResponse(response: Response) {
-           const processed = await this.processResponse(response);
-           return this.formatResponse(processed);
+       // Get balance
+       async getBalance(address: string): Promise<number> {
+           const connection = await this.getConnection();
+           return connection.getBalance(address);
        }
        
-       // Error handling
-       async handleError(error: Error) {
-           const logged = await this.logError(error);
-           return this.formatError(logged);
+       // Send transaction
+       async sendTransaction(tx: Transaction): Promise<string> {
+           const connection = await this.getConnection();
+           return connection.sendTransaction(tx);
        }
    }
    ```
 
-2. **Authentication Service**
-   ```typescript
-   // Auth Service
-   class AuthService {
-       // User authentication
-       async authenticateUser(credentials: Credentials) {
-           const user = await this.validateCredentials(credentials);
-           return this.generateToken(user);
-       }
-       
-       // Session management
-       async manageSession(session: Session) {
-           const valid = await this.validateSession(session);
-           return this.updateSession(valid);
-       }
-       
-       // Permission control
-       async checkPermission(user: User, action: Action) {
-           const permissions = await this.getUserPermissions(user);
-           return this.validatePermission(permissions, action);
-       }
-   }
-   ```
-
-3. **Distribution Service**
+2. **Distribution Service**
    ```typescript
    // Distribution Service
    class DistributionService {
-       // Distribution creation
-       async createDistribution(params: DistributionParams) {
-           const contract = await this.prepareContract();
-           return this.executeDistribution(contract, params);
+       // Create distribution
+       async createDistribution(params: CreateDistributionParams) {
+           const contract = await this.getContract();
+           return contract.createDistribution(params);
        }
        
-       // Status tracking
-       async trackStatus(id: string) {
-           const events = await this.getEvents(id);
-           return this.processEvents(events);
+       // Get distribution status
+       async getDistributionStatus(id: string) {
+           const contract = await this.getContract();
+           return contract.getStatus(id);
        }
        
-       // Claim processing
-       async processClaim(claim: Claim) {
-           const validation = await this.validateClaim(claim);
-           return this.executeClaim(validation);
+       // Process claims
+       async processClaim(id: string, address: string) {
+           const contract = await this.getContract();
+           return contract.processClaim(id, address);
        }
    }
    ```
 
-### Blockchain Layer
+### Smart Contracts
 
-1. **Token Contract**
+1. **Distribution Contract**
    ```solidity
-   // Token Implementation
-   contract FairToken is ERC20 {
-       // Token configuration
-       constructor() ERC20("FANS", "FANS") {
-           _mint(msg.sender, INITIAL_SUPPLY);
+   contract Distribution {
+       // Distribution data
+       struct DistributionData {
+           address creator;
+           uint256 amount;
+           uint256 recipientCount;
+           uint256 endTime;
+           bool active;
        }
        
-       // Transfer logic
+       // Create distribution
+       function createDistribution(
+           uint256 amount,
+           uint256 recipientCount,
+           uint256 duration
+       ) external {
+           // Create new distribution
+           // Transfer tokens
+           // Set parameters
+       }
+       
+       // Claim tokens
+       function claim(uint256 distributionId) external {
+           // Verify eligibility
+           // Process claim
+           // Update state
+       }
+   }
+   ```
+
+2. **Token Contract**
+   ```solidity
+   contract Token {
+       // Token data
+       string public name = "MEMEFANS";
+       string public symbol = "MF";
+       uint8 public decimals = 18;
+       
+       // Transfer tokens
        function transfer(
            address recipient,
            uint256 amount
-       ) public override returns (bool) {
-           _transfer(_msgSender(), recipient, amount);
+       ) external returns (bool) {
+           _transfer(msg.sender, recipient, amount);
            return true;
        }
        
-       // Burning mechanism
-       function burn(uint256 amount) public {
-           _burn(_msgSender(), amount);
-       }
-   }
-   ```
-
-2. **Distribution Contract**
-   ```solidity
-   // Distribution Implementation
-   contract Distribution {
-       // Distribution creation
-       function createDistribution(
-           uint256 amount,
-           address[] calldata recipients
-       ) external {
+       // Distribution transfer
+       function distributionTransfer(
+           address[] calldata recipients,
+           uint256[] calldata amounts
+       ) external returns (bool) {
            require(
-               token.transferFrom(msg.sender, address(this), amount),
-               "Transfer failed"
+               recipients.length == amounts.length,
+               "Length mismatch"
            );
            
-           uint256 share = amount / recipients.length;
            for (uint i = 0; i < recipients.length; i++) {
-               token.transfer(recipients[i], share);
+               _transfer(msg.sender, recipients[i], amounts[i]);
            }
-       }
-       
-       // Claim processing
-       function processClaim(
-           bytes calldata proof,
-           uint256 amount
-       ) external {
-           require(
-               verifyProof(proof),
-               "Invalid proof"
-           );
            
-           token.transfer(msg.sender, amount);
-       }
-   }
-   ```
-
-3. **Verification Contract**
-   ```solidity
-   // Verification Implementation
-   contract Verification {
-       // Proof verification
-       function verifyProof(
-           bytes calldata proof
-       ) public view returns (bool) {
-           return _verify(proof);
-       }
-       
-       // Action validation
-       function validateAction(
-           bytes calldata action,
-           bytes calldata signature
-       ) public view returns (bool) {
-           return _validateSignature(action, signature);
-       }
-   }
-   ```
-
-## Performance Optimization
-
-### Caching Strategy
-
-1. **Client-side Cache**
-   ```typescript
-   // Cache Manager
-   class CacheManager {
-       // Cache handling
-       async handleCache(key: string, data: any) {
-           const cached = await this.getCache(key);
-           if (cached) {
-               return cached;
-           }
-           return this.setCache(key, data);
-       }
-       
-       // Cache invalidation
-       async invalidateCache(pattern: string) {
-           const keys = await this.findKeys(pattern);
-           return this.removeKeys(keys);
-       }
-   }
-   ```
-
-2. **Server-side Cache**
-   ```typescript
-   // Redis Cache
-   class RedisCache {
-       // Data caching
-       async cacheData(key: string, data: any) {
-           const serialized = this.serialize(data);
-           return this.redis.set(key, serialized);
-       }
-       
-       // Cache retrieval
-       async retrieveCache(key: string) {
-           const data = await this.redis.get(key);
-           return this.deserialize(data);
-       }
-   }
-   ```
-
-3. **Smart Contract Cache**
-   ```solidity
-   // Contract Cache
-   contract CacheManager {
-       // State caching
-       mapping(bytes32 => bytes) private cache;
-       
-       // Cache storage
-       function storeCache(
-           bytes32 key,
-           bytes calldata data
-       ) external {
-           cache[key] = data;
-       }
-       
-       // Cache retrieval
-       function retrieveCache(
-           bytes32 key
-       ) external view returns (bytes memory) {
-           return cache[key];
-       }
-   }
-   ```
-
-### Load Balancing
-
-1. **API Load Balancing**
-   ```typescript
-   // Load Balancer
-   class LoadBalancer {
-       // Request distribution
-       async distributeRequest(request: Request) {
-           const server = await this.selectServer();
-           return this.forwardRequest(server, request);
-       }
-       
-       // Health checking
-       async checkHealth() {
-           const servers = await this.getServers();
-           return this.updateHealth(servers);
-       }
-   }
-   ```
-
-2. **Service Scaling**
-   ```typescript
-   // Auto Scaler
-   class AutoScaler {
-       // Scale management
-       async manageScale() {
-           const metrics = await this.getMetrics();
-           return this.adjustScale(metrics);
-       }
-       
-       // Resource allocation
-       async allocateResources() {
-           const needs = await this.calculateNeeds();
-           return this.provision(needs);
-       }
-   }
-   ```
-
-### Monitoring System
-
-1. **Performance Monitoring**
-   ```typescript
-   // Performance Monitor
-   class PerformanceMonitor {
-       // Metric collection
-       async collectMetrics() {
-           const metrics = await this.gatherData();
-           return this.processMetrics(metrics);
-       }
-       
-       // Alert system
-       async checkAlerts() {
-           const status = await this.checkStatus();
-           return this.triggerAlerts(status);
-       }
-   }
-   ```
-
-2. **Error Tracking**
-   ```typescript
-   // Error Tracker
-   class ErrorTracker {
-       // Error logging
-       async logError(error: Error) {
-           const formatted = this.formatError(error);
-           return this.storeError(formatted);
-       }
-       
-       // Analysis
-       async analyzeErrors() {
-           const errors = await this.getErrors();
-           return this.generateReport(errors);
+           return true;
        }
    }
    ```
 
 ## Security Implementation
 
-### Access Control
+### Wallet Security
 
-1. **Authentication System**
+1. **Key Generation**
    ```typescript
-   // Auth System
-   class AuthSystem {
-       // User authentication
-       async authenticateUser(credentials: Credentials) {
-           const user = await this.validateUser(credentials);
-           return this.generateSession(user);
+   // Key Generator
+   class KeyGenerator {
+       // Generate key pair
+       async generateKeyPair(): Promise<KeyPair> {
+           const entropy = await this.getSecureEntropy();
+           return this.createKeyPair(entropy);
        }
        
-       // Permission management
-       async managePermissions(user: User) {
-           const roles = await this.getUserRoles(user);
-           return this.applyPermissions(roles);
+       // Create backup
+       async createBackup(keyPair: KeyPair): Promise<string> {
+           const mnemonic = await this.generateMnemonic(keyPair);
+           return this.encryptMnemonic(mnemonic);
        }
    }
    ```
 
-2. **Rate Limiting**
+2. **Secure Storage**
    ```typescript
-   // Rate Limiter
-   class RateLimiter {
-       // Request limiting
-       async limitRequests(ip: string) {
-           const count = await this.getRequestCount(ip);
-           return this.checkLimit(count);
+   // Storage Manager
+   class StorageManager {
+       // Store private key
+       async storePrivateKey(key: string): Promise<void> {
+           const encrypted = await this.encrypt(key);
+           return this.secureStore(encrypted);
        }
        
-       // Limit management
-       async manageLimits() {
-           const limits = await this.getLimits();
-           return this.updateLimits(limits);
+       // Retrieve private key
+       async retrievePrivateKey(): Promise<string> {
+           const encrypted = await this.secureRetrieve();
+           return this.decrypt(encrypted);
        }
    }
    ```
 
-### Data Protection
+### Page Security
 
-1. **Encryption System**
+1. **Content Detection**
    ```typescript
-   // Encryption Manager
-   class EncryptionManager {
-       // Data encryption
-       async encryptData(data: any) {
-           const key = await this.getKey();
-           return this.encrypt(data, key);
+   // Content Detector
+   class ContentDetector {
+       // Verify page content
+       async verifyContent(url: string): Promise<boolean> {
+           const content = await this.getPageContent(url);
+           return this.validateContent(content);
        }
        
-       // Key management
-       async manageKeys() {
-           const keys = await this.getKeys();
-           return this.rotateKeys(keys);
+       // Extract safe data
+       async extractSafeData(content: any): Promise<SafeData> {
+           return this.sanitizeData(content);
        }
    }
    ```
 
-2. **Privacy Controls**
+2. **Safe Interaction**
    ```typescript
-   // Privacy Manager
-   class PrivacyManager {
-       // Data anonymization
-       async anonymizeData(data: any) {
-           const sensitive = this.identifySensitive(data);
-           return this.anonymize(sensitive);
+   // Safe Interaction
+   class SafeInteraction {
+       // Safe DOM operation
+       async safeOperation(operation: Operation): Promise<void> {
+           const verified = await this.verifyOperation(operation);
+           if (verified) {
+               return this.executeOperation(operation);
+           }
        }
        
-       // Compliance checking
-       async checkCompliance() {
-           const status = await this.getStatus();
-           return this.enforceCompliance(status);
+       // Safe data extraction
+       async safeExtraction(selector: string): Promise<Data> {
+           const element = await this.findElement(selector);
+           return this.extractData(element);
        }
    }
    ```
