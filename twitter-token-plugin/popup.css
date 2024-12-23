@@ -1,0 +1,175 @@
+/* 全局样式 */
+body {
+    width: 360px;
+    padding: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    background: #ffffff;
+    color: #1a1a1a;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* 钱包信息样式 */
+.wallet-info {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.address {
+    font-family: monospace;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 12px;
+    word-break: break-all;
+}
+
+.balances {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.balances div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 表单样式 */
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px;
+    color: #666;
+    font-size: 12px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #1a73e8;
+    outline: none;
+}
+
+/* 按钮样式 */
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn.primary {
+    background: #1a73e8;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* 消息提示样式 */
+.message {
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 12px;
+    display: none;
+    text-align: center;
+    font-size: 14px;
+}
+
+.message.error {
+    background: #fdecea;
+    color: #d93025;
+}
+
+.message.success {
+    background: #e6f4ea;
+    color: #1e8e3e;
+}
+
+/* 加载提示样式 */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #1a73e8;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 注释样式 */
+.note {
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px;
+    text-align: center;
+}
+
+/* 创建赠送表单样式 */
+.create-giveaway {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.create-giveaway h3 {
+    margin: 0 0 16px 0;
+    color: #1a1a1a;
+    font-size: 16px;
+}
+
+/* 提现区域样式 */
+.withdraw {
+    text-align: center;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}

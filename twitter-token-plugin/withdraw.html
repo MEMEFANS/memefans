@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>提现 FANS 代币</title>
+  <style>
+    body {
+      width: 400px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .balance-section {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .withdraw-section {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .history-section {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .history-item {
+      padding: 10px;
+      margin: 5px 0;
+      background: white;
+      border-radius: 4px;
+    }
+    button {
+      background: #1da1f2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+    .success {
+      color: green;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="balance-section">
+      <h3>当前余额</h3>
+      <p>可提现金额: <span id="pendingAmount">0</span> FANS</p>
+      <p>总共领取: <span id="totalAmount">0</span> FANS</p>
+    </div>
+
+    <div class="withdraw-section">
+      <h3>提现</h3>
+      <input type="number" id="withdrawAmount" placeholder="输入提现金额" min="0" step="1">
+      <button id="withdrawButton">提现</button>
+      <div id="withdrawStatus"></div>
+    </div>
+
+    <div class="history-section">
+      <h3>提现历史</h3>
+      <div id="historyList"></div>
+    </div>
+  </div>
+
+  <script src="lib/solana-web3.min.js"></script>
+  <script src="balance.js"></script>
+  <script src="withdraw.js"></script>
+  <script>
+    let withdrawManager;
+
+    async function updateBalanceDisplay() {
+      try {
+        const balanceData = await BalanceManager.getUserBalance();
+        document.getElementById('pendingAmount').textContent = balanceData.pendingAmount;
+        document.getElementById('totalAmount').textContent = balanceData.totalAmount;
+        
+        // 更新提现历史
+        const historyList = document.getElementById('historyList');
+        historyList.innerHTML = '';
+        
+        if (balanceData.withdrawHistory && balanceData.withdrawHistory.length > 0) {
+          balanceData.withdrawHistory.reverse().forEach(withdrawal => {
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            item.innerHTML = `
+              <div>金额: ${withdrawal.amount} FANS</div>
+              <div>状态: ${withdrawal.status === 'completed' ? '已完成' : '处理中'}</div>
+              <div>时间: ${new Date(withdrawal.timestamp).toLocaleString()}</div>
+              ${withdrawal.txHash ? `<div>交易哈希: ${withdrawal.txHash}</div>` : ''}
+            `;
+            historyList.appendChild(item);
+          });
+        } else {
+          historyList.innerHTML = '<p>暂无提现记录</p>';
+        }
+      } catch (error) {
+        console.error('更新余额显示失败:', error);
+        showError('无法获取余额信息');
+      }
+    }
+
+    function showError(message) {
+      const status = document.getElementById('withdrawStatus');
+      status.className = 'error';
+      status.textContent = message;
+    }
+
+    function showSuccess(message) {
+      const status = document.getElementById('withdrawStatus');
+      status.className = 'success';
+      status.textContent = message;
+    }
+
+    async function handleWithdraw() {
+      const withdrawButton = document.getElementById('withdrawButton');
+      const amountInput = document.getElementById('withdrawAmount');
+      const amount = parseInt(amountInput.value);
+
+      if (!amount || amount <= 0) {
+        showError('请输入有效的提现金额');
+        return;
+      }
+
+      try {
+        withdrawButton.disabled = true;
+        showSuccess('正在处理提现请求...');
+        
+        const withdrawResult = await withdrawManager.withdraw(amount);
+        
+        if (withdrawResult.success) {
+          showSuccess('提现成功！');
+          amountInput.value = '';
+          await updateBalanceDisplay();
+        }
+      } catch (error) {
+        console.error('提现失败:', error);
+        showError(error.message || '提现失败，请稍后重试');
+      } finally {
+        withdrawButton.disabled = false;
+      }
+    }
+
+    // 初始化
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        withdrawManager = new WithdrawManager();
+        
+        // 绑定提现按钮事件
+        document.getElementById('withdrawButton').addEventListener('click', handleWithdraw);
+        
+        // 初始显示余额
+        await updateBalanceDisplay();
+      } catch (error) {
+        console.error('初始化失败:', error);
+        showError('页面初始化失败');
+      }
+    });
+  </script>
+</body>
+</html>

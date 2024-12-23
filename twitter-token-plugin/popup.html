@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 320px;
+      padding: 16px;
+      font-family: Arial, sans-serif;
+    }
+
+    .wallet-section {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      margin: 12px 0 8px 0;
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .balance-container {
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #e0e0e0;
+    }
+
+    .balance-text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1a73e8;
+      display: block;
+    }
+
+    #wallet-address {
+      word-break: break-all;
+      padding: 12px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      margin: 8px 0;
+      font-family: monospace;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .empty-wallet {
+      color: #666;
+      font-style: italic;
+    }
+
+    .fee-info {
+      font-size: 12px;
+      color: #666;
+      margin: 8px 0;
+      padding: 8px;
+      background: #fff3e0;
+      border-radius: 6px;
+      border: 1px solid #ffe0b2;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .withdraw-button {
+      background: #fbbc05;
+      color: white;
+    }
+
+    .action-button {
+      background: #34a853;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .input-group {
+      margin: 12px 0;
+    }
+
+    #private-key-input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    #private-key-input:focus {
+      border-color: #1a73e8;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(26,115,232,0.2);
+    }
+
+    .history-section {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .history-list {
+      max-height: 200px;
+      overflow-y: auto;
+      margin: 8px 0;
+    }
+
+    .history-item {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+      font-size: 12px;
+    }
+
+    .history-item .amount {
+      font-weight: bold;
+      color: #1a73e8;
+    }
+
+    .history-item .time {
+      color: #666;
+    }
+
+    .history-item .status {
+      float: right;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+    }
+
+    .status-accumulated {
+      background: #e8f0fe;
+      color: #1a73e8;
+    }
+
+    .status-pending {
+      background: #fef7e0;
+      color: #fbbc05;
+    }
+
+    .status-completed {
+      background: #e6f4ea;
+      color: #34a853;
+    }
+
+    .giveaway-section {
+      background: #fff3e0;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      border: 2px solid #ffe0b2;
+    }
+
+    .giveaway-section h3 {
+      color: #e65100;
+      font-size: 16px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    #create-giveaway {
+      background: #ff9800;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 12px;
+      margin-top: 16px;
+    }
+
+    #create-giveaway:hover {
+      background: #f57c00;
+    }
+
+    .input-group {
+      margin: 12px 0;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 4px;
+      color: #666;
+      font-size: 12px;
+    }
+
+    .checkbox-group {
+      margin: 12px 0;
+    }
+
+    .checkbox-group label {
+      display: block;
+      margin-bottom: 4px;
+      color: #666;
+      font-size: 12px;
+    }
+
+    #connection-status {
+      text-align: center;
+      padding: 8px;
+      margin: 8px 0;
+      border-radius: 8px;
+      background: #f8f9fa;
+    }
+
+    .status-message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .status-message.error {
+      background-color: #ffe6e6;
+      color: #ff0000;
+      display: block;
+    }
+
+    .status-message.success {
+      background-color: #e6ffe6;
+      color: #008000;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="wallet-section">
+    <h3>钱包地址</h3>
+    <div id="wallet-address"></div>
+    
+    <h3>SOL 余额</h3>
+    <div class="balance-container">
+      <span id="sol-balance">0.0000 SOL</span>
+    </div>
+    
+    <h3>FANS 余额</h3>
+    <div class="balance-container">
+      <span id="fans-balance" class="balance-text">0.00 FANS</span>
+    </div>
+    
+    <h3>累计待提现</h3>
+    <div class="balance-container">
+      <span id="accumulated-balance" class="balance-text">0.00 FANS</span>
+    </div>
+    <div class="fee-info">
+      提现需要支付 gas 费用，建议累积到一定数量再提现
+    </div>
+    
+    <button id="withdrawButton" class="action-button">
+      提取代币
+    </button>
+    <button id="test-connection" class="action-button">测试连接</button>
+    <button id="refresh-balance" class="action-button">刷新余额</button>
+    
+    <div class="input-group">
+      <input type="text" id="private-key-input" placeholder="输入SOL私钥">
+      <button id="import-wallet" class="action-button">导入钱包</button>
+    </div>
+  </div>
+
+  <!-- 添加提现记录部分 -->
+  <div class="history-section">
+    <h3>领取记录</h3>
+    <div id="claims-list" class="history-list"></div>
+    
+    <h3>提现记录</h3>
+    <div id="withdrawals-list" class="history-list"></div>
+  </div>
+
+  <div class="giveaway-section">
+    <h3>创建代币赠送</h3>
+    
+    <div class="input-group">
+      <label>推文链接</label>
+      <input type="text" id="tweet-url" placeholder="输入推文链接">
+    </div>
+
+    <div class="input-group">
+      <label>总代币数量</label>
+      <input type="number" id="total-tokens" placeholder="输入总代币数量">
+    </div>
+
+    <div class="input-group">
+      <label>礼物包数量</label>
+      <input type="number" id="num-packages" placeholder="输入礼物包数量">
+    </div>
+
+    <div class="input-group">
+      <label>每个礼物包代币数量</label>
+      <select id="distribution-type">
+        <option value="fixed">固定数量</option>
+        <option value="random">随机数量</option>
+      </select>
+      <input type="number" id="tokens-per-package" placeholder="输入每个礼物包的代币数量">
+      <div id="random-range" style="display: none;">
+        <input type="number" id="min-tokens" placeholder="最小代币数量">
+        <input type="number" id="max-tokens" placeholder="最大代币数量">
+      </div>
+    </div>
+
+    <div class="checkbox-group">
+      <h4>领取要求</h4>
+      <label>
+        <input type="checkbox" id="require-follow">
+        需要关注
+      </label>
+      <label>
+        <input type="checkbox" id="require-like">
+        需要点赞
+      </label>
+      <label>
+        <input type="checkbox" id="require-retweet">
+        需要转发
+      </label>
+      <label>
+        <input type="checkbox" id="require-comment">
+        需要评论
+      </label>
+    </div>
+
+    <div class="fee-info">
+      注意：每次发送礼物包将收取 1% 的手续费
+    </div>
+
+    <button id="create-giveaway">创建赠送</button>
+  </div>
+
+  <div id="connection-status"></div>
+  <div id="status-message" class="status-message"></div>
+  
+  <!-- 加载依赖库 -->
+  <script src="lib/buffer.js"></script>
+  <script>
+    // 确保 Buffer 正确初始化
+    if (typeof window.Buffer === 'undefined') {
+      window.Buffer = {
+        from: function() {
+          if (buffer && buffer.Buffer && buffer.Buffer.from) {
+            return buffer.Buffer.from.apply(buffer.Buffer, arguments);
+          }
+          throw new Error('Buffer not properly initialized');
+        },
+        alloc: function() {
+          if (buffer && buffer.Buffer && buffer.Buffer.alloc) {
+            return buffer.Buffer.alloc.apply(buffer.Buffer, arguments);
+          }
+          throw new Error('Buffer not properly initialized');
+        }
+      };
+    }
+  </script>
+  <script src="lib/bs58.js"></script>
+  <script src="lib/solana-web3.js"></script>
+  <script src="lib/solana-init.js"></script>
+  <script src="balance.js"></script>
+  <script>
+    // 初始化页面
+    async function initializePage() {
+      try {
+        // 获取钱包信息
+        const result = await chrome.storage.local.get(['wallet', 'pendingAmount']);
+        const wallet = result.wallet;
+        const pendingAmount = result.pendingAmount || 0;
+
+        if (wallet) {
+          document.getElementById('wallet-address').textContent = wallet.publicKey;
+          await refreshBalances(wallet.publicKey);
+        }
+
+        // 更新累计待提现金额
+        document.getElementById('accumulated-balance').textContent = `${pendingAmount.toLocaleString()} FANS`;
+      } catch (error) {
+        console.error('初始化失败:', error);
+        showError('页面加载失败: ' + error.message);
+      }
+    }
+
+    // 绑定按钮事件
+    document.addEventListener('DOMContentLoaded', () => {
+      // 提现按钮点击事件
+      document.getElementById('withdrawButton').addEventListener('click', async () => {
+        try {
+          // 创建新标签页打开提现页面
+          const url = chrome.runtime.getURL('withdraw.html');
+          await chrome.tabs.create({ url });
+        } catch (error) {
+          console.error('打开提现页面失败:', error);
+          showError('无法打开提现页面: ' + error.message);
+        }
+      });
+
+      // 测试连接按钮
+      document.getElementById('test-connection').addEventListener('click', testConnection);
+      
+      // 刷新余额按钮
+      document.getElementById('refresh-balance').addEventListener('click', async () => {
+        const wallet = await chrome.storage.local.get(['wallet']);
+        if (wallet && wallet.publicKey) {
+          await refreshBalances(wallet.publicKey);
+        }
+      });
+      
+      // 导入钱包按钮
+      document.getElementById('import-wallet').addEventListener('click', importWallet);
+    });
+
+    // 显示错误信息
+    function showError(message) {
+      const statusDiv = document.createElement('div');
+      statusDiv.className = 'status-message error';
+      statusDiv.textContent = message;
+      document.body.insertBefore(statusDiv, document.body.firstChild);
+      setTimeout(() => statusDiv.remove(), 5000);
+    }
+
+    // 显示成功信息
+    function showSuccess(message) {
+      const statusDiv = document.createElement('div');
+      statusDiv.className = 'status-message success';
+      statusDiv.textContent = message;
+      document.body.insertBefore(statusDiv, document.body.firstChild);
+      setTimeout(() => statusDiv.remove(), 5000);
+    }
+
+    // 初始化页面
+    initializePage();
+  </script>
+  <script src="popup.js"></script>
+</body>
+</html>

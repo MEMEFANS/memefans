@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "Twitter Token Plugin",
+  "version": "1.0.0",
+  "description": "Easily participate in Solana token giveaways on Twitter with automatic verification and claiming",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ], 
+  "host_permissions": [
+    "https://twitter.com/*",
+    "https://x.com/*",
+    "https://api.twitter.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://twitter.com/*",
+        "https://x.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [{
+    "resources": ["images/*", "lib/*"],
+    "matches": ["https://twitter.com/*", "https://x.com/*"]
+  }],
+  "author": "Twitter Token Plugin Team",
+  "homepage_url": "https://github.com/twitter-token-plugin",
+  "minimum_chrome_version": "88",
+  "privacy_policy_url": "https://liuyuelan12.github.io/twitter-token-plugin/"
+}
