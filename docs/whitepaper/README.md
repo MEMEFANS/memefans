@@ -25,6 +25,6 @@ Welcome to the official MEMEFANS whitepaper. This document outlines our vision f
 * [User Guide](./user-guide.md)
 * [Security Audit](./security-audit.md)
 
-## Quick Links
+## Contact
 
-* [Privacy Policy](./privacy.md)
+* Twitter: @Memefans_Gift

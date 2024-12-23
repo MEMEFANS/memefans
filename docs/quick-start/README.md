@@ -54,9 +54,9 @@
 ## Support
 
 ### Help Resources
-- Documentation: [Link to full documentation]
-- FAQ: [Common questions and answers]
-- Tutorial Videos: [Video guides]
+- Documentation
+- FAQ
+- Tutorial Videos
 
 ### Contact
 - Twitter: @Memefans_Gift
