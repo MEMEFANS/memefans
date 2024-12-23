@@ -33,11 +33,15 @@
             auto2top: true,
             homepage: 'whitepaper/README.md',
             routerMode: 'hash',
-            basePath: '/twitter-token-plugin/docs/',
+            basePath: './',
             relativePath: true,
+            fallbackLanguages: ['zh-cn'],
+            nameLink: {
+                '/': '#/'
+            },
             alias: {
-                '.*?/whitepaper/README': '/whitepaper/README.md',
-                '.*?/_sidebar.md': '/_sidebar.md'
+                '/.*/_sidebar.md': '/_sidebar.md',
+                '/whitepaper/': '/whitepaper/README.md'
             },
             search: {
                 maxAge: 86400000,
