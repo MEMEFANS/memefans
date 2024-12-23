@@ -13,13 +13,13 @@
   * [Future Development](whitepaper/future-development.md)
 * Technical Documentation
   * [Integration Guide](whitepaper/integration-guide.md)
-  * [Smart Contracts](smart-contracts.md)
-  * [Security & Risk Control](security-risk-control.md)
-  * [System Maintenance](system-maintenance.md)
+  * [Smart Contracts](whitepaper/smart-contracts.md)
+  * [Security & Risk Control](whitepaper/security-risk-control.md)
+  * [System Maintenance](whitepaper/system-maintenance.md)
 * User Documentation
   * [Quick Start](quick-start/README.md)
-  * [User Guide](user-guide.md)
+  * [User Guide](whitepaper/user-guide.md)
   * [Use Cases](whitepaper/use-cases.md)
 * Legal & Privacy
   * [Privacy Policy](privacy.md)
-  * [Security Audit](security-audit.md)
+  * [Security Audit](whitepaper/security-audit.md)
