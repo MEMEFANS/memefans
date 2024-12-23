@@ -59,9 +59,7 @@
 - Tutorial Videos: [Video guides]
 
 ### Contact
-- Discord Community: [Link]
-- Support Email: support@memefans.com
-- Twitter: @MEMEFANS_official
+- Twitter: @Memefans_Gift
 
 ## Next Steps
 1. Read the [full documentation](../README.md)
