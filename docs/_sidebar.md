@@ -1,4 +1,4 @@
-# MEMEFANS Documentation
+# Navigation
 
 * [Home](/)
 * [Introduction](/whitepaper/)
