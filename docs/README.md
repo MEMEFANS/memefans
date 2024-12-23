@@ -1,12 +1,12 @@
 # MEMEFANS Whitepaper
 
-Welcome to the official MEMEFANS whitepaper. This document outlines our vision for revolutionizing content distribution through blockchain technology.
+Welcome to the official MEMEFANS whitepaper. This document outlines our vision for revolutionizing social token distribution through blockchain technology.
 
 ## Table of Contents
 
-* [Executive Summary](executive-summary.md)
-* [Technical Architecture](technical-architecture.md)
-* [Token Economics](token-economics.md)
+* [Executive Summary](whitepaper/executive-summary.md)
+* [Technical Architecture](whitepaper/technical-architecture.md)
+* [Token Economics](whitepaper/token-economics.md)
 * [Market Analysis](market-analysis.md)
 * [Product Features](product-features.md)
 * [Business Model](business-model.md)
@@ -16,3 +16,8 @@ Welcome to the official MEMEFANS whitepaper. This document outlines our vision f
 * [Use Cases](use-cases.md)
 * [Privacy & Security](privacy-security.md)
 * [Future Development](future-development.md)
+
+## Quick Links
+
+* [GitHub Repository](https://github.com/MEMEFANS/twitter-token-plugin)
+* [Privacy Policy](privacy-policy.md)
