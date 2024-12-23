@@ -4,11 +4,11 @@ Welcome to the official MEMEFANS whitepaper. This document outlines our vision f
 
 ## Table of Contents
 
-- [Executive Summary](executive-summary.md)
-- [Technical Architecture](technical-architecture.md)
-- [Token Economics](token-economics.md)
+- [执行摘要](../executive-summary.md)
+- [技术架构](../technical-architecture.md)
+- [代币经济学](../token-economics.md)
 
 ## Quick Links
 
 - [GitHub Repository](https://github.com/MEMEFANS/twitter-token-plugin)
-- [Privacy Policy](../)
+- [Privacy Policy](../privacy.md)
