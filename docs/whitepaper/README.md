@@ -4,9 +4,18 @@ Welcome to the official MEMEFANS whitepaper. This document outlines our vision f
 
 ## Table of Contents
 
-- [执行摘要](../executive-summary.md)
-- [技术架构](../technical-architecture.md)
-- [代币经济学](../token-economics.md)
+* [Executive Summary](executive-summary.md)
+* [Technical Architecture](technical-architecture.md)
+* [Token Economics](token-economics.md)
+* [Market Analysis](market-analysis.md)
+* [Product Features](product-features.md)
+* [Business Model](business-model.md)
+* [Risk Analysis](risk-analysis.md)
+* [Community Governance](governance.md)
+* [Integration Guide](integration-guide.md)
+* [Use Cases](use-cases.md)
+* [Privacy & Security](privacy-security.md)
+* [Future Development](future-development.md)
 
 ## Quick Links
 
