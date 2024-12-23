@@ -32,7 +32,3 @@ Welcome to the official MEMEFANS documentation. This documentation includes our 
 
 * [Privacy Policy](/privacy.md)
 * [Security Audit](/whitepaper/security-audit.md)
-
-## Additional Resources
-
-* [GitHub Repository](https://github.com/MEMEFANS/twitter-token-plugin)
