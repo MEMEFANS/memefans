@@ -20,4 +20,4 @@ Welcome to the official MEMEFANS whitepaper. This document outlines our vision f
 ## Quick Links
 
 * [GitHub Repository](https://github.com/MEMEFANS/twitter-token-plugin)
-* [Privacy Policy](../privacy-policy.md)
+* [Privacy Policy](../privacy.md)

@@ -1,7 +1,7 @@
 # MEMEFANS Documentation
 
 * [Introduction](README.md)
-* [Privacy Policy](privacy-policy.md)
+* [Privacy](privacy.md)
 * [Quick Start](quick-start/README.md)
 
 ## Whitepaper
