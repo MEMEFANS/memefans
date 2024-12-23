@@ -3,60 +3,24 @@
 Last updated: December 17, 2023
 
 ## Introduction
-MEMEFANS is committed to protecting your privacy and ensuring you have a positive experience on our platform. This privacy policy outlines our data collection and use practices.
+This Privacy Policy describes how Twitter Token Plugin ("we", "our", or "us") collects, uses, and protects your information when you use our Chrome extension.
 
 ## Information We Collect
-### Account Information
-- Wallet address
-- Public profile information
-- Transaction history
-- Platform usage data
-
-### Technical Data
-- Device information
-- IP address
-- Browser type
-- Operating system
-- Connection information
+- Twitter interaction data (likes, retweets, follows)
+- Solana wallet addresses (only when provided by you)
+- Basic browser information necessary for the extension to function
 
 ## How We Use Your Information
-### Core Functionality
-- Process transactions
-- Manage accounts
-- Provide customer support
-- Improve platform features
-
-### Security
-- Prevent fraud
-- Protect user accounts
-- Monitor suspicious activities
-- Maintain platform integrity
+We use the collected information to:
+- Verify your participation in token giveaways
+- Process token distributions
+- Improve our service
 
 ## Data Storage
-### Security Measures
-- End-to-end encryption
-- Regular security audits
-- Access control
-- Data backup
-
-### Data Retention
-- Account data retention period
-- Transaction history storage
-- Backup retention policies
+All data is stored locally in your browser using Chrome's storage API. We do not maintain any external databases of user information.
 
 ## Third-Party Services
-### Service Providers
-- Payment processors
-- Analytics services
-- Security services
-- Cloud storage providers
-
-### Data Sharing
-- When required by law
-- With user consent
-- For fraud prevention
-- With service providers
+We interact with Twitter's API and the Solana blockchain. Please refer to their respective privacy policies for information about how they handle your data.
 
 ## Contact Us
-If you have any questions about this Privacy Policy, please contact us at:
-- Twitter: [@Memefans_Gift](https://twitter.com/Memefans_Gift)
+If you have any questions about this Privacy Policy, please contact us at cy020235371@gmail.com.
