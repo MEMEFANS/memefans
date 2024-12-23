@@ -1,7 +1,8 @@
 # MEMEFANS Whitepaper
 
-* [Executive Summary](whitepaper/executive-summary.md)
-* [Technical Architecture](whitepaper/technical-architecture.md)
-* [Token Economics](whitepaper/token-economics.md)
+* [Introduction](README.md)
+* [Executive Summary](executive-summary.md)
+* [Technical Architecture](technical-architecture.md)
+* [Token Economics](token-economics.md)
 
 * [← Back to Privacy Policy](../)
