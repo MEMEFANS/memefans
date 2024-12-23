@@ -33,7 +33,12 @@
             auto2top: true,
             homepage: 'privacy.md',
             routerMode: 'hash',
-            basePath: '/twitter-token-plugin/docs/',
+            basePath: './',
+            alias: {
+                '/.*/_sidebar.md': '/_sidebar.md',
+                '/whitepaper/(.*)': '/whitepaper/$1',
+                '/quick-start/(.*)': '/quick-start/$1'
+            },
             search: {
                 maxAge: 86400000,
                 paths: 'auto',
