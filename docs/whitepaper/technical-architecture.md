@@ -2,6 +2,8 @@
 
 ## System Overview
 
+> Last updated: 2024-12-25
+
 Our platform is built on a modern, scalable architecture that combines the power of blockchain technology with the convenience of web browser extensions. This design enables seamless integration with social media platforms while maintaining high security and performance standards.
 
 ## Core Components
