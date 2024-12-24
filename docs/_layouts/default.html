@@ -16,15 +16,27 @@
           theme: 'default',
           securityLevel: 'loose',
           flowchart: { useMaxWidth: true, htmlLabels: true },
+          mindmap: { useMaxWidth: true },
+          journey: { useMaxWidth: true },
           pie: { useMaxWidth: true },
-          gantt: { useMaxWidth: true }
+          gantt: { useMaxWidth: true },
+          er: { useMaxWidth: true },
+          sequence: { useMaxWidth: true }
         });
         
-        // Find all pre elements with class 'mermaid'
-        document.querySelectorAll('pre.mermaid, div.mermaid').forEach((element) => {
-          // Initialize mermaid for this element
-          mermaid.init(undefined, element);
+        // Convert all pre elements with mermaid class
+        document.querySelectorAll('pre code.language-mermaid').forEach(function(element) {
+          const pre = element.parentElement;
+          // Create a div for mermaid
+          const div = document.createElement('div');
+          div.classList.add('mermaid');
+          div.textContent = element.textContent;
+          // Replace the pre with the div
+          pre.parentElement.replaceChild(div, pre);
         });
+
+        // Initialize mermaid
+        mermaid.init();
       });
     </script>
   </head>
