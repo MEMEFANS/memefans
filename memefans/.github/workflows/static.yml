@@ -41,6 +41,8 @@ jobs:
           ls -la
           echo "\nDocs directory contents:"
           ls -la docs/
+          echo "\nRepository name: $GITHUB_REPOSITORY"
+          echo "GitHub Pages URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
 
       - name: Build Site
         run: |
