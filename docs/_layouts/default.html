@@ -10,7 +10,7 @@
     <!-- Mermaid Support -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
+      window.addEventListener('load', function() {
         mermaid.initialize({
           startOnLoad: true,
           theme: 'default',
@@ -23,20 +23,6 @@
           er: { useMaxWidth: true },
           sequence: { useMaxWidth: true }
         });
-        
-        // Convert all pre elements with mermaid class
-        document.querySelectorAll('pre code.language-mermaid').forEach(function(element) {
-          const pre = element.parentElement;
-          // Create a div for mermaid
-          const div = document.createElement('div');
-          div.classList.add('mermaid');
-          div.textContent = element.textContent;
-          // Replace the pre with the div
-          pre.parentElement.replaceChild(div, pre);
-        });
-
-        // Initialize mermaid
-        mermaid.init();
       });
     </script>
   </head>

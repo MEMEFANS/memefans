@@ -2,7 +2,7 @@
 
 ## Platform Overview
 
-```mermaid
+<div class="mermaid">
 mindmap
     root((MEMEFANS))
         Core Features
@@ -25,7 +25,7 @@ mindmap
             Premium Features
             Partnership Revenue
             Token Value Growth
-```
+</div>
 
 ## Executive Summary
 
@@ -48,12 +48,12 @@ MEMEFANS represents a paradigm shift in social media engagement through blockcha
   - Fair market competition
 
 ### Launch Mechanism
-```mermaid
+<div class="mermaid">
 graph TD
     A[Market Launch] -->|Equal Access| B[Public Trading]
     B -->|Natural Price| C[Market Value]
     C -->|Organic Growth| D[Ecosystem]
-```
+</div>
 
 ### Key Advantages
 1. **True Decentralization**
@@ -93,7 +93,7 @@ graph TD
   - Privacy-focused design
 
 ### Market Opportunity
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Market Size
         A[Creator Economy] -->|Current| B[$104.2B]
@@ -111,16 +111,16 @@ graph TD
         I[Social Media Users] -->|Reach| J[2B+ Users]
         J -->|Convert| K[Platform Growth]
     end
-```
+</div>
 
 ### Technical Innovation
-```mermaid
+<div class="mermaid">
 graph TD
     A[Zero-Gas Model] -->|Batch Processing| B[Efficient Distribution]
     B -->|Social Integration| C[User Engagement]
     C -->|Analytics| D[Growth Metrics]
     D -->|Optimization| A
-```
+</div>
 
 - Sub-second transaction speeds
 - Minimal gas fees
@@ -144,7 +144,7 @@ graph TD
    - Active community
 
 ### Development Roadmap
-```mermaid
+<div class="mermaid">
 gantt
     title Launch Timeline
     dateFormat YYYY-MM
@@ -156,6 +156,6 @@ gantt
     Feature Expansion     :2024-06, 6M
     section Phase 4
     Global Scaling        :2024-12, 12M
-```
+</div>
 
 [Continue to Technical Architecture →](technical-architecture.md)
