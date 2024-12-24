@@ -1,10 +1,10 @@
-# Twitter Token Plugin
+# MEMEFANS
 
 ## Short Description
-Easily participate in Solana token giveaways on Twitter with automatic verification and claiming.
+Easily participate in MEME token giveaways on Twitter with automatic verification and claiming.
 
 ## Detailed Description
-Twitter Token Plugin is a Chrome extension that seamlessly connects your Twitter account with the Solana blockchain, allowing you to participate in token giveaways with just a few clicks.
+MEMEFANS is a Chrome extension that seamlessly connects your Twitter account with the Solana blockchain, allowing you to participate in token giveaways with just a few clicks.
 
 ### Key Features:
 - One-click connection to your Solana wallet

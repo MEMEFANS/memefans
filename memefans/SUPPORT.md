@@ -1,4 +1,4 @@
-# Support Guide for Twitter Token Plugin
+# Support Guide for MEMEFANS
 
 ## Quick Start Guide
 
@@ -39,15 +39,15 @@
 
 ### Contact Methods
 1. GitHub Issues (preferred for technical issues)
-   - Visit: https://github.com/twitter-token-plugin/issues
+   - Visit: https://github.com/MEMEFANS/memefans/issues
    - Include detailed description and steps to reproduce
 
 2. Email Support
-   - Address: support@twitter-token-plugin.com
+   - Address: support@memefans.com
    - Response time: 24-48 hours
 
 3. Twitter
-   - Handle: @TwitterTokenPlugin
+   - Handle: @MEMEFANS
    - DMs open for quick questions
 
 ### What to Include in Support Requests
@@ -62,6 +62,6 @@
 
 ### Reporting Security Issues
 For security vulnerabilities, please email:
-security@twitter-token-plugin.com
+security@memefans.com
 
 DO NOT post security issues publicly.

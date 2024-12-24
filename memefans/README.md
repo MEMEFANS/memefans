@@ -1,6 +1,6 @@
-# Twitter Token Plugin
+# MEMEFANS
 
-A Chrome extension that enables automated token giveaways on Twitter through Solana smart contracts.
+A Chrome extension that enables automated MEME token giveaways on Twitter through Solana smart contracts.
 
 ![Plugin Demo](images/screenshots/demo.png)
 
@@ -26,7 +26,7 @@ A Chrome extension that enables automated token giveaways on Twitter through Sol
 ## Installation
 
 ### For Users
-1. Install from [Chrome Web Store](https://chrome.google.com/webstore/detail/twitter-token-plugin)
+1. Install from [Chrome Web Store](https://chrome.google.com/webstore/detail/memefans)
 2. Click the extension icon
 3. Connect your Twitter account
 4. Connect your Solana wallet
@@ -34,8 +34,8 @@ A Chrome extension that enables automated token giveaways on Twitter through Sol
 ### For Developers
 1. Clone the repository
 ```bash
-git clone https://github.com/twitter-token-plugin/twitter-token-plugin.git
-cd twitter-token-plugin
+git clone https://github.com/MEMEFANS/memefans.git
+cd memefans
 ```
 
 2. Install dependencies
@@ -100,7 +100,7 @@ npm run build
 
 ## Security
 
-- Report vulnerabilities to security@twitter-token-plugin.com
+- Report vulnerabilities to security@memefans.com
 - DO NOT create public issues for security problems
 
 ## License
@@ -111,8 +111,8 @@ MIT License - see [LICENSE](LICENSE) for details
 
 - [Documentation](docs/README.md)
 - [Support Guide](SUPPORT.md)
-- [GitHub Issues](https://github.com/twitter-token-plugin/issues)
-- Email: support@twitter-token-plugin.com
+- [GitHub Issues](https://github.com/MEMEFANS/memefans/issues)
+- Email: support@memefans.com
 
 ## Acknowledgments
 
