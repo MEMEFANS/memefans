@@ -5,8 +5,6 @@
 ### Installation
 1. Install the extension from Chrome Web Store
 2. Click the extension icon in your browser
-3. Connect your Twitter account
-4. Connect your Solana wallet
 
 ### Common Issues
 
