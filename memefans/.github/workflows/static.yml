@@ -36,6 +36,11 @@ jobs:
         run: |
           npm install markdown-it markdown-it-mermaid @mermaid-js/mermaid-cli
 
+      - name: Clean Build Directory
+        run: |
+          rm -rf _site
+          mkdir -p _site/memefans
+
       - name: Create HTML Templates
         run: |
           # Create header template
@@ -43,43 +48,30 @@ jobs:
           
           # Create footer template
           echo '</body></html>' > footer.html
-          
-          # Create index.html
-          echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MEMEFANS Documentation</title><style>body{font-family:system-ui,-apple-system,sans-serif;text-align:center;padding:20px}</style></head><body><h1>MEMEFANS Documentation</h1><p>Welcome to MEMEFANS Documentation</p></body></html>' > index.html
-          
-          # Create 404.html
-          echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page Not Found - MEMEFANS</title><style>body{font-family:system-ui,-apple-system,sans-serif;text-align:center;padding:20px;max-width:600px;margin:0 auto}h1{margin-top:40px}.back-link{margin-top:20px}a{color:#0366d6;text-decoration:none}a:hover{text-decoration:underline}</style></head><body><h1>Page Not Found</h1><p>The page you are looking for does not exist or has been moved.</p><p class="back-link"><a href="/memefans/quick-start.html">Go to Quick Start Guide</a></p></body></html>' > 404.html
 
       - name: Build Site
         run: |
-          mkdir -p _site
+          # Create output directory
+          mkdir -p _site/memefans
           
-          # Copy HTML templates
-          cp index.html _site/
-          cp 404.html _site/
-          
-          # Copy and convert markdown files
-          if [ -d "docs" ]; then
-            cp -r docs/* _site/ || true
-          fi
-          
-          # Convert markdown files
-          for file in _site/*.md; do
+          # Process markdown files
+          for file in docs/*.md; do
             if [ -f "$file" ]; then
-              html_file="${file%.md}.html"
-              echo "Converting $file to $html_file"
-              cat header.html > "$html_file"
-              npx markdown-it --use markdown-it-mermaid "$file" >> "$html_file"
-              cat footer.html >> "$html_file"
-              rm "$file"
+              filename=$(basename "$file" .md)
+              outfile="_site/memefans/${filename}.html"
+              
+              # Combine header, converted markdown, and footer
+              cat header.html > "$outfile"
+              npx markdown-it "$file" >> "$outfile"
+              cat footer.html >> "$outfile"
             fi
           done
           
-          # Create .nojekyll file
-          touch _site/.nojekyll
+          # Create index.html that redirects to quick-start
+          echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MEMEFANS Documentation</title><meta http-equiv="refresh" content="0;url=/memefans/quick-start.html"><style>body{font-family:system-ui,-apple-system,sans-serif;text-align:center;padding:20px}</style></head><body><h1>MEMEFANS Documentation</h1><p>Redirecting to <a href="/memefans/quick-start.html">Quick Start Guide</a>...</p></body></html>' > _site/memefans/index.html
           
-          # List generated files
-          ls -la _site/
+          # Create 404 page
+          echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page Not Found - MEMEFANS</title><style>body{font-family:system-ui,-apple-system,sans-serif;text-align:center;padding:20px;max-width:600px;margin:0 auto}h1{margin-top:40px}.back-link{margin-top:20px}a{color:#0366d6;text-decoration:none}a:hover{text-decoration:underline}</style></head><body><h1>Page Not Found</h1><p>The page you are looking for does not exist or has been moved.</p><p class="back-link"><a href="/memefans/quick-start.html">Go to Quick Start Guide</a></p></body></html>' > _site/memefans/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
