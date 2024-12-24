@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Twitter Token Plugin",
+  "name": "MEMEFANS",
   "version": "1.0.0",
-  "description": "Easily participate in Solana token giveaways on Twitter with automatic verification and claiming",
+  "description": "Easily participate in FANS token giveaways with automatic verification and claiming",
   "icons": {
     "16": "images/icon16.png",
     "48": "images/icon48.png",
@@ -45,8 +45,8 @@
     "resources": ["images/*", "lib/*"],
     "matches": ["https://twitter.com/*", "https://x.com/*"]
   }],
-  "author": "Twitter Token Plugin Team",
-  "homepage_url": "https://github.com/twitter-token-plugin",
+  "author": "MEMEFANS Team",
+  "homepage_url": "https://github.com/MEMEFANS/memefans",
   "minimum_chrome_version": "88",
-  "privacy_policy_url": "https://liuyuelan12.github.io/twitter-token-plugin/"
+  "privacy_policy_url": "https://memefans.github.io/memefans/docs/privacy-policy.html"
 }

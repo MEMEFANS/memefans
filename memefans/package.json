@@ -1,7 +1,7 @@
 {
-  "name": "twitter-token-plugin",
+  "name": "memefans",
   "version": "1.0.0",
-  "description": "Twitter MEME token giveaway plugin",
+  "description": "MEME token giveaway plugin",
   "main": "background.js",
   "scripts": {
     "start": "react-scripts start",

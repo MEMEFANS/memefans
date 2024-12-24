@@ -1,9 +1,9 @@
-# Privacy Policy for Twitter Token Plugin
+# Privacy Policy for MEMEFANS
 
 Last updated: December 17, 2024
 
 ## Introduction
-This Privacy Policy describes how Twitter Token Plugin ("we", "our", or "the extension") collects, uses, and shares information when you use our Chrome extension.
+This Privacy Policy describes how MEMEFANS ("we", "our", or "the extension") collects, uses, and shares information when you use our Chrome extension.
 
 ## Information We Collect
 1. **Twitter Account Information**
@@ -41,9 +41,9 @@ We may update this policy and will notify users of significant changes.
 
 ## Contact
 For questions about this privacy policy, please contact:
-- Email: support@twitter-token-plugin.com
-- Twitter: @TwitterTokenPlugin
-- GitHub: https://github.com/twitter-token-plugin
+- Email: support@memefans.com
+- Twitter: @MEMEFANS
+- GitHub: https://github.com/MEMEFANS/memefans
 
 ## Support
 For technical support or bug reports:
