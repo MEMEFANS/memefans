@@ -1,5 +1,6 @@
 theme: jekyll-theme-minimal
 title: MEMEFANS Documentation
 description: Technical documentation and guides for MEMEFANS platform
-baseurl: "/memefans"
+baseurl: ""
 url: "https://memefans.github.io"
+source: docs
