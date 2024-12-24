@@ -33,20 +33,35 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        run: npm install -g @11ty/eleventy markdown-it
+        run: npm install -g markdown-it
 
       - name: Build Site
         run: |
-          mkdir -p _site/twitter-token-plugin/docs
-          cp privacy-policy.md _site/twitter-token-plugin/docs/index.md
-          cd _site/twitter-token-plugin/docs
-          npx markdown-it index.md > index.html
-          rm index.md
+          # Create docs directory structure
+          mkdir -p docs
+          
+          # Copy and convert privacy policy
+          cp privacy-policy.md docs/privacy-policy.md
+          npx markdown-it docs/privacy-policy.md > docs/privacy-policy.html
+          
+          # Create index.html that links to both documents
+          echo '<!DOCTYPE html>
+          <html>
+          <head>
+              <title>MEMEFANS Documentation</title>
+          </head>
+          <body>
+              <h1>MEMEFANS Documentation</h1>
+              <ul>
+                  <li><a href="privacy-policy.html">Privacy Policy</a></li>
+              </ul>
+          </body>
+          </html>' > docs/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '_site'
+          path: 'docs'
 
       - name: Deploy to GitHub Pages
         id: deployment
