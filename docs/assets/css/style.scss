@@ -1,0 +1,15 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.mermaid {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+pre.mermaid {
+  background-color: transparent;
+}
