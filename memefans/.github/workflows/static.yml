@@ -31,7 +31,10 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        run: npm install -g markdown-it
+        run: |
+          npm install -g markdown-it
+          npm install -g markdown-it-mermaid
+          npm install -g @mermaid-js/mermaid-cli
 
       - name: Debug Environment
         run: |
@@ -99,8 +102,9 @@ jobs:
               </head>
               <body>" > "$outfile"
               
-              # Convert and append markdown content
-              npx markdown-it "$file" >> "$outfile"
+              # Convert and append markdown content with mermaid support
+              echo "Converting markdown with mermaid support..."
+              npx markdown-it --use markdown-it-mermaid "$file" >> "$outfile"
               
               # Close HTML tags
               echo "</body></html>" >> "$outfile"
