@@ -40,11 +40,13 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/memefans
+          # Create .nojekyll file
+          touch _site/.nojekyll
 
       - name: Create HTML Templates
         run: |
-          # Create header template
-          echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MEMEFANS Documentation</title><style>body{font-family:system-ui,-apple-system,sans-serif;line-height:1.6;max-width:800px;margin:0 auto;padding:20px}pre{background:#f6f8fa;padding:16px;overflow:auto}code{font-family:monospace}.mermaid{background:#fff;padding:10px;border-radius:5px}nav{margin-bottom:30px}nav a{margin-right:15px;color:#0366d6;text-decoration:none}nav a:hover{text-decoration:underline}</style><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true,theme:"default",flowchart:{useMaxWidth:true}})</script></head><body><nav><a href="/memefans/quick-start.html">Quick Start</a><a href="/memefans/use-cases-detailed.html">Use Cases</a><a href="/memefans/permission-justification.html">Permissions</a><a href="/memefans/privacy-policy.html">Privacy</a><a href="/memefans/SUPPORT.html">Support</a></nav>' > header.html
+          # Create header template with base URL
+          echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="/memefans/"><title>MEMEFANS Documentation</title><style>body{font-family:system-ui,-apple-system,sans-serif;line-height:1.6;max-width:800px;margin:0 auto;padding:20px}pre{background:#f6f8fa;padding:16px;overflow:auto}code{font-family:monospace}.mermaid{background:#fff;padding:10px;border-radius:5px}nav{margin-bottom:30px}nav a{margin-right:15px;color:#0366d6;text-decoration:none}nav a:hover{text-decoration:underline}</style><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true,theme:"default",flowchart:{useMaxWidth:true}})</script></head><body><nav><a href="quick-start.html">Quick Start</a><a href="use-cases-detailed.html">Use Cases</a><a href="permission-justification.html">Permissions</a><a href="privacy-policy.html">Privacy</a><a href="SUPPORT.html">Support</a></nav>' > header.html
           
           # Create footer template
           echo '</body></html>' > footer.html
@@ -68,10 +70,10 @@ jobs:
           done
           
           # Create index.html that redirects to quick-start
-          echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MEMEFANS Documentation</title><meta http-equiv="refresh" content="0;url=/memefans/quick-start.html"><style>body{font-family:system-ui,-apple-system,sans-serif;text-align:center;padding:20px}</style></head><body><h1>MEMEFANS Documentation</h1><p>Redirecting to <a href="/memefans/quick-start.html">Quick Start Guide</a>...</p></body></html>' > _site/memefans/index.html
+          echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="/memefans/"><title>MEMEFANS Documentation</title><meta http-equiv="refresh" content="0;url=quick-start.html"><style>body{font-family:system-ui,-apple-system,sans-serif;text-align:center;padding:20px}</style></head><body><h1>MEMEFANS Documentation</h1><p>Redirecting to <a href="quick-start.html">Quick Start Guide</a>...</p></body></html>' > _site/memefans/index.html
           
-          # Create 404 page
-          echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page Not Found - MEMEFANS</title><style>body{font-family:system-ui,-apple-system,sans-serif;text-align:center;padding:20px;max-width:600px;margin:0 auto}h1{margin-top:40px}.back-link{margin-top:20px}a{color:#0366d6;text-decoration:none}a:hover{text-decoration:underline}</style></head><body><h1>Page Not Found</h1><p>The page you are looking for does not exist or has been moved.</p><p class="back-link"><a href="/memefans/quick-start.html">Go to Quick Start Guide</a></p></body></html>' > _site/memefans/404.html
+          # Create 404 page with base URL
+          echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="/memefans/"><title>Page Not Found - MEMEFANS</title><style>body{font-family:system-ui,-apple-system,sans-serif;text-align:center;padding:20px;max-width:600px;margin:0 auto}h1{margin-top:40px}.back-link{margin-top:20px}a{color:#0366d6;text-decoration:none}a:hover{text-decoration:underline}</style></head><body><h1>Page Not Found</h1><p>The page you are looking for does not exist or has been moved.</p><p class="back-link"><a href="quick-start.html">Go to Quick Start Guide</a></p></body></html>' > _site/memefans/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
