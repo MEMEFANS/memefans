@@ -33,15 +33,15 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        run: npm install -g @11ty/eleventy
+        run: npm install -g @11ty/eleventy markdown-it
 
       - name: Build Site
         run: |
-          mkdir _site
-          cp *.md _site/
-          for file in _site/*.md; do
-            eleventy --input=$file --output=${file%.md}.html
-          done
+          mkdir -p _site/twitter-token-plugin/docs
+          cp privacy-policy.md _site/twitter-token-plugin/docs/index.md
+          cd _site/twitter-token-plugin/docs
+          npx markdown-it index.md > index.html
+          rm index.md
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
