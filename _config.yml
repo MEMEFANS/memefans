@@ -4,3 +4,8 @@ description: Technical documentation and guides for MEMEFANS platform
 baseurl: ""
 url: "https://memefans.github.io"
 source: docs
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  parse_block_html: true
