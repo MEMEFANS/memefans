@@ -49,7 +49,7 @@ jobs:
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1">
               <title>MEMEFANS Documentation</title>
-              <meta http-equiv="refresh" content="0; url=docs/support.html">
+              <meta http-equiv="refresh" content="0; url=docs/SUPPORT.html">
               <base href="/memefans/">
               <style>
                   body {
@@ -66,23 +66,26 @@ jobs:
           </head>
           <body>
               <h1>MEMEFANS Documentation</h1>
-              <p>If you are not redirected automatically, <a href="docs/support.html">click here</a>.</p>
+              <p>If you are not redirected automatically, <a href="docs/SUPPORT.html">click here</a>.</p>
           </body>
           </html>
           EOL
           
-          # List all markdown files in docs directory
-          echo "Files in docs directory:"
-          ls -la docs/*.md || true
+          # Debug: Show current directory and contents
+          pwd
+          echo "Current directory contents:"
+          ls -la
           
-          # Convert markdown files from docs directory
-          for file in docs/*.md; do
-            if [ -f "$file" ]; then
-              echo "Converting $file..."
-              filename=$(basename "$file")
-              basename="${filename%.md}"
-              npx markdown-it "$file" > "_site/docs/${basename}.html" || echo "Failed to convert $file"
-            fi
+          echo "Docs directory contents:"
+          ls -la docs/
+          
+          # Convert markdown files from docs directory (case-insensitive)
+          find docs/ -type f -iname "*.md" | while read -r file; do
+            echo "Converting $file..."
+            filename=$(basename "$file")
+            basename="${filename%.md}"
+            # Preserve original case in output filename
+            npx markdown-it "$file" > "_site/docs/${basename}.html" || echo "Failed to convert $file"
           done
           
           # Create .nojekyll file
