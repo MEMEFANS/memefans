@@ -2,227 +2,125 @@
 
 ## Revenue Streams Overview
 
-<div class="mermaid">
+```mermaid
 graph TD
-    A[Revenue Sources] -->|Primary| B[Transaction Fees]
-    A -->|Secondary| C[Premium Features]
-    A -->|Tertiary| D[Partnership Revenue]
+    A[Revenue Sources] --> B[Primary]
+    A --> C[Secondary]
+    A --> D[Tertiary]
     
-    subgraph Transaction Revenue
-    B -->|Gift| E[Gift Processing]
-    B -->|Trade| F[Token Exchange]
-    B -->|NFT| G[NFT Trading]
-    end
+    B --> B1[Transaction Fees]
+    B --> B2[Gift Processing]
+    B --> B3[Token Exchange]
     
-    subgraph Premium Services
-    C -->|Creator| H[Pro Tools]
-    C -->|User| I[VIP Features]
-    C -->|API| J[Enterprise API]
-    end
+    C --> C1[Creator Pro]
+    C --> C2[VIP Features]
+    C --> C3[Enterprise API]
     
-    subgraph Partnerships
-    D -->|Brand| K[Sponsorships]
-    D -->|Platform| L[Integrations]
-    D -->|Media| M[Advertising]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+    D --> D1[Sponsorships]
+    D --> D2[Integrations]
+    D --> D3[Advertising]
+```
 
 ## Value Proposition
 
-<div class="mermaid">
+```mermaid
 graph TD
-    A[Value Creation] -->|Creators| B[Creator Benefits]
-    A -->|Users| C[User Benefits]
-    A -->|Platform| D[Platform Growth]
+    A[Value Creation] --> B[Creator Benefits]
+    A --> C[User Benefits]
+    A --> D[Platform Growth]
     
-    subgraph Creator Value
-    B -->|Income| E[Revenue Streams]
-    B -->|Tools| F[Creation Tools]
-    B -->|Growth| G[Audience Growth]
-    end
+    B --> B1[Revenue Streams]
+    B --> B2[Creation Tools]
+    B --> B3[Audience Growth]
     
-    subgraph User Value
-    C -->|Content| H[Quality Content]
-    C -->|Rewards| I[Gift Benefits]
-    C -->|Community| J[Social Connection]
-    end
+    C --> C1[Quality Content]
+    C --> C2[Gift Benefits]
+    C --> C3[Social Connection]
     
-    subgraph Platform Value
-    D -->|Network| K[Network Effect]
-    D -->|Data| L[Market Insights]
-    D -->|Brand| M[Market Position]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+    D --> D1[Network Effect]
+    D --> D2[Market Position]
+    D --> D3[Data Insights]
+```
 
 ## Growth Strategy
 
-<div class="mermaid">
+```mermaid
 graph TD
-    A[Growth Strategy] -->|Acquisition| B[User Growth]
-    A -->|Retention| C[User Retention]
-    A -->|Expansion| D[Market Expansion]
+    A[Growth Strategy] --> B[User Growth]
+    A --> C[User Retention]
+    A --> D[Market Expansion]
     
-    subgraph User Acquisition
-    B -->|Marketing| E[Campaigns]
-    B -->|Referral| F[User Referrals]
-    B -->|Content| G[Viral Growth]
-    end
+    B --> B1[Marketing Campaigns]
+    B --> B2[User Referrals]
+    B --> B3[Content Growth]
     
-    subgraph User Retention
-    C -->|Engagement| H[Daily Active]
-    C -->|Value| I[User Benefits]
-    C -->|Community| J[Social Bonds]
-    end
+    C --> C1[Daily Active]
+    C --> C2[User Benefits]
+    C --> C3[Social Bonds]
     
-    subgraph Market Growth
-    D -->|Geographic| K[New Markets]
-    D -->|Product| L[New Features]
-    D -->|Partners| M[Integrations]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+    D --> D1[New Markets]
+    D --> D2[New Features]
+    D --> D3[Integrations]
+```
 
 ## Monetization Model
 
-<div class="mermaid">
+```mermaid
 sequenceDiagram
-    participant U as User
-    participant P as Platform
-    participant C as Creator
-    participant B as Business
+    participant User
+    participant Platform
+    participant Creator
+    participant Business
     
-    U->>P: Platform Usage
-    P->>C: Content Delivery
-    C->>U: Content Creation
-    B->>P: Partnership
-    
-    Note over U,P: Transaction Fees
-    Note over P,C: Revenue Share
-    Note over B,P: Business Services
-</div>
+    User->>Platform: Platform Usage
+    Platform->>Creator: Content Delivery
+    Creator->>Business: Content Creation
+    Business->>Platform: Partnership
+    Platform->>Creator: Revenue Share
+    Creator->>User: Value Delivery
+```
 
 ## Partnership Framework
 
-<div class="mermaid">
+```mermaid
 graph TD
-    A[Partnerships] -->|Strategic| B[Platform Partners]
-    A -->|Content| C[Creator Partners]
-    A -->|Business| D[Enterprise Partners]
+    A[Partnerships] --> B[Platform Partners]
+    A --> C[Creator Partners]
+    A --> D[Enterprise Partners]
     
-    subgraph Platform Partners
-    B -->|Tech| E[Integration]
-    B -->|Service| F[Infrastructure]
-    B -->|Product| G[Features]
-    end
+    B --> B1[Tech Integration]
+    B --> B2[Service]
+    B --> B3[Infrastructure]
     
-    subgraph Creator Partners
-    C -->|Content| H[Premium Content]
-    C -->|Brand| I[Ambassadors]
-    C -->|Events| J[Live Events]
-    end
+    C --> C1[Premium Content]
+    C --> C2[Ambassadors]
+    C --> C3[Live Events]
     
-    subgraph Enterprise
-    D -->|API| K[API Services]
-    D -->|Data| L[Analytics]
-    D -->|Custom| M[Solutions]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+    D --> D1[API Services]
+    D --> D2[Analytics]
+    D --> D3[Solutions]
+```
 
 ## Financial Projections
 
-<div class="mermaid">
+```mermaid
 graph TD
-    A[Financial Growth] -->|Revenue| B[Revenue Streams]
-    A -->|Costs| C[Operating Costs]
-    A -->|Metrics| D[Key Metrics]
+    A[Financial Model] --> B[Revenue]
+    A --> C[Costs]
+    A --> D[Profitability]
     
-    subgraph Revenue Analysis
-    B -->|Direct| E[Transaction Revenue]
-    B -->|Indirect| F[Partnership Revenue]
-    B -->|Other| G[Additional Revenue]
-    end
+    B --> B1[Transaction Revenue]
+    B --> B2[Service Revenue]
+    B --> B3[Partner Revenue]
     
-    subgraph Cost Structure
-    C -->|Fixed| H[Infrastructure]
-    C -->|Variable| I[Operations]
-    C -->|Growth| J[Marketing]
-    end
+    C --> C1[Operating Costs]
+    C --> C2[Development Costs]
+    C --> C3[Marketing Costs]
     
-    subgraph Performance
-    D -->|User| K[User Metrics]
-    D -->|Business| L[Business Metrics]
-    D -->|Market| M[Market Metrics]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+    D --> D1[Gross Margin]
+    D --> D2[Net Margin]
+    D --> D3[Growth Rate]
+```
 
 ## Market Expansion Strategy
 
