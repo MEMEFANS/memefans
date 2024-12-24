@@ -6,16 +6,20 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
+  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -24,7 +28,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -36,136 +43,92 @@ jobs:
           npm install -g markdown-it-mermaid
           npm install -g @mermaid-js/mermaid-cli
 
-      - name: Debug Environment
-        run: |
-          echo "Current directory:"
-          pwd
-          echo "\nDirectory contents:"
-          ls -la
-          echo "\nDocs directory contents:"
-          ls -la docs/
-          echo "\nRepository name: $GITHUB_REPOSITORY"
-          echo "GitHub Pages URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
-
       - name: Build Site
         run: |
-          echo "Step 1: Creating site directory"
-          mkdir -p _site/memefans
+          # Create output directory
+          mkdir -p _site
           
-          echo "Step 2: Converting markdown files"
-          for file in docs/*.md; do
-            echo "Processing: $file"
+          # Copy all markdown files to _site
+          cp -r docs/* _site/
+          
+          # Convert markdown files
+          for file in _site/*.md; do
             if [ -f "$file" ]; then
-              filename=$(basename "$file")
-              basename="${filename%.md}"
-              outfile="_site/memefans/${basename}.html"
-              echo "Converting $file to $outfile"
+              html_file="${file%.md}.html"
+              echo "Converting $file to $html_file"
               
-              # Add HTML wrapper around markdown content
-              echo "<!DOCTYPE html>
-              <html>
-              <head>
-                  <meta charset='UTF-8'>
-                  <meta name='viewport' content='width=device-width, initial-scale=1'>
-                  <title>${basename}</title>
-                  <style>
-                      body {
-                          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                          line-height: 1.6;
-                          max-width: 800px;
-                          margin: 0 auto;
-                          padding: 20px;
-                      }
-                      pre { background: #f6f8fa; padding: 16px; overflow: auto; }
-                      code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
-                      .mermaid { background: #fff; padding: 10px; border-radius: 5px; }
-                  </style>
-                  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-                  <script>
-                    mermaid.initialize({
-                      startOnLoad: true,
-                      theme: 'default',
-                      flowchart: {
-                        useMaxWidth: true,
-                        htmlLabels: true,
-                        curve: 'basis'
-                      }
-                    });
-                  </script>
-                  <script>
-                    // Check if we're on the wrong domain and redirect if necessary
-                    if (window.location.hostname === 'memefans.github.io' && 
-                        window.location.pathname.includes('/twitter-token-plugin/docs/')) {
-                      window.location.href = 'https://memefans.github.io/memefans/' + window.location.pathname.split('/').pop();
-                    }
-                  </script>
-              </head>
-              <body>" > "$outfile"
+              # Create HTML wrapper
+              cat > "$html_file" << EOL
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MEMEFANS Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        pre { background: #f6f8fa; padding: 16px; overflow: auto; }
+        code { font-family: 'SFMono-Regular', Consolas, monospace; }
+        .mermaid { background: #fff; padding: 10px; border-radius: 5px; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: { useMaxWidth: true }
+        });
+    </script>
+</head>
+<body>
+EOL
               
-              # Convert and append markdown content with mermaid support
-              echo "Converting markdown with mermaid support..."
-              npx markdown-it --use markdown-it-mermaid "$file" >> "$outfile"
+              # Convert markdown to HTML and append
+              npx markdown-it --use markdown-it-mermaid "$file" >> "$html_file"
               
               # Close HTML tags
-              echo "</body></html>" >> "$outfile"
+              echo "</body></html>" >> "$html_file"
               
-              echo "Created: $outfile"
-              ls -l "$outfile"
+              # Remove original markdown file
+              rm "$file"
             fi
           done
           
-          echo "Step 3: Creating index.html"
-          cat > _site/memefans/index.html << 'EOL'
-          <!DOCTYPE html>
-          <html>
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1">
-              <title>MEMEFANS Documentation</title>
-              <meta http-equiv="refresh" content="0; url=permission-justification.html">
-              <style>
-                  body {
-                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                      line-height: 1.6;
-                      max-width: 800px;
-                      margin: 0 auto;
-                      padding: 20px;
-                      text-align: center;
-                  }
-                  a { color: #1DA1F2; text-decoration: none; }
-                  a:hover { text-decoration: underline; }
-              </style>
-              <script>
-                // Check if we're on the wrong domain and redirect if necessary
-                if (window.location.hostname === 'memefans.github.io' && 
-                    window.location.pathname.includes('/twitter-token-plugin/docs/')) {
-                  window.location.href = 'https://memefans.github.io/memefans/';
-                }
-              </script>
-          </head>
-          <body>
-              <h1>MEMEFANS Documentation</h1>
-              <p>If you are not redirected automatically, <a href="permission-justification.html">click here</a>.</p>
-          </body>
-          </html>
-          EOL
+          # Create index.html
+          cat > _site/index.html << EOL
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MEMEFANS Documentation</title>
+    <meta http-equiv="refresh" content="0; url=use-cases-detailed.html">
+</head>
+<body>
+    <h1>MEMEFANS Documentation</h1>
+    <p>Redirecting to <a href="use-cases-detailed.html">documentation</a>...</p>
+</body>
+</html>
+EOL
           
-          echo "Step 4: Creating .nojekyll"
+          # Create .nojekyll file
           touch _site/.nojekyll
           
-          echo "Final site structure:"
+          # List generated files
+          echo "Generated files:"
           ls -la _site/
-          echo "\nGenerated files:"
-          find _site -type f
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '_site'
-          
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
