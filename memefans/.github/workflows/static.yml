@@ -71,14 +71,17 @@ jobs:
           </html>
           EOL
           
-          # List all markdown files in current directory
-          ls -la *.md || true
+          # List all markdown files in docs directory
+          echo "Files in docs directory:"
+          ls -la docs/*.md || true
           
-          # Convert markdown files (with error handling)
-          for file in *.md; do
+          # Convert markdown files from docs directory
+          for file in docs/*.md; do
             if [ -f "$file" ]; then
               echo "Converting $file..."
-              npx markdown-it "$file" > "_site/docs/${file%.md}.html" || echo "Failed to convert $file"
+              filename=$(basename "$file")
+              basename="${filename%.md}"
+              npx markdown-it "$file" > "_site/docs/${basename}.html" || echo "Failed to convert $file"
             fi
           done
           
