@@ -47,7 +47,7 @@ jobs:
       - name: Build Site
         run: |
           echo "Step 1: Creating site directory"
-          mkdir -p _site
+          mkdir -p _site/memefans
           
           echo "Step 2: Converting markdown files"
           for file in docs/*.md; do
@@ -55,7 +55,7 @@ jobs:
             if [ -f "$file" ]; then
               filename=$(basename "$file")
               basename="${filename%.md}"
-              outfile="_site/${basename}.html"
+              outfile="_site/memefans/${basename}.html"
               echo "Converting $file to $outfile"
               
               # Add HTML wrapper around markdown content
@@ -76,6 +76,13 @@ jobs:
                       pre { background: #f6f8fa; padding: 16px; overflow: auto; }
                       code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
                   </style>
+                  <script>
+                    // Check if we're on the wrong domain and redirect if necessary
+                    if (window.location.hostname === 'memefans.github.io' && 
+                        window.location.pathname.includes('/twitter-token-plugin/docs/')) {
+                      window.location.href = 'https://memefans.github.io/memefans/' + window.location.pathname.split('/').pop();
+                    }
+                  </script>
               </head>
               <body>" > "$outfile"
               
@@ -91,7 +98,7 @@ jobs:
           done
           
           echo "Step 3: Creating index.html"
-          cat > _site/index.html << 'EOL'
+          cat > _site/memefans/index.html << 'EOL'
           <!DOCTYPE html>
           <html>
           <head>
@@ -111,6 +118,13 @@ jobs:
                   a { color: #1DA1F2; text-decoration: none; }
                   a:hover { text-decoration: underline; }
               </style>
+              <script>
+                // Check if we're on the wrong domain and redirect if necessary
+                if (window.location.hostname === 'memefans.github.io' && 
+                    window.location.pathname.includes('/twitter-token-plugin/docs/')) {
+                  window.location.href = 'https://memefans.github.io/memefans/';
+                }
+              </script>
           </head>
           <body>
               <h1>MEMEFANS Documentation</h1>
