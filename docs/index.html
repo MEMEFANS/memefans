@@ -49,16 +49,12 @@
             subMaxLevel: 3,
             auto2top: true,
             homepage: 'whitepaper/README.md',
-            routerMode: 'hash',
-            basePath: '/memefans/',
+            routerMode: 'history',
+            basePath: '/',
             relativePath: true,
-            fallbackLanguages: ['zh-cn'],
-            nameLink: {
-                '/': '#/'
-            },
+            nameLink: '/',
             alias: {
-                '/.*/_sidebar.md': '/_sidebar.md',
-                '/whitepaper/': '/whitepaper/README.md'
+                '/.*/_sidebar.md': '/_sidebar.md'
             },
             search: {
                 maxAge: 86400000,
