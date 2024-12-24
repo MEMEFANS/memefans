@@ -2,7 +2,8 @@ name: Deploy Documentation
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -11,15 +12,15 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -47,8 +48,8 @@ jobs:
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1">
-              <title>Redirecting to MEMEFANS Documentation</title>
-              <meta http-equiv="refresh" content="0; url=docs/">
+              <title>MEMEFANS Documentation</title>
+              <meta http-equiv="refresh" content="0; url=docs/support.html">
               <base href="/memefans/">
               <style>
                   body {
@@ -65,70 +66,16 @@ jobs:
           </head>
           <body>
               <h1>MEMEFANS Documentation</h1>
-              <p>If you are not redirected automatically, <a href="docs/">click here</a>.</p>
+              <p>If you are not redirected automatically, <a href="docs/support.html">click here</a>.</p>
           </body>
           </html>
           EOL
           
-          # Convert all markdown files in docs directory
-          for file in *.md; do
-            if [ -f "$file" ]; then
-              filename="${file%.*}"
-              npx markdown-it "$file" > "_site/docs/${filename}.html"
-            fi
-          done
-          
-          # Create docs index.html with proper base tag
-          cat > _site/docs/index.html << 'EOL'
-          <!DOCTYPE html>
-          <html>
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1">
-              <title>MEMEFANS Documentation</title>
-              <base href="/memefans/docs/">
-              <style>
-                  body {
-                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                      line-height: 1.6;
-                      max-width: 800px;
-                      margin: 0 auto;
-                      padding: 20px;
-                  }
-                  h1 { color: #333; }
-                  a { color: #1DA1F2; text-decoration: none; }
-                  a:hover { text-decoration: underline; }
-                  ul { list-style-type: none; padding: 0; }
-                  li { margin: 10px 0; }
-              </style>
-          </head>
-          <body>
-              <h1>MEMEFANS Documentation</h1>
-              <ul>
-                  <li><a href="executive-summary.html">Executive Summary</a></li>
-                  <li><a href="technical-architecture.html">Technical Architecture</a></li>
-                  <li><a href="token-economics.html">Token Economics</a></li>
-                  <li><a href="market-analysis.html">Market Analysis</a></li>
-                  <li><a href="product-features.html">Product Features</a></li>
-                  <li><a href="business-model.html">Business Model</a></li>
-                  <li><a href="risk-analysis.html">Risk Analysis</a></li>
-                  <li><a href="community-ecosystem.html">Community & Ecosystem</a></li>
-                  <li><a href="integration-guide.html">Integration Guide</a></li>
-                  <li><a href="use-cases.html">Use Cases</a></li>
-                  <li><a href="privacy-security.html">Privacy & Security</a></li>
-                  <li><a href="future-development.html">Future Development</a></li>
-              </ul>
-              <h2>Additional Documents</h2>
-              <ul>
-                  <li><a href="smart-contracts.html">Smart Contracts</a></li>
-                  <li><a href="security-risk-control.html">Security & Risk Control</a></li>
-                  <li><a href="system-maintenance.html">System Maintenance</a></li>
-                  <li><a href="user-guide.html">User Guide</a></li>
-                  <li><a href="security-audit.html">Security Audit</a></li>
-              </ul>
-          </body>
-          </html>
-          EOL
+          # Convert markdown files
+          npx markdown-it SUPPORT.md > _site/docs/support.html
+          npx markdown-it privacy-policy.md > _site/docs/privacy-policy.html
+          npx markdown-it permission-justification.md > _site/docs/permission-justification.html
+          npx markdown-it store-description.md > _site/docs/store-description.html
           
           # Create .nojekyll file
           touch _site/.nojekyll
@@ -136,7 +83,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '_site'
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
