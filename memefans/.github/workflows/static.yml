@@ -71,14 +71,23 @@ jobs:
           </html>
           EOL
           
-          # Convert markdown files
-          npx markdown-it SUPPORT.md > _site/docs/support.html
-          npx markdown-it privacy-policy.md > _site/docs/privacy-policy.html
-          npx markdown-it permission-justification.md > _site/docs/permission-justification.html
-          npx markdown-it store-description.md > _site/docs/store-description.html
+          # List all markdown files in current directory
+          ls -la *.md || true
+          
+          # Convert markdown files (with error handling)
+          for file in *.md; do
+            if [ -f "$file" ]; then
+              echo "Converting $file..."
+              npx markdown-it "$file" > "_site/docs/${file%.md}.html" || echo "Failed to convert $file"
+            fi
+          done
           
           # Create .nojekyll file
           touch _site/.nojekyll
+          
+          # List generated files
+          echo "Generated files in _site/docs:"
+          ls -la _site/docs/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
