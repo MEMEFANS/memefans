@@ -4,6 +4,20 @@
 
 ### Gift Pool System
 
+<div class="mermaid">
+graph TD
+    A[User] -->|Send Gift| B[Gift Pool Contract]
+    B -->|Record| C[User Balance]
+    C -->|Accumulate| D[Claimable Amount]
+    D -->|Withdraw| E[User Wallet]
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+</div>
+
 1. **FANS Token Gift Pool**
    - Users send FANS tokens as gifts on X platform
    - All gift tokens are stored in a unified pool
@@ -223,3 +237,338 @@
    - Regular checks
    - Performance optimization
    - Issue resolution
+
+## Contract Architecture
+
+### Core Contracts
+
+<div class="mermaid">
+graph TD
+    A[Token Contract] -->|Manage| B[Gift Pool]
+    B -->|Control| C[Distribution]
+    C -->|Execute| D[Claims]
+    
+    subgraph Security
+    E[Access Control] -->|Protect| B
+    F[Pause Mechanism] -->|Control| C
+    G[Emergency Stop] -->|Protect| D
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+</div>
+
+### Contract Interactions
+
+<div class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant E as Extension
+    participant P as Pool Contract
+    participant T as Token Contract
+    
+    U->>E: Send Gift
+    E->>P: Call Pool Contract
+    P->>T: Check Balance
+    T-->>P: Confirm Balance
+    P->>P: Record Gift
+    P-->>E: Emit Event
+    E-->>U: Update UI
+    
+    Note over P,T: Token Transfer Flow
+</div>
+
+## Security Measures
+
+### Access Control
+
+<div class="mermaid">
+graph TD
+    A[Request] -->|Verify| B[Role Check]
+    B -->|Validate| C[Permission]
+    C -->|Allow/Deny| D[Action]
+    
+    subgraph Roles
+    E[Owner]
+    F[Admin]
+    G[User]
+    end
+    
+    E --> B
+    F --> B
+    G --> B
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+</div>
+
+### Emergency Procedures
+
+<div class="mermaid">
+graph TD
+    A[Monitor] -->|Detect| B[Issue]
+    B -->|Trigger| C[Emergency Stop]
+    C -->|Notify| D[Admin]
+    D -->|Review| E[Resolution]
+    E -->|Execute| F[Recovery]
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+</div>
+
+## Testing Framework
+
+<div class="mermaid">
+graph TD
+    A[Test Cases] -->|Execute| B[Unit Tests]
+    B -->|Verify| C[Integration Tests]
+    C -->|Validate| D[Security Tests]
+    D -->|Report| E[Coverage]
+    
+    subgraph Test Types
+    F[Function Tests]
+    G[Gas Tests]
+    H[Security Tests]
+    end
+    
+    F --> B
+    G --> C
+    H --> D
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+</div>
+
+## Deployment Strategy
+
+<div class="mermaid">
+graph TD
+    A[Development] -->|Test| B[Staging]
+    B -->|Audit| C[Production]
+    C -->|Monitor| D[Maintenance]
+    
+    subgraph Environments
+    E[Local]
+    F[Testnet]
+    G[Mainnet]
+    end
+    
+    E --> A
+    F --> B
+    G --> C
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+</div>
+
+## Smart Contracts
+
+## Smart Contract Architecture
+
+<div class="mermaid">
+graph TD
+    A[Smart Contracts] -->|Core| B[Core Contracts]
+    A -->|Token| C[Token Contracts]
+    A -->|Utility| D[Utility Contracts]
+    
+    subgraph Core Contracts
+    B -->|Access| E[Access Control]
+    B -->|Storage| F[Data Storage]
+    B -->|Logic| G[Business Logic]
+    end
+    
+    subgraph Token Contracts
+    C -->|Standard| H[Token Standard]
+    C -->|Features| I[Token Features]
+    C -->|Control| J[Token Control]
+    end
+    
+    subgraph Utility Contracts
+    D -->|Helper| K[Helper Functions]
+    D -->|Library| L[Libraries]
+    D -->|Interface| M[Interfaces]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Token Flow
+
+<div class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant T as Token Contract
+    participant S as Storage Contract
+    participant L as Logic Contract
+    
+    U->>T: Request Token
+    T->>S: Check Balance
+    S-->>T: Balance Status
+    T->>L: Process Logic
+    L-->>T: Logic Result
+    T-->>U: Token Transfer
+    
+    Note over U,T: Token Request
+    Note over T,S: Balance Check
+    Note over T,L: Logic Processing
+</div>
+
+## Staking Flow
+
+<div class="mermaid">
+graph TD
+    A[Staking System] -->|Stake| B[Stake Process]
+    A -->|Reward| C[Reward Process]
+    A -->|Withdraw| D[Withdrawal Process]
+    
+    subgraph Stake Process
+    B -->|Lock| E[Token Lock]
+    B -->|Calculate| F[Period Calculation]
+    B -->|Record| G[Stake Recording]
+    end
+    
+    subgraph Reward Process
+    C -->|Calculate| H[Reward Calculation]
+    C -->|Distribute| I[Reward Distribution]
+    C -->|Track| J[Reward Tracking]
+    end
+    
+    subgraph Withdrawal Process
+    D -->|Request| K[Withdrawal Request]
+    D -->|Verify| L[Period Verification]
+    D -->|Execute| M[Token Release]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Governance Flow
+
+<div class="mermaid">
+graph TD
+    A[Governance] -->|Proposal| B[Proposal Process]
+    A -->|Voting| C[Voting Process]
+    A -->|Execution| D[Execution Process]
+    
+    subgraph Proposal Process
+    B -->|Submit| E[Proposal Submission]
+    B -->|Review| F[Proposal Review]
+    B -->|Queue| G[Proposal Queue]
+    end
+    
+    subgraph Voting Process
+    C -->|Cast| H[Vote Casting]
+    C -->|Count| I[Vote Counting]
+    C -->|Result| J[Vote Result]
+    end
+    
+    subgraph Execution Process
+    D -->|Verify| K[Result Verification]
+    D -->|Execute| L[Proposal Execution]
+    D -->|Record| M[Execution Record]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Market Flow
+
+<div class="mermaid">
+graph TD
+    A[Market System] -->|List| B[Listing Process]
+    A -->|Trade| C[Trading Process]
+    A -->|Settle| D[Settlement Process]
+    
+    subgraph Listing Process
+    B -->|Create| E[Create Listing]
+    B -->|Verify| F[Verify Asset]
+    B -->|Activate| G[Activate Listing]
+    end
+    
+    subgraph Trading Process
+    C -->|Match| H[Order Matching]
+    C -->|Execute| I[Trade Execution]
+    C -->|Record| J[Trade Recording]
+    end
+    
+    subgraph Settlement Process
+    D -->|Calculate| K[Fee Calculation]
+    D -->|Transfer| L[Asset Transfer]
+    D -->|Complete| M[Trade Completion]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>

@@ -310,4 +310,233 @@ graph TD
 - Regular communication
 - Continuous improvement
 
+## Use Cases
+
+## Core Use Cases
+
+<div class="mermaid">
+graph TD
+    A[Use Cases] -->|Creator| B[Creator Cases]
+    A -->|User| C[User Cases]
+    A -->|Platform| D[Platform Cases]
+    
+    subgraph Creator Use Cases
+    B -->|Content| E[Content Creation]
+    B -->|Monetize| F[Monetization]
+    B -->|Engage| G[Fan Engagement]
+    end
+    
+    subgraph User Use Cases
+    C -->|Consume| H[Content Consumption]
+    C -->|Support| I[Creator Support]
+    C -->|Interact| J[Social Interaction]
+    end
+    
+    subgraph Platform Cases
+    D -->|Manage| K[Management]
+    D -->|Analyze| L[Analytics]
+    D -->|Grow| M[Growth]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Gift System Flow
+
+<div class="mermaid">
+sequenceDiagram
+    participant F as Fan
+    participant P as Platform
+    participant C as Creator
+    participant W as Wallet
+    
+    F->>P: Send Gift
+    P->>W: Check Balance
+    W-->>P: Confirm Balance
+    P->>C: Record Gift
+    C->>W: Claim Reward
+    W-->>C: Transfer Tokens
+    P-->>F: Update UI
+    
+    Note over F,P: Gift Initiation
+    Note over P,W: Balance Check
+    Note over C,W: Reward Claim
+</div>
+
+## Content Creation Flow
+
+<div class="mermaid">
+graph TD
+    A[Content Flow] -->|Create| B[Creation]
+    A -->|Publish| C[Publishing]
+    A -->|Monetize| D[Monetization]
+    
+    subgraph Creation Process
+    B -->|Draft| E[Content Draft]
+    B -->|Edit| F[Content Edit]
+    B -->|Review| G[Content Review]
+    end
+    
+    subgraph Publishing
+    C -->|Format| H[Formatting]
+    C -->|Schedule| I[Scheduling]
+    C -->|Distribute| J[Distribution]
+    end
+    
+    subgraph Monetization
+    D -->|Gift| K[Gift Revenue]
+    D -->|Premium| L[Premium Content]
+    D -->|Sponsor| M[Sponsorships]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## User Interaction Flow
+
+<div class="mermaid">
+graph TD
+    A[User Flow] -->|Content| B[Content Flow]
+    A -->|Social| C[Social Flow]
+    A -->|Financial| D[Financial Flow]
+    
+    subgraph Content Interaction
+    B -->|View| E[Content View]
+    B -->|Like| F[Content Like]
+    B -->|Share| G[Content Share]
+    end
+    
+    subgraph Social Interaction
+    C -->|Follow| H[Follow Creator]
+    C -->|Comment| I[Add Comment]
+    C -->|Connect| J[Connect Users]
+    end
+    
+    subgraph Financial Interaction
+    D -->|Gift| K[Send Gift]
+    D -->|Subscribe| L[Subscribe]
+    D -->|Purchase| M[Buy Content]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Analytics Flow
+
+<div class="mermaid">
+graph TD
+    A[Analytics] -->|Collect| B[Data Collection]
+    A -->|Process| C[Data Processing]
+    A -->|Present| D[Data Presentation]
+    
+    subgraph Collection
+    B -->|User| E[User Data]
+    B -->|Content| F[Content Data]
+    B -->|System| G[System Data]
+    end
+    
+    subgraph Processing
+    C -->|Analyze| H[Analysis]
+    C -->|Aggregate| I[Aggregation]
+    C -->|Report| J[Reporting]
+    end
+    
+    subgraph Presentation
+    D -->|Dashboard| K[Dashboards]
+    D -->|Reports| L[Reports]
+    D -->|Insights| M[Insights]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Reward System Flow
+
+<div class="mermaid">
+graph TD
+    A[Reward System] -->|Earn| B[Earning]
+    A -->|Distribute| C[Distribution]
+    A -->|Claim| D[Claiming]
+    
+    subgraph Earning Process
+    B -->|Create| E[Content Creation]
+    B -->|Engage| F[Engagement]
+    B -->|Refer| G[Referral]
+    end
+    
+    subgraph Distribution
+    C -->|Calculate| H[Calculation]
+    C -->|Allocate| I[Allocation]
+    C -->|Record| J[Recording]
+    end
+    
+    subgraph Claiming Process
+    D -->|Verify| K[Verification]
+    D -->|Process| L[Processing]
+    D -->|Transfer| M[Transfer]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
 [Continue to Privacy & Security →](privacy-security.md)

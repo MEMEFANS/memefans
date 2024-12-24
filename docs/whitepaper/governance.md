@@ -47,31 +47,208 @@
    - Education programs
 
 #### Proposal Process
+```mermaid
+sequenceDiagram
+    participant A as Author
+    participant C as Community
+    participant V as Voters
+    participant I as Implementation
+    
+    A->>C: Submit Proposal
+    C->>C: Discussion Period
+    C->>V: Voting Period
+    V->>I: If Approved
+    I->>C: Execute Changes
+    
+    Note over C,V: Minimum 7 Days
 ```
-Stage 1: Pre-proposal
-- Discussion in forum
-- Community feedback
-- Technical review
-- Cost analysis
 
-Stage 2: Formal Proposal
-- Detailed documentation
-- Implementation plan
-- Resource requirements
-- Timeline
+## Governance
 
-Stage 3: Voting
-- 7-day voting period
-- Quorum requirements
-- Vote counting
-- Result verification
+## Governance Framework
 
-Stage 4: Implementation
-- Development phase
-- Testing period
-- Deployment
-- Monitoring
-```
+<div class="mermaid">
+graph TD
+    A[Governance] -->|Structure| B[Governance Structure]
+    A -->|Process| C[Governance Process]
+    A -->|Control| D[Control Mechanisms]
+    
+    subgraph Governance Structure
+    B -->|Roles| E[Role Definition]
+    B -->|Rights| F[Rights Management]
+    B -->|Rules| G[Rule System]
+    end
+    
+    subgraph Governance Process
+    C -->|Propose| H[Proposal Process]
+    C -->|Vote| I[Voting Process]
+    C -->|Execute| J[Execution Process]
+    end
+    
+    subgraph Control Mechanisms
+    D -->|Monitor| K[Monitoring]
+    D -->|Enforce| L[Enforcement]
+    D -->|Review| M[Review Process]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Proposal Process Flow
+
+<div class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant P as Platform
+    participant V as Voting System
+    participant G as Governance
+    
+    U->>P: Submit Proposal
+    P->>V: Initiate Voting
+    V->>G: Start Governance Process
+    G-->>V: Process Started
+    V-->>P: Voting Started
+    P-->>U: Proposal Active
+    
+    Note over U,P: Proposal Submission
+    Note over P,V: Voting Initiation
+    Note over V,G: Governance Process
+</div>
+
+## Voting System Flow
+
+<div class="mermaid">
+graph TD
+    A[Voting System] -->|Submit| B[Vote Submission]
+    A -->|Process| C[Vote Processing]
+    A -->|Result| D[Result Processing]
+    
+    subgraph Vote Submission
+    B -->|Cast| E[Cast Vote]
+    B -->|Verify| F[Vote Verification]
+    B -->|Record| G[Vote Recording]
+    end
+    
+    subgraph Vote Processing
+    C -->|Count| H[Vote Counting]
+    C -->|Validate| I[Vote Validation]
+    C -->|Analyze| J[Vote Analysis]
+    end
+    
+    subgraph Result Processing
+    D -->|Calculate| K[Result Calculation]
+    D -->|Announce| L[Result Announcement]
+    D -->|Execute| M[Result Execution]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Rights Management Flow
+
+<div class="mermaid">
+graph TD
+    A[Rights Management] -->|Define| B[Rights Definition]
+    A -->|Assign| C[Rights Assignment]
+    A -->|Control| D[Rights Control]
+    
+    subgraph Rights Definition
+    B -->|Create| E[Create Rights]
+    B -->|Modify| F[Modify Rights]
+    B -->|Delete| G[Delete Rights]
+    end
+    
+    subgraph Rights Assignment
+    C -->|User| H[User Rights]
+    C -->|Role| I[Role Rights]
+    C -->|Group| J[Group Rights]
+    end
+    
+    subgraph Rights Control
+    D -->|Monitor| K[Rights Monitoring]
+    D -->|Enforce| L[Rights Enforcement]
+    D -->|Audit| M[Rights Audit]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Compliance Flow
+
+<div class="mermaid">
+graph TD
+    A[Compliance] -->|Policy| B[Policy Management]
+    A -->|Monitor| C[Monitoring System]
+    A -->|Report| D[Reporting System]
+    
+    subgraph Policy Management
+    B -->|Create| E[Policy Creation]
+    B -->|Update| F[Policy Update]
+    B -->|Enforce| G[Policy Enforcement]
+    end
+    
+    subgraph Monitoring System
+    C -->|Track| H[Activity Tracking]
+    C -->|Analyze| I[Data Analysis]
+    C -->|Alert| J[Alert System]
+    end
+    
+    subgraph Reporting System
+    D -->|Generate| K[Report Generation]
+    D -->|Review| L[Report Review]
+    D -->|Act| M[Action Items]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
 
 ## Voting Mechanism
 
@@ -217,12 +394,12 @@ interface VoteWeight {
 
 ### 2. Achievement System
 - **Levels**
-  ```
-  Level 1: Newcomer
-  Level 2: Active Participant
-  Level 3: Regular Contributor
-  Level 4: Core Member
-  Level 5: Guardian
+  ```mermaid
+  graph LR
+    A[Newcomer] --> B[Active Participant]
+    B --> C[Regular Contributor]
+    C --> D[Core Member]
+    D --> E[Guardian]
   ```
 
 - **Benefits**

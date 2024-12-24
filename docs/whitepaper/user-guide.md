@@ -72,6 +72,191 @@
    - Success rate
    - Performance data
 
+## User Journey
+
+<div class="mermaid">
+graph TD
+    A[User Journey] -->|Start| B[Onboarding]
+    A -->|Use| C[Platform Usage]
+    A -->|Grow| D[User Growth]
+    
+    subgraph Onboarding
+    B -->|Register| E[Registration]
+    B -->|Setup| F[Profile Setup]
+    B -->|Learn| G[Platform Guide]
+    end
+    
+    subgraph Platform Usage
+    C -->|Content| H[Content Interaction]
+    C -->|Social| I[Social Features]
+    C -->|Token| J[Token Usage]
+    end
+    
+    subgraph User Growth
+    D -->|Level| K[Level System]
+    D -->|Reward| L[Reward System]
+    D -->|Achieve| M[Achievements]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Registration Flow
+
+<div class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant R as Registration
+    participant V as Verification
+    participant S as System
+    
+    U->>R: Start Registration
+    R->>V: Verify Information
+    V-->>R: Verification Result
+    R->>S: Create Account
+    S-->>R: Account Created
+    R-->>U: Welcome User
+    
+    Note over U,R: Registration Start
+    Note over R,V: Verification
+    Note over R,S: Account Creation
+</div>
+
+## Content Flow
+
+<div class="mermaid">
+graph TD
+    A[Content System] -->|Create| B[Content Creation]
+    A -->|Interact| C[Content Interaction]
+    A -->|Manage| D[Content Management]
+    
+    subgraph Content Creation
+    B -->|Upload| E[Content Upload]
+    B -->|Edit| F[Content Editing]
+    B -->|Publish| G[Content Publishing]
+    end
+    
+    subgraph Content Interaction
+    C -->|View| H[Content Viewing]
+    C -->|Like| I[Content Liking]
+    C -->|Comment| J[Content Commenting]
+    end
+    
+    subgraph Content Management
+    D -->|Organize| K[Organization]
+    D -->|Monitor| L[Monitoring]
+    D -->|Archive| M[Archiving]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Token Usage Flow
+
+<div class="mermaid">
+graph TD
+    A[Token Usage] -->|Earn| B[Token Earning]
+    A -->|Spend| C[Token Spending]
+    A -->|Manage| D[Token Management]
+    
+    subgraph Token Earning
+    B -->|Create| E[Content Creation]
+    B -->|Engage| F[Engagement]
+    B -->|Refer| G[Referrals]
+    end
+    
+    subgraph Token Spending
+    C -->|Gift| H[Send Gifts]
+    C -->|Subscribe| I[Subscriptions]
+    C -->|Purchase| J[Purchases]
+    end
+    
+    subgraph Token Management
+    D -->|View| K[Balance View]
+    D -->|Transfer| L[Transfers]
+    D -->|History| M[Transaction History]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
+## Support Flow
+
+<div class="mermaid">
+graph TD
+    A[Support System] -->|Help| B[Help Center]
+    A -->|Ticket| C[Ticket System]
+    A -->|FAQ| D[FAQ System]
+    
+    subgraph Help Center
+    B -->|Guide| E[User Guide]
+    B -->|Tutorial| F[Tutorials]
+    B -->|Tips| G[Tips & Tricks]
+    end
+    
+    subgraph Ticket System
+    C -->|Create| H[Create Ticket]
+    C -->|Track| I[Track Status]
+    C -->|Resolve| J[Resolution]
+    end
+    
+    subgraph FAQ System
+    D -->|Browse| K[Browse FAQs]
+    D -->|Search| L[Search FAQs]
+    D -->|Update| M[FAQ Updates]
+    end
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#20B2AA,color:#000000
+    style H fill:#BA55D3,color:#000000
+    style I fill:#4682B4,color:#FFFFFF
+    style J fill:#FF6347,color:#000000
+    style K fill:#32CD32,color:#000000
+    style L fill:#FF69B4,color:#000000
+    style M fill:#DEB887,color:#000000
+</div>
+
 ## Security Guide
 
 ### Account Security
