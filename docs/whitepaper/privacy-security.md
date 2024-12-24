@@ -16,14 +16,19 @@
   - Data retention policy
 
 ### 2. Data Processing
-```mermaid
+<div class="mermaid">
 graph TD
     A[Data Collection] -->|Encryption| B[Processing]
-    B -->|Anonymization| C[Analysis]
-    C -->|Aggregation| D[Storage]
-    D -->|Access Control| E[Usage]
-    E -->|Audit Trail| F[Deletion]
-```
+    B -->|Analysis| C[Storage]
+    C -->|Access Control| D[Usage]
+    D -->|Monitoring| E[Deletion]
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+</div>
 
 ### 3. Data Access
 - Role-based access
@@ -200,14 +205,20 @@ interface TransactionPrivacy {
 ## Monitoring & Response
 
 ### 1. Security Monitoring
-```mermaid
+<div class="mermaid">
 graph TD
     A[Log Collection] -->|Real-time| B[Analysis]
     B -->|Alerts| C[Incident Detection]
     C -->|Response| D[Mitigation]
     D -->|Review| E[Improvement]
     E -->|Updates| A
-```
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+</div>
 
 ### 2. Incident Response
 - **Response Plan**

@@ -4,13 +4,19 @@
 
 ### 1. Governance Framework
 - **Decision Making Process**
-  ```mermaid
+  <div class="mermaid">
   graph TD
     A[Community Proposal] --> B[Discussion Period]
     B --> C[Voting Period]
     C --> D[Implementation]
     D --> E[Review & Feedback]
-  ```
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+  </div>
 
 - **Voting Power**
   - 1 FANS = 1 base vote

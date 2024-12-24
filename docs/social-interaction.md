@@ -28,13 +28,13 @@ The MEMEFANS Zero-Gas Gift System revolutionizes social interactions on X by ena
 ### User Experience Design
 
 #### 1. Gift Sending Process
-```mermaid
+<div class="mermaid">
 graph TD
     A[User Sends Gift] -->|Smart Contract| B[Gift Pool]
     B -->|Record Transaction| C[Update Balances]
     C -->|No Gas Required| D[Recipient Notified]
     D -->|View Balance| E[Check Accumulated Gifts]
-```
+</div>
 
 #### 2. Gift Collection Workflow
 - **Accumulation Phase**
@@ -169,8 +169,7 @@ graph TD
   * Continuous optimization
 
 ## System Architecture
-
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Frontend
         A[X Platform UI] -->|API Calls| B[MEMEFANS Extension]
@@ -185,12 +184,12 @@ graph TD
     
     C -->|Send Gift| D
     D -->|Status| C
-```
+</div>
 
 ## Zero-Gas Gift System
 
 ### 1. Core Mechanism
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant User as Sender
     participant UI as Extension UI
@@ -203,10 +202,10 @@ sequenceDiagram
     Pool-->>Contract: Confirm Storage
     Contract-->>UI: Update Status
     UI-->>User: Show Confirmation
-```
+</div>
 
 ### 2. Batch Processing Flow
-```mermaid
+<div class="mermaid">
 graph TD
     A[User Balance] -->|Accumulate| B[Gift Pool]
     B -->|Monitor| C{Gas Price Check}
@@ -214,12 +213,12 @@ graph TD
     C -->|Low Gas| E[Batch Withdrawal]
     E -->|Process| F[Single Transaction]
     F -->|Update| A
-```
+</div>
 
 ## User Interaction Design
 
 ### 1. Gift Sending Interface
-```mermaid
+<div class="mermaid">
 journey
     title Gift Sending Experience
     section Select Gift
@@ -232,10 +231,10 @@ journey
     section Post-Send
         Update Balance: 5: System
         Show Animation: 5: User
-```
+</div>
 
 ### 2. Gift Collection Process
-```mermaid
+<div class="mermaid">
 stateDiagram-v2
     [*] --> Accumulation
     Accumulation --> CheckBalance: View
@@ -244,12 +243,12 @@ stateDiagram-v2
     GasCheck --> ProcessWithdrawal: Approve
     GasCheck --> Accumulation: Wait
     ProcessWithdrawal --> [*]: Complete
-```
+</div>
 
 ## Data Flow Architecture
 
 ### 1. Transaction Processing
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph User Actions
         A[Send Gift] -->|Trigger| B[Smart Contract]
@@ -265,10 +264,10 @@ graph LR
         E -->|Record| F[History]
         F -->|Analytics| G[Metrics]
     end
-```
+</div>
 
 ### 2. System Metrics
-```mermaid
+<div class="mermaid">
 mindmap
     root((System Metrics))
         Transaction Data
@@ -286,12 +285,12 @@ mindmap
             Success Rate
             Error Rate
             Response Time
-```
+</div>
 
 ## Community Features
 
 ### 1. Social Engagement
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph User Activities
         A[Gift Sending] -->|Generate| B[Social Points]
@@ -304,10 +303,10 @@ graph TD
         B -->|Access| F[Special Features]
         B -->|Join| G[Elite Clubs]
     end
-```
+</div>
 
 ### 2. Achievement System
-```mermaid
+<div class="mermaid">
 mindmap
     root((Achievements))
         Daily Goals
@@ -322,12 +321,12 @@ mindmap
             Seasonal Rewards
             Community Challenges
             Collaborative Tasks
-```
+</div>
 
 ## Implementation Strategy
 
 ### 1. Technical Integration
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Platform Integration
         A[X Platform] -->|Connect| B[MEMEFANS API]
@@ -343,10 +342,10 @@ graph TD
         E -->|Track| F[Performance]
         E -->|Alert| G[Security Events]
     end
-```
+</div>
 
 ### 2. Deployment Process
-```mermaid
+<div class="mermaid">
 gantt
     title Implementation Timeline
     dateFormat YYYY-MM
@@ -359,12 +358,12 @@ gantt
     section Launch
     Beta Release      :2024-05, 1M
     Full Launch       :2024-06, 1M
-```
+</div>
 
 ## Future Roadmap
 
 ### 1. Feature Evolution
-```mermaid
+<div class="mermaid">
 mindmap
     root((Future Features))
         Enhanced Gifting
@@ -379,10 +378,10 @@ mindmap
             Multi-Platform
             Cross-Chain
             Global Reach
-```
+</div>
 
 ### 2. Development Timeline
-```mermaid
+<div class="mermaid">
 timeline
     title Feature Release Schedule
     2024 Q1 : Core System Launch
@@ -397,12 +396,12 @@ timeline
     2024 Q4 : Global Release
             : Full Feature Set
             : Ecosystem Growth
-```
+</div>
 
 ## Security Measures
 
 ### 1. Protection Mechanisms
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Transaction Security
         A[User Input] -->|Validate| B[Security Check]
@@ -418,10 +417,10 @@ graph TD
         E -->|Detect| F[Issues]
         F -->|Trigger| G[Recovery Process]
     end
-```
+</div>
 
 ### 2. Monitoring System
-```mermaid
+<div class="mermaid">
 mindmap
     root((Security Monitoring))
         Real-time Tracking
@@ -436,4 +435,4 @@ mindmap
             Alert Mechanism
             Auto-protection
             Recovery Process
-```
+</div>

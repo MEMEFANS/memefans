@@ -10,41 +10,39 @@
 
 ### Market Landscape
 
-```mermaid
-mindmap
-    root((Social Token Market))
-        Market Size
-            Global Cap $500M+
-            YoY Growth 245%
-            Active Projects 150+
-            Total Users 2M+
-        Target Segments
-            Content Creators
-            Social Influencers
-            Community Members
-            Brand Accounts
-        Revenue Streams
-            Transaction Fees
-            Premium Features
-            Partnership Revenue
-            Token Value Growth
-        Growth Drivers
-            Creator Economy
-            Social Integration
-            DeFi Innovation
-            Community Growth
-```
+<div class="mermaid">
+graph TD
+    Market((Social Token Market)) --> MS[Market Size]
+    Market --> TS[Target Segments]
+    Market --> CP[Competitive Position]
+    Market --> GS[Growth Strategy]
+    
+    MS --> GC[Global Cap $500M+]
+    MS --> YG[YoY Growth 245%]
+    MS --> AP[Active Projects 150+]
+    MS --> TU[Total Users 2M+]
+    
+    TS --> CC[Content Creators]
+    TS --> BI[Brand Influencers]
+    TS --> CP[Community Projects]
+    
+    style Market fill:#0000FF,color:#FFFFFF
+    style MS fill:#FFFF00,color:#000000
+    style TS fill:#90EE90,color:#000000
+    style CP fill:#DDA0DD,color:#000000
+    style GS fill:#FFB6C1,color:#000000
+</div>
 
 ### Market Flow
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[Market Entry] -->|Target Selection| B[User Acquisition]
     B -->|Growth Strategy| C[Market Expansion]
     C -->|Partnership| D[Ecosystem Growth]
     D -->|Network Effect| E[Market Leadership]
     E -->|Innovation| A
-```
+</div>
 
 ## Market Positioning
 
@@ -78,7 +76,7 @@ graph TD
 
 ### Direct Competitors
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[Market Position] --> B[Roll]
     A --> C[Rally]
@@ -89,7 +87,7 @@ graph TD
     C -->|Weaknesses| H[Centralized]
     D -->|Strengths| I[First Mover]
     D -->|Weaknesses| J[Poor UX]
-```
+</div>
 
 ### Market Pain Points
 1. **Creator Challenges**
@@ -296,17 +294,17 @@ graph TD
 
 ## Target Segments
 
-```mermaid
+<div class="mermaid">
 pie title Revenue Distribution by Segment
     "Professional Creators" : 40
     "Emerging Influencers" : 30
     "Active Supporters" : 20
     "Brand Accounts" : 10
-```
+</div>
 
 ## Value Matrix
 
-```mermaid
+<div class="mermaid">
 quadrantChart
     title Value Proposition Matrix
     x-axis Low Cost --> High Cost
@@ -315,11 +313,11 @@ quadrantChart
     quadrant-2 Core Features
     quadrant-3 Basic Features
     quadrant-4 Advanced Features
-```
+</div>
 
 ## Market Position
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Competitors
         A[MEMEFANS] -->|Compare| B[Roll]
@@ -338,11 +336,11 @@ graph TD
         F -->|Solve| I[Decentralized]
         G -->|Solve| J[Great UX]
     end
-```
+</div>
 
 ## Feature Comparison
 
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph MEMEFANS Features
         A1[Zero-Gas] -->|Advantage| B1[Cost Savings]
@@ -355,11 +353,11 @@ graph LR
         C2[Basic Social] -->|Disadvantage| D2[Limited Integration]
         C3[Basic Stats] -->|Disadvantage| D3[Basic Insights]
     end
-```
+</div>
 
 ## User Acquisition
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Channels
         A1[Social Media] -->|Drive| B1[Awareness]
@@ -378,11 +376,11 @@ graph TD
         C2 -->|Retain| D2[Power Users]
         C3 -->|Retain| D3[Champions]
     end
-```
+</div>
 
 ## Geographic Expansion
 
-```mermaid
+<div class="mermaid">
 timeline
     title Global Expansion Plan
     2024 Q1 : Asia Pacific Launch
@@ -397,22 +395,22 @@ timeline
     2024 Q4 : Global Coverage
             : Market Leadership
             : Full Integration
-```
+</div>
 
 ## Channel Mix
 
-```mermaid
+<div class="mermaid">
 pie title Marketing Budget Allocation
     "Digital Marketing" : 35
     "Community Building" : 25
     "Content Creation" : 20
     "Partnership Development" : 15
     "Traditional Marketing" : 5
-```
+</div>
 
 ## Campaign Flow
 
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant Marketing
     participant Community
@@ -424,11 +422,11 @@ sequenceDiagram
     Users->>Product: Feature Adoption
     Product-->>Marketing: Performance Data
     Marketing-->>Community: Strategy Adjustment
-```
+</div>
 
 ## Ecosystem Development
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Core Partners
         A1[Social Platforms] -->|Integration| B1[MEMEFANS]
@@ -441,11 +439,11 @@ graph TD
         B1 -->|Support| C2[Infrastructure]
         B1 -->|Enhance| C3[User Experience]
     end
-```
+</div>
 
 ## Value Creation
 
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph Partner Value
         A[Partner Network] -->|Generate| B[User Value]
@@ -458,11 +456,11 @@ graph LR
         D -->|Reward| F[User Benefits]
         D -->|Grow| A
     end
-```
+</div>
 
 ## Growth Tracking
 
-```mermaid
+<div class="mermaid">
 xychart-beta
     title "Key Performance Metrics"
     x-axis [Q1, Q2, Q3, Q4]
@@ -470,11 +468,11 @@ xychart-beta
     line "Users" [100, 300, 600, 1000]
     line "Transactions" [150, 400, 700, 900]
     line "Revenue" [80, 250, 500, 800]
-```
+</div>
 
 ## Success Metrics
 
-```mermaid
+<div class="mermaid">
 mindmap
     root((Performance))
         Growth Metrics
@@ -492,11 +490,11 @@ mindmap
             Profitability
             Partner Growth
             Innovation Rate
-```
+</div>
 
 ## Market Evolution
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Current State
         A1[Market Analysis] -->|Identify| B1[Trends]
@@ -509,11 +507,11 @@ graph TD
         B2 -->|Inform| C2[Development]
         B3 -->|Drive| C3[Innovation]
     end
-```
+</div>
 
 ## Growth Planning
 
-```mermaid
+<div class="mermaid">
 mindmap
     root((Growth Strategy))
         Market Expansion
@@ -531,4 +529,4 @@ mindmap
             Cost Efficiency
             User Value
             Ecosystem Health
-```
+</div>

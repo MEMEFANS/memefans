@@ -2,7 +2,7 @@
 
 ## Launch Overview
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[Fair Launch] -->|Core Principles| B[Equal Opportunity]
     A -->|Implementation| C[Technical Security]
@@ -10,17 +10,22 @@ graph TD
     B -->|Features| E[No Pre-mine/Private Sale]
     C -->|Features| F[Built-in SOL Wallet]
     D -->|Features| G[Transparent Rules]
-```
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+</div>
 
 ## Core Principles
 
 ### Fair Distribution
 
 1. **Equal Opportunity**
-   ```mermaid
+   <div class="mermaid">
    pie title Token Launch Distribution
      "Public Distribution" : 100
-   ```
+   </div>
    - No pre-mine
    - No team allocation
    - No private sales
@@ -41,13 +46,13 @@ graph TD
 ### Distribution Mechanism
 
 1. **Built-in Wallet**
-   ```mermaid
+   <div class="mermaid">
    graph TD
        A[Extension Install] -->|Auto Generate| B[SOL Wallet]
        B -->|Secure Storage| C[Encrypted Keys]
        C -->|User Control| D[Import/Export]
        D -->|Backup| E[Recovery Options]
-   ```
+   </div>
 
 2. **Distribution Process**
    - Automatic wallet creation
@@ -66,7 +71,7 @@ graph TD
 ### Wallet System
 
 1. **Architecture Flow**
-   ```mermaid
+   <div class="mermaid">
    graph TD
        A[Extension Install] -->|Auto Generate| B[SOL Wallet]
        B -->|Secure Storage| C[Encrypted Keys]
@@ -75,7 +80,7 @@ graph TD
        B -->|Features| F[Transaction Management]
        F -->|Functions| G[Send/Receive]
        F -->|Functions| H[Token Management]
-   ```
+   </div>
 
 2. **Key Management**
    ```typescript
@@ -130,7 +135,7 @@ graph TD
 ### Distribution System
 
 1. **Launch Process**
-   ```mermaid
+   <div class="mermaid">
    graph TD
        A[Launch Start] -->|Phase 1| B[Wallet Creation]
        B -->|Phase 2| C[Distribution Period]
@@ -139,7 +144,7 @@ graph TD
        B -->|Security| F[Verification]
        C -->|Rules| G[Fair Distribution]
        D -->|Check| H[Balance Verification]
-   ```
+   </div>
 
 2. **Verification System**
    ```typescript

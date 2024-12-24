@@ -3,28 +3,37 @@
 ## Platform Overview
 
 <div class="mermaid">
-mindmap
-    root((MEMEFANS))
-        Core Features
-            Zero-Gas Model
-            Social Integration
-            Token Distribution
-            Analytics Dashboard
-        Technology
-            Solana Blockchain
-            PUMP DEX Integration
-            Chrome Extension
-            Smart Contracts
-        Market Focus
-            Content Creators
-            Social Influencers
-            Community Managers
-            Brand Partners
-        Revenue Streams
-            Transaction Fees
-            Premium Features
-            Partnership Revenue
-            Token Value Growth
+graph TD
+    MEMEFANS((MEMEFANS)) --> CF[Core Features]
+    MEMEFANS --> TECH[Technology]
+    MEMEFANS --> MF[Market Focus]
+    MEMEFANS --> RS[Revenue Streams]
+    
+    CF --> ZG[Zero-Gas Model]
+    CF --> SI[Social Integration]
+    CF --> TD[Token Distribution]
+    CF --> AD[Analytics Dashboard]
+    
+    TECH --> SB[Solana Blockchain]
+    TECH --> PI[PUMP DEX Integration]
+    TECH --> CE[Chrome Extension]
+    TECH --> SC[Smart Contracts]
+    
+    MF --> CC[Content Creators]
+    MF --> SI2[Social Influencers]
+    MF --> CM[Community Managers]
+    MF --> BP[Brand Partners]
+    
+    RS --> TF[Transaction Fees]
+    RS --> PF[Premium Features]
+    RS --> PR[Partnership Revenue]
+    RS --> TVG[Token Value Growth]
+    
+    style MEMEFANS fill:#0000FF,color:#FFFFFF
+    style CF fill:#FFFF00,color:#000000
+    style TECH fill:#90EE90,color:#000000
+    style MF fill:#DDA0DD,color:#000000
+    style RS fill:#FFA07A,color:#000000
 </div>
 
 ## Executive Summary

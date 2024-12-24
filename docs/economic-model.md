@@ -2,58 +2,51 @@
 
 ## Token Economics Overview
 
-```mermaid
-mindmap
-    root((FANS Token))
-        Utility
-            Platform Fees
-            Governance Rights
-            Staking Benefits
-            Community Rewards
-        Distribution
-            Community Pool
-            Development Fund
-            Team Allocation
-            Marketing Fund
-            Reserve
-        Mechanics
-            Burning System
-            Supply Control
-            Price Stability
-            Emergency Controls
-```
+<div class="mermaid">
+graph TD
+    FANS((FANS Token)) --> U[Utility]
+    FANS --> D[Distribution]
+    FANS --> M[Mechanics]
+    
+    U --> PF[Platform Fees]
+    U --> GR[Governance Rights]
+    U --> SB[Staking Benefits]
+    U --> CR[Community Rewards]
+    
+    D --> CP[Community Pool]
+    D --> DF[Development Fund]
+    D --> TA[Team Allocation]
+    D --> MF[Marketing Fund]
+    D --> R[Reserve]
+    
+    M --> BS[Burning System]
+    M --> SC[Supply Control]
+    M --> PS[Price Stability]
+    M --> EC[Emergency Controls]
 
-### Token Distribution
+    style FANS fill:#0000FF,color:#FFFFFF
+    style U fill:#FFFF00,color:#000000
+    style D fill:#90EE90,color:#000000
+    style M fill:#DDA0DD,color:#000000
+</div>
 
-```mermaid
-pie title Initial Token Distribution
+## Token Distribution
+
+<div class="mermaid">
+pie
+    title Initial Token Distribution
     "Community Rewards" : 40
     "Development Fund" : 20
     "Team Allocation" : 15
     "Marketing" : 15
     "Reserve" : 10
-```
-
-### Vesting Schedule
-
-```mermaid
-gantt
-    title Token Vesting Timeline
-    dateFormat YYYY-MM
-    section Team
-    1 Year Cliff     :2024-01, 12M
-    Linear Vesting   :2025-01, 36M
-    section Development
-    Linear Vesting   :2024-01, 36M
-    section Marketing
-    Linear Vesting   :2024-01, 24M
-```
+</div>
 
 ## Economic Flow
 
 ### Token Circulation
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Token Generation
         A[Initial Supply] -->|Distribution| B[Circulating Supply]
@@ -71,11 +64,11 @@ graph TD
         H -->|Impact| I[Platform Growth]
         I -->|Generate| D
     end
-```
+</div>
 
 ### Revenue Model
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Fee Structure
         A1[Transaction Fees] -->|1%| B1[Platform Fee Pool]
@@ -90,13 +83,13 @@ graph TD
         B1 -->|20%| C3[Buy-back]
         B1 -->|10%| C4[Treasury]
     end
-```
+</div>
 
 ## Staking System
 
 ### Staking Tiers
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Tier Structure
         A[Staking Amount] -->|10k FANS| B[Basic]
@@ -118,11 +111,11 @@ graph TD
         H -->|Access| L[Premium Features]
         I -->|Access| M[VIP Features]
     end
-```
+</div>
 
 ### Reward Calculation
 
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph Base Calculation
         A[Staked Amount] -->|Multiply| B[Base Rate]
@@ -137,13 +130,13 @@ graph LR
     subgraph Final Reward
         E -->|Equal| F[Total Reward]
     end
-```
+</div>
 
 ## Market Dynamics
 
 ### Supply Control
 
-```mermaid
+<div class="mermaid">
 stateDiagram-v2
     [*] --> Normal
     Normal --> Inflation: Supply Too Low
@@ -156,11 +149,11 @@ stateDiagram-v2
         Monitoring --> Adjustment
         Adjustment --> Monitoring
     }
-```
+</div>
 
 ### Price Stability
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Price Monitoring
         A[Market Price] -->|Monitor| B[Price Range]
@@ -177,13 +170,13 @@ graph TD
         B -->|Extreme| G[Emergency Protocol]
         G -->|Activate| H[Circuit Breaker]
     end
-```
+</div>
 
 ## Risk Management
 
 ### Risk Matrix
 
-```mermaid
+<div class="mermaid">
 quadrantChart
     title Risk Assessment Matrix
     x-axis Low Impact --> High Impact
@@ -192,11 +185,11 @@ quadrantChart
     quadrant-2 Smart Contract Vulnerability
     quadrant-3 Liquidity Shortage
     quadrant-4 Regulatory Changes
-```
+</div>
 
 ### Mitigation Strategy
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Risk Types
         A1[Market Risk] -->|Mitigate| B1[Price Controls]
@@ -211,13 +204,13 @@ graph TD
         B3 -->|Implement| C3[Reserve Fund]
         B4 -->|Implement| C4[Legal Framework]
     end
-```
+</div>
 
 ## Growth Model
 
 ### User Growth Projection
 
-```mermaid
+<div class="mermaid">
 xychart-beta
     title "Projected Growth Metrics"
     x-axis [Q1, Q2, Q3, Q4]
@@ -225,11 +218,11 @@ xychart-beta
     line "Users" [100, 300, 600, 1000]
     line "Transactions" [150, 400, 700, 900]
     line "Revenue" [80, 250, 500, 800]
-```
+</div>
 
 ### Value Creation Flow
 
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph Input
         A[User Activity] -->|Generate| B[Transaction Volume]
@@ -245,13 +238,13 @@ graph LR
         E -->|Support| G[Ecosystem Growth]
         F -->|Drive| H[Market Value]
     end
-```
+</div>
 
 ## Sustainability Model
 
 ### Economic Balance
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Revenue
         A1[Transaction Fees] -->|Generate| B1[Income]
@@ -269,18 +262,19 @@ graph TD
         C2 -->|Support| D2[User Growth]
         C3 -->|Drive| D3[Market Growth]
     end
-```
+</div>
 
 ### Resource Allocation
 
-```mermaid
-pie title Operational Resource Allocation
+<div class="mermaid">
+pie
+    title Operational Resource Allocation
     "Development" : 35
     "Marketing" : 25
     "Operations" : 20
     "Community" : 15
     "Reserve" : 5
-```
+</div>
 
 ## Economic Model Analysis
 
@@ -288,7 +282,7 @@ pie title Operational Resource Allocation
 
 #### Token Overview
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[FANS Token] -->|Distribution| B[Community Rewards]
     A -->|Utility| C[Governance Rights]
@@ -296,7 +290,7 @@ graph TD
     B -->|Incentives| E[User Engagement]
     C -->|Participation| F[Platform Development]
     D -->|Supply| G[Price Stability]
-```
+</div>
 
 #### Token Details
 
@@ -317,14 +311,15 @@ graph TD
 
 #### Token Distribution
 
-```mermaid
-pie title Token Distribution
+<div class="mermaid">
+pie
+    title Token Distribution
     "Community Rewards" : 40
     "Development Fund" : 20
     "Team Allocation" : 15
     "Marketing" : 15
     "Reserve" : 10
-```
+</div>
 
 #### Vesting Schedule
 
@@ -353,7 +348,7 @@ pie title Token Distribution
 
 #### Gift Flow
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[User Creates Post] -->|Set Rules| B[Distribution Rules]
     B -->|No Requirements| C[Direct Claim]
@@ -361,7 +356,7 @@ graph TD
     C -->|Process| E[Token Distribution]
     D -->|Process| E
     E -->|Reward| F[Recipients]
-```
+</div>
 
 #### Reward Structure
 
@@ -380,7 +375,7 @@ graph TD
 
 #### Staking Tiers
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[Staking System] -->|Basic| B[5% APY]
     A -->|Silver| C[8% APY]
@@ -390,7 +385,7 @@ graph TD
     C -->|Benefits| G[Enhanced Features]
     D -->|Benefits| H[Premium Features]
     E -->|Benefits| I[VIP Features]
-```
+</div>
 
 #### Additional Benefits
 

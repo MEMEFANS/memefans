@@ -2,36 +2,38 @@
 
 ## System Architecture Overview
 
-```mermaid
-mindmap
-    root((MEMEFANS))
-        Smart Contracts
-            Gift Pool
-            User Management
-            Transaction Processing
-            Security Controls
-        Frontend
-            User Interface
-            State Management
-            API Integration
-            Performance
-        Backend
-            API Services
-            Data Storage
-            Caching
-            Security
-        Infrastructure
-            Blockchain
-            Cloud Services
-            CDN
-            Monitoring
-```
+<div class="mermaid">
+graph TD
+    MEMEFANS((MEMEFANS)) --> SC[Smart Contracts]
+    MEMEFANS --> FE[Frontend]
+    MEMEFANS --> BE[Backend]
+    
+    SC --> GP[Gift Pool]
+    SC --> UM[User Management]
+    SC --> TP[Transaction Processing]
+    SC --> SEC[Security Controls]
+    
+    FE --> UI[User Interface]
+    FE --> SM[State Management]
+    FE --> API[API Integration]
+    FE --> PF[Performance]
+    
+    BE --> AS[API Services]
+    BE --> DS[Data Storage]
+    BE --> CA[Caching]
+    BE --> SEC2[Security]
+    
+    style MEMEFANS fill:#0000FF,color:#FFFFFF
+    style SC fill:#FFFF00,color:#000000
+    style FE fill:#90EE90,color:#000000
+    style BE fill:#DDA0DD,color:#000000
+</div>
 
 ## Smart Contract Architecture
 
 ### Contract System Overview
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Smart Contracts
         A[Gift Pool Contract] -->|Manage| B[Balance System]
@@ -51,11 +53,11 @@ graph TD
         J[Event System] -->|Monitor| A
         J -->|Monitor| E
     end
-```
+</div>
 
 ### Contract Interactions
 
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant User
     participant Frontend
@@ -71,13 +73,13 @@ sequenceDiagram
     Contract-->>API: Return Result
     API-->>Frontend: Update UI
     Frontend-->>User: Show Result
-```
+</div>
 
 ## Frontend Architecture
 
 ### Component Structure
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph User Interface
         A1[Dashboard] -->|Display| B1[Gift Balance]
@@ -96,11 +98,11 @@ graph TD
         E2[Cache] -->|Optimize| F2[Performance]
         E3[Session] -->|Manage| F3[Auth]
     end
-```
+</div>
 
 ### Data Flow
 
-```mermaid
+<div class="mermaid">
 flowchart TD
     subgraph Frontend
         A[User Action] -->|Trigger| B[State Update]
@@ -115,13 +117,13 @@ flowchart TD
         H -->|Return| I[Data]
         I -->|Format| F
     end
-```
+</div>
 
 ## Backend Services
 
 ### API Architecture
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph API Gateway
         A1[REST API] -->|Route| B1[Services]
@@ -140,11 +142,11 @@ graph TD
         C2 -->|Store| D2[User Data]
         C3 -->|Store| D3[Transaction Data]
     end
-```
+</div>
 
 ### Service Integration
 
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph External
         A1[Social Media] -->|Connect| B1[Integration Layer]
@@ -157,13 +159,13 @@ graph LR
         C1 -->|Process| D1[Core Services]
         D1 -->|Store| E1[Database]
     end
-```
+</div>
 
 ## Performance Optimization
 
 ### Smart Contract Optimization
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Gas Optimization
         A1[Batch Processing] -->|Reduce| B1[Gas Costs]
@@ -176,11 +178,11 @@ graph TD
         C2[Priority System] -->|Sort| D2[Processing]
         C3[Recovery System] -->|Handle| D3[Failures]
     end
-```
+</div>
 
 ### Frontend Performance
 
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph Loading
         A1[Asset Optimization] -->|Improve| B1[Speed]
@@ -193,13 +195,13 @@ graph LR
         C2[Animation] -->|Smooth| D2[Interaction]
         C3[Feedback] -->|Improve| D3[Usability]
     end
-```
+</div>
 
 ## Security Implementation
 
 ### Security Architecture
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Contract Security
         A1[Access Control] -->|Protect| B1[Functions]
@@ -212,11 +214,11 @@ graph TD
         C2[Access Control] -->|Manage| D2[Permissions]
         C3[Integrity Checks] -->|Verify| D3[State]
     end
-```
+</div>
 
 ### Security Monitoring
 
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph Detection
         A1[Monitoring] -->|Detect| B1[Issues]
@@ -229,13 +231,13 @@ graph LR
         C2[Analysis] -->|Guide| D2[Action]
         C3[Recovery] -->|Restore| D3[Service]
     end
-```
+</div>
 
 ## Testing Framework
 
 ### Test Structure
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Unit Tests
         A1[Contract Tests] -->|Verify| B1[Functions]
@@ -248,11 +250,11 @@ graph TD
         C2[Performance Tests] -->|Check| D2[Speed]
         C3[Security Tests] -->|Validate| D3[Safety]
     end
-```
+</div>
 
 ### Test Flow
 
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant Dev
     participant CI
@@ -264,13 +266,13 @@ sequenceDiagram
     Test->>CI: Report Results
     CI-->>Dev: Feedback
     CI->>Prod: Deploy if Pass
-```
+</div>
 
 ## Deployment Strategy
 
 ### Deployment Flow
 
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph Preparation
         A1[Code Audit] -->|Verify| B1[Security]
@@ -283,11 +285,11 @@ graph LR
         C2[Frontend Deploy] -->|Update| D2[CDN]
         C3[Backend Deploy] -->|Update| D3[Servers]
     end
-```
+</div>
 
 ### Monitoring System
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Metrics
         A1[Performance] -->|Track| B1[Speed]
@@ -300,7 +302,7 @@ graph TD
         C2[Incidents] -->|Alert| D2[Team]
         C3[Recovery] -->|Guide| D3[Actions]
     end
-```
+</div>
 
 ## Maintenance Procedures
 

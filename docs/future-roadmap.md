@@ -2,7 +2,7 @@
 
 ## Development Timeline
 
-```mermaid
+<div class="mermaid">
 gantt
     title MEMEFANS Development Roadmap
     dateFormat YYYY-MM
@@ -18,12 +18,12 @@ gantt
     Community Launch    :2024-02, 3M
     Growth Programs     :2024-05, 4M
     Ecosystem Building  :2024-09, 4M
-```
+</div>
 
 ## Q1 2024: Foundation Building
 
 ### 1. Core Features Launch
-```mermaid
+<div class="mermaid">
 graph TD
     A[MVP Launch] -->|Phase 1| B[Zero-Gas System]
     A -->|Phase 1| C[Gift Pool]
@@ -31,7 +31,7 @@ graph TD
     B -->|Q1| E[User Testing]
     C -->|Q1| F[Performance Optimization]
     D -->|Q1| G[Feature Enhancement]
-```
+</div>
 
 1. **Zero-Gas System**
    - Built-in SOL wallet implementation
@@ -48,7 +48,7 @@ graph TD
 ## Q2 2024: Platform Enhancement
 
 ### 1. Feature Expansion
-```mermaid
+<div class="mermaid">
 mindmap
   root((Q2 Goals))
     Platform Growth
@@ -63,7 +63,7 @@ mindmap
       User Programs
       Content Creation
       Event Planning
-```
+</div>
 
 1. **Performance Optimization**
    - Transaction processing speed +50%
@@ -80,7 +80,7 @@ mindmap
 ## Q3 2024: Ecosystem Development
 
 ### 1. Integration Expansion
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Social Platforms
         A1[X Integration] -->|Enhanced| B1[Advanced Features]
@@ -96,7 +96,7 @@ graph TD
         E1[Programs] -->|Launch| F1[Growth Initiative]
         E2[Content] -->|Create| F2[Educational Material]
     end
-```
+</div>
 
 1. **Platform Integration**
    - Additional social platform support
@@ -113,7 +113,7 @@ graph TD
 ## Q4 2024: Market Expansion
 
 ### 1. Growth Strategy
-```mermaid
+<div class="mermaid">
 quadrantChart
     title Market Expansion Strategy
     x-axis Low Market Penetration --> High Market Penetration
@@ -124,10 +124,10 @@ quadrantChart
     quadrant-4 Growth Phase
     "Current": [0.3, 0.4]
     "Q4 Target": [0.7, 0.8]
-```
+</div>
 
 1. **Market Development**
-   ```mermaid
+   <div class="mermaid">
    graph TD
        A[Market Strategy] -->|Focus| B[User Growth]
        A -->|Focus| C[Platform Adoption]
@@ -135,7 +135,7 @@ quadrantChart
        B -->|Target| E[1M Users]
        C -->|Target| F[5 Platforms]
        D -->|Target| G[20 Features]
-   ```
+   </div>
 
 2. **Community Growth**
    - User engagement programs
@@ -146,7 +146,7 @@ quadrantChart
 ## 2025 Preview
 
 ### 1. Long-term Vision
-```mermaid
+<div class="mermaid">
 mindmap
   root((2025 Vision))
     Global Expansion
@@ -161,7 +161,7 @@ mindmap
       Partner Network
       Developer Community
       User Base
-```
+</div>
 
 ### 2. Key Objectives
 
@@ -179,7 +179,7 @@ mindmap
      * Security excellence
 
 2. **Ecosystem Development**
-   ```mermaid
+   <div class="mermaid">
    graph TD
        A[Ecosystem] -->|Growth| B[Partner Network]
        A -->|Development| C[Developer Tools]
@@ -187,12 +187,12 @@ mindmap
        B -->|Target| E[50+ Partners]
        C -->|Target| F[Complete SDK]
        D -->|Target| G[Global Community]
-   ```
+   </div>
 
 ## Risk Management
 
 ### 1. Development Risks
-```mermaid
+<div class="mermaid">
 graph TD
     A[Risk Factors] -->|Technical| B[Development Delay]
     A -->|Market| C[Adoption Rate]
@@ -200,7 +200,7 @@ graph TD
     B -->|Mitigation| E[Agile Process]
     C -->|Mitigation| F[Market Strategy]
     D -->|Mitigation| G[Team Expansion]
-```
+</div>
 
 ### 2. Mitigation Strategy
 1. **Technical Risks**

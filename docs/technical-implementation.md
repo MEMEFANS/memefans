@@ -5,24 +5,37 @@
 ### Overall Design
 
 1. **Architecture Layers**
-   ```mermaid
+   <div class="mermaid">
    graph TD
      A[Chrome Extension] -->|API| B[Backend Services]
      B -->|Smart Contract| C[Blockchain]
      B -->|Cache| D[Redis]
      B -->|Storage| E[Database]
      B -->|Queue| F[Message Queue]
-   ```
+     
+     style A fill:#0000FF,color:#FFFFFF
+     style B fill:#FFFF00,color:#000000
+     style C fill:#90EE90,color:#000000
+     style D fill:#DDA0DD,color:#000000
+     style E fill:#FFB6C1,color:#000000
+     style F fill:#87CEEB,color:#000000
+   </div>
 
 2. **Gift Flow**
-   ```mermaid
+   <div class="mermaid">
    graph TD
      A[User] -->|Send Gift| B[Gift Pool]
      B -->|Record| C[Smart Contract]
-     C -->|Batch Process| D[Zero-Gas System]
-     D -->|Accumulate| E[Recipient Balance]
-     E -->|Withdraw| F[Token Transfer]
-   ```
+     C -->|Verify| D[Transaction]
+     D -->|Update| E[Balance]
+     E -->|Notify| A
+     
+     style A fill:#0000FF,color:#FFFFFF
+     style B fill:#FFFF00,color:#000000
+     style C fill:#90EE90,color:#000000
+     style D fill:#DDA0DD,color:#000000
+     style E fill:#FFB6C1,color:#000000
+   </div>
 
 3. **Tech Stack**
    - Frontend: React + TypeScript

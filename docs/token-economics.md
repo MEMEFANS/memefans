@@ -3,24 +3,33 @@
 ## Token Overview
 
 <div class="mermaid">
-mindmap
-    root((FANS Token))
-        Distribution
-            Community Driven
-            PUMP Launch
-            Zero Gas Model
-        Features
-            Social Integration
-            Chrome Extension
-            Automated Distribution
-        Economics
-            Fixed Supply
-            Burn Mechanism
-            Market Driven
-        Security
-            Rate Limiting
-            Anti-bot
-            Transaction Verification
+graph TD
+    FANS((FANS Token)) --> D[Distribution]
+    FANS --> F[Features]
+    FANS --> E[Economics]
+    FANS --> S[Security]
+    
+    D --> CD[Community Driven]
+    D --> PL[PUMP Launch]
+    D --> ZG[Zero Gas Model]
+    
+    F --> SI[Social Integration]
+    F --> CE[Chrome Extension]
+    F --> AD[Automated Distribution]
+    
+    E --> FS[Fixed Supply]
+    E --> BM[Burn Mechanism]
+    E --> MD[Market Driven]
+    
+    S --> RL[Rate Limiting]
+    S --> AB[Anti-bot]
+    S --> TV[Transaction Verification]
+    
+    style FANS fill:#0000FF,color:#FFFFFF
+    style D fill:#FFFF00,color:#000000
+    style F fill:#90EE90,color:#000000
+    style E fill:#DDA0DD,color:#000000
+    style S fill:#FFB6C1,color:#000000
 </div>
 
 The FANS token is the core of the FANS ecosystem, adopting a community-driven distribution model via X posts.

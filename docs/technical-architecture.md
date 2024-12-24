@@ -4,7 +4,7 @@
 
 MEMEFANS is built on a modular, scalable microservices architecture based on the Solana blockchain. The system consists of the following core components:
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[Chrome Extension] --> B[API Gateway]
     B --> C[Core Services]
@@ -13,7 +13,16 @@ graph TD
     D --> F[Solana Node]
     D --> G[PUMP DEX]
     E --> H[(Database)]
-```
+    
+    style A fill:#90EE90,color:#000000
+    style B fill:#FFB6C1,color:#000000
+    style C fill:#DDA0DD,color:#000000
+    style D fill:#FFFF00,color:#000000
+    style E fill:#87CEEB,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#98FB98,color:#000000
+    style H fill:#DEB887,color:#000000
+</div>
 
 ## Core Components
 
@@ -188,13 +197,19 @@ graph TD
 ### Chrome Extension Architecture
 
 #### Frontend Architecture
-```mermaid
+<div class="mermaid">
 graph TD
     A[UI Components] -->|React| B[State Management]
     B -->|Redux| C[Actions/Events]
     C -->|API| D[Backend Services]
     D -->|Blockchain| E[Solana Network]
-```
+    
+    style A fill:#90EE90,color:#000000
+    style B fill:#FFB6C1,color:#000000
+    style C fill:#DDA0DD,color:#000000
+    style D fill:#FFFF00,color:#000000
+    style E fill:#87CEEB,color:#000000
+</div>
 
 1. **UI Framework**
    - React.js for component management
@@ -289,7 +304,7 @@ interface IDistribution {
 ### Integration Flow
 
 #### Post Creation
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant User
     participant Extension
@@ -302,10 +317,10 @@ sequenceDiagram
     Blockchain-->>Backend: Confirm Transaction
     Backend-->>Extension: Return Status
     Extension-->>User: Show Confirmation
-```
+</div>
 
 #### Token Claiming
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant Claimer
     participant Extension
@@ -319,7 +334,7 @@ sequenceDiagram
     Backend->>Blockchain: Process Claim
     Blockchain-->>Extension: Confirm Transfer
     Extension-->>Claimer: Show Success
-```
+</div>
 
 ### Performance Considerations
 

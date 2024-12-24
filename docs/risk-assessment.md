@@ -3,14 +3,20 @@
 ## Risk Management Framework
 
 ### Risk Assessment Flow
-```mermaid
+<div class="mermaid">
 graph TD
     A[Risk Identification] -->|Analysis| B[Risk Assessment]
     B -->|Strategy| C[Risk Mitigation]
     C -->|Implementation| D[Control Measures]
     D -->|Monitoring| E[Risk Review]
     E -->|Updates| A
-```
+    
+    style A fill:#FFFF00,color:#000000
+    style B fill:#90EE90,color:#000000
+    style C fill:#DDA0DD,color:#000000
+    style D fill:#FFB6C1,color:#000000
+    style E fill:#87CEEB,color:#000000
+</div>
 
 ## Technical Risks
 
@@ -28,7 +34,7 @@ graph TD
   * Upgrade compatibility testing
 
 ### 2. Smart Contract Security
-```mermaid
+<div class="mermaid">
 graph TD
     A[Security Measures] -->|Prevention| B[Code Audits]
     A -->|Detection| C[Monitoring]
@@ -36,7 +42,13 @@ graph TD
     B -->|Findings| E[Fixes]
     C -->|Alerts| E
     D -->|Execution| E
-```
+    
+    style A fill:#FFFF00,color:#000000
+    style B fill:#90EE90,color:#000000
+    style C fill:#DDA0DD,color:#000000
+    style D fill:#FFB6C1,color:#000000
+    style E fill:#87CEEB,color:#000000
+</div>
 
 - **Potential Vulnerabilities**
   * Code exploits
@@ -94,14 +106,20 @@ graph TD
 ## Market Risks
 
 ### 1. Competition Analysis
-```mermaid
+<div class="mermaid">
 graph TD
     A[Market Position] -->|Monitor| B[Competition]
     B -->|Analyze| C[Threats]
     C -->|Develop| D[Strategy]
     D -->|Implement| E[Solutions]
     E -->|Review| A
-```
+    
+    style A fill:#FFFF00,color:#000000
+    style B fill:#90EE90,color:#000000
+    style C fill:#DDA0DD,color:#000000
+    style D fill:#FFB6C1,color:#000000
+    style E fill:#87CEEB,color:#000000
+</div>
 
 - **Competitive Threats**
   * New competitors

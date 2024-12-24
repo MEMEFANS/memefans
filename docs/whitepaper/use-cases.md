@@ -10,14 +10,20 @@
 - **Monetization**: Ad revenue, sponsorships
 
 #### Implementation
-```mermaid
+<div class="mermaid">
 graph TD
     A[Create Content] -->|Post on Twitter| B[Engage Audience]
     B -->|Track Engagement| C[Distribute Tokens]
     C -->|Based on Engagement| D[Reward Active Followers]
     D -->|Create Value| E[Token Utility]
     E -->|Drive More Engagement| A
-```
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+</div>
 
 #### Results
 - 40% increase in engagement
@@ -33,14 +39,20 @@ graph TD
 - **Monetization**: NFT sales, commissions
 
 #### Implementation
-```mermaid
+<div class="mermaid">
 graph TD
     A[Create Artwork] -->|Share Preview| B[Community Feedback]
     B -->|Token-gated Access| C[Exclusive Content]
     C -->|Early Access| D[NFT Launch]
     D -->|Token Holder Benefits| E[Community Growth]
     E -->|Increased Demand| A
-```
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+</div>
 
 #### Results
 - 300% increase in NFT sales
@@ -58,14 +70,20 @@ graph TD
 - **Strategy**: Token-based rewards
 
 #### Implementation
-```mermaid
+<div class="mermaid">
 graph TD
     A[Customer Purchase] -->|Reward Tokens| B[Token Balance]
     B -->|Unlock Benefits| C[Exclusive Access]
     C -->|Special Offers| D[Increased Sales]
     D -->|Customer Loyalty| E[Brand Growth]
     E -->|More Purchases| A
-```
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+</div>
 
 #### Results
 - 45% increase in repeat purchases
@@ -81,14 +99,20 @@ graph TD
 - **Strategy**: Token-gated access
 
 #### Implementation
-```mermaid
+<div class="mermaid">
 graph TD
     A[Create Content] -->|Basic/Premium Split| B[Token Requirements]
     B -->|Access Control| C[Reader Engagement]
     C -->|Token Economics| D[Revenue Generation]
     D -->|Content Investment| E[Quality Improvement]
     E -->|More Value| A
-```
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+</div>
 
 #### Results
 - 50% conversion to premium
@@ -106,14 +130,20 @@ graph TD
 - **Strategy**: Token-based rewards
 
 #### Implementation
-```mermaid
+<div class="mermaid">
 graph TD
     A[Code Contribution] -->|Quality Check| B[Token Reward]
     B -->|Governance Rights| C[Project Direction]
     C -->|Community Voting| D[Feature Priority]
     D -->|Development| E[Project Growth]
     E -->|More Contributors| A
-```
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+</div>
 
 #### Results
 - 200% increase in contributions
@@ -129,14 +159,20 @@ graph TD
 - **Strategy**: Learn-to-earn model
 
 #### Implementation
-```mermaid
+<div class="mermaid">
 graph TD
     A[Complete Course] -->|Achievement Check| B[Token Rewards]
     B -->|Skill Verification| C[Job Opportunities]
     C -->|Career Growth| D[Success Stories]
     D -->|Platform Growth| E[More Courses]
     E -->|Student Enrollment| A
-```
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+</div>
 
 #### Results
 - 70% course completion rate
@@ -154,14 +190,20 @@ graph TD
 - **Strategy**: Token-based fan club
 
 #### Implementation
-```mermaid
+<div class="mermaid">
 graph TD
     A[Release Music] -->|Fan Engagement| B[Token Distribution]
     B -->|Exclusive Access| C[Virtual Events]
     C -->|Merchandise Rights| D[Revenue Streams]
     D -->|Community Growth| E[Artist Development]
     E -->|New Content| A
-```
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+</div>
 
 #### Results
 - 80% fan retention rate
@@ -177,14 +219,20 @@ graph TD
 - **Strategy**: In-game token economy
 
 #### Implementation
-```mermaid
+<div class="mermaid">
 graph TD
     A[Game Activity] -->|Achievement| B[Token Rewards]
     B -->|In-game Items| C[Player Progress]
     C -->|Community Status| D[Social Engagement]
     D -->|Game Growth| E[New Features]
     E -->|Player Interest| A
-```
+    
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+</div>
 
 #### Results
 - 60% player retention
