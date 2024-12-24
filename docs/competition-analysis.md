@@ -4,7 +4,7 @@
 
 ### 1. Market Landscape
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[Social Token Market] -->|Segment 1| B[Content Creators]
     A -->|Segment 2| C[Social Platforms]
@@ -12,15 +12,15 @@ graph TD
     B -->|Value| E[Fan Engagement]
     C -->|Value| F[Platform Growth]
     D -->|Value| G[Token Economy]
-```
+</div>
 
 - **Market Size & Growth**
-  ```mermaid
-  pie title Market Share Distribution
+<div class="mermaid">
+pie title Market Share Distribution
     "Content Creators" : 45
     "Social Platforms" : 30
     "Token Platforms" : 25
-  ```
+</div>
 
 - **Industry Trends**
   * Web3 Social Integration: 40% YoY growth
@@ -30,7 +30,7 @@ graph TD
 
 ### 2. Competitive Landscape
 
-```mermaid
+<div class="mermaid">
 quadrantChart
     title Competitor Positioning
     x-axis Low Platform Integration --> High Platform Integration
@@ -43,7 +43,7 @@ quadrantChart
     "Competitor A": [0.6, 0.7]
     "Competitor B": [0.4, 0.8]
     "Competitor C": [0.7, 0.5]
-```
+</div>
 
 ## Competitor Analysis
 
@@ -59,7 +59,7 @@ quadrantChart
 
 ### 2. Technical Comparison
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph MEMEFANS
         A1[Zero-Gas System] -->|Optimize| B1[User Cost]
@@ -75,13 +75,13 @@ graph TD
         A3[Hybrid System] -->|Partial| B3[Cost Reduction]
         A3 -->|Slow| C3[Growth]
     end
-```
+</div>
 
 ## Competitive Advantages
 
 ### 1. MEMEFANS Unique Features
 
-```mermaid
+<div class="mermaid">
 mindmap
   root((MEMEFANS))
     Zero-Gas System
@@ -100,11 +100,11 @@ mindmap
       Batch Processing
       Efficiency
       Scalability
-```
+</div>
 
 ### 2. Value Proposition
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[MEMEFANS Value] -->|Feature| B[Zero-Gas]
     A -->|Feature| C[Gift Pool]
@@ -115,13 +115,13 @@ graph TD
     E -->|Result| H[Growth]
     F -->|Result| I[Retention]
     G -->|Result| J[Adoption]
-```
+</div>
 
 ## Market Strategy
 
 ### 1. Growth Strategy
 
-```mermaid
+<div class="mermaid">
 gantt
     title Growth Roadmap
     dateFormat  YYYY-MM
@@ -134,7 +134,7 @@ gantt
     section Product
     Feature Expansion :2024-07, 3M
     Optimization    :2024-10, 3M
-```
+</div>
 
 ### 2. Competitive Response
 
@@ -152,7 +152,7 @@ gantt
      * Community building
 
 2. **Strategic Initiatives**
-   ```mermaid
+   <div class="mermaid">
    graph TD
        A[Strategic Focus] -->|Product| B[Innovation]
        A -->|Market| C[Expansion]
@@ -160,13 +160,13 @@ gantt
        B -->|Action| E[Feature Development]
        C -->|Action| F[User Acquisition]
        D -->|Action| G[Engagement Programs]
-   ```
+   </div>
 
 ## Risk Analysis
 
 ### 1. Competitive Risks
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[Risk Factors] -->|Market| B[Competition]
     A -->|Technical| C[Innovation]
@@ -174,7 +174,7 @@ graph TD
     B -->|Action| E[Differentiation]
     C -->|Action| F[R&D Investment]
     D -->|Action| G[User Experience]
-```
+</div>
 
 ### 2. Mitigation Strategies
 

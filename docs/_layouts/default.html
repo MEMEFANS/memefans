@@ -15,13 +15,14 @@
           startOnLoad: true,
           theme: 'default',
           securityLevel: 'loose',
-          flowchart: { useMaxWidth: true, htmlLabels: true },
+          flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
           mindmap: { useMaxWidth: true },
           journey: { useMaxWidth: true },
-          pie: { useMaxWidth: true },
+          pie: { useMaxWidth: true, textPosition: 0.5 },
           gantt: { useMaxWidth: true },
           er: { useMaxWidth: true },
-          sequence: { useMaxWidth: true }
+          sequence: { useMaxWidth: true },
+          quadrantChart: { useMaxWidth: true, titlePadding: 10 }
         });
       });
     </script>

@@ -2,6 +2,27 @@
 
 ## Token Overview
 
+<div class="mermaid">
+mindmap
+    root((FANS Token))
+        Distribution
+            Community Driven
+            PUMP Launch
+            Zero Gas Model
+        Features
+            Social Integration
+            Chrome Extension
+            Automated Distribution
+        Economics
+            Fixed Supply
+            Burn Mechanism
+            Market Driven
+        Security
+            Rate Limiting
+            Anti-bot
+            Transaction Verification
+</div>
+
 The FANS token is the core of the FANS ecosystem, adopting a community-driven distribution model via X posts.
 
 ### FANS Token
@@ -13,6 +34,15 @@ The FANS token is the core of the FANS ecosystem, adopting a community-driven di
 - **Initial Distribution**: Launch from PUMP
 
 ### Token Distribution
+
+<div class="mermaid">
+pie title Initial Token Distribution
+    "Community Pool" : 60
+    "Liquidity Pool" : 20
+    "Development" : 10
+    "Marketing" : 10
+</div>
+
 - **Initial Allocation**: 100% via PUMP Launch
 - **Supply Policy**: Fixed supply, no additional minting
 - **Token Contract**: To be deployed on Solana
@@ -25,6 +55,23 @@ The FANS token is the core of the FANS ecosystem, adopting a community-driven di
 - X (Twitter) Platform Integration
 
 ## Distribution Mechanism
+
+<div class="mermaid">
+graph TD
+    A[User] -->|Post on X| B[Chrome Extension]
+    B -->|Detect Post| C[Distribution Logic]
+    C -->|Verify| D[Smart Contract]
+    D -->|Execute| E[Token Transfer]
+    E -->|Notify| F[Success]
+    
+    subgraph Security
+        G[Rate Limit]
+        H[Anti-bot]
+        I[Verification]
+    end
+    
+    C --> Security
+</div>
 
 ### Chrome Extension Features
 1. **Token Distribution**

@@ -4,7 +4,7 @@
 
 ### System Components
 
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Frontend [Chrome Extension]
         A[User Interface] -->|Interact| B[Built-in Wallet]
@@ -30,11 +30,11 @@ graph TD
     
     Frontend -->|API Calls| Backend
     Backend -->|Transactions| Blockchain
-```
+</div>
 
 ### Data Flow
 
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant U as User
     participant E as Extension
@@ -52,7 +52,7 @@ sequenceDiagram
     C->>B: Update Status
     B->>E: Success
     E->>U: Complete
-```
+</div>
 
 ## Component Details
 
