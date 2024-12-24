@@ -2,7 +2,7 @@
 
 ## Ecosystem Overview
 
-```mermaid
+<div class="mermaid">
 mindmap
     root((MEMEFANS Ecosystem))
         Content Creators
@@ -22,30 +22,34 @@ mindmap
             Moderators
             Ambassadors
             Active Members
-```
+</div>
 
 ## Community Structure
 
 ### 1. Governance Framework
-```mermaid
-graph TD
+<div class="mermaid">
+flowchart TD
     subgraph Proposal Process
-        A[Community Proposals] -->|Submit| B[Initial Review]
-        B -->|Pass| C[Community Vote]
-        C -->|Approve| D[Implementation]
-        D -->|Execute| E[Feedback]
-        E -->|Iterate| A
+        CP[Community Proposals] --> IR[Initial Review]
+        IR --> CV[Community Vote]
+        CV --> IM[Implementation]
+        IM --> FB[Feedback]
+        FB -->|Iterate| CP
     end
-    
+
     subgraph Voting Power
-        F[Token Holdings] -->|Influence| C
-        G[Activity Level] -->|Influence| C
-        H[Reputation] -->|Influence| C
+        TH[Token Holdings] -->|Influence| CV
+        AL[Activity Level] -->|Influence| CV
+        RP[Reputation] -->|Influence| CV
     end
-```
+
+    IR -->|Pass| CV
+    CV -->|Approve| IM
+    IM -->|Execute| FB
+</div>
 
 ### 2. Engagement Flow
-```mermaid
+<div class="mermaid">
 journey
     title User Engagement Journey
     section Onboarding
@@ -60,28 +64,28 @@ journey
         Leadership Roles: 4: User
         Community Contribution: 5: User
         Ecosystem Building: 5: User
-```
+</div>
 
 ## Community Programs
 
 ### 1. Reward System
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Activity Rewards
-        A1[Gift Sending] -->|Points| B1[Daily Rewards]
-        A2[Content Creation] -->|Points| B1
-        A3[Community Help] -->|Points| B1
+        GS[Gift Sending] -->|Points| DR[Daily Rewards]
+        CC[Content Creation] -->|Points| DR
+        CH[Community Help] -->|Points| DR
     end
     
     subgraph Achievement System
-        B1 -->|Accumulate| C1[User Level]
-        C1 -->|Unlock| D1[Special Features]
-        C1 -->|Access| D2[Exclusive Events]
+        DR -->|Accumulate| UL[User Level]
+        UL -->|Unlock| SF[Special Features]
+        UL -->|Access| EE[Exclusive Events]
     end
-```
+</div>
 
 ### 2. Event Calendar
-```mermaid
+<div class="mermaid">
 gantt
     title Community Events Schedule
     dateFormat YYYY-MM
@@ -92,31 +96,31 @@ gantt
     Platform Launch    :2024-03, 2M
     Summer Festival    :2024-06, 3M
     Winter Campaign    :2024-12, 2M
-```
+</div>
 
 ## Educational Hub
 
 ### 1. Learning Path
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph Beginner
-        A1[Platform Basics] -->|Complete| B1[Feature Guide]
-        B1 -->|Master| C1[Basic Operations]
+        PB[Platform Basics] -->|Complete| FG[Feature Guide]
+        FG -->|Master| BO[Basic Operations]
     end
     
     subgraph Intermediate
-        A2[Advanced Features] -->|Learn| B2[Integration Guide]
-        B2 -->|Practice| C2[Community Role]
+        AF[Advanced Features] -->|Learn| IG[Integration Guide]
+        IG -->|Practice| CR[Community Role]
     end
     
     subgraph Advanced
-        A3[Technical Skills] -->|Develop| B3[Contribution Guide]
-        B3 -->|Lead| C3[Community Leadership]
+        TS[Technical Skills] -->|Develop| CG[Contribution Guide]
+        CG -->|Lead| CL[Community Leadership]
     end
-```
+</div>
 
 ### 2. Resource Structure
-```mermaid
+<div class="mermaid">
 mindmap
     root((Learning Resources))
         Documentation
@@ -134,28 +138,28 @@ mindmap
             Best Practices
             Success Stories
             Tips & Tricks
-```
+</div>
 
 ## Communication Framework
 
 ### 1. Channel Structure
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Official Channels
-        A1[X Platform] -->|Updates| B1[Community]
-        A2[Discord] -->|Discussion| B1
-        A3[Telegram] -->|Support| B1
+        XP[X Platform] -->|Updates| C[Community]
+        D[Discord] -->|Discussion| C
+        T[Telegram] -->|Support| C
     end
     
     subgraph Community Channels
-        B1 -->|Feedback| C1[Product Team]
-        B1 -->|Issues| C2[Support Team]
-        B1 -->|Ideas| C3[Development Team]
+        C -->|Feedback| PT[Product Team]
+        C -->|Issues| ST[Support Team]
+        C -->|Ideas| DT[Development Team]
     end
-```
+</div>
 
 ### 2. Information Flow
-```mermaid
+<div class="mermaid">
 sequenceDiagram
     participant Team as Core Team
     participant Mods as Moderators
@@ -168,12 +172,12 @@ sequenceDiagram
     Users-->>Community: Provide Feedback
     Community-->>Mods: Collect Feedback
     Mods-->>Team: Report Insights
-```
+</div>
 
 ## Growth Strategy
 
 ### 1. User Journey
-```mermaid
+<div class="mermaid">
 stateDiagram-v2
     [*] --> Discovery
     Discovery --> Onboarding
@@ -188,10 +192,10 @@ stateDiagram-v2
         ActiveParticipation --> CommunityRole
         CommunityRole --> [*]
     }
-```
+</div>
 
 ### 2. Growth Metrics
-```mermaid
+<div class="mermaid">
 xychart-beta
     title "Community Growth Metrics"
     x-axis [Q1, Q2, Q3, Q4]
@@ -199,58 +203,58 @@ xychart-beta
     line "User Growth" [100, 200, 350, 500]
     line "Engagement" [150, 250, 400, 450]
     line "Content Creation" [80, 180, 300, 400]
-```
+</div>
 
 ## Partnership Ecosystem
 
 ### 1. Partnership Network
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Core Partners
-        A1[Social Platforms] -->|Integration| B1[MEMEFANS]
-        A2[Wallet Providers] -->|Services| B1
-        A3[DeFi Platforms] -->|Collaboration| B1
+        SP[Social Platforms] -->|Integration| M[MEMEFANS]
+        WP[Wallet Providers] -->|Services| M
+        DP[DeFi Platforms] -->|Collaboration| M
     end
     
     subgraph Support Partners
-        B1 -->|Service| C1[Security]
-        B1 -->|Support| C2[Infrastructure]
-        B1 -->|Enhance| C3[User Experience]
+        M -->|Service| S[Security]
+        M -->|Support| I[Infrastructure]
+        M -->|Enhance| UX[User Experience]
     end
-```
+</div>
 
 ### 2. Value Flow
-```mermaid
+<div class="mermaid">
 graph LR
     subgraph Value Creation
-        A[Partner Network] -->|Generate| B[User Value]
-        B -->|Create| C[Platform Value]
-        C -->|Enhance| D[Ecosystem Value]
+        PN[Partner Network] -->|Generate| UV[User Value]
+        UV -->|Create| PV[Platform Value]
+        PV -->|Enhance| EV[Ecosystem Value]
     end
     
     subgraph Value Distribution
-        D -->|Share| E[Partner Benefits]
-        D -->|Reward| F[User Benefits]
-        D -->|Grow| A
+        EV -->|Share| PB[Partner Benefits]
+        EV -->|Reward| UB[User Benefits]
+        EV -->|Grow| PN
     end
-```
+</div>
 
 ## Innovation Pipeline
 
 ### 1. Development Process
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Innovation Cycle
-        A[Research] -->|Insights| B[Ideation]
-        B -->|Concepts| C[Development]
-        C -->|Features| D[Testing]
-        D -->|Feedback| E[Implementation]
-        E -->|Learning| A
+        R[Research] -->|Insights| I[Ideation]
+        I -->|Concepts| D[Development]
+        D -->|Features| T[Testing]
+        T -->|Feedback| IM[Implementation]
+        IM -->|Learning| R
     end
-```
+</div>
 
 ### 2. Feature Timeline
-```mermaid
+<div class="mermaid">
 timeline
     title Innovation Roadmap
     2024 Q1 : Core Features
@@ -265,32 +269,32 @@ timeline
     2024 Q4 : Global Features
             : Full Integration
             : Advanced Tools
-```
+</div>
 
 ## Sustainability Model
 
 ### 1. Value Creation
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Economic Flow
-        A[User Activity] -->|Generate| B[Platform Value]
-        B -->|Create| C[Token Value]
-        C -->|Enhance| D[Ecosystem Value]
+        UA[User Activity] -->|Generate| PV[Platform Value]
+        PV -->|Create| TV[Token Value]
+        TV -->|Enhance| EV[Ecosystem Value]
     end
     
     subgraph Value Distribution
-        D -->|Reward| E[Users]
-        D -->|Support| F[Development]
-        D -->|Grow| G[Community]
+        EV -->|Reward| U[Users]
+        EV -->|Support| D[Development]
+        EV -->|Grow| C[Community]
     end
-```
+</div>
 
 ### 2. Resource Allocation
-```mermaid
+<div class="mermaid">
 pie title Resource Distribution
     "Development" : 30
     "Community" : 25
     "Marketing" : 20
     "Operations" : 15
     "Reserve" : 10
-```
+</div>

@@ -10,27 +10,54 @@
     <!-- Mermaid Support -->
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
-      window.addEventListener('load', function() {
+      document.addEventListener('DOMContentLoaded', function() {
         mermaid.initialize({
           startOnLoad: true,
           theme: 'default',
           securityLevel: 'loose',
-          flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
-          mindmap: { useMaxWidth: true },
-          journey: { useMaxWidth: true },
-          pie: { useMaxWidth: true, textPosition: 0.5 },
-          gantt: { useMaxWidth: true },
-          er: { useMaxWidth: true },
-          sequence: { useMaxWidth: true },
-          quadrantChart: { useMaxWidth: true, titlePadding: 10 }
+          flowchart: { 
+            useMaxWidth: true,
+            htmlLabels: true,
+            curve: 'basis',
+            padding: 10
+          },
+          mindmap: { 
+            useMaxWidth: true,
+            padding: 10
+          },
+          timeline: {
+            useMaxWidth: true,
+            padding: 10
+          },
+          journey: { 
+            useMaxWidth: true,
+            padding: 10
+          },
+          gantt: { 
+            useMaxWidth: true,
+            padding: 10
+          },
+          pie: {
+            useMaxWidth: true,
+            textPosition: 0.5
+          },
+          sequence: { 
+            useMaxWidth: true,
+            padding: 10
+          },
+          stateDiagram: {
+            useMaxWidth: true,
+            padding: 10
+          }
         });
 
-        // Initialize all Mermaid diagrams
+        // 确保所有图表都被初始化
         document.querySelectorAll('.mermaid').forEach(function(element) {
           try {
             mermaid.init(undefined, element);
           } catch (error) {
             console.error('Mermaid initialization error:', error);
+            element.textContent = 'Error rendering diagram: ' + error.message;
           }
         });
       });
