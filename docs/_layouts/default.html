@@ -24,6 +24,15 @@
           sequence: { useMaxWidth: true },
           quadrantChart: { useMaxWidth: true, titlePadding: 10 }
         });
+
+        // Initialize all Mermaid diagrams
+        document.querySelectorAll('.mermaid').forEach(function(element) {
+          try {
+            mermaid.init(undefined, element);
+          } catch (error) {
+            console.error('Mermaid initialization error:', error);
+          }
+        });
       });
     </script>
   </head>
