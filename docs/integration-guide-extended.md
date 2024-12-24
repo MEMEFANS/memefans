@@ -311,3 +311,125 @@
   * User notifications
   * Team coordination
   * Documentation updates
+
+## Getting Started
+
+### Prerequisites
+- Node.js v16+
+- Solana CLI
+- Chrome Extension Developer Mode
+- Twitter Developer Account
+
+### Installation
+```bash
+# Install MEMEFANS SDK
+npm install @memefans/sdk
+
+# Install dependencies
+npm install @solana/web3.js @solana/spl-token
+```
+
+## Integration Flow
+
+```mermaid
+graph TD
+    A[Install SDK] -->|Setup| B[Initialize SDK]
+    B -->|Authentication| C[Connect Wallet]
+    C -->|Social Auth| D[Twitter Integration]
+    D -->|Implementation| E[Token Operations]
+    E -->|Testing| F[Deployment]
+    F -->|Monitoring| G[Analytics]
+```
+
+## SDK Overview
+
+### Core Components
+```typescript
+// Token Management
+interface TokenManager {
+  createToken(params: TokenParams): Promise<Token>;
+  distribute(recipients: string[], amount: number): Promise<Transaction>;
+  getBalance(address: string): Promise<number>;
+}
+
+// Social Integration
+interface SocialManager {
+  connectTwitter(): Promise<TwitterAccount>;
+  trackEngagement(tweetId: string): Promise<EngagementMetrics>;
+  setupAutomation(rules: DistributionRules): Promise<void>;
+}
+
+// Analytics
+interface AnalyticsManager {
+  getMetrics(): Promise<Metrics>;
+  generateReport(params: ReportParams): Promise<Report>;
+  exportData(format: ExportFormat): Promise<Buffer>;
+}
+```
+
+### Authentication Flow
+```typescript
+// Initialize SDK
+const memefans = new MEMEFANS({
+  apiKey: 'your-api-key',
+  network: 'mainnet', // or 'devnet'
+  wallet: 'your-wallet-address'
+});
+
+// Connect wallet
+await memefans.connect();
+
+// Authenticate with Twitter
+await memefans.social.authenticate();
+```
+
+## Implementation Details
+
+### 1. Frontend Integration
+```typescript
+// Gift Button Component
+const GiftButton = () => {
+  const [giftAmount, setGiftAmount] = useState(0);
+  const [recipient, setRecipient] = useState('');
+  
+  const handleGiftSend = async () => {
+    try {
+      const distribution = {
+        recipients: [recipient],
+        amount: giftAmount,
+        rules: {
+          engagement: {
+            likes: 1,
+            retweets: 2,
+            comments: 3
+          },
+          timeWeight: {
+            enabled: true,
+            factor: 1.5
+          }
+        }
+      };
+      
+      await memefans.token.distribute(distribution);
+    } catch (error) {
+      console.error('Gift sending failed:', error);
+    }
+  };
+  
+  return (
+    <div className="gift-button">
+      <input 
+        type="number" 
+        value={giftAmount} 
+        onChange={(e) => setGiftAmount(e.target.value)} 
+      />
+      <input 
+        type="text" 
+        value={recipient} 
+        onChange={(e) => setRecipient(e.target.value)} 
+      />
+      <button onClick={handleGiftSend}>Send Gift</button>
+    </div>
+  );
+};
+```

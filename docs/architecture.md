@@ -4,38 +4,54 @@
 
 ### System Components
 
-1. **Chrome Extension**
-   - User interface
-   - Built-in SOL wallet
-   - Twitter/X page detection
-   - Distribution logic
-   - Security module
-
-2. **Backend Services**
-   - API gateway
-   - Wallet service
-   - Distribution service
-   - Analytics service
-
-3. **Blockchain Layer**
-   - Smart contracts
-   - Token logic
-   - Distribution contracts
-   - Verification system
-
-### Architecture Diagram
-
 ```mermaid
 graph TD
-    A[Chrome Extension] -->|Built-in| B[SOL Wallet]
-    A -->|Page Detection| C[Twitter/X Page]
-    A -->|API| D[API Gateway]
-    D -->|Wallet| E[Wallet Service]
-    D -->|Distribution| F[Distribution Service]
-    D -->|Analytics| G[Analytics Service]
-    F -->|Blockchain| H[Smart Contracts]
-    H -->|Token| I[Token Contract]
-    H -->|Distribution| J[Distribution Contract]
+    subgraph Frontend [Chrome Extension]
+        A[User Interface] -->|Interact| B[Built-in Wallet]
+        A -->|Monitor| C[Page Detection]
+        B -->|Manage| D[Key Management]
+        C -->|Process| E[Distribution Logic]
+    end
+    
+    subgraph Backend [Backend Services]
+        F[API Gateway] -->|Handle| G[Wallet Service]
+        F -->|Process| H[Distribution Service]
+        F -->|Track| I[Analytics Service]
+        G -->|Cache| J[Redis]
+        H -->|Store| K[PostgreSQL]
+        I -->|Process| L[Queue Service]
+    end
+    
+    subgraph Blockchain [Blockchain Layer]
+        M[Smart Contracts] -->|Manage| N[Token Contract]
+        M -->|Handle| O[Distribution Contract]
+        M -->|Verify| P[Security Module]
+    end
+    
+    Frontend -->|API Calls| Backend
+    Backend -->|Transactions| Blockchain
+```
+
+### Data Flow
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant E as Extension
+    participant B as Backend
+    participant C as Blockchain
+    
+    U->>E: Create Distribution
+    E->>B: Validate Request
+    B->>C: Check Balance
+    C->>B: Balance OK
+    B->>E: Request Approved
+    E->>U: Sign Transaction
+    U->>E: Confirm
+    E->>C: Submit Transaction
+    C->>B: Update Status
+    B->>E: Success
+    E->>U: Complete
 ```
 
 ## Component Details
@@ -44,7 +60,6 @@ graph TD
 
 1. **Page Detection**
    ```typescript
-   // Page Detector
    class PageDetector {
        // Detect Twitter/X page
        async detectPage(): Promise<TwitterPage> {
@@ -55,103 +70,277 @@ graph TD
            return null;
        }
        
-       // Extract post info
+       // Extract post info with engagement metrics
        async extractPostInfo(): Promise<PostInfo> {
            const elements = document.querySelectorAll('[data-testid="tweet"]');
-           return this.parseElements(elements);
+           const postInfo = await this.parseElements(elements);
+           return {
+               ...postInfo,
+               engagement: await this.getEngagementMetrics(postInfo.id),
+               reach: await this.getReachEstimate(postInfo.id)
+           };
+       }
+       
+       // Monitor page changes
+       private async monitorPageChanges(): Promise<void> {
+           const observer = new MutationObserver(async (mutations) => {
+               for (const mutation of mutations) {
+                   if (this.isRelevantChange(mutation)) {
+                       await this.handlePageChange(mutation);
+                   }
+               }
+           });
+           observer.observe(document.body, { childList: true, subtree: true });
        }
    }
    ```
 
 2. **Wallet Management**
    ```typescript
-   // Wallet Manager
    class WalletManager {
-       // Generate new wallet
+       // Generate new wallet with enhanced security
        async generateWallet(): Promise<SolanaWallet> {
-           const keyPair = await this.generateKeyPair();
-           return this.createWallet(keyPair);
+           const entropy = await this.getSecureEntropy();
+           const keyPair = await this.generateKeyPair(entropy);
+           const wallet = await this.createWallet(keyPair);
+           await this.setupAutoBackup(wallet);
+           return wallet;
        }
        
-       // Import wallet
-       async importWallet(privateKey: string): Promise<SolanaWallet> {
-           const keyPair = await this.importKeyPair(privateKey);
-           return this.createWallet(keyPair);
+       // Secure key management
+       private async getSecureEntropy(): Promise<Uint8Array> {
+           const random1 = crypto.getRandomValues(new Uint8Array(32));
+           const random2 = await this.getHardwareEntropy();
+           return this.mixEntropy(random1, random2);
        }
        
-       // Export wallet
-       async exportWallet(): Promise<string> {
-           const wallet = await this.getCurrentWallet();
-           return this.exportPrivateKey(wallet);
+       // Automatic backup system
+       private async setupAutoBackup(wallet: SolanaWallet): Promise<void> {
+           const encrypted = await this.encryptWallet(wallet);
+           await this.scheduleBackup(encrypted);
+           await this.setupRecoveryOptions(wallet);
        }
    }
    ```
 
 3. **Distribution Logic**
    ```typescript
-   // Distribution Manager
    class DistributionManager {
-       // Create distribution
-       async createDistribution(params: DistributionParams) {
+       // Create distribution with validation
+       async createDistribution(params: DistributionParams): Promise<Distribution> {
+           // Validate parameters
+           await this.validateParams(params);
+           
+           // Prepare distribution
            const wallet = await this.getWallet();
            const postInfo = await this.getPostInfo();
-           return this.executeDistribution(wallet, postInfo, params);
+           const rules = await this.compileRules(params.rules);
+           
+           // Execute with retry mechanism
+           return await this.executeWithRetry(async () => {
+               const tx = await this.buildDistributionTx(wallet, postInfo, rules);
+               const simulation = await this.simulateTransaction(tx);
+               if (simulation.success) {
+                   return await this.executeDistribution(tx);
+               }
+               throw new Error('Simulation failed');
+           });
        }
        
-       // Track distribution
-       async trackDistribution(id: string) {
-           const status = await this.getStatus(id);
-           return this.updateUI(status);
+       // Monitor distribution status
+       async monitorDistribution(id: string): Promise<DistributionStatus> {
+           const status = await this.getDistributionStatus(id);
+           await this.updateAnalytics(status);
+           await this.notifyStatusChange(status);
+           return status;
        }
    }
    ```
 
 ### Backend Services
 
-1. **Wallet Service**
+1. **API Gateway**
    ```typescript
-   // Wallet Service
-   class WalletService {
-       // Create wallet
-       async createWallet(): Promise<WalletResponse> {
-           const wallet = await this.generateSolanaWallet();
-           return this.registerWallet(wallet);
+   class APIGateway {
+       // Route handler with rate limiting
+       async handleRequest(req: Request): Promise<Response> {
+           try {
+               await this.checkRateLimit(req);
+               await this.validateAuth(req);
+               const result = await this.routeRequest(req);
+               await this.logRequest(req, result);
+               return result;
+           } catch (error) {
+               await this.handleError(error);
+               throw error;
+           }
        }
        
-       // Get balance
-       async getBalance(address: string): Promise<number> {
-           const connection = await this.getConnection();
-           return connection.getBalance(address);
-       }
-       
-       // Send transaction
-       async sendTransaction(tx: Transaction): Promise<string> {
-           const connection = await this.getConnection();
-           return connection.sendTransaction(tx);
+       // Load balancing
+       private async routeRequest(req: Request): Promise<Response> {
+           const service = await this.selectService(req);
+           const response = await service.handle(req);
+           await this.cacheResponse(req, response);
+           return response;
        }
    }
    ```
 
 2. **Distribution Service**
    ```typescript
-   // Distribution Service
    class DistributionService {
-       // Create distribution
-       async createDistribution(params: CreateDistributionParams) {
-           const contract = await this.getContract();
-           return contract.createDistribution(params);
+       // Process distribution request
+       async processDistribution(req: DistributionRequest): Promise<void> {
+           const session = await this.startTransaction();
+           try {
+               const validation = await this.validateRequest(req);
+               const distribution = await this.createDistribution(req, validation);
+               await this.notifyUsers(distribution);
+               await session.commit();
+           } catch (error) {
+               await session.rollback();
+               throw error;
+           }
        }
        
-       // Get distribution status
-       async getDistributionStatus(id: string) {
-           const contract = await this.getContract();
-           return contract.getStatus(id);
+       // Analytics tracking
+       private async trackAnalytics(distribution: Distribution): Promise<void> {
+           await this.updateStats(distribution);
+           await this.generateReport(distribution);
+           await this.notifyAdmin(distribution);
+       }
+   }
+   ```
+
+### Blockchain Layer
+
+1. **Smart Contract System**
+   ```solidity
+   contract DistributionSystem {
+       // Core distribution logic
+       struct Distribution {
+           address creator;
+           uint256 amount;
+           bytes32 rules;
+           uint256 startTime;
+           uint256 endTime;
+           mapping(address => bool) claimed;
        }
        
-       // Process claims
-       async processClaim(id: string, address: string) {
-           const contract = await this.getContract();
-           return contract.processClaim(id, address);
+       // Create distribution with validation
+       function createDistribution(
+           uint256 amount,
+           bytes32 rules,
+           uint256 duration
+       ) external {
+           require(amount > 0, "Invalid amount");
+           require(duration > 0, "Invalid duration");
+           
+           uint256 startTime = block.timestamp;
+           uint256 endTime = startTime + duration;
+           
+           distributions[nextDistributionId] = Distribution({
+               creator: msg.sender,
+               amount: amount,
+               rules: rules,
+               startTime: startTime,
+               endTime: endTime
+           });
+           
+           emit DistributionCreated(nextDistributionId, msg.sender, amount);
+           nextDistributionId++;
+       }
+       
+       // Claim with verification
+       function claimDistribution(
+           uint256 distributionId,
+           bytes calldata proof
+       ) external {
+           Distribution storage dist = distributions[distributionId];
+           require(block.timestamp >= dist.startTime, "Not started");
+           require(block.timestamp <= dist.endTime, "Ended");
+           require(!dist.claimed[msg.sender], "Already claimed");
+           require(verifyProof(dist.rules, proof), "Invalid proof");
+           
+           dist.claimed[msg.sender] = true;
+           token.transfer(msg.sender, dist.amount);
+           
+           emit DistributionClaimed(distributionId, msg.sender);
+       }
+   }
+   ```
+
+### Security Implementation
+
+### Wallet Security
+
+1. **Key Generation**
+   ```typescript
+   class KeyGenerator {
+       // Generate key pair
+       async generateKeyPair(): Promise<KeyPair> {
+           const entropy = await this.getSecureEntropy();
+           return this.createKeyPair(entropy);
+       }
+       
+       // Create backup
+       async createBackup(keyPair: KeyPair): Promise<string> {
+           const mnemonic = await this.generateMnemonic(keyPair);
+           return this.encryptMnemonic(mnemonic);
+       }
+   }
+   ```
+
+2. **Secure Storage**
+   ```typescript
+   class StorageManager {
+       // Store private key
+       async storePrivateKey(key: string): Promise<void> {
+           const encrypted = await this.encrypt(key);
+           return this.secureStore(encrypted);
+       }
+       
+       // Retrieve private key
+       async retrievePrivateKey(): Promise<string> {
+           const encrypted = await this.secureRetrieve();
+           return this.decrypt(encrypted);
+       }
+   }
+   ```
+
+### Page Security
+
+1. **Content Detection**
+   ```typescript
+   class ContentDetector {
+       // Verify page content
+       async verifyContent(url: string): Promise<boolean> {
+           const content = await this.getPageContent(url);
+           return this.validateContent(content);
+       }
+       
+       // Extract safe data
+       async extractSafeData(content: any): Promise<SafeData> {
+           return this.sanitizeData(content);
+       }
+   }
+   ```
+
+2. **Safe Interaction**
+   ```typescript
+   class SafeInteraction {
+       // Safe DOM operation
+       async safeOperation(operation: Operation): Promise<void> {
+           const verified = await this.verifyOperation(operation);
+           if (verified) {
+               return this.executeOperation(operation);
+           }
+       }
+       
+       // Safe data extraction
+       async safeExtraction(selector: string): Promise<Data> {
+           const element = await this.findElement(selector);
+           return this.extractData(element);
        }
    }
    ```
@@ -232,7 +421,6 @@ graph TD
 
 1. **Key Generation**
    ```typescript
-   // Key Generator
    class KeyGenerator {
        // Generate key pair
        async generateKeyPair(): Promise<KeyPair> {
@@ -250,7 +438,6 @@ graph TD
 
 2. **Secure Storage**
    ```typescript
-   // Storage Manager
    class StorageManager {
        // Store private key
        async storePrivateKey(key: string): Promise<void> {
@@ -270,7 +457,6 @@ graph TD
 
 1. **Content Detection**
    ```typescript
-   // Content Detector
    class ContentDetector {
        // Verify page content
        async verifyContent(url: string): Promise<boolean> {
@@ -287,7 +473,6 @@ graph TD
 
 2. **Safe Interaction**
    ```typescript
-   // Safe Interaction
    class SafeInteraction {
        // Safe DOM operation
        async safeOperation(operation: Operation): Promise<void> {
@@ -301,6 +486,76 @@ graph TD
        async safeExtraction(selector: string): Promise<Data> {
            const element = await this.findElement(selector);
            return this.extractData(element);
+       }
+   }
+   ```
+
+### Smart Contracts
+
+1. **Distribution Contract**
+   ```solidity
+   contract Distribution {
+       // Distribution data
+       struct DistributionData {
+           address creator;
+           uint256 amount;
+           uint256 recipientCount;
+           uint256 endTime;
+           bool active;
+       }
+       
+       // Create distribution
+       function createDistribution(
+           uint256 amount,
+           uint256 recipientCount,
+           uint256 duration
+       ) external {
+           // Create new distribution
+           // Transfer tokens
+           // Set parameters
+       }
+       
+       // Claim tokens
+       function claim(uint256 distributionId) external {
+           // Verify eligibility
+           // Process claim
+           // Update state
+       }
+   }
+   ```
+
+2. **Token Contract**
+   ```solidity
+   contract Token {
+       // Token data
+       string public name = "MEMEFANS";
+       string public symbol = "MF";
+       uint8 public decimals = 18;
+       
+       // Transfer tokens
+       function transfer(
+           address recipient,
+           uint256 amount
+       ) external returns (bool) {
+           _transfer(msg.sender, recipient, amount);
+           return true;
+       }
+       
+       // Distribution transfer
+       function distributionTransfer(
+           address[] calldata recipients,
+           uint256[] calldata amounts
+       ) external returns (bool) {
+           require(
+               recipients.length == amounts.length,
+               "Length mismatch"
+           );
+           
+           for (uint i = 0; i < recipients.length; i++) {
+               _transfer(msg.sender, recipients[i], amounts[i]);
+           }
+           
+           return true;
        }
    }
    ```

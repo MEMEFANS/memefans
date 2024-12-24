@@ -4,7 +4,7 @@
 
 ### Overall Design
 
-1. **架构层次**
+1. **Architecture Layers**
    ```mermaid
    graph TD
      A[Chrome Extension] -->|API| B[Backend Services]
@@ -14,20 +14,23 @@
      B -->|Queue| F[Message Queue]
    ```
 
-2. **技术栈选择**
+2. **Gift Flow**
+   ```mermaid
+   graph TD
+     A[User] -->|Send Gift| B[Gift Pool]
+     B -->|Record| C[Smart Contract]
+     C -->|Batch Process| D[Zero-Gas System]
+     D -->|Accumulate| E[Recipient Balance]
+     E -->|Withdraw| F[Token Transfer]
+   ```
+
+3. **Tech Stack**
    - Frontend: React + TypeScript
    - Backend: Node.js + Express
    - Database: PostgreSQL
    - Cache: Redis
    - Queue: RabbitMQ
    - Blockchain: Solana
-
-3. **系统模块**
-   - 用户管理
-   - 代币分发
-   - 规则验证
-   - 数据分析
-   - 监控告警
 
 ### Component Details
 
@@ -107,7 +110,129 @@
    }
    ```
 
-## Implementation Details
+### Smart Contract Design
+
+1. **Gift Pool System**
+   ```solidity
+   struct GiftRecord {
+       address sender;      // Sender address
+       address recipient;   // Recipient address
+       uint256 amount;     // Gift amount
+       uint256 timestamp;  // Send time
+   }
+   
+   mapping(address => uint256) public pendingGifts;  // Pending gift amounts
+   mapping(address => GiftRecord[]) public giftHistory;  // Gift history records
+   
+   // Zero-Gas Claim System
+   function checkPendingGifts() external view returns (uint256) {
+       return pendingGifts[msg.sender];
+   }
+   
+   // Batch Operations
+   function batchSendGifts(
+       address[] calldata recipients,
+       uint256[] calldata amounts
+   ) external {
+       for (uint i = 0; i < recipients.length; i++) {
+           _sendGift(recipients[i], amounts[i]);
+       }
+   }
+   ```
+
+2. **Security Features**
+   ```solidity
+   contract GiftPool is Ownable, Pausable {
+       // Access Control
+       modifier onlyAuthorized() {
+           require(authorized[msg.sender], "Not authorized");
+           _;
+       }
+       
+       // Emergency Pause
+       function pause() external onlyOwner {
+           _pause();
+       }
+       
+       // Transaction Limits
+       mapping(address => uint256) public dailyLimit;
+       mapping(address => uint256) public lastSendTime;
+       
+       function _checkLimit(address sender, uint256 amount) internal {
+           require(
+               block.timestamp - lastSendTime[sender] >= 1 days,
+               "Daily limit reset pending"
+           );
+           require(
+               dailyLimit[sender] + amount <= maxDailyLimit,
+               "Daily limit exceeded"
+           );
+       }
+   }
+   ```
+
+### Frontend Implementation
+
+1. **Chrome Extension**
+   ```typescript
+   interface ExtensionModule {
+     // User Interface
+     UI: {
+       createDistribution(): void;
+       manageRules(): void;
+       viewStatus(): void;
+     };
+     
+     // Wallet Integration
+     Wallet: {
+       connect(): Promise<void>;
+       sign(tx: Transaction): Promise<string>;
+       getBalance(): Promise<number>;
+     };
+     
+     // API Calls
+     API: {
+       createPost(params: DistributionParams): Promise<Response>;
+       verifyRules(postId: string): Promise<boolean>;
+       claimTokens(postId: string): Promise<Transaction>;
+     };
+   }
+   ```
+
+2. **Gift Component**
+   ```typescript
+   const GiftButton: React.FC = () => {
+     const [amount, setAmount] = useState<number>(0);
+     const [recipients, setRecipients] = useState<string[]>([]);
+     
+     const handleBatchSend = async () => {
+       try {
+         const tx = await contract.batchSendGifts(recipients, amount);
+         await tx.wait();
+         // Update UI
+       } catch (error) {
+         console.error('Gift sending failed:', error);
+       }
+     };
+     
+     return (
+       <div className="gift-interface">
+         <input 
+           type="number" 
+           value={amount} 
+           onChange={(e) => setAmount(Number(e.target.value))} 
+         />
+         <RecipientList 
+           recipients={recipients} 
+           onUpdate={setRecipients} 
+         />
+         <button onClick={handleBatchSend}>Send Gifts</button>
+       </div>
+     );
+   };
+   ```
+
+### Implementation Details
 
 ### Frontend Implementation
 

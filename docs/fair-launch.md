@@ -1,10 +1,26 @@
 # Fair Launch Mechanism
 
+## Launch Overview
+
+```mermaid
+graph TD
+    A[Fair Launch] -->|Core Principles| B[Equal Opportunity]
+    A -->|Implementation| C[Technical Security]
+    A -->|Process| D[Distribution System]
+    B -->|Features| E[No Pre-mine/Private Sale]
+    C -->|Features| F[Built-in SOL Wallet]
+    D -->|Features| G[Transparent Rules]
+```
+
 ## Core Principles
 
 ### Fair Distribution
 
 1. **Equal Opportunity**
+   ```mermaid
+   pie title Token Launch Distribution
+     "Public Distribution" : 100
+   ```
    - No pre-mine
    - No team allocation
    - No private sales
@@ -49,7 +65,19 @@
 
 ### Wallet System
 
-1. **Key Generation**
+1. **Architecture Flow**
+   ```mermaid
+   graph TD
+       A[Extension Install] -->|Auto Generate| B[SOL Wallet]
+       B -->|Secure Storage| C[Encrypted Keys]
+       C -->|User Control| D[Import/Export]
+       D -->|Backup| E[Recovery Options]
+       B -->|Features| F[Transaction Management]
+       F -->|Functions| G[Send/Receive]
+       F -->|Functions| H[Token Management]
+   ```
+
+2. **Key Management**
    ```typescript
    class WalletGenerator {
        // Generate new wallet
@@ -59,27 +87,17 @@
            return new SolanaWallet(keyPair);
        }
        
-       // Secure storage
+       // Secure storage with encryption
        async storeWallet(wallet: SolanaWallet): Promise<void> {
            const encrypted = await this.encryptWallet(wallet);
            await chrome.storage.local.set({ wallet: encrypted });
        }
-   }
-   ```
-
-2. **Import/Export**
-   ```typescript
-   class WalletManager {
-       // Export wallet
-       async exportWallet(): Promise<string> {
-           const wallet = await this.getWallet();
-           return wallet.exportPrivateKey();
-       }
        
-       // Import wallet
-       async importWallet(privateKey: string): Promise<void> {
-           const wallet = await SolanaWallet.fromPrivateKey(privateKey);
-           await this.storeWallet(wallet);
+       // Recovery system
+       async recoverWallet(mnemonic: string): Promise<SolanaWallet> {
+           const seed = await mnemonicToSeed(mnemonic);
+           const keyPair = await this.createKeyPairFromSeed(seed);
+           return new SolanaWallet(keyPair);
        }
    }
    ```
@@ -87,59 +105,86 @@
 3. **Security Layer**
    ```typescript
    class SecurityManager {
-       // Encrypt wallet
+       // Encrypt wallet data
        async encryptWallet(wallet: SolanaWallet): Promise<string> {
            const key = await this.getEncryptionKey();
            return this.encrypt(wallet.toJSON(), key);
        }
        
-       // Decrypt wallet
+       // Decrypt wallet data
        async decryptWallet(encrypted: string): Promise<SolanaWallet> {
            const key = await this.getEncryptionKey();
            const data = await this.decrypt(encrypted, key);
            return SolanaWallet.fromJSON(data);
+       }
+       
+       // Key derivation
+       private async getEncryptionKey(): Promise<CryptoKey> {
+           const password = await this.getPassword();
+           const salt = await this.getSalt();
+           return await this.deriveKey(password, salt);
        }
    }
    ```
 
 ### Distribution System
 
-1. **Token Distribution**
-   ```solidity
-   contract FairDistribution {
-       // No owner privileges
-       // Pure distribution logic
+1. **Launch Process**
+   ```mermaid
+   graph TD
+       A[Launch Start] -->|Phase 1| B[Wallet Creation]
+       B -->|Phase 2| C[Distribution Period]
+       C -->|Phase 3| D[Token Claim]
+       D -->|Final| E[Trading Enable]
+       B -->|Security| F[Verification]
+       C -->|Rules| G[Fair Distribution]
+       D -->|Check| H[Balance Verification]
+   ```
+
+2. **Verification System**
+   ```typescript
+   class DistributionVerifier {
+       // Verify distribution eligibility
+       async verifyEligibility(address: string): Promise<boolean> {
+           const balance = await this.getSOLBalance(address);
+           const previousClaims = await this.getPreviousClaims(address);
+           return this.checkEligibility(balance, previousClaims);
+       }
        
-       function distribute(
-           address[] calldata recipients,
-           uint256[] calldata amounts
-       ) external {
-           require(
-               recipients.length == amounts.length,
-               "Length mismatch"
-           );
-           
-           for (uint i = 0; i < recipients.length; i++) {
-               _distribute(recipients[i], amounts[i]);
-           }
+       // Verify transaction
+       async verifyTransaction(tx: Transaction): Promise<boolean> {
+           const simulation = await this.simulateTransaction(tx);
+           return this.validateSimulation(simulation);
+       }
+       
+       // Monitor distribution
+       async monitorDistribution(): Promise<DistributionStats> {
+           const totalDistributed = await this.getTotalDistributed();
+           const uniqueRecipients = await this.getUniqueRecipients();
+           return { totalDistributed, uniqueRecipients };
        }
    }
    ```
 
-2. **Distribution Logic**
+3. **Error Prevention**
    ```typescript
-   class Distribution {
-       // Create distribution
-       async createDistribution(params: DistributionParams) {
-           const wallet = await this.getWallet();
-           const tx = await this.buildDistributionTx(params);
-           return wallet.signAndSend(tx);
+   class ErrorHandler {
+       // Transaction validation
+       async validateTransaction(tx: Transaction): Promise<ValidationResult> {
+           try {
+               const feeEstimate = await this.estimateFees(tx);
+               const balanceCheck = await this.checkBalance(tx);
+               return { valid: true, feeEstimate, balanceCheck };
+           } catch (error) {
+               return { valid: false, error };
+           }
        }
        
-       // Track status
-       async trackDistribution(id: string) {
-           const status = await this.getDistributionStatus(id);
-           return this.updateUI(status);
+       // Recovery procedures
+       async handleFailedTransaction(tx: Transaction): Promise<void> {
+           await this.logError(tx);
+           await this.notifyUser(tx);
+           await this.attemptRecovery(tx);
        }
    }
    ```
@@ -227,3 +272,39 @@
    - Recovery process
    - Emergency procedures
    - Support system
+
+## User Interface
+
+### Wallet Interface
+```typescript
+interface WalletUI {
+    // Main wallet functions
+    connect(): Promise<void>;
+    disconnect(): Promise<void>;
+    getBalance(): Promise<number>;
+    
+    // Transaction management
+    sendTransaction(tx: Transaction): Promise<string>;
+    signMessage(message: string): Promise<string>;
+    
+    // Token management
+    getTokenAccounts(): Promise<TokenAccount[]>;
+    createTokenAccount(mint: PublicKey): Promise<TokenAccount>;
+}
+```
+
+### Distribution Interface
+```typescript
+interface DistributionUI {
+    // Distribution status
+    checkEligibility(): Promise<boolean>;
+    getDistributionInfo(): Promise<DistributionInfo>;
+    
+    // Claim process
+    claimTokens(): Promise<Transaction>;
+    checkClaimStatus(): Promise<ClaimStatus>;
+    
+    // History tracking
+    getClaimHistory(): Promise<ClaimHistory[]>;
+    exportHistory(): Promise<string>;
+}

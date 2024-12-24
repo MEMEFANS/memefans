@@ -9,6 +9,14 @@ The FANS token is the core of the FANS ecosystem, adopting a community-driven di
 - **Symbol**: FANS
 - **Blockchain**: Solana
 - **Standard**: SPL Token
+- **Total Supply**: 1,000,000,000 FANS
+- **Initial Distribution**: Launch from PUMP
+
+### Token Distribution
+- **Initial Allocation**: 100% via PUMP Launch
+- **Supply Policy**: Fixed supply, no additional minting
+- **Token Contract**: To be deployed on Solana
+- **Burning Mechanism**: May be implemented based on community governance
 
 ### Key Features
 - Open Market Purchase
@@ -49,18 +57,28 @@ The FANS token is the core of the FANS ecosystem, adopting a community-driven di
      * Comment requirement
      * Multiple requirements combination
 
-### User Participation
-1. **Token Acquisition**
-   - Purchase from open market
-   - Participate in distributions
-   - Claim from posts
-   - Complete requirements
+### Value Drivers
+- Platform Usage & Growth
+- Network Effects
+- Utility Expansion
+- Market Demand
+- PUMP Trading Volume
 
-2. **Distribution Creation**
-   - Create distribution posts
-   - Set custom rules
-   - Define token amounts
-   - Monitor distributions
+## Incentive Structure
+
+### User Incentives
+- Engagement Rewards
+- Staking Benefits
+- Governance Rights
+- Special Features
+- PUMP Trading Incentives
+
+### Creator Incentives
+- Content Rewards
+- Fan Engagement
+- Revenue Sharing
+- Growth Bonuses
+- Community Building Rewards
 
 ## Chrome Extension Functions
 
