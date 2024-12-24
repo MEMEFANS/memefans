@@ -9,3 +9,19 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
   parse_block_html: true
+  math_engine: mathjax
+  hard_wrap: false
+
+plugins:
+  - jekyll-relative-links
+  - jekyll-seo-tag
+
+relative_links:
+  enabled: true
+  collections: true
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      mermaid: true
