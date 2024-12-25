@@ -54,8 +54,13 @@
             relativePath: true,
             nameLink: '/memefans/',
             alias: {
-                '/.*/_sidebar.md': '/_sidebar.md',
-                '/whitepaper/': '/whitepaper/README.md'
+                '/.*/_sidebar.md': '/_sidebar.md'
+            },
+            pagination: {
+                previousText: '上一章',
+                nextText: '下一章',
+                crossChapter: true,
+                crossChapterText: true
             },
             search: {
                 maxAge: 86400000,
@@ -63,12 +68,6 @@
                 placeholder: 'Search',
                 noData: 'No Results!',
                 depth: 6
-            },
-            pagination: {
-                previousText: '上一章',
-                nextText: '下一章',
-                crossChapter: true,
-                crossChapterText: true
             },
             markdown: {
                 renderer: {
@@ -93,6 +92,6 @@
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-    <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
 </body>
 </html>
