@@ -14,20 +14,18 @@
 * [Risk Analysis](whitepaper/risk-analysis.md)
 * [Future Development](whitepaper/future-development.md)
 * [Integration Guide](whitepaper/integration-guide.md)
+* [Smart Contracts](whitepaper/smart-contracts.md)
+* [System Maintenance](whitepaper/system-maintenance.md)
+* [Governance](whitepaper/governance.md)
 
 ## Quick Start
 * [Getting Started](quick-start.md)
 * [Installation](quick-start/installation.md)
 * [Tutorial](quick-start/tutorial.md)
+* [FAQ](whitepaper/faq.md)
 
 ## User Guide
-* [User Manual](user-guide.md)
-* [FAQ](faq.md)
-* [Privacy Policy](whitepaper/privacy-security.md)
+* [User Guide](whitepaper/user-guide.md)
+* [Use Cases](whitepaper/use-cases.md)
+* [Privacy & Security](whitepaper/privacy-security.md)
 * [Support](SUPPORT.md)
-
-## Technical Documentation
-* [Integration Guide](whitepaper/integration-guide.md)
-* [Smart Contracts](whitepaper/technical-architecture.md#smart-contracts)
-* [Security & Risk Control](whitepaper/privacy-security.md)
-* [System Maintenance](whitepaper/technical-architecture.md#system-maintenance)
