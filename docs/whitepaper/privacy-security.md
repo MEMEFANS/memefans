@@ -202,6 +202,53 @@ interface TransactionPrivacy {
 - KYC/AML requirements
 - Regular audits
 
+## Browser Extension Permissions
+
+### Required Permissions
+
+#### 1. Storage Permission
+- Store user wallet addresses securely
+- Save user preferences and settings
+- Cache token balances for better performance
+- Maintain transaction history
+- Store Twitter authentication status
+
+#### 2. ActiveTab Permission
+- Detect when user is viewing a Twitter post
+- Read tweet information for giveaway verification
+- Inject claim buttons on eligible tweets
+- Verify user interactions (likes, retweets) with tweets
+
+#### 3. Scripting Permission
+- Inject claim buttons dynamically on Twitter posts
+- Update UI elements based on user interactions
+- Execute wallet connection scripts
+- Handle token claiming transactions
+- Manage real-time balance updates
+
+#### 4. Tabs Permission
+- Monitor Twitter tab status for giveaway verification
+- Handle wallet connection popups
+- Manage authentication windows
+- Coordinate between different extension components
+
+### Host Permissions
+
+#### Twitter Domains (twitter.com/* and x.com/*)
+- Detect and verify Twitter interactions
+- Add claim buttons to eligible tweets
+- Monitor user engagement with giveaway posts
+- Verify tweet authenticity
+- Support both Twitter.com and X.com domains
+
+#### Twitter API (api.twitter.com/*)
+- Verify tweet interactions through Twitter API
+- Validate user engagement (likes, retweets)
+- Fetch tweet metadata
+- Ensure giveaway eligibility
+
+All these permissions are essential for the core functionality of MEMEFANS, ensuring secure and seamless token giveaway operations while maintaining user privacy and security standards.
+
 ## Monitoring & Response
 
 ### 1. Security Monitoring
@@ -857,3 +904,49 @@ graph TD
     style L fill:#FF69B4,color:#000000
     style M fill:#DEB887,color:#000000
 </div>
+
+## Privacy Policy
+
+Last updated: December 17, 2024
+
+### Introduction
+This Privacy Policy describes how MEMEFANS ("we", "our", or "the extension") collects, uses, and shares information when you use our Chrome extension.
+
+### Information We Collect
+1. **Twitter Account Information**
+   - Public Twitter profile information when you connect your account
+   - Tweet interactions (likes, retweets) for giveaway verification
+   - Basic browser information necessary for the extension to function
+
+2. **Wallet Information**
+   - Solana wallet addresses you choose to connect
+   - Transaction history related to token claims and transfers
+
+### How We Use Information
+- To verify eligibility for token giveaways
+- To process token claims and transfers
+- To provide customer support
+- To improve our services
+
+### Information Sharing
+We do not sell or share your personal information with third parties except:
+- When required by law
+- To process transactions on the Solana blockchain
+- To verify Twitter interactions through the Twitter API
+
+### Your Rights
+You can:
+- Access your data
+- Delete your account
+- Disconnect your wallet
+- Remove the extension
+
+### Contact
+For questions about this privacy policy, please contact:
+- Email: support@memefans.com
+- Twitter: @MEMEFANS
+- GitHub: https://github.com/MEMEFANS/memefans
+
+For technical support or bug reports:
+1. Visit our GitHub repository
+2. Open an issue with detailed description

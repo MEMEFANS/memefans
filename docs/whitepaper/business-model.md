@@ -334,6 +334,75 @@ Year 3:
   - Operating margin: 30%
   - Net margin: 20%
 
+## ROI Analysis
+
+### Investment Overview
+
+```mermaid
+graph TD
+    A[Total Investment] -->|Allocation| B[Technical Development]
+    A -->|Allocation| C[Marketing]
+    A -->|Allocation| D[Operations]
+    B -->|Return| E[Efficiency]
+    C -->|Return| F[User Growth]
+    D -->|Return| G[Platform Value]
+    E -->|Combined| H[Total ROI]
+    F -->|Combined| H
+    G -->|Combined| H
+
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#87CEEB,color:#000000
+    style G fill:#FFA07A,color:#000000
+    style H fill:#98FB98,color:#000000
+```
+
+### ROI Timeline
+```mermaid
+gantt
+    title Investment Return Timeline
+    dateFormat YYYY-MM
+    section Technical
+    Development    :2024-01, 6M
+    Returns        :2024-07, 6M
+    section Marketing
+    Investment     :2024-01, 4M
+    Returns        :2024-05, 8M
+    section Operations
+    Investment     :2024-01, 12M
+    Returns        :2024-03, 10M
+```
+
+### User Category ROI Analysis
+
+#### 1. Content Creators
+##### Investment Cost Analysis
+1. **Initial Investment**
+   - Equipment: 3,000-8,000 USDT
+   - Training: 1,000-3,000 USDT
+   - Platform Usage: 500-1,000 USDT
+
+2. **Expected Returns**
+   - Direct Revenue: 5,000-15,000 USDT/month
+   - Token Appreciation: 20-50% annually
+   - Platform Benefits: 1,000-3,000 USDT/month
+
+#### 2. Community Operations
+1. **Investment Areas**
+   - Community Management
+   - Event Organization
+   - Content Moderation
+   - User Support
+
+2. **Return Metrics**
+   - User Growth Rate
+   - Engagement Level
+   - Token Velocity
+   - Platform Activity
+
 ## Risk Analysis
 
 ### 1. Market Risks

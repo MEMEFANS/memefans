@@ -387,58 +387,31 @@ graph TD
 
 ## Chrome Extension Overview
 
-### Core Functionality
-1. **Token Management**
-   - One-click token creation
-   - Automated distribution
-   - Balance tracking
-   - Transaction history
+### Short Description
+MEMEFANS is a Chrome extension that seamlessly connects your Twitter account with the Solana blockchain, allowing you to participate in token giveaways with just a few clicks.
 
-2. **Social Integration**
-   - Twitter account linking
-   - Engagement tracking
-   - Automated rewards
-   - Community insights
+### Key Features
+- One-click connection to your Solana wallet
+- Automatic verification of Twitter interactions
+- Secure token claiming system
+- Real-time balance checking
+- Easy token withdrawal to your wallet
 
-3. **Analytics Dashboard**
-   - Real-time metrics
-   - User engagement data
-   - Distribution analytics
-   - Performance tracking
+### How It Works
+1. Connect your Twitter account and Solana wallet
+2. Find supported token giveaways on Twitter
+3. Like and retweet to participate
+4. Claim your tokens directly through the extension
+5. Withdraw tokens to your wallet anytime
 
-### User Interface
+### Security Features
+- No private keys stored
+- Secure wallet connection
+- Open source code
+- Regular security audits
 
-#### Creator Dashboard
-```
-┌─────────────────────────────────┐
-│ MEMEFANS Creator Dashboard      │
-├─────────────────────────────────┤
-│ Token Balance: 1,000,000 FANS   │
-│ Active Users: 1,234             │
-│ Today's Distributions: 5,678    │
-├─────────────────────────────────┤
-│ Quick Actions:                  │
-│ ⚡ Distribute Tokens            │
-│ 📊 View Analytics              │
-│ ⚙️ Settings                    │
-└─────────────────────────────────┘
-```
-
-#### Distribution Panel
-```
-┌─────────────────────────────────┐
-│ Token Distribution              │
-├─────────────────────────────────┤
-│ Recipients: @user1, @user2      │
-│ Amount: 100 FANS each           │
-│ Total: 200 FANS                 │
-├─────────────────────────────────┤
-│ Distribution Rules:             │
-│ 🎯 Engagement-based            │
-│ ⏱️ Time-weighted               │
-│ 🔄 Auto-repeat                 │
-└─────────────────────────────────┘
-```
+### Support
+For support or feedback, please visit our GitHub repository or contact us through Twitter.
 
 ## Feature Details
 

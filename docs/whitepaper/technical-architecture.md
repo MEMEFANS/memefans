@@ -4,15 +4,32 @@
 
 MEMEFANS is built on a modular, scalable microservices architecture based on the Solana blockchain. The system consists of the following core components:
 
-<div class="mermaid">
+```mermaid
 graph TD
-    A[Chrome Extension] --> B[API Gateway]
-    B --> C[Core Services]
-    B --> D[Blockchain Services]
-    C --> E[Data Services]
-    D --> F[Solana Node]
-    D --> G[PUMP DEX]
-    E --> H[(Database)]
+    subgraph Frontend [Chrome Extension]
+        A[User Interface] -->|Interact| B[Built-in Wallet]
+        A -->|Monitor| C[Page Detection]
+        B -->|Manage| D[Key Management]
+        C -->|Process| E[Distribution Logic]
+    end
+    
+    subgraph Backend [Backend Services]
+        F[API Gateway] -->|Handle| G[Wallet Service]
+        F -->|Process| H[Distribution Service]
+        F -->|Track| I[Analytics Service]
+        G -->|Cache| J[Redis]
+        H -->|Store| K[PostgreSQL]
+        I -->|Process| L[Queue Service]
+    end
+    
+    subgraph Blockchain [Blockchain Layer]
+        M[Smart Contracts] -->|Manage| N[Token Contract]
+        M -->|Handle| O[Distribution Contract]
+        M -->|Verify| P[Security Module]
+    end
+    
+    Frontend -->|API Calls| Backend
+    Backend -->|Transactions| Blockchain
     
     style A fill:#90EE90,color:#000000
     style B fill:#FFB6C1,color:#000000
@@ -22,339 +39,390 @@ graph TD
     style F fill:#FFA07A,color:#000000
     style G fill:#98FB98,color:#000000
     style H fill:#DEB887,color:#000000
-</div>
+```
 
-## Core Components
+## Architecture Layers
 
-### 1. Chrome Extension
-- **Function**: User interface and interaction layer
-- **Tech Stack**:
-  - React.js + TypeScript
-  - Web3.js
-  - Chrome Extension API
-- **Features**:
-  - Lightweight design (< 5MB)
-  - Quick startup (< 2s)
-  - Offline support
-  - Local data storage
-  - Real-time updates
-- **Security**:
-  - Wallet encryption
-  - Private key management
+### 1. Frontend Layer (Chrome Extension)
+- **User Interface**
+  - Gift distribution interface
+  - Wallet management
+  - Transaction history
+  - Settings management
+
+- **Built-in Wallet**
+  - Key generation and storage
   - Transaction signing
-  - Access controls
+  - Balance management
+  - Security features
 
-### 2. API Gateway
-- **Function**: Request routing and load balancing
-- **Implementation**:
-  - Node.js + Express
-  - Redis caching
-  - JWT authentication
-  - MongoDB for data persistence
-- **Performance**:
-  - Average response time < 100ms
-  - Concurrent processing > 10000 QPS
-- **Integration**:
-  - Twitter API integration
-  - Authentication services
-  - Data synchronization
-  - Event tracking
+- **Page Detection**
+  - X post monitoring
+  - Content verification
+  - User interaction tracking
+  - Event handling
 
-### 3. Core Services
-- **Main Modules**:
-  - User management
-  - Token distribution
-  - Reward calculation
-  - Data analytics
-- **Technical Features**:
-  - Microservices architecture
-  - Event-driven
-  - Asynchronous processing
-  - Queue management
-  - Error recovery
-
-### 4. Blockchain Services
-- **Functions**:
-  - Smart contract interaction
-  - Transaction management
-  - Wallet integration
-  - Batch processing system
-- **Performance**:
-  - Transaction confirmation < 1s
-  - Gas fee optimization > 50%
-  - Queue-based batch operations
-  - State management optimization
-
-## Security Mechanisms
-
-### 1. Multi-layer Security
-- **Application Security**
-  - HTTPS/TLS 1.3
-  - API signature verification
+### 2. Backend Layer
+- **API Gateway**
+  - Request routing
+  - Authentication
   - Rate limiting
-  
-- **Data Security**
-  - End-to-end encryption
-  - Data masking
-  - Regular backups
+  - Load balancing
 
-- **Blockchain Security**
-  - Multi-signature
-  - Transaction monitoring
-  - Smart contract audits
+- **Core Services**
+  - Wallet service
+  - Distribution service
+  - Analytics service
+  - Queue service
 
-### 2. Risk Control
-- Transaction amount limits
-- Anomaly detection
-- Automated risk strategies
+- **Data Services**
+  - PostgreSQL for persistent storage
+  - Redis for caching
+  - Message queue for async tasks
+  - Data analytics
 
-## Scalability Design
+### 3. Blockchain Layer
+- **Smart Contracts**
+  - Token contract
+  - Distribution contract
+  - Security module
+  - Governance contract
 
-### 1. Horizontal Scaling
-- Stateless service design
-- Auto-scaling
-- Distributed caching
+## Data Flow
 
-### 2. Vertical Scaling
-- Performance optimization
-- Resource isolation
-- Multi-level caching
+### Gift Distribution Flow
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant E as Extension
+    participant B as Backend
+    participant C as Blockchain
+    
+    U->>E: Create Distribution
+    E->>B: Validate Request
+    B->>C: Check Balance
+    C->>B: Balance OK
+    B->>E: Request Approved
+    E->>U: Sign Transaction
+    U->>E: Confirm
+    E->>C: Submit Transaction
+    C->>B: Transaction Success
+    B->>E: Update UI
+    E->>U: Show Confirmation
+```
 
-### 3. Cross-chain Support
-- Cross-chain bridge interface
-- Multi-chain asset management
-- Unified authentication
-
-## Performance Metrics
-
-### 1. System Performance
-- **API Response Time**
-  - P95 < 200ms
-  - P99 < 500ms
-  
-- **Concurrent Processing**
-  - Single node > 5000 TPS
-  - Cluster > 50000 TPS
-
-### 2. Blockchain Performance
-- **Transaction Speed**
-  - Confirmation time < 1s
-  - Throughput > 50000 TPS
-  
-- **Cost Efficiency**
-  - Average Gas < 0.00001 SOL
-  - Batch optimization > 40%
-
-## Performance Optimization
-
-### 1. Transaction Processing
-- **Batch Operations**:
-  - Smart grouping of transactions
-  - Parallel processing
-  - Priority queuing
-- **Gas Optimization**:
-  - Dynamic fee adjustment
-  - Batch transaction bundling
-  - Cost-effective execution paths
-- **Error Handling**:
-  - Automatic retry mechanism
-  - Fallback strategies
-  - Transaction monitoring
-
-### 2. Data Management
-- **Caching Strategy**:
-  - Multi-level caching
-  - Cache invalidation rules
-  - Distributed cache system
-- **State Management**:
-  - Optimistic updates
-  - State synchronization
-  - Conflict resolution
-- **Backup Systems**:
-  - Real-time replication
-  - Point-in-time recovery
-  - Geographic redundancy
-
-## Monitoring and Operations
-
-### 1. System Monitoring
-- Performance metrics
-- Error log analysis
-- Resource usage monitoring
-
-### 2. Alert System
-- Multi-level alert strategy
-- Auto-recovery mechanism
-- Manual intervention channel
-
-### 3. DevOps Automation
-- CI/CD pipeline
-- Automated testing
-- Disaster recovery
-
-## Technical Implementation
-
-### Chrome Extension Architecture
-
-#### Frontend Architecture
-<div class="mermaid">
+### Transaction Processing
+```mermaid
 graph TD
-    A[UI Components] -->|React| B[State Management]
-    B -->|Redux| C[Actions/Events]
-    C -->|API| D[Backend Services]
-    D -->|Blockchain| E[Solana Network]
+    A[User Action] -->|Trigger| B[Transaction Creation]
+    B -->|Validate| C[Request Validation]
+    C -->|Sign| D[Transaction Signing]
+    D -->|Submit| E[Blockchain]
+    E -->|Confirm| F[Update State]
+    F -->|Notify| G[User Notification]
     
     style A fill:#90EE90,color:#000000
     style B fill:#FFB6C1,color:#000000
     style C fill:#DDA0DD,color:#000000
     style D fill:#FFFF00,color:#000000
     style E fill:#87CEEB,color:#000000
-</div>
+    style F fill:#FFA07A,color:#000000
+    style G fill:#98FB98,color:#000000
+```
 
-1. **UI Framework**
-   - React.js for component management
-   - TailwindCSS for styling
-   - Material UI components
-   - Responsive design
+## Implementation Details
 
-2. **State Management**
-   - Redux for global state
-   - Local storage for cache
-   - Web3 wallet state
-   - Real-time updates
+### 1. Chrome Extension
+```typescript
+// Distribution Manager
+class DistributionManager {
+    private wallet: WalletService;
+    private api: APIService;
 
-3. **Wallet Integration**
-   - Phantom Wallet support
-   - Solflare integration
-   - Multi-wallet compatibility
-   - Transaction signing
+    constructor() {
+        this.wallet = new WalletService();
+        this.api = new APIService();
+    }
 
-### Backend Services
+    // Create distribution with validation
+    async createDistribution(params: DistributionParams): Promise<Distribution> {
+        try {
+            // Validate parameters
+            this.validateParams(params);
 
-1. **API Architecture**
-   ```typescript
-   interface DistributionService {
-     createDistribution(params: {
-       amount: number;
-       requirements: Requirements;
-       duration: number;
-     }): Promise<Distribution>;
+            // Check balance
+            const balance = await this.wallet.getBalance();
+            if (balance < params.amount) {
+                throw new Error('Insufficient balance');
+            }
 
-     verifyRequirements(params: {
-       userId: string;
-       distributionId: string;
-     }): Promise<boolean>;
+            // Create distribution
+            const distribution = await this.api.createDistribution(params);
 
-     claimTokens(params: {
-       userId: string;
-       distributionId: string;
-       wallet: string;
-     }): Promise<Transaction>;
-   }
-   ```
+            // Monitor status
+            this.monitorDistribution(distribution.id);
 
-2. **Data Storage**
-   - Distribution metadata
-   - User claims history
-   - Requirements tracking
-   - Analytics data
+            return distribution;
 
-3. **Performance Optimization**
-   - Redis caching
-   - Queue management
-   - Rate limiting
-   - Load balancing
+        } catch (error) {
+            this.handleError(error);
+            throw error;
+        }
+    }
 
-### Smart Contract Architecture
+    // Monitor distribution status
+    private async monitorDistribution(id: string): Promise<void> {
+        const status = await this.api.getDistributionStatus(id);
+        if (status === 'pending') {
+            setTimeout(() => this.monitorDistribution(id), 5000);
+        }
+    }
+}
 
-#### Core Contracts
-```solidity
-interface IDistribution {
-    function createDistribution(
-        uint256 amount,
-        uint256 recipients,
-        bytes32 requirements
-    ) external;
+// Content Detection
+class ContentDetector {
+    private config: DetectionConfig;
 
-    function claimTokens(
-        bytes32 distributionId,
-        bytes memory proof
-    ) external;
+    constructor(config: DetectionConfig) {
+        this.config = config;
+    }
 
-    function verifyRequirements(
-        bytes32 distributionId,
-        address claimer
-    ) external view returns (bool);
+    // Verify page content
+    async verifyContent(url: string): Promise<boolean> {
+        try {
+            // Check URL pattern
+            if (!this.isValidUrl(url)) {
+                return false;
+            }
+
+            // Extract content
+            const content = await this.extractContent(url);
+
+            // Verify content
+            return this.validateContent(content);
+
+        } catch (error) {
+            console.error('Content detection error:', error);
+            return false;
+        }
+    }
+
+    // Extract content from page
+    private async extractContent(url: string): Promise<Content> {
+        // Implementation details
+    }
 }
 ```
 
-#### Security Features
-1. **Access Control**
-   - Multi-signature requirements
-   - Role-based permissions
-   - Time locks
-   - Emergency pause
+### 2. Backend Services
+```typescript
+// API Gateway
+class APIGateway {
+    private auth: AuthService;
+    private rate: RateLimiter;
+    private router: Router;
 
-2. **Transaction Safety**
-   - Reentrancy protection
-   - Integer overflow checks
-   - Gas optimization
-   - Fail-safe mechanisms
+    constructor() {
+        this.auth = new AuthService();
+        this.rate = new RateLimiter();
+        this.router = new Router();
+    }
 
-### Integration Flow
+    // Handle request
+    async handleRequest(req: Request): Promise<Response> {
+        try {
+            // Authenticate
+            await this.auth.verify(req);
 
-#### Post Creation
-<div class="mermaid">
-sequenceDiagram
-    participant User
-    participant Extension
-    participant Backend
-    participant Blockchain
+            // Rate limit
+            await this.rate.checkLimit(req);
 
-    User->>Extension: Create Distribution Post
-    Extension->>Backend: Validate Parameters
-    Backend->>Blockchain: Deploy Distribution
-    Blockchain-->>Backend: Confirm Transaction
-    Backend-->>Extension: Return Status
-    Extension-->>User: Show Confirmation
-</div>
+            // Route request
+            return await this.router.route(req);
 
-#### Token Claiming
-<div class="mermaid">
-sequenceDiagram
-    participant Claimer
-    participant Extension
-    participant Backend
-    participant Twitter
-    participant Blockchain
+        } catch (error) {
+            return this.handleError(error);
+        }
+    }
+}
 
-    Claimer->>Extension: Initiate Claim
-    Extension->>Twitter: Verify Requirements
-    Twitter-->>Backend: Return Status
-    Backend->>Blockchain: Process Claim
-    Blockchain-->>Extension: Confirm Transfer
-    Extension-->>Claimer: Show Success
-</div>
+// Distribution Service
+class DistributionService {
+    private db: Database;
+    private blockchain: BlockchainService;
+    private queue: QueueService;
 
-### Performance Considerations
+    constructor() {
+        this.db = new Database();
+        this.blockchain = new BlockchainService();
+        this.queue = new QueueService();
+    }
 
-#### Optimization Strategies
-1. **Transaction Batching**
-   - Bulk processing
-   - Gas optimization
-   - Cost reduction
-   - Efficiency improvement
+    // Process distribution
+    async processDistribution(
+        distribution: Distribution
+    ): Promise<boolean> {
+        try {
+            // Start transaction
+            const tx = await this.db.beginTransaction();
 
-2. **Caching Strategy**
-   - Distribution data
-   - User verification
-   - Requirements status
-   - Transaction history
+            try {
+                // Create blockchain transaction
+                const blockchainTx = await this.blockchain
+                    .createDistribution(distribution);
 
-3. **Error Handling**
-   - Automatic retry
-   - Failure recovery
-   - User notification
-   - Status tracking
+                // Record in database
+                await this.db.distributions.create({
+                    ...distribution,
+                    status: 'pending',
+                    txHash: blockchainTx.hash
+                });
 
-[Continue to Token Economics →](token-economics.md)
+                // Queue for monitoring
+                await this.queue.add('monitor_tx', {
+                    txHash: blockchainTx.hash
+                });
+
+                // Commit transaction
+                await tx.commit();
+                return true;
+
+            } catch (error) {
+                await tx.rollback();
+                throw error;
+            }
+
+        } catch (error) {
+            this.handleError(error);
+            return false;
+        }
+    }
+}
+```
+
+### 3. Blockchain Integration
+```typescript
+// Blockchain Service
+class BlockchainService {
+    private provider: Provider;
+    private contracts: Contracts;
+
+    constructor() {
+        this.provider = new Provider();
+        this.contracts = new Contracts();
+    }
+
+    // Create distribution transaction
+    async createDistribution(
+        params: DistributionParams
+    ): Promise<Transaction> {
+        try {
+            // Get contract
+            const contract = await this.contracts
+                .getDistributionContract();
+
+            // Build transaction
+            const tx = await contract.buildTransaction(
+                params.recipients,
+                params.amounts
+            );
+
+            // Sign transaction
+            const signedTx = await this.provider
+                .signTransaction(tx);
+
+            // Send transaction
+            return await this.provider
+                .sendTransaction(signedTx);
+
+        } catch (error) {
+            this.handleError(error);
+            throw error;
+        }
+    }
+}
+```
+
+## Security Measures
+
+### 1. Wallet Security
+- **Key Generation**
+  - Secure random generation
+  - Encryption standards
+  - Backup mechanisms
+  - Recovery options
+
+- **Transaction Signing**
+  - Multi-signature support
+  - Hardware wallet integration
+  - Transaction verification
+  - Rate limiting
+
+### 2. Smart Contract Security
+- **Access Control**
+  - Role-based access
+  - Function modifiers
+  - Emergency pause
+  - Upgrade controls
+
+- **Transaction Validation**
+  - Input validation
+  - Balance checks
+  - Gas optimization
+  - Reentry protection
+
+## Performance Optimization
+
+### 1. Caching Strategy
+- **Redis Cache**
+  - User data caching
+  - Balance caching
+  - Transaction history
+  - Distribution status
+
+- **Database Optimization**
+  - Index optimization
+  - Query optimization
+  - Connection pooling
+  - Sharding strategy
+
+### 2. Network Optimization
+- **Load Balancing**
+  - Request distribution
+  - Service scaling
+  - Failover handling
+  - Health monitoring
+
+- **API Optimization**
+  - Response compression
+  - Batch processing
+  - Rate limiting
+  - Cache headers
+
+## Monitoring and Maintenance
+
+### 1. System Monitoring
+- **Performance Metrics**
+  - Response times
+  - Error rates
+  - Resource usage
+  - Transaction success
+
+- **Alert System**
+  - Error notifications
+  - Performance alerts
+  - Security alerts
+  - System health
+
+### 2. Maintenance Procedures
+- **Backup Systems**
+  - Database backups
+  - Configuration backups
+  - Key backups
+  - Recovery procedures
+
+- **Update Process**
+  - Version control
+  - Deployment strategy
+  - Rollback plan
+  - Testing procedures

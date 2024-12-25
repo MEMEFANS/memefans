@@ -6,27 +6,44 @@ The FANS token is the core of the FANS ecosystem, adopting a community-driven di
 
 <div class="mermaid">
 graph TD
-    A[FANS Token] -->|Powers| B[Platform Economy]
-    B -->|Generates| C[User Value]
-    C -->|Drives| D[Adoption]
-    D -->|Increases| E[Token Utility]
-    E -->|Enhances| A
+    FANS((FANS Token)) --> D[Distribution]
+    FANS --> F[Features]
+    FANS --> E[Economics]
+    FANS --> S[Security]
     
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
+    D --> CD[Community Driven]
+    D --> PL[PUMP Launch]
+    D --> ZG[Zero Gas Model]
+    
+    F --> SI[Social Integration]
+    F --> CE[Chrome Extension]
+    F --> AD[Automated Distribution]
+    
+    E --> FS[Fixed Supply]
+    E --> BM[Burn Mechanism]
+    E --> MD[Market Driven]
+    
+    S --> RL[Rate Limiting]
+    S --> AB[Anti-bot]
+    S --> TV[Transaction Verification]
+    
+    style FANS fill:#0000FF,color:#FFFFFF
+    style D fill:#FFFF00,color:#000000
+    style F fill:#90EE90,color:#000000
+    style E fill:#DDA0DD,color:#000000
+    style S fill:#FFB6C1,color:#000000
 </div>
 
-## FANS Token
+## FANS Token Specification
 
-- Name: FANS Token
-- Symbol: FANS
-- Blockchain: Solana
-- Standard: SPL Token
-- Total Supply: 1,000,000,000 FANS
-- Initial Distribution: Launch from PUMP
+- **Name**: FANS Token
+- **Symbol**: FANS
+- **Blockchain**: Solana
+- **Standard**: SPL Token
+- **Total Supply**: 1,000,000,000 FANS
+- **Initial Distribution**: Launch from PUMP
+
+## Token Distribution
 
 <div class="mermaid">
 graph TD
@@ -49,134 +66,55 @@ graph TD
     style D fill:#DDA0DD,color:#000000
     style E fill:#FFB6C1,color:#000000
     style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
 </div>
 
-## Token Distribution
+### Distribution Details
+- **Community Pool (50%)**
+  - Initial distribution via PUMP
+  - Community rewards
+  - Ecosystem growth
+  - User incentives
 
-### Initial Allocation
-- Total Supply: 1,000,000,000 FANS
-- Distribution Method: PUMP Launch
-- Token Contract: To be deployed on Solana
+- **Team Allocation (15%)**
+  - 4-year vesting schedule
+  - Quarterly unlocks
+  - Performance-based bonuses
+  - Long-term alignment
 
-<div class="mermaid">
-graph TD
-    A[Total Supply] -->|PUMP Launch| B[Initial Distribution]
-    B -->|Lock| C[Vesting Schedule]
-    C -->|Release| D[Circulation]
-    
-    subgraph Vesting Rules
-    E[Team: 2 Years]
-    F[Dev: 18 Months]
-    G[Marketing: 1 Year]
-    end
-    
-    E --> C
-    F --> C
-    G --> C
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-</div>
+- **Development Fund (20%)**
+  - Platform development
+  - Technical infrastructure
+  - Security audits
+  - Protocol upgrades
 
-### Distribution Schedule
-- Initial PUMP Launch: 100% of total supply
-- No additional minting (Fixed Supply)
-- Burning mechanism may be implemented based on community governance
+- **Marketing & Partnerships (15%)**
+  - Marketing campaigns
+  - Strategic partnerships
+  - Community events
+  - Brand development
 
-## Token Distribution Overview
+## Token Utility
 
-<div class="mermaid">
-graph TD
-    A[Token Distribution] -->|Initial| B[Initial Distribution]
-    A -->|Vesting| C[Vesting Schedule]
-    A -->|Unlock| D[Unlock Schedule]
-    
-    subgraph Initial Distribution
-    B -->|Team| E[Team Allocation]
-    B -->|Community| F[Community Allocation]
-    B -->|Reserve| G[Reserve Allocation]
-    end
-    
-    subgraph Vesting Schedule
-    C -->|Monthly| H[Monthly Release]
-    C -->|Quarterly| I[Quarterly Release]
-    C -->|Yearly| J[Yearly Release]
-    end
-    
-    subgraph Unlock Schedule
-    D -->|Phase1| K[Phase 1 Unlock]
-    D -->|Phase2| L[Phase 2 Unlock]
-    D -->|Phase3| M[Phase 3 Unlock]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+### Platform Features
+- **Zero Gas Model**
+  - Free transactions for users
+  - Platform covers gas fees
+  - Enhanced user experience
+  - Reduced barriers to entry
 
-## Token Utility Flow
+- **Social Integration**
+  - X post integration
+  - Automated distribution
+  - Engagement tracking
+  - Community rewards
 
-<div class="mermaid">
-graph TD
-    A[Token Utility] -->|Earn| B[Earning Methods]
-    A -->|Spend| C[Spending Methods]
-    A -->|Stake| D[Staking Methods]
-    
-    subgraph Earning Methods
-    B -->|Create| E[Content Creation]
-    B -->|Engage| F[Engagement]
-    B -->|Refer| G[Referrals]
-    end
-    
-    subgraph Spending Methods
-    C -->|Gift| H[Send Gifts]
-    C -->|Subscribe| I[Subscriptions]
-    C -->|Purchase| J[Purchases]
-    end
-    
-    subgraph Staking Methods
-    D -->|Lock| K[Token Lock]
-    D -->|Reward| L[Staking Rewards]
-    D -->|Govern| M[Governance Rights]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+- **Chrome Extension**
+  - One-click gifting
+  - Balance management
+  - Transaction history
+  - User preferences
 
-## Token Economics Flow
+### Token Flow
 
 <div class="mermaid">
 sequenceDiagram
@@ -184,197 +122,20 @@ sequenceDiagram
     participant P as Platform
     participant T as Token Pool
     participant R as Reward Pool
-    
-    U->>P: Platform Activity
-    P->>T: Check Token Supply
-    T-->>P: Supply Status
+
+    U->>P: Create Content
+    P->>T: Check Balance
+    T->>P: Confirm Balance
     P->>R: Calculate Rewards
-    R-->>P: Reward Amount
-    P-->>U: Distribute Tokens
-    
-    Note over U,P: User Activity
-    Note over P,T: Supply Check
-    Note over P,R: Reward Process
+    R->>U: Distribute Tokens
+    U->>P: Engage with Content
+    P->>R: Generate Rewards
+    R->>U: Send Rewards
 </div>
-
-## Token Governance Flow
-
-<div class="mermaid">
-graph TD
-    A[Token Governance] -->|Propose| B[Proposal Process]
-    A -->|Vote| C[Voting Process]
-    A -->|Execute| D[Execution Process]
-    
-    subgraph Proposal Process
-    B -->|Submit| E[Submit Proposal]
-    B -->|Review| F[Review Period]
-    B -->|Qualify| G[Qualification]
-    end
-    
-    subgraph Voting Process
-    C -->|Cast| H[Cast Votes]
-    C -->|Count| I[Vote Counting]
-    C -->|Decide| J[Decision]
-    end
-    
-    subgraph Execution Process
-    D -->|Plan| K[Implementation Plan]
-    D -->|Execute| L[Execute Changes]
-    D -->|Monitor| M[Monitor Results]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
-
-## Token Market Flow
-
-<div class="mermaid">
-graph TD
-    A[Token Market] -->|Supply| B[Supply Management]
-    A -->|Demand| C[Demand Drivers]
-    A -->|Price| D[Price Stability]
-    
-    subgraph Supply Management
-    B -->|Mint| E[Token Minting]
-    B -->|Burn| F[Token Burning]
-    B -->|Lock| G[Token Locking]
-    end
-    
-    subgraph Demand Drivers
-    C -->|Utility| H[Platform Utility]
-    C -->|Growth| I[User Growth]
-    C -->|Value| J[Value Proposition]
-    end
-    
-    subgraph Price Stability
-    D -->|Monitor| K[Market Monitoring]
-    D -->|Control| L[Supply Control]
-    D -->|Adjust| M[Price Adjustment]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
-
-## Key Features
-
-- Open Market Purchase
-- Community-Driven Distribution
-- Chrome Extension Integration
-- X (Twitter) Platform Integration
-
-## Distribution Mechanism
-
-### Chrome Extension Features
-
-1. Token Distribution
-   - Any user can distribute FANS tokens via X posts
-   - Flexible distribution rules
-   - Custom requirements setting
-   - No-requirement airdrops supported
-
-2. Distribution Methods
-
-```graph TD
-    A[X Post Creation] -->[Set Distribution] B[Distribution Rules]
-    B -->[Option 1] C[No Requirements]
-    B -->[Option 2] D[Custom Requirements]
-    C -->[Direct Claim] E[Token Distribution]
-    D -->[Verify & Claim] E
-```
-
-3. Distribution Rules Options
-   - No Requirements
-   - Custom Requirements
-   - Flexible Rules
-   - Multiple Distribution Methods
 
 ## Economic Model
 
-### Token Supply
-- Fixed total supply: 1,000,000,000 FANS
-- No inflation mechanism
-- Potential burning mechanism through community governance
-- Supply tracking via Solana blockchain
-
-### Value Drivers
-- Platform usage
-- Network effects
-- Utility expansion
-- Market demand
-- PUMP trading volume
-
-## Incentive Structure
-
-### User Incentives
-- Engagement rewards
-- Staking benefits
-- Governance rights
-- Special features
-- PUMP trading incentives
-
-### Creator Incentives
-- Content rewards
-- Fan engagement
-- Revenue sharing
-- Growth bonuses
-- Community building rewards
-
-## Token Utility
-
-### Platform Functions
-
-<div class="mermaid">
-graph TD
-    A[FANS Token] -->|Enable| B[Platform Features]
-    B -->|Support| C[User Activities]
-    
-    subgraph Features
-    D[Gift Sending]
-    E[Content Access]
-    F[Governance]
-    G[Staking]
-    end
-    
-    B --> D
-    B --> E
-    B --> F
-    B --> G
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-</div>
-
-### Value Capture
-
+### Value Creation
 <div class="mermaid">
 graph TD
     A[User Activity] -->|Generate| B[Platform Revenue]
@@ -383,95 +144,181 @@ graph TD
     D -->|Increase| E[Token Value]
     E -->|Attract| A
     
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
+    style A fill:#FFFF00,color:#000000
+    style B fill:#90EE90,color:#000000
+    style C fill:#DDA0DD,color:#000000
+    style D fill:#FFB6C1,color:#000000
+    style E fill:#FFA07A,color:#000000
 </div>
 
-## Token Mechanics
-
-### Gift Economy
-
+### Token Circulation
 <div class="mermaid">
 graph TD
-    A[Content Creator] -->|Post| B[Quality Content]
-    B -->|Attract| C[Followers]
-    C -->|Send| D[FANS Gifts]
-    D -->|Reward| A
+    A[Market Purchase] -->|User Acquisition| B[Token Holding]
+    B -->|Create Distribution| C[X Posts]
+    C -->|Community Claims| D[Token Circulation]
+    D -->|Creates Demand| A
+    
+    style A fill:#FFFF00,color:#000000
+    style B fill:#90EE90,color:#000000
+    style C fill:#DDA0DD,color:#000000
+    style D fill:#FFB6C1,color:#000000
+</div>
+
+## Fair Launch Mechanism
+
+### Launch Overview
+
+```mermaid
+graph TD
+    A[Fair Launch] -->|Core Principles| B[Equal Opportunity]
+    A -->|Implementation| C[Technical Security]
+    A -->|Process| D[Distribution System]
+    B -->|Features| E[No Pre-mine/Private Sale]
+    C -->|Features| F[Built-in SOL Wallet]
+    D -->|Features| G[Transparent Rules]
     
     style A fill:#0000FF,color:#FFFFFF
     style B fill:#FFFF00,color:#000000
     style C fill:#90EE90,color:#000000
     style D fill:#DDA0DD,color:#000000
-</div>
+```
 
-### Staking Mechanism
+### Core Principles
 
+#### Fair Distribution
+
+1. **Equal Opportunity**
+   ```mermaid
+   pie title Token Launch Distribution
+     "Public Distribution" : 100
+   ```
+   - No pre-mine
+   - No team allocation
+   - No private sales
+   - No early access
+
+2. **Transparent Rules**
+   - Clear distribution rules
+   - Public verification
+   - Open source code
+   - Real-time tracking
+
+3. **Security First**
+   - Built-in SOL wallet
+   - Local key generation
+   - Secure storage
+   - No external connections
+
+### Distribution Mechanism
+
+1. **Built-in Wallet**
+   - Automatic generation with extension installation
+   - Secure key storage
+   - Easy token management
+   - Direct distribution support
+
+2. **Verification System**
+   - Eligibility verification
+   - Distribution tracking
+   - Transaction monitoring
+   - Security checks
+
+## Token Security
+
+### Security Measures
+- **Rate Limiting**
+  - Transaction limits
+  - Anti-spam protection
+  - Fair distribution
+  - System stability
+
+- **Anti-bot Protection**
+  - User verification
+  - Behavior analysis
+  - Activity monitoring
+  - Risk assessment
+
+- **Transaction Verification**
+  - Multi-sig requirements
+  - Fraud detection
+  - Automated checks
+  - Manual review process
+
+## Governance Model
+
+### Governance Structure
+- **Community Governance**
+  - Token holder voting
+  - Proposal submission
+  - Parameter adjustments
+  - Protocol upgrades
+
+- **Development Decisions**
+  - Feature prioritization
+  - Technical improvements
+  - Resource allocation
+  - Security updates
+
+### Governance Process
 <div class="mermaid">
 graph TD
-    A[Token Holder] -->|Stake| B[Staking Pool]
-    B -->|Generate| C[Rewards]
-    C -->|Distribute| D[Stakers]
+    A[Proposal] -->|Community Review| B[Discussion]
+    B -->|Token Holder Vote| C[Decision]
+    C -->|Implementation| D[Execution]
+    D -->|Monitoring| E[Review]
+    E -->|Feedback| A
     
-    subgraph Reward Types
-    E[Platform Fees]
-    F[Gift Commissions]
-    G[Special Events]
-    end
-    
-    E --> C
-    F --> C
-    G --> C
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
+    style A fill:#FFFF00,color:#000000
+    style B fill:#90EE90,color:#000000
+    style C fill:#DDA0DD,color:#000000
+    style D fill:#FFB6C1,color:#000000
+    style E fill:#FFA07A,color:#000000
 </div>
 
-## Economic Sustainability
+## Future Development
 
-### Token Velocity Control
+### Roadmap
+- **Phase 1: Launch**
+  - Token distribution
+  - Platform release
+  - Community building
+  - Initial partnerships
 
-<div class="mermaid">
-graph TD
-    A[Token Flow] -->|Monitor| B[Velocity]
-    B -->|Adjust| C[Mechanisms]
-    
-    subgraph Controls
-    D[Staking Rewards]
-    E[Lock Periods]
-    F[Utility Gates]
-    end
-    
-    C --> D
-    C --> E
-    C --> F
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-</div>
+- **Phase 2: Growth**
+  - Feature expansion
+  - User acquisition
+  - Market development
+  - Ecosystem integration
 
-### Growth Model
+- **Phase 3: Maturity**
+  - Full decentralization
+  - Governance activation
+  - Protocol optimization
+  - Global expansion
 
-<div class="mermaid">
-graph TD
-    A[User Growth] -->|Drive| B[Token Demand]
-    B -->|Support| C[Platform Development]
-    C -->|Enable| D[New Features]
-    D -->|Attract| A
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-</div>
+### Sustainability
+- **Revenue Model**
+  - Transaction fees
+  - Premium features
+  - Partnership revenue
+  - Value-added services
+
+- **Cost Structure**
+  - Development costs
+  - Marketing expenses
+  - Community rewards
+  - Operational expenses
+
+### Long-term Vision
+- **Platform Evolution**
+  - Enhanced features
+  - New use cases
+  - Technical innovation
+  - Market expansion
+
+- **Community Growth**
+  - Global adoption
+  - User engagement
+  - Value creation
+  - Sustainable growth
