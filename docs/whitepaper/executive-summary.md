@@ -4,16 +4,16 @@
 
 MEMEFANS is a revolutionary social token distribution platform that seamlessly integrates with Twitter to enable content creators and their communities to engage in meaningful token-based interactions. Our platform leverages blockchain technology to create a transparent, efficient, and user-friendly ecosystem for social token distribution.
 
-### System Architecture
+## System Architecture
+
 ```mermaid
-graph TB
+graph TD
     A[Social Media Users] -->|Interact| B[MEMEFANS Extension]
     B -->|Process Transactions| C[Zero-Gas System]
     C -->|Batch Processing| D[Blockchain]
     B -->|Manage| E[User Wallet]
     E -->|Secure Storage| F[Token Assets]
     B -->|Track| G[Engagement Analytics]
-    
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#dfd,stroke:#333,stroke-width:2px
@@ -26,13 +26,13 @@ graph TB
 ## Key Features
 
 ### Zero-Gas Model
+
 ```mermaid
-flowchart LR
+graph LR
     A[User Action] -->|Trigger| B[Batch Queue]
     B -->|Accumulate| C[Process Batch]
     C -->|Optimize| D[Submit to Chain]
     D -->|Confirm| E[Update Balance]
-    
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#dfd,stroke:#333,stroke-width:2px
@@ -45,13 +45,13 @@ flowchart LR
 * Cost-effective distribution strategy
 
 ### Social Integration
+
 ```mermaid
 graph LR
     A[Twitter] -->|Connect| B[MEMEFANS]
     B -->|Analyze| C[Engagement]
     C -->|Trigger| D[Rewards]
     D -->|Distribute| E[Tokens]
-    
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#dfd,stroke:#333,stroke-width:2px
@@ -64,13 +64,13 @@ graph LR
 * Automated engagement tracking
 
 ### Security
+
 ```mermaid
-flowchart TD
+graph TD
     A[User Input] -->|Encrypt| B[Secure Layer]
     B -->|Validate| C[Smart Contract]
     C -->|Process| D[Blockchain]
     B -->|Store| E[Encrypted Storage]
-    
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#dfd,stroke:#333,stroke-width:2px
@@ -85,9 +85,10 @@ flowchart TD
 ## Market Opportunity
 
 ### Target Market
+
 ```mermaid
 pie
-    title "Market Distribution"
+    title Market Distribution
     "Content Creators" : 40
     "Social Media Influencers" : 30
     "Community Managers" : 20
@@ -100,13 +101,13 @@ pie
 * Brand marketers
 
 ### Market Size
+
 ```mermaid
 graph LR
     A[Growing Creator Economy] --> B[Market Potential]
     C[Expanding Token Market] --> B
     D[Blockchain Adoption] --> B
     B --> E[MEMEFANS Opportunity]
-    
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#dfd,stroke:#333,stroke-width:2px
@@ -119,6 +120,7 @@ graph LR
 * Increasing blockchain adoption
 
 ## Value Proposition
+
 ```mermaid
 mindmap
     root((MEMEFANS))
