@@ -18,7 +18,7 @@
   * [Security & Risk Control](/whitepaper/security-risk-control.md)
   * [System Maintenance](/whitepaper/system-maintenance.md)
 * User Documentation
-  * [Quick Start](/quick-start/README.md)
+  * [Quick Start](/quick-start.md)
   * [User Guide](/whitepaper/user-guide.md)
   * [Use Cases](/whitepaper/use-cases.md)
 * Legal & Privacy
