@@ -30,10 +30,11 @@
 </head>
 <body>
     <div id="app"></div>
-    <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
+        var num = 0;
         mermaid.initialize({
-            startOnLoad: true,
+            startOnLoad: false,
             theme: 'default',
             securityLevel: 'loose',
             themeVariables: {
@@ -57,8 +58,8 @@
                 '/.*/_sidebar.md': '/_sidebar.md'
             },
             pagination: {
-                previousText: '上一章',
-                nextText: '下一章',
+                previousText: 'Previous',
+                nextText: 'Next',
                 crossChapter: true,
                 crossChapterText: true
             },
@@ -82,9 +83,17 @@
                 }
             },
             plugins: [
-                function(hook, vm) {
+                function(hook) {
                     hook.doneEach(function() {
-                        mermaid.init(undefined, '.mermaid');
+                        const mermaidElements = document.querySelectorAll('.mermaid');
+                        mermaidElements.forEach((element) => {
+                            const graphDefinition = element.textContent;
+                            element.textContent = '';
+                            mermaid.render('mermaid-diagram-' + num++, graphDefinition)
+                                .then(({svg}) => {
+                                    element.innerHTML = svg;
+                                });
+                        });
                     });
                 }
             ]
