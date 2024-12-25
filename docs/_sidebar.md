@@ -18,12 +18,14 @@
   * [Smart Contracts](/whitepaper/smart-contracts.md)
   * [Security & Risk Control](/whitepaper/security-risk-control.md)
   * [System Maintenance](/whitepaper/system-maintenance.md)
-  * [Privacy & Security](/whitepaper/privacy-security.md)
 * User Documentation
   * [Quick Start](/quick-start.md)
+  * [Installation](/quick-start/installation.md)
+  * [Tutorial](/quick-start/tutorial.md)
   * [User Guide](/whitepaper/user-guide.md)
   * [Use Cases](/whitepaper/use-cases.md)
   * [FAQ](/whitepaper/faq.md)
 * Legal & Privacy
-  * [Privacy Policy](/privacy.md)
+  * [Privacy & Security](/whitepaper/privacy-security.md)
   * [Security Audit](/whitepaper/security-audit.md)
+  * [Support](/SUPPORT.md)
