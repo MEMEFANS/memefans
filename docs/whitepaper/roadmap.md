@@ -3,20 +3,30 @@
 ## Development Timeline
 
 ```mermaid
-timeline
-    title MEMEFANS Development Roadmap
-    2025 Q1 : Phase 1 - Launch
-            : Platform Release
-            : Core Feature Deployment
-            : Initial User Acquisition
-    2025 Q2 : Phase 2 - Growth
-            : Feature Expansion
-            : Market Penetration
-            : Community Building
-    2025 Q3 : Phase 3 - Scale
-            : Global Expansion
-            : Advanced Features
-            : Ecosystem Development
+graph TD
+    subgraph 2025 Q1
+    A1[Platform Release]
+    A2[Core Feature Deployment]
+    A3[Initial User Acquisition]
+    A1 --> A2 --> A3
+    end
+    
+    subgraph 2025 Q2
+    B1[Feature Expansion]
+    B2[Market Penetration]
+    B3[Community Building]
+    B1 --> B2 --> B3
+    end
+    
+    subgraph 2025 Q3
+    C1[Global Expansion]
+    C2[Advanced Features]
+    C3[Ecosystem Development]
+    C1 --> C2 --> C3
+    end
+    
+    A3 --> B1
+    B3 --> C1
 ```
 
 ## Development Flow
