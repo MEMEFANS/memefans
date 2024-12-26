@@ -50,15 +50,16 @@
             loadSidebar: true,
             subMaxLevel: 3,
             auto2top: true,
-            homepage: 'README.md',
+            homepage: 'whitepaper/README.md',
             routerMode: 'hash',
             basePath: '/memefans/',
-            relativePath: false,
+            relativePath: true,
             nameLink: '/memefans/#/',
             alias: {
-                '/.*/_sidebar.md': '/_sidebar.md',
-                '/': '/whitepaper/README.md'
+                '/.*/_sidebar.md': '/_sidebar.md'
             },
+            mergeNavbar: true,
+            formatUpdated: '{MM}/{DD} {HH}:{mm}',
             search: {
                 maxAge: 86400000,
                 paths: 'auto',
