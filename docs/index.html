@@ -45,23 +45,20 @@
     <script>
         window.$docsify = {
             el: '#app',
-            name: 'MEMEFANS Documentation',
+            name: 'MEMEFANS',
+            repo: '',
             loadSidebar: true,
             subMaxLevel: 3,
             auto2top: true,
-            homepage: 'whitepaper/README.md',
+            homepage: 'README.md',
             routerMode: 'hash',
-            basePath: '/memefans/',
-            relativePath: true,
-            nameLink: '/memefans/',
+            basePath: '/',
+            relativePath: false,
+            nameLink: '/',
             alias: {
-                '/.*/_sidebar.md': '/_sidebar.md'
-            },
-            pagination: {
-                previousText: 'Previous',
-                nextText: 'Next',
-                crossChapter: true,
-                crossChapterText: true
+                '/.*/_sidebar.md': '/_sidebar.md',
+                '/whitepaper/(.*)': '/whitepaper/$1',
+                '/quick-start/(.*)': '/quick-start/$1'
             },
             search: {
                 maxAge: 86400000,
