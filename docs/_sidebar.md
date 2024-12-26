@@ -28,4 +28,5 @@
 * Legal & Privacy
   * [Privacy & Security](/whitepaper/privacy-security.md)
   * [Security Audit](/whitepaper/security-audit.md)
+  * [Chrome Store Privacy Policy](/chrome-store-privacy-policy)
   * [Support](/SUPPORT.md)
