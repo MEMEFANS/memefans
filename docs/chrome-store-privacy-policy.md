@@ -3,6 +3,8 @@
 ## Overview
 This privacy policy explains how MEMEFANS ("we", "our", or "us") handles user data in our Chrome extension. We are committed to protecting your privacy and ensuring the security of your data.
 
+---
+
 ## Required Chrome Permissions
 Our extension requires the following permissions:
 - **Storage**: To securely store wallet data locally
@@ -15,7 +17,10 @@ We require access to:
 - twitter.com
 - x.com
 - api.twitter.com
+
 These permissions are necessary for detecting and processing token distribution events.
+
+---
 
 ## Data Collection and Use
 Our extension collects and processes the following types of data:
@@ -46,6 +51,8 @@ Our extension collects and processes the following types of data:
 - Cookies or tracking data
 - Personal identifiable information (PII)
 
+---
+
 ## Data Storage and Security
 
 ### Local Storage
@@ -59,6 +66,8 @@ Our extension collects and processes the following types of data:
 - Transaction data is public on the blockchain
 - Users can verify transactions via Solana explorers
 
+---
+
 ## Data Usage
 We use the collected data solely for:
 1. Processing FANS token distributions
@@ -66,10 +75,14 @@ We use the collected data solely for:
 3. Managing Solana transactions
 4. Improving extension functionality
 
+---
+
 ## Third-Party Services
 - **Solana Blockchain**: For token transactions
 - **Twitter/X API**: For post verification
 - We do not share data with any other third parties
+
+---
 
 ## User Rights and Control
 You have the right to:
@@ -79,6 +92,8 @@ You have the right to:
 - Import or create new wallets
 - Review and revoke permissions
 
+---
+
 ## Security Measures
 We implement robust security measures:
 - Local encryption of sensitive data
@@ -87,14 +102,20 @@ We implement robust security measures:
 - Regular security updates
 - Sandboxed extension environment
 
+---
+
 ## Data Retention and Deletion
 - All data is stored locally in Chrome
 - Data can be cleared via Chrome settings
 - No backups are kept after uninstallation
 - Blockchain transactions remain on Solana
 
+---
+
 ## Children's Privacy
 Our extension is not intended for users under 13 years of age. We do not knowingly collect data from children.
+
+---
 
 ## Changes to This Policy
 We will notify users of any changes through:
@@ -102,12 +123,16 @@ We will notify users of any changes through:
 - Our GitHub repository
 - Chrome Web Store listing
 
+---
+
 ## Compliance
 Our privacy practices comply with:
 - Chrome Web Store Developer Program Policies
 - Google's User Data Privacy Policy
 - General Data Protection Regulation (GDPR)
 - California Consumer Privacy Act (CCPA)
+
+---
 
 ## Chrome Store Specific Disclosures
 1. **Single Purpose**: Facilitating FANS token distribution through Twitter/X
@@ -118,10 +143,16 @@ Our privacy practices comply with:
 6. **Security**: Following Chrome's security best practices
 7. **Updates**: Users are notified of significant changes
 
-## Contact
-For any questions about this privacy policy or our data practices, please contact us at:
-- Email: cy020235371@gmail.com
-- Twitter: @Memefans_Gift
-- Response Time: Within 48 hours
+---
 
-Last updated: December 26, 2024
+## Contact Information
+
+For any questions about this privacy policy or our data practices, please contact us:
+
+**Email**: [cy020235371@gmail.com](mailto:cy020235371@gmail.com)  
+**Twitter**: [@Memefans_Gift](https://twitter.com/Memefans_Gift)  
+**Response Time**: Within 48 hours
+
+---
+
+*Last Updated: 2024-12-27*
