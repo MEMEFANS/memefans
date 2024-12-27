@@ -12,10 +12,19 @@
             --theme-color: #1da1f2;
         }
         .markdown-section {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 100%;
+            margin: 0;
             padding: 20px;
             overflow-x: auto;
+        }
+        .content {
+            padding-top: 0;
+            left: 300px;
+            right: 0;
+            position: absolute;
+            padding-bottom: 40px;
+            overflow-y: auto;
+            width: calc(100% - 300px);
         }
         .sidebar {
             padding: 20px;
@@ -32,14 +41,20 @@
         .mermaid {
             text-align: center;
             background-color: white;
-            padding: 10px;
-            margin: 10px 0;
+            padding: 20px;
+            margin: 20px auto;
             border-radius: 4px;
+            width: 95%;
             min-width: min-content;
             overflow-x: auto;
+            display: flex;
+            justify-content: center;
         }
         .mermaid svg {
             min-width: max-content;
+            width: 100% !important;
+            height: auto !important;
+            max-width: none !important;
         }
         .nav-buttons {
             display: flex;
@@ -98,6 +113,11 @@
             .nav-button .chapter-title {
                 display: none;
             }
+        }
+        #main {
+            max-width: 100%;
+            overflow-x: auto;
+            padding: 0;
         }
     </style>
 </head>
