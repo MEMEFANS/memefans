@@ -5,53 +5,62 @@
 MEMEFANS provides a comprehensive suite of features designed to empower creators and engage communities.
 
 <div class="mermaid">
-graph TD
-    A[MEMEFANS Platform] -->|Core Features| B[Gift System]
-    A -->|User Features| C[Creator Tools]
-    A -->|Community| D[Social Features]
-    A -->|Financial| E[Token Economy]
+graph TB
+    MEMEFANS((MEMEFANS))
     
-    subgraph Gift Mechanics
-    B -->|Send| F[One-Click Gift]
-    B -->|Batch| G[Multi-Gift]
-    B -->|Claim| H[Zero-Gas Claim]
+    subgraph Technology[Technical Foundation]
+        T1[Analytics Dashboard]
+        T2[Solana Blockchain]
+        T3[PUMP DEX Integration]
+        T4[Chrome Extension]
+        T5[Smart Contracts]
+        
+        T2 --> T5
+        T5 --> T3
+        T4 --> T1
     end
     
-    subgraph Creator Suite
-    C -->|Content| I[Post Management]
-    C -->|Analytics| J[Performance Stats]
-    C -->|Earnings| K[Revenue Dashboard]
+    subgraph Market[Market Ecosystem]
+        M1[Content Creators]
+        M2[Social Influencers]
+        M3[Community Managers]
+        M4[Brand Partners]
+        
+        M1 --> M2
+        M2 --> M3
+        M3 --> M4
     end
     
-    subgraph Social Elements
-    D -->|Interact| L[Comments & Likes]
-    D -->|Connect| M[Follow System]
-    D -->|Share| N[Content Sharing]
+    subgraph Revenue[Revenue Model]
+        R1[Transaction Fees]
+        R2[Premium Features]
+        R3[Partnership Revenue]
+        
+        R1 --> R2
+        R2 --> R3
     end
     
-    subgraph Token Features
-    E -->|Earn| O[Rewards System]
-    E -->|Store| P[Wallet Integration]
-    E -->|Trade| Q[Token Exchange]
-    end
+    MEMEFANS --> Technology
+    MEMEFANS --> Market
+    MEMEFANS --> Revenue
     
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-    style N fill:#8A2BE2,color:#FFFFFF
-    style O fill:#FF1493,color:#FFFFFF
-    style P fill:#00CED1,color:#000000
-    style Q fill:#FF8C00,color:#000000
+    %% Cross-component relationships
+    T4 --> M1
+    T1 --> M3
+    T3 --> R1
+    M4 --> R3
+    
+    classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px
+    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px
+    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px
+    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px
+    classDef subgraph fill:#F4F5F7,stroke:#DFE1E6,color:#172B4D,stroke-width:1px
+    
+    class MEMEFANS platform
+    class T1,T2,T3,T4,T5 tech
+    class M1,M2,M3,M4 market
+    class R1,R2,R3 revenue
+    class Technology,Market,Revenue subgraph
 </div>
 
 ## Gift System Architecture
@@ -601,42 +610,62 @@ For support or feedback, please visit our GitHub repository or contact us throug
 ## Core Features Overview
 
 <div class="mermaid">
-graph TD
-    A[Product Features] -->|Core| B[Core Features]
-    A -->|Social| C[Social Features]
-    A -->|Creator| D[Creator Features]
+graph TB
+    MEMEFANS((MEMEFANS))
     
-    subgraph Core Features
-    B -->|Content| E[Content Management]
-    B -->|User| F[User Management]
-    B -->|Payment| G[Payment System]
+    subgraph Technology[Technical Foundation]
+        T1[Analytics Dashboard]
+        T2[Solana Blockchain]
+        T3[PUMP DEX Integration]
+        T4[Chrome Extension]
+        T5[Smart Contracts]
+        
+        T2 --> T5
+        T5 --> T3
+        T4 --> T1
     end
     
-    subgraph Social Features
-    C -->|Interact| H[Interactions]
-    C -->|Connect| I[Connections]
-    C -->|Share| J[Sharing]
+    subgraph Market[Market Ecosystem]
+        M1[Content Creators]
+        M2[Social Influencers]
+        M3[Community Managers]
+        M4[Brand Partners]
+        
+        M1 --> M2
+        M2 --> M3
+        M3 --> M4
     end
     
-    subgraph Creator Features
-    D -->|Create| K[Content Creation]
-    D -->|Monetize| L[Monetization]
-    D -->|Analyze| M[Analytics]
+    subgraph Revenue[Revenue Model]
+        R1[Transaction Fees]
+        R2[Premium Features]
+        R3[Partnership Revenue]
+        
+        R1 --> R2
+        R2 --> R3
     end
     
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
+    MEMEFANS --> Technology
+    MEMEFANS --> Market
+    MEMEFANS --> Revenue
+    
+    %% Cross-component relationships
+    T4 --> M1
+    T1 --> M3
+    T3 --> R1
+    M4 --> R3
+    
+    classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px
+    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px
+    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px
+    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px
+    classDef subgraph fill:#F4F5F7,stroke:#DFE1E6,color:#172B4D,stroke-width:1px
+    
+    class MEMEFANS platform
+    class T1,T2,T3,T4,T5 tech
+    class M1,M2,M3,M4 market
+    class R1,R2,R3 revenue
+    class Technology,Market,Revenue subgraph
 </div>
 
 ## Content Management Flow
