@@ -5,36 +5,39 @@
 MEMEFANS provides a comprehensive suite of features designed to empower creators and engage communities.
 
 <div class="mermaid">
-graph TB
+graph TD
     MEMEFANS((MEMEFANS))
     
-    subgraph Technology[Technical Foundation]
-        T1[Analytics Dashboard]
-        T2[Solana Blockchain]
-        T3[PUMP DEX Integration]
-        T4[Chrome Extension]
-        T5[Smart Contracts]
+    subgraph Technology[技术基础]
+        direction TB
+        T1[分析面板]
+        T2[Solana链]
+        T3[PUMP DEX]
+        T4[浏览器插件]
+        T5[智能合约]
         
         T2 --> T5
         T5 --> T3
         T4 --> T1
     end
     
-    subgraph Market[Market Ecosystem]
-        M1[Content Creators]
-        M2[Social Influencers]
-        M3[Community Managers]
-        M4[Brand Partners]
+    subgraph Market[市场生态]
+        direction TB
+        M1[内容创作者]
+        M2[社交影响者]
+        M3[社区管理者]
+        M4[品牌合作]
         
         M1 --> M2
         M2 --> M3
         M3 --> M4
     end
     
-    subgraph Revenue[Revenue Model]
-        R1[Transaction Fees]
-        R2[Premium Features]
-        R3[Partnership Revenue]
+    subgraph Revenue[收入模式]
+        direction TB
+        R1[交易费用]
+        R2[高级功能]
+        R3[合作收入]
         
         R1 --> R2
         R2 --> R3
@@ -44,16 +47,16 @@ graph TB
     MEMEFANS --> Market
     MEMEFANS --> Revenue
     
-    %% Cross-component relationships
+    %% 跨组件关系
     T4 --> M1
     T1 --> M3
     T3 --> R1
     M4 --> R3
     
-    classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px
-    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px
-    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px
-    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px
+    classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px,rx:20,ry:20
+    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
+    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
+    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
     classDef subgraph fill:#F4F5F7,stroke:#DFE1E6,color:#172B4D,stroke-width:1px
     
     class MEMEFANS platform
@@ -61,6 +64,9 @@ graph TB
     class M1,M2,M3,M4 market
     class R1,R2,R3 revenue
     class Technology,Market,Revenue subgraph
+    
+    %% 调整图表方向和布局
+    direction TB
 </div>
 
 ## Gift System Architecture
@@ -610,36 +616,39 @@ For support or feedback, please visit our GitHub repository or contact us throug
 ## Core Features Overview
 
 <div class="mermaid">
-graph TB
+graph TD
     MEMEFANS((MEMEFANS))
     
-    subgraph Technology[Technical Foundation]
-        T1[Analytics Dashboard]
-        T2[Solana Blockchain]
-        T3[PUMP DEX Integration]
-        T4[Chrome Extension]
-        T5[Smart Contracts]
+    subgraph Technology[技术基础]
+        direction TB
+        T1[分析面板]
+        T2[Solana链]
+        T3[PUMP DEX]
+        T4[浏览器插件]
+        T5[智能合约]
         
         T2 --> T5
         T5 --> T3
         T4 --> T1
     end
     
-    subgraph Market[Market Ecosystem]
-        M1[Content Creators]
-        M2[Social Influencers]
-        M3[Community Managers]
-        M4[Brand Partners]
+    subgraph Market[市场生态]
+        direction TB
+        M1[内容创作者]
+        M2[社交影响者]
+        M3[社区管理者]
+        M4[品牌合作]
         
         M1 --> M2
         M2 --> M3
         M3 --> M4
     end
     
-    subgraph Revenue[Revenue Model]
-        R1[Transaction Fees]
-        R2[Premium Features]
-        R3[Partnership Revenue]
+    subgraph Revenue[收入模式]
+        direction TB
+        R1[交易费用]
+        R2[高级功能]
+        R3[合作收入]
         
         R1 --> R2
         R2 --> R3
@@ -649,16 +658,16 @@ graph TB
     MEMEFANS --> Market
     MEMEFANS --> Revenue
     
-    %% Cross-component relationships
+    %% 跨组件关系
     T4 --> M1
     T1 --> M3
     T3 --> R1
     M4 --> R3
     
-    classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px
-    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px
-    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px
-    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px
+    classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px,rx:20,ry:20
+    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
+    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
+    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
     classDef subgraph fill:#F4F5F7,stroke:#DFE1E6,color:#172B4D,stroke-width:1px
     
     class MEMEFANS platform
@@ -666,6 +675,9 @@ graph TB
     class M1,M2,M3,M4 market
     class R1,R2,R3 revenue
     class Technology,Market,Revenue subgraph
+    
+    %% 调整图表方向和布局
+    direction TB
 </div>
 
 ## Content Management Flow
