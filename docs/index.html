@@ -35,6 +35,37 @@
             margin: 10px 0;
             border-radius: 4px;
         }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+        }
+        .nav-button {
+            background: #1da1f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: #0c85d0;
+            transform: translateY(-2px);
+        }
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        @media screen and (max-width: 768px) {
+            .nav-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -94,9 +125,87 @@
                             }
                         });
                     });
+                },
+                function(hook) {
+                    hook.afterEach(function(html) {
+                        const navButtons = `
+                            <div class="nav-buttons">
+                                <button class="nav-button prev-chapter" onclick="prevPage()">上一页</button>
+                                <button class="nav-button next-chapter" onclick="nextPage()">下一页</button>
+                            </div>
+                        `;
+                        return html + navButtons;
+                    });
                 }
             ]
         };
+
+        // 所有文档页面的顺序
+        const pages = [
+            '#/',
+            '#/introduction',
+            '#/whitepaper/executive-summary',
+            '#/whitepaper/technical-architecture',
+            '#/whitepaper/token-economics',
+            '#/whitepaper/market-analysis',
+            '#/whitepaper/product-features',
+            '#/whitepaper/business-model',
+            '#/whitepaper/risk-analysis',
+            '#/whitepaper/community-ecosystem',
+            '#/whitepaper/future-development',
+            '#/whitepaper/governance',
+            '#/technical-documentation/integration-guide',
+            '#/technical-documentation/smart-contracts',
+            '#/technical-documentation/security-risk-control',
+            '#/technical-documentation/system-maintenance',
+            '#/user-documentation/quick-start',
+            '#/user-documentation/installation',
+            '#/user-documentation/tutorial',
+            '#/user-documentation/user-guide',
+            '#/user-documentation/use-cases',
+            '#/user-documentation/faq',
+            '#/legal-privacy/privacy-security',
+            '#/legal-privacy/security-audit'
+        ];
+
+        function getCurrentPageIndex() {
+            let currentPath = window.location.hash.toLowerCase();
+            if (currentPath === '' || currentPath === '#') {
+                currentPath = '#/';
+            }
+            return pages.indexOf(currentPath);
+        }
+
+        function prevPage() {
+            const currentIndex = getCurrentPageIndex();
+            if (currentIndex > 0) {
+                window.location.hash = pages[currentIndex - 1];
+            }
+        }
+
+        function nextPage() {
+            const currentIndex = getCurrentPageIndex();
+            if (currentIndex < pages.length - 1) {
+                window.location.hash = pages[currentIndex + 1];
+            }
+        }
+
+        // 更新按钮状态
+        function updateNavButtons() {
+            const currentIndex = getCurrentPageIndex();
+            const prevButton = document.querySelector('.prev-chapter');
+            const nextButton = document.querySelector('.next-chapter');
+            
+            if (prevButton && nextButton) {
+                prevButton.disabled = currentIndex <= 0;
+                nextButton.disabled = currentIndex >= pages.length - 1 || currentIndex === -1;
+            }
+        }
+
+        // 监听路由变化
+        window.addEventListener('hashchange', updateNavButtons);
+        // 初始化时也检查一次
+        window.addEventListener('load', updateNavButtons);
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
