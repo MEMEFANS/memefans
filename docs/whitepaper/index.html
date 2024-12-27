@@ -175,37 +175,36 @@
 
         // 所有文档页面的顺序
         const pages = [
-            '#/home',
-            '#/introduction',
-            '#/whitepaper/executive-summary',
-            '#/whitepaper/technical-architecture',
-            '#/whitepaper/token-economics',
-            '#/whitepaper/market-analysis',
-            '#/whitepaper/product-features',
-            '#/whitepaper/business-model',
-            '#/whitepaper/risk-analysis',
-            '#/whitepaper/community-ecosystem',
-            '#/whitepaper/future-development',
-            '#/whitepaper/governance',
-            '#/technical-documentation/integration-guide',
-            '#/technical-documentation/smart-contracts',
-            '#/technical-documentation/security-risk-control',
-            '#/technical-documentation/system-maintenance',
-            '#/user-documentation/quick-start',
-            '#/user-documentation/installation',
-            '#/user-documentation/tutorial',
-            '#/user-documentation/user-guide',
-            '#/user-documentation/use-cases',
-            '#/user-documentation/faq',
-            '#/legal-privacy/privacy-security',
-            '#/legal-privacy/security-audit'
+            '#/',
+            '#/executive-summary',
+            '#/technical-architecture',
+            '#/token-economics',
+            '#/market-analysis',
+            '#/product-features',
+            '#/business-model',
+            '#/risk-analysis',
+            '#/community-ecosystem',
+            '#/future-development',
+            '#/governance',
+            '#/integration-guide',
+            '#/smart-contracts',
+            '#/security-risk-control',
+            '#/system-maintenance',
+            '#/quick-start',
+            '#/installation',
+            '#/tutorial',
+            '#/user-guide',
+            '#/use-cases',
+            '#/faq',
+            '#/privacy-security',
+            '#/security-audit'
         ];
 
         function getCurrentPageIndex() {
             const currentPath = window.location.hash.toLowerCase();
             // 处理默认页面
             if (currentPath === '' || currentPath === '#/' || currentPath === '#') {
-                return pages.indexOf('#/home');
+                return 0; // 首页索引为0
             }
             return pages.findIndex(page => page.toLowerCase() === currentPath);
         }
