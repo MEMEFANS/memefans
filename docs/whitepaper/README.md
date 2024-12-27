@@ -28,3 +28,4 @@ Welcome to the official MEMEFANS whitepaper. This document outlines our vision f
 ## Contact
 
 * Twitter: @Memefans_Gift
+[Next →](executive-summary.md)
