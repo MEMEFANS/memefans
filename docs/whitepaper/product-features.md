@@ -8,36 +8,36 @@ MEMEFANS provides a comprehensive suite of features designed to empower creators
 graph TD
     MEMEFANS((MEMEFANS))
     
-    subgraph Technology[技术基础]
+    subgraph Technology[Technical Foundation]
         direction TB
-        T1[分析面板]
-        T2[Solana链]
-        T3[PUMP DEX]
-        T4[浏览器插件]
-        T5[智能合约]
+        T1[Analytics Dashboard]
+        T2[Solana Blockchain]
+        T3[PUMP DEX Integration]
+        T4[Chrome Extension]
+        T5[Smart Contracts]
         
         T2 --> T5
         T5 --> T3
         T4 --> T1
     end
     
-    subgraph Market[市场生态]
+    subgraph Market[Market Ecosystem]
         direction TB
-        M1[内容创作者]
-        M2[社交影响者]
-        M3[社区管理者]
-        M4[品牌合作]
+        M1[Content Creators]
+        M2[Social Influencers]
+        M3[Community Managers]
+        M4[Brand Partners]
         
         M1 --> M2
         M2 --> M3
         M3 --> M4
     end
     
-    subgraph Revenue[收入模式]
+    subgraph Revenue[Revenue Model]
         direction TB
-        R1[交易费用]
-        R2[高级功能]
-        R3[合作收入]
+        R1[Transaction Fees]
+        R2[Premium Features]
+        R3[Partnership Revenue]
         
         R1 --> R2
         R2 --> R3
@@ -47,7 +47,7 @@ graph TD
     MEMEFANS --> Market
     MEMEFANS --> Revenue
     
-    %% 跨组件关系
+    %% Cross-component relationships
     T4 --> M1
     T1 --> M3
     T3 --> R1
@@ -65,7 +65,7 @@ graph TD
     class R1,R2,R3 revenue
     class Technology,Market,Revenue subgraph
     
-    %% 调整图表方向和布局
+    %% Layout direction
     direction TB
 </div>
 
@@ -619,36 +619,36 @@ For support or feedback, please visit our GitHub repository or contact us throug
 graph TD
     MEMEFANS((MEMEFANS))
     
-    subgraph Technology[技术基础]
+    subgraph Technology[Technical Foundation]
         direction TB
-        T1[分析面板]
-        T2[Solana链]
-        T3[PUMP DEX]
-        T4[浏览器插件]
-        T5[智能合约]
+        T1[Analytics Dashboard]
+        T2[Solana Blockchain]
+        T3[PUMP DEX Integration]
+        T4[Chrome Extension]
+        T5[Smart Contracts]
         
         T2 --> T5
         T5 --> T3
         T4 --> T1
     end
     
-    subgraph Market[市场生态]
+    subgraph Market[Market Ecosystem]
         direction TB
-        M1[内容创作者]
-        M2[社交影响者]
-        M3[社区管理者]
-        M4[品牌合作]
+        M1[Content Creators]
+        M2[Social Influencers]
+        M3[Community Managers]
+        M4[Brand Partners]
         
         M1 --> M2
         M2 --> M3
         M3 --> M4
     end
     
-    subgraph Revenue[收入模式]
+    subgraph Revenue[Revenue Model]
         direction TB
-        R1[交易费用]
-        R2[高级功能]
-        R3[合作收入]
+        R1[Transaction Fees]
+        R2[Premium Features]
+        R3[Partnership Revenue]
         
         R1 --> R2
         R2 --> R3
@@ -658,7 +658,7 @@ graph TD
     MEMEFANS --> Market
     MEMEFANS --> Revenue
     
-    %% 跨组件关系
+    %% Cross-component relationships
     T4 --> M1
     T1 --> M3
     T3 --> R1
@@ -676,7 +676,7 @@ graph TD
     class R1,R2,R3 revenue
     class Technology,Market,Revenue subgraph
     
-    %% 调整图表方向和布局
+    %% Layout direction
     direction TB
 </div>
 
