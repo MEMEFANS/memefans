@@ -1,5 +1,3 @@
-# Navigation
-
 * [Home](/)
 * [Introduction](whitepaper/README.md)
 * Whitepaper
