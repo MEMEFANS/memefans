@@ -10,4 +10,4 @@
 
 ### Key Market Trends
 
-[← Previous](token-economics.md) [Next →](executive-summary.md)
+[← Previous](token-economics.md) [Next →](product-features.md)
