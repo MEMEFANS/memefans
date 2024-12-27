@@ -19,6 +19,15 @@
         .sidebar {
             padding: 20px;
         }
+        .markdown-section a {
+            color: #1da1f2;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .markdown-section a:hover {
+            text-decoration: underline;
+        }
         .mermaid {
             text-align: center;
             background-color: white;
@@ -50,11 +59,11 @@
             loadSidebar: true,
             subMaxLevel: 3,
             auto2top: true,
-            homepage: 'whitepaper/README.md',
+            homepage: 'README.md',
             routerMode: 'hash',
-            basePath: '/memefans/',
-            relativePath: true,
-            nameLink: '/memefans/#/',
+            basePath: '',
+            relativePath: false,
+            nameLink: '/#/',
             alias: {
                 '/.*/_sidebar.md': '/_sidebar.md'
             },
