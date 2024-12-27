@@ -38,7 +38,6 @@ graph TD
     style E fill:#87CEEB,color:#000000
     style F fill:#FFA07A,color:#000000
     style G fill:#98FB98,color:#000000
-    style H fill:#DEB887,color:#000000
 ```
 
 ## Architecture Layers
@@ -426,3 +425,20 @@ class BlockchainService {
   - Deployment strategy
   - Rollback plan
   - Testing procedures
+
+```mermaid
+graph TD
+    A[Chrome Extension] -->|Interacts with| B[Solana Network]
+    A -->|Manages| C[User Wallet]
+    A -->|Monitors| D[Social Media]
+    
+    B -->|Processes| E[Token Transactions]
+    C -->|Controls| F[User Assets]
+    D -->|Triggers| G[Token Distribution]
+    
+    E -->|Updates| H[Blockchain State]
+    F -->|Enables| I[User Operations]
+    G -->|Executes| J[Smart Contracts]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:4px
+    style B fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5

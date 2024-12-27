@@ -4,7 +4,7 @@
 
 The FANS token is the core of the FANS ecosystem, adopting a community-driven distribution model via X posts.
 
-<div class="mermaid">
+```mermaid
 graph TD
     FANS((FANS Token)) --> D[Distribution]
     FANS --> F[Features]
@@ -32,7 +32,7 @@ graph TD
     style F fill:#90EE90,color:#000000
     style E fill:#DDA0DD,color:#000000
     style S fill:#FFB6C1,color:#000000
-</div>
+```
 
 ## FANS Token Specification
 
@@ -45,7 +45,7 @@ graph TD
 
 ## Token Distribution
 
-<div class="mermaid">
+```mermaid
 graph TD
     subgraph Token Details
     A[FANS Token] --> B[SPL Token]
@@ -66,7 +66,7 @@ graph TD
     style D fill:#DDA0DD,color:#000000
     style E fill:#FFB6C1,color:#000000
     style F fill:#FFA07A,color:#000000
-</div>
+```
 
 ### Distribution Details
 - **Community Pool (50%)**
@@ -116,7 +116,7 @@ graph TD
 
 ### Token Flow
 
-<div class="mermaid">
+```mermaid
 sequenceDiagram
     participant U as User
     participant P as Platform
@@ -131,12 +131,12 @@ sequenceDiagram
     U->>P: Engage with Content
     P->>R: Generate Rewards
     R->>U: Send Rewards
-</div>
+```
 
 ## Economic Model
 
 ### Value Creation
-<div class="mermaid">
+```mermaid
 graph TD
     A[User Activity] -->|Generate| B[Platform Revenue]
     B -->|Distribute| C[Token Holders]
@@ -149,10 +149,10 @@ graph TD
     style C fill:#DDA0DD,color:#000000
     style D fill:#FFB6C1,color:#000000
     style E fill:#FFA07A,color:#000000
-</div>
+```
 
 ### Token Circulation
-<div class="mermaid">
+```mermaid
 graph TD
     A[Market Purchase] -->|User Acquisition| B[Token Holding]
     B -->|Create Distribution| C[X Posts]
@@ -163,7 +163,7 @@ graph TD
     style B fill:#90EE90,color:#000000
     style C fill:#DDA0DD,color:#000000
     style D fill:#FFB6C1,color:#000000
-</div>
+```
 
 ## Fair Launch Mechanism
 
@@ -261,7 +261,7 @@ graph TD
   - Security updates
 
 ### Governance Process
-<div class="mermaid">
+```mermaid
 graph TD
     A[Proposal] -->|Community Review| B[Discussion]
     B -->|Token Holder Vote| C[Decision]
@@ -274,7 +274,7 @@ graph TD
     style C fill:#DDA0DD,color:#000000
     style D fill:#FFB6C1,color:#000000
     style E fill:#FFA07A,color:#000000
-</div>
+```
 
 ## Future Development
 

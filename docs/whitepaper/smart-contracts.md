@@ -4,7 +4,7 @@
 
 ### Gift Pool System
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[User] -->|Send Gift| B[Gift Pool Contract]
     B -->|Record| C[User Balance]
@@ -16,7 +16,7 @@ graph TD
     style C fill:#90EE90,color:#000000
     style D fill:#DDA0DD,color:#000000
     style E fill:#FFB6C1,color:#000000
-</div>
+```
 
 1. **FANS Token Gift Pool**
    - Users send FANS tokens as gifts on X platform
@@ -242,7 +242,7 @@ graph TD
 
 ### Core Contracts
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Token Contract] -->|Manage| B[Gift Pool]
     B -->|Control| C[Distribution]
@@ -261,11 +261,11 @@ graph TD
     style E fill:#FFB6C1,color:#000000
     style F fill:#FFA07A,color:#000000
     style G fill:#20B2AA,color:#000000
-</div>
+```
 
 ### Contract Interactions
 
-<div class="mermaid">
+```mermaid
 sequenceDiagram
     participant U as User
     participant E as Extension
@@ -281,13 +281,13 @@ sequenceDiagram
     E-->>U: Update UI
     
     Note over P,T: Token Transfer Flow
-</div>
+```
 
 ## Security Measures
 
 ### Access Control
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Request] -->|Verify| B[Role Check]
     B -->|Validate| C[Permission]
@@ -310,11 +310,11 @@ graph TD
     style E fill:#FFB6C1,color:#000000
     style F fill:#FFA07A,color:#000000
     style G fill:#20B2AA,color:#000000
-</div>
+```
 
 ### Emergency Procedures
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Monitor] -->|Detect| B[Issue]
     B -->|Trigger| C[Emergency Stop]
@@ -328,11 +328,11 @@ graph TD
     style D fill:#DDA0DD,color:#000000
     style E fill:#FFB6C1,color:#000000
     style F fill:#FFA07A,color:#000000
-</div>
+```
 
 ## Testing Framework
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Test Cases] -->|Execute| B[Unit Tests]
     B -->|Verify| C[Integration Tests]
@@ -357,11 +357,11 @@ graph TD
     style F fill:#FFA07A,color:#000000
     style G fill:#20B2AA,color:#000000
     style H fill:#BA55D3,color:#000000
-</div>
+```
 
 ## Deployment Strategy
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Development] -->|Test| B[Staging]
     B -->|Audit| C[Production]
@@ -384,13 +384,13 @@ graph TD
     style E fill:#FFB6C1,color:#000000
     style F fill:#FFA07A,color:#000000
     style G fill:#20B2AA,color:#000000
-</div>
+```
 
 ## Smart Contracts
 
 ## Smart Contract Architecture
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Smart Contracts] -->|Core| B[Core Contracts]
     A -->|Token| C[Token Contracts]
@@ -427,11 +427,11 @@ graph TD
     style K fill:#32CD32,color:#000000
     style L fill:#FF69B4,color:#000000
     style M fill:#DEB887,color:#000000
-</div>
+```
 
 ## Token Flow
 
-<div class="mermaid">
+```mermaid
 sequenceDiagram
     participant U as User
     participant T as Token Contract
@@ -448,11 +448,11 @@ sequenceDiagram
     Note over U,T: Token Request
     Note over T,S: Balance Check
     Note over T,L: Logic Processing
-</div>
+```
 
 ## Staking Flow
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Staking System] -->|Stake| B[Stake Process]
     A -->|Reward| C[Reward Process]
@@ -489,11 +489,11 @@ graph TD
     style K fill:#32CD32,color:#000000
     style L fill:#FF69B4,color:#000000
     style M fill:#DEB887,color:#000000
-</div>
+```
 
 ## Governance Flow
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Governance] -->|Proposal| B[Proposal Process]
     A -->|Voting| C[Voting Process]
@@ -530,11 +530,11 @@ graph TD
     style K fill:#32CD32,color:#000000
     style L fill:#FF69B4,color:#000000
     style M fill:#DEB887,color:#000000
-</div>
+```
 
 ## Market Flow
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Market System] -->|List| B[Listing Process]
     A -->|Trade| C[Trading Process]
@@ -571,4 +571,3 @@ graph TD
     style K fill:#32CD32,color:#000000
     style L fill:#FF69B4,color:#000000
     style M fill:#DEB887,color:#000000
-</div>
