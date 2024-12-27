@@ -158,32 +158,22 @@
             plugins: [
                 function(hook) {
                     hook.afterEach(function(html) {
-                        // 检查是否在白皮书章节内
-                        const isWhitepaperPage = () => {
-                            const path = window.location.hash.toLowerCase();
-                            return path.includes('/whitepaper/') && 
-                                   !path.endsWith('/whitepaper/') && 
-                                   !path.endsWith('/whitepaper/readme') &&
-                                   !path.endsWith('/whitepaper/index');
-                        };
-
-                        if (isWhitepaperPage()) {
-                            const navButtons = `
-                                <div class="nav-buttons">
-                                    <button class="nav-button prev-chapter" onclick="prevChapter()">上一章</button>
-                                    <button class="nav-button next-chapter" onclick="nextChapter()">下一章</button>
-                                </div>
-                            `;
-                            return html + navButtons;
-                        }
-                        return html;
+                        const navButtons = `
+                            <div class="nav-buttons">
+                                <button class="nav-button prev-chapter" onclick="prevPage()">上一页</button>
+                                <button class="nav-button next-chapter" onclick="nextPage()">下一页</button>
+                            </div>
+                        `;
+                        return html + navButtons;
                     });
                 }
             ]
         }
 
-        // 章节顺序
-        const chapters = [
+        // 所有文档页面的顺序
+        const pages = [
+            '#/home',
+            '#/introduction',
             '#/whitepaper/executive-summary',
             '#/whitepaper/technical-architecture',
             '#/whitepaper/token-economics',
@@ -193,37 +183,53 @@
             '#/whitepaper/risk-analysis',
             '#/whitepaper/community-ecosystem',
             '#/whitepaper/future-development',
-            '#/whitepaper/governance'
+            '#/whitepaper/governance',
+            '#/technical-documentation/integration-guide',
+            '#/technical-documentation/smart-contracts',
+            '#/technical-documentation/security-risk-control',
+            '#/technical-documentation/system-maintenance',
+            '#/user-documentation/quick-start',
+            '#/user-documentation/installation',
+            '#/user-documentation/tutorial',
+            '#/user-documentation/user-guide',
+            '#/user-documentation/use-cases',
+            '#/user-documentation/faq',
+            '#/legal-privacy/privacy-security',
+            '#/legal-privacy/security-audit'
         ];
 
-        function getCurrentChapterIndex() {
+        function getCurrentPageIndex() {
             const currentPath = window.location.hash.toLowerCase();
-            return chapters.findIndex(chapter => chapter.toLowerCase() === currentPath);
+            // 处理默认页面
+            if (currentPath === '' || currentPath === '#/' || currentPath === '#') {
+                return pages.indexOf('#/home');
+            }
+            return pages.findIndex(page => page.toLowerCase() === currentPath);
         }
 
-        function prevChapter() {
-            const currentIndex = getCurrentChapterIndex();
+        function prevPage() {
+            const currentIndex = getCurrentPageIndex();
             if (currentIndex > 0) {
-                window.location.hash = chapters[currentIndex - 1];
+                window.location.hash = pages[currentIndex - 1];
             }
         }
 
-        function nextChapter() {
-            const currentIndex = getCurrentChapterIndex();
-            if (currentIndex < chapters.length - 1) {
-                window.location.hash = chapters[currentIndex + 1];
+        function nextPage() {
+            const currentIndex = getCurrentPageIndex();
+            if (currentIndex < pages.length - 1) {
+                window.location.hash = pages[currentIndex + 1];
             }
         }
 
         // 更新按钮状态
         function updateNavButtons() {
-            const currentIndex = getCurrentChapterIndex();
+            const currentIndex = getCurrentPageIndex();
             const prevButton = document.querySelector('.prev-chapter');
             const nextButton = document.querySelector('.next-chapter');
             
             if (prevButton && nextButton) {
                 prevButton.disabled = currentIndex <= 0;
-                nextButton.disabled = currentIndex >= chapters.length - 1 || currentIndex === -1;
+                nextButton.disabled = currentIndex >= pages.length - 1 || currentIndex === -1;
             }
         }
 
