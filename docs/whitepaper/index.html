@@ -113,142 +113,42 @@
     <script>
         window.$docsify = {
             el: '#app',
-            name: 'MEMEFANS Whitepaper',
-            repo: 'MEMEFANS/twitter-token-plugin',
+            name: 'MEMEFANS',
+            repo: '',
             loadSidebar: true,
             subMaxLevel: 3,
-            auto2top: true,
-            homepage: 'README.md',
-            routerMode: 'hash',
-            basePath: './',
             search: {
-                maxAge: 86400000,
                 paths: 'auto',
                 placeholder: 'Search',
                 noData: 'No Results',
                 depth: 6
-            },
-            // 修改分页配置
-            pagination: {
-                previousText: 'Previous',
-                nextText: 'Executive Summary',
-                crossChapter: true,
-                crossChapterText: true,
-                routerMode: 'hash',
-                nextLink: '#/whitepaper/executive-summary',
-                // 自定义模板
-                template: {
-                    next: '<a href="#/whitepaper/executive-summary" class="pagination-item pagination-item--next">Executive Summary</a>'
-                }
             },
             copyCode: {
                 buttonText: 'Copy',
                 errorText: 'Error',
                 successText: 'Copied!'
             },
-            // Mermaid 配置
-            markdown: {
-                renderer: {
-                    code: function(code, lang) {
-                        if (lang === "mermaid") {
-                            return (
-                                '<div class="mermaid">' +
-                                code +
-                                "</div>"
-                            );
-                        }
-                        return this.origin.code.apply(this, arguments);
-                    }
-                }
-            },
             plugins: [
                 function(hook) {
                     hook.afterEach(function(html) {
-                        const currentPath = window.location.hash.slice(2) || 'README.md';
-                        const isHomePage = currentPath === 'README.md';
-                        
-                        // 添加导航按钮
-                        return html + `
-                            <div class="nav-buttons">
-                                <a href="javascript:prevPage()" class="pagination-item pagination-item--previous" ${isHomePage ? 'style="visibility: hidden;"' : ''}>Previous</a>
-                                <a href="#/executive-summary" class="pagination-item pagination-item--next">Executive Summary</a>
-                            </div>
-                        `;
+                        // 在首页时添加导航到 Executive Summary
+                        if (window.location.hash === '#/' || window.location.hash === '') {
+                            return html + `
+                                <div class="nav-buttons" style="margin-top: 50px; text-align: right;">
+                                    <a href="#/whitepaper/executive-summary" class="pagination-item" style="display: inline-block; padding: 10px 20px; background-color: #1da1f2; color: white; text-decoration: none; border-radius: 4px;">
+                                        Executive Summary →
+                                    </a>
+                                </div>
+                            `;
+                        }
+                        return html;
                     });
                 }
             ]
-        }
-
-        // 所有文档页面的顺序
-        const pages = [
-            '#/',
-            '#/executive-summary',
-            '#/technical-architecture',
-            '#/token-economics',
-            '#/market-analysis',
-            '#/product-features',
-            '#/business-model',
-            '#/risk-analysis',
-            '#/community-ecosystem',
-            '#/future-development',
-            '#/governance',
-            '#/integration-guide',
-            '#/smart-contracts',
-            '#/security-risk-control',
-            '#/system-maintenance',
-            '#/quick-start',
-            '#/installation',
-            '#/tutorial',
-            '#/user-guide',
-            '#/use-cases',
-            '#/faq',
-            '#/privacy-security',
-            '#/security-audit'
-        ];
-
-        function getCurrentPageIndex() {
-            const currentPath = window.location.hash.toLowerCase();
-            // 处理默认页面
-            if (currentPath === '' || currentPath === '#/' || currentPath === '#') {
-                return 0; // 首页索引为0
-            }
-            return pages.findIndex(page => page.toLowerCase() === currentPath);
-        }
-
-        function prevPage() {
-            const currentIndex = getCurrentPageIndex();
-            if (currentIndex > 0) {
-                window.location.hash = pages[currentIndex - 1];
-            }
-        }
-
-        function nextPage() {
-            const currentIndex = getCurrentPageIndex();
-            if (currentIndex < pages.length - 1) {
-                window.location.hash = pages[currentIndex + 1];
-            }
-        }
-
-        // 更新按钮状态
-        function updateNavButtons() {
-            const currentIndex = getCurrentPageIndex();
-            const prevButton = document.querySelector('.prev-chapter');
-            const nextButton = document.querySelector('.next-chapter');
-            
-            if (prevButton && nextButton) {
-                prevButton.disabled = currentIndex <= 0;
-                nextButton.disabled = currentIndex >= pages.length - 1 || currentIndex === -1;
-            }
-        }
-
-        // 监听路由变化
-        window.addEventListener('hashchange', updateNavButtons);
-        // 初始化时也检查一次
-        window.addEventListener('load', updateNavButtons);
+        };
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
     <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
