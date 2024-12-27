@@ -78,40 +78,25 @@ graph TD
 
 ```mermaid
 graph TD
-    subgraph Market Leaders
-        ML[MEMEFANS]
-        MA[Competitor A]
-    end
+    M((MEMEFANS)) -->|High Integration| H[Market Leaders]
+    M -->|High Utility| H
     
-    subgraph Platform Focused
-        PF[Competitor C]
-    end
+    A[Competitor A] -->|Medium Integration| H
+    A -->|Medium Utility| H
     
-    subgraph Token Focused
-        TF[Competitor B]
-    end
+    B[Competitor B] -->|Low Integration| T[Token Focused]
+    B -->|High Utility| T
     
-    subgraph Integration & Utility
-        PI[Platform Integration]
-        TU[Token Utility]
-    end
+    C[Competitor C] -->|Medium Integration| P[Platform Focused]
+    C -->|Low Utility| P
     
-    PI -->|High| ML
-    PI -->|Medium| MA
-    PI -->|Medium| PF
-    PI -->|Low| TF
-    
-    TU -->|High| ML
-    TU -->|Medium| MA
-    TU -->|Low| PF
-    TU -->|High| TF
-    
-    style ML fill:#4682B4,color:#FFFFFF
-    style MA fill:#90EE90,color:#000000
-    style PF fill:#FFB6C1,color:#000000
-    style TF fill:#DDA0DD,color:#000000
-    style PI fill:#FFA07A,color:#000000
-    style TU fill:#87CEEB,color:#000000
+    style M fill:#4682B4,color:#FFFFFF,stroke-width:4px
+    style A fill:#90EE90,color:#000000
+    style B fill:#FFB6C1,color:#000000
+    style C fill:#DDA0DD,color:#000000
+    style H fill:#FFA07A,color:#000000
+    style T fill:#87CEEB,color:#000000
+    style P fill:#98FB98,color:#000000
 ```
 
 ### Feature Comparison
