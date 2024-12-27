@@ -209,11 +209,10 @@
             ]
         };
 
-        // 所有文档页面的顺序，根据 _sidebar.md 的结构
+        // 所有文档页面的顺序
         const pages = [
             '#/',
-            '#/quick-start',
-            '#/whitepaper/README',  // 白皮书首页
+            '#/whitepaper/README',
             '#/whitepaper/executive-summary',
             '#/whitepaper/technical-architecture',
             '#/whitepaper/token-economics',
@@ -224,11 +223,18 @@
             '#/whitepaper/community-ecosystem',
             '#/whitepaper/future-development',
             '#/whitepaper/governance',
-            '#/quick-start/installation',
-            '#/quick-start/tutorial',
-            '#/quick-start/faq',
-            '#/SUPPORT',
-            '#/chrome-store-privacy-policy'
+            '#/whitepaper/integration-guide',
+            '#/whitepaper/smart-contracts',
+            '#/whitepaper/security-risk-control',
+            '#/whitepaper/system-maintenance',
+            '#/quick-start',
+            '#/installation',
+            '#/tutorial',
+            '#/user-guide',
+            '#/use-cases',
+            '#/faq',
+            '#/privacy-security',
+            '#/security-audit'
         ];
 
         function getCurrentPageIndex() {
@@ -297,7 +303,6 @@
         function getPageTitle(path) {
             const titles = {
                 '#/': 'Home',
-                '#/quick-start': 'Quick Start',
                 '#/whitepaper/README': 'Whitepaper',
                 '#/whitepaper/executive-summary': 'Executive Summary',
                 '#/whitepaper/technical-architecture': 'Technical Architecture',
@@ -309,11 +314,18 @@
                 '#/whitepaper/community-ecosystem': 'Community & Ecosystem',
                 '#/whitepaper/future-development': 'Future Development',
                 '#/whitepaper/governance': 'Governance',
-                '#/quick-start/installation': 'Installation',
-                '#/quick-start/tutorial': 'Tutorial',
-                '#/quick-start/faq': 'FAQ',
-                '#/SUPPORT': 'Support',
-                '#/chrome-store-privacy-policy': 'Privacy Policy'
+                '#/whitepaper/integration-guide': 'Integration Guide',
+                '#/whitepaper/smart-contracts': 'Smart Contracts',
+                '#/whitepaper/security-risk-control': 'Security Risk Control',
+                '#/whitepaper/system-maintenance': 'System Maintenance',
+                '#/quick-start': 'Quick Start',
+                '#/installation': 'Installation',
+                '#/tutorial': 'Tutorial',
+                '#/user-guide': 'User Guide',
+                '#/use-cases': 'Use Cases',
+                '#/faq': 'FAQ',
+                '#/privacy-security': 'Privacy Security',
+                '#/security-audit': 'Security Audit'
             };
             return titles[path] || 'Unknown Page';
         }
