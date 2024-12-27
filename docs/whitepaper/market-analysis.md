@@ -218,10 +218,17 @@ graph LR
 
 ### Growth Metrics
 ```mermaid
-graph LR
-    Q1[Q1: 100%] --> Q2[Q2: 200%]
-    Q2 --> Q3[Q3: 350%]
-    Q3 --> Q4[Q4: 500%]
+graph TB
+    Title[Growth Metrics]
+    Q1[Q1 2024: 100%]
+    Q2[Q2 2024: 200%]
+    Q3[Q3 2024: 350%]
+    Q4[Q4 2024: 500%]
+    
+    Title --> Q1
+    Q1 --> Q2
+    Q2 --> Q3
+    Q3 --> Q4
 ```
 
 ### Strategic Focus Areas
