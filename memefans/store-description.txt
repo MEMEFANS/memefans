@@ -1,0 +1,47 @@
+MEMEFANS - Twitter MEME Token Giveaway Assistant
+
+Short Description:
+MEMEFANS is a Solana-based Twitter token giveaway assistant that helps users automatically verify social interactions and claim MEME tokens.
+
+Detailed Description:
+MEMEFANS is an innovative Chrome extension providing automated solutions for MEME token giveaways on Twitter. Our plugin features:
+
+ Twitter Integration
+- Automatic verification of likes and retweets
+- Real-time status updates
+- Support for both Twitter.com and X.com
+
+ Solana Integration
+- Built-in wallet connection
+- Secure token claiming
+- Transaction history tracking
+- Custom token support
+
+ Security Features
+- Non-custodial wallet integration
+- Smart contract verification
+- Open source code
+- Regular security audits
+
+ Convenience
+- One-click Twitter account connection
+- Simple wallet connection process
+- Clear task status display
+- Real-time balance queries
+
+ User Experience
+- Clean and intuitive interface
+- Instant operation feedback
+- Detailed documentation
+- Multi-language support
+
+What's New:
+v1.0.0
+- Initial release
+- Twitter interaction verification
+- Solana wallet integration
+- Token claiming functionality
+- Transaction history
+
+Keywords:
+MEME, Solana, Twitter, Airdrop, Web3, Cryptocurrency, Social Verification, Token, Wallet, Chrome Extension

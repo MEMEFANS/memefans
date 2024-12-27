@@ -20,6 +20,8 @@ import {
     TOKEN_ACCOUNT_SEED,
     FEE_RECEIVER,
 } from './config';
+import { TransactionHelper } from './utils/transaction';
+import { ValidationHelper } from './utils/validation';
 
 // 初始化连接
 const connection = new Connection(SOLANA_RPC_URL);
@@ -105,197 +107,282 @@ const schema = new Map([
     }],
 ]);
 
+// 创建工具类实例
+const transactionHelper = new TransactionHelper();
+
 // 创建赠送
 export async function createGiveaway(wallet, tweetId, amountPerUser, maxUsers) {
-    const [giveawayPda] = await PublicKey.findProgramAddress(
-        [Buffer.from(GIVEAWAY_PDA_SEED), Buffer.from(tweetId)],
-        programId
-    );
+    try {
+        // 验证参数
+        ValidationHelper.validateWallet(wallet);
+        ValidationHelper.validateTweetId(tweetId);
+        ValidationHelper.validateGiveawayParams(amountPerUser, maxUsers);
 
-    const [programTokenPda] = await PublicKey.findProgramAddress(
-        [Buffer.from(TOKEN_ACCOUNT_SEED)],
-        programId
-    );
+        const [giveawayPda] = await PublicKey.findProgramAddress(
+            [Buffer.from(GIVEAWAY_PDA_SEED), Buffer.from(tweetId)],
+            programId
+        );
 
-    // 获取代币账户
-    const userTokenAccount = await getAssociatedTokenAddress(
-        tokenMint,
-        wallet.publicKey
-    );
+        const [programTokenPda] = await PublicKey.findProgramAddress(
+            [Buffer.from(TOKEN_ACCOUNT_SEED)],
+            programId
+        );
 
-    const feeReceiverAccount = await getAssociatedTokenAddress(
-        tokenMint,
-        new PublicKey(FEE_RECEIVER)
-    );
+        // 获取代币账户
+        const userTokenAccount = await getAssociatedTokenAddress(
+            tokenMint,
+            wallet.publicKey
+        );
 
-    // 创建指令数据
-    const args = new InitializeArgs({
-        tweet_id: tweetId,
-        amount_per_user: amountPerUser,
-        max_users: maxUsers,
-    });
-    const instructionData = borsh.serialize(schema, args);
-    const dataBuffer = Buffer.from([InstructionVariant.Initialize, ...instructionData]);
+        const feeReceiverAccount = await getAssociatedTokenAddress(
+            tokenMint,
+            new PublicKey(FEE_RECEIVER)
+        );
 
-    const instruction = new TransactionInstruction({
-        programId,
-        keys: [
-            { pubkey: wallet.publicKey, isSigner: true, isWritable: true },
-            { pubkey: giveawayPda, isSigner: false, isWritable: true },
-            { pubkey: userTokenAccount, isSigner: false, isWritable: true },
-            { pubkey: programTokenPda, isSigner: false, isWritable: true },
-            { pubkey: feeReceiverAccount, isSigner: false, isWritable: true },
-            { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
-            { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
-        ],
-        data: dataBuffer,
-    });
+        // 创建指令数据
+        const args = new InitializeArgs({
+            tweet_id: tweetId,
+            amount_per_user: amountPerUser,
+            max_users: maxUsers,
+        });
+        const instructionData = borsh.serialize(schema, args);
+        const dataBuffer = Buffer.from([InstructionVariant.Initialize, ...instructionData]);
 
-    const transaction = new Transaction().add(instruction);
-    const { blockhash } = await connection.getRecentBlockhash();
-    transaction.recentBlockhash = blockhash;
-    transaction.feePayer = wallet.publicKey;
+        const instruction = new TransactionInstruction({
+            programId,
+            keys: [
+                { pubkey: wallet.publicKey, isSigner: true, isWritable: true },
+                { pubkey: giveawayPda, isSigner: false, isWritable: true },
+                { pubkey: userTokenAccount, isSigner: false, isWritable: true },
+                { pubkey: programTokenPda, isSigner: false, isWritable: true },
+                { pubkey: feeReceiverAccount, isSigner: false, isWritable: true },
+                { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
+                { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
+            ],
+            data: dataBuffer,
+        });
 
-    return transaction;
+        const transaction = new Transaction().add(instruction);
+        const { blockhash } = await connection.getRecentBlockhash();
+        transaction.recentBlockhash = blockhash;
+        transaction.feePayer = wallet.publicKey;
+
+        // 使用重试机制发送交易
+        return await transactionHelper.retryTransaction(async () => {
+            try {
+                const signature = await wallet.signAndSendTransaction(transaction);
+                await transactionHelper.waitForConfirmation(signature);
+                return {
+                    success: true,
+                    signature,
+                    giveawayPda: giveawayPda.toString()
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    error: error.message
+                };
+            }
+        });
+    } catch (error) {
+        console.error('创建赠送失败:', error);
+        throw error;
+    }
 }
 
 // 领取代币
 export async function claimTokens(wallet, tweetId) {
-    const [giveawayPda] = await PublicKey.findProgramAddress(
-        [Buffer.from(GIVEAWAY_PDA_SEED), Buffer.from(tweetId)],
-        programId
-    );
+    try {
+        // 验证参数
+        ValidationHelper.validateWallet(wallet);
+        ValidationHelper.validateTweetId(tweetId);
 
-    const [userBalancePda] = await PublicKey.findProgramAddress(
-        [Buffer.from(USER_BALANCE_PDA_SEED), wallet.publicKey.toBuffer()],
-        programId
-    );
+        const [giveawayPda] = await PublicKey.findProgramAddress(
+            [Buffer.from(GIVEAWAY_PDA_SEED), Buffer.from(tweetId)],
+            programId
+        );
 
-    // 创建指令数据
-    const args = new ClaimArgs({ tweet_id: tweetId });
-    const instructionData = borsh.serialize(schema, args);
-    const dataBuffer = Buffer.from([InstructionVariant.Claim, ...instructionData]);
+        const [userBalancePda] = await PublicKey.findProgramAddress(
+            [Buffer.from(USER_BALANCE_PDA_SEED), wallet.publicKey.toBuffer()],
+            programId
+        );
 
-    const instruction = new TransactionInstruction({
-        programId,
-        keys: [
-            { pubkey: wallet.publicKey, isSigner: true, isWritable: false },
-            { pubkey: giveawayPda, isSigner: false, isWritable: true },
-            { pubkey: userBalancePda, isSigner: false, isWritable: true },
-        ],
-        data: dataBuffer,
-    });
+        // 创建指令数据
+        const args = new ClaimArgs({ tweet_id: tweetId });
+        const instructionData = borsh.serialize(schema, args);
+        const dataBuffer = Buffer.from([InstructionVariant.Claim, ...instructionData]);
 
-    const transaction = new Transaction().add(instruction);
-    const { blockhash } = await connection.getRecentBlockhash();
-    transaction.recentBlockhash = blockhash;
-    transaction.feePayer = wallet.publicKey;
+        const instruction = new TransactionInstruction({
+            programId,
+            keys: [
+                { pubkey: wallet.publicKey, isSigner: true, isWritable: false },
+                { pubkey: giveawayPda, isSigner: false, isWritable: true },
+                { pubkey: userBalancePda, isSigner: false, isWritable: true },
+            ],
+            data: dataBuffer,
+        });
 
-    return transaction;
+        const transaction = new Transaction().add(instruction);
+        const { blockhash } = await connection.getRecentBlockhash();
+        transaction.recentBlockhash = blockhash;
+        transaction.feePayer = wallet.publicKey;
+
+        // 使用重试机制发送交易
+        return await transactionHelper.retryTransaction(async () => {
+            try {
+                const signature = await wallet.signAndSendTransaction(transaction);
+                await transactionHelper.waitForConfirmation(signature);
+                return {
+                    success: true,
+                    signature,
+                    giveawayPda: giveawayPda.toString()
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    error: error.message
+                };
+            }
+        });
+    } catch (error) {
+        console.error('领取代币失败:', error);
+        throw error;
+    }
 }
 
 // 提现代币
 export async function withdrawTokens(wallet, amount) {
-    const [userBalancePda] = await PublicKey.findProgramAddress(
-        [Buffer.from(USER_BALANCE_PDA_SEED), wallet.publicKey.toBuffer()],
-        programId
-    );
-
-    const [programTokenPda] = await PublicKey.findProgramAddress(
-        [Buffer.from(TOKEN_ACCOUNT_SEED)],
-        programId
-    );
-
-    const userTokenAccount = await getAssociatedTokenAddress(
-        tokenMint,
-        wallet.publicKey
-    );
-
-    // 创建指令数据
-    const args = new WithdrawArgs({ amount });
-    const instructionData = borsh.serialize(schema, args);
-    const dataBuffer = Buffer.from([InstructionVariant.Withdraw, ...instructionData]);
-
-    // 检查用户是否有代币账户，如果没有则创建
-    let transaction = new Transaction();
-    
     try {
-        await connection.getTokenAccountBalance(userTokenAccount);
-    } catch {
-        transaction.add(
-            createAssociatedTokenAccountInstruction(
-                wallet.publicKey,
-                userTokenAccount,
-                wallet.publicKey,
-                tokenMint
-            )
+        ValidationHelper.validateWallet(wallet);
+        ValidationHelper.validateAmount(amount);
+
+        const [userBalancePda] = await PublicKey.findProgramAddress(
+            [Buffer.from(USER_BALANCE_PDA_SEED), wallet.publicKey.toBuffer()],
+            programId
         );
+
+        const [programTokenPda] = await PublicKey.findProgramAddress(
+            [Buffer.from(TOKEN_ACCOUNT_SEED)],
+            programId
+        );
+
+        const userTokenAccount = await getAssociatedTokenAddress(
+            tokenMint,
+            wallet.publicKey
+        );
+
+        // 创建指令数据
+        const args = new WithdrawArgs({ amount });
+        const instructionData = borsh.serialize(schema, args);
+        const dataBuffer = Buffer.from([InstructionVariant.Withdraw, ...instructionData]);
+
+        // 检查用户是否有代币账户，如果没有则创建
+        let transaction = new Transaction();
+        
+        try {
+            await connection.getTokenAccountBalance(userTokenAccount);
+        } catch {
+            transaction.add(
+                createAssociatedTokenAccountInstruction(
+                    wallet.publicKey,
+                    userTokenAccount,
+                    wallet.publicKey,
+                    tokenMint
+                )
+            );
+        }
+
+        const instruction = new TransactionInstruction({
+            programId,
+            keys: [
+                { pubkey: wallet.publicKey, isSigner: true, isWritable: false },
+                { pubkey: userBalancePda, isSigner: false, isWritable: true },
+                { pubkey: userTokenAccount, isSigner: false, isWritable: true },
+                { pubkey: programTokenPda, isSigner: false, isWritable: true },
+                { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
+            ],
+            data: dataBuffer,
+        });
+
+        transaction.add(instruction);
+        const { blockhash } = await connection.getRecentBlockhash();
+        transaction.recentBlockhash = blockhash;
+        transaction.feePayer = wallet.publicKey;
+
+        // 使用重试机制发送交易
+        return await transactionHelper.retryTransaction(async () => {
+            try {
+                const signature = await wallet.signAndSendTransaction(transaction);
+                await transactionHelper.waitForConfirmation(signature);
+                return {
+                    success: true,
+                    signature
+                };
+            } catch (error) {
+                return {
+                    success: false,
+                    error: error.message
+                };
+            }
+        });
+    } catch (error) {
+        console.error('提现代币失败:', error);
+        throw error;
     }
-
-    const instruction = new TransactionInstruction({
-        programId,
-        keys: [
-            { pubkey: wallet.publicKey, isSigner: true, isWritable: false },
-            { pubkey: userBalancePda, isSigner: false, isWritable: true },
-            { pubkey: userTokenAccount, isSigner: false, isWritable: true },
-            { pubkey: programTokenPda, isSigner: false, isWritable: true },
-            { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
-        ],
-        data: dataBuffer,
-    });
-
-    transaction.add(instruction);
-    const { blockhash } = await connection.getRecentBlockhash();
-    transaction.recentBlockhash = blockhash;
-    transaction.feePayer = wallet.publicKey;
-
-    return transaction;
 }
 
 // 获取用户余额
 export async function getUserBalance(wallet) {
-    const [userBalancePda] = await PublicKey.findProgramAddress(
-        [Buffer.from(USER_BALANCE_PDA_SEED), wallet.publicKey.toBuffer()],
-        programId
-    );
-
     try {
-        const accountInfo = await connection.getAccountInfo(userBalancePda);
-        if (!accountInfo) return 0;
+        ValidationHelper.validateWallet(wallet);
 
-        // 解析账户数据
+        const [userBalancePda] = await PublicKey.findProgramAddress(
+            [Buffer.from(USER_BALANCE_PDA_SEED), wallet.publicKey.toBuffer()],
+            programId
+        );
+
+        const accountInfo = await connection.getAccountInfo(userBalancePda);
+        if (!accountInfo) {
+            return { amount: 0 };
+        }
+
         const userBalance = borsh.deserialize(
             schema,
             UserBalance,
             accountInfo.data
         );
-        return userBalance.amount;
+
+        return userBalance;
     } catch (error) {
         console.error('获取用户余额失败:', error);
-        return 0;
+        throw error;
     }
 }
 
 // 获取赠送信息
 export async function getGiveawayInfo(tweetId) {
-    const [giveawayPda] = await PublicKey.findProgramAddress(
-        [Buffer.from(GIVEAWAY_PDA_SEED), Buffer.from(tweetId)],
-        programId
-    );
-
     try {
-        const accountInfo = await connection.getAccountInfo(giveawayPda);
-        if (!accountInfo) return null;
+        ValidationHelper.validateTweetId(tweetId);
 
-        // 解析账户数据
+        const [giveawayPda] = await PublicKey.findProgramAddress(
+            [Buffer.from(GIVEAWAY_PDA_SEED), Buffer.from(tweetId)],
+            programId
+        );
+
+        const accountInfo = await connection.getAccountInfo(giveawayPda);
+        if (!accountInfo) {
+            throw new Error('赠送不存在');
+        }
+
         const giveaway = borsh.deserialize(
             schema,
             Giveaway,
             accountInfo.data
         );
+
         return giveaway;
     } catch (error) {
         console.error('获取赠送信息失败:', error);
-        return null;
+        throw error;
     }
 }
