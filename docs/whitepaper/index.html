@@ -135,7 +135,11 @@
                 crossChapter: true,
                 crossChapterText: true,
                 routerMode: 'hash',
-                nextLink: '#/whitepaper/executive-summary'
+                nextLink: '#/whitepaper/executive-summary',
+                // 自定义模板
+                template: {
+                    next: '<a href="#/whitepaper/executive-summary" class="pagination-item pagination-item--next">Executive Summary</a>'
+                }
             },
             copyCode: {
                 buttonText: 'Copy',
