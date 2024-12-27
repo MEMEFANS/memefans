@@ -45,21 +45,29 @@ graph TD
 
 ```mermaid
 graph TD
-    A[Value Creation] --> B[Creator Benefits]
-    A --> C[User Benefits]
-    A --> D[Platform Growth]
+    VP[Value Creation] --> CB[Creator Benefits]
+    VP --> UB[User Benefits]
+    VP --> PG[Platform Growth]
     
-    B --> B1[Revenue Streams]
-    B --> B2[Creation Tools]
-    B --> B3[Audience Growth]
+    CB --> CB1[Revenue Generation]
+    CB --> CB2[Fan Engagement]
+    CB --> CB3[Brand Building]
     
-    C --> C1[Quality Content]
-    C --> C2[Gift Benefits]
-    C --> C3[Social Connection]
+    UB --> UB1[Exclusive Content]
+    UB --> UB2[Token Benefits]
+    UB --> UB3[Community Access]
     
-    D --> D1[Network Effect]
-    D --> D2[Market Position]
-    D --> D3[Data Insights]
+    PG --> PG1[Network Growth]
+    PG --> PG2[Token Economy]
+    PG --> PG3[Market Share]
+    
+    style VP fill:#4682B4,color:#FFFFFF
+    style CB fill:#90EE90,color:#000000
+    style UB fill:#FFB6C1,color:#000000
+    style PG fill:#DDA0DD,color:#000000
+    style CB1,CB2,CB3 fill:#98FB98,color:#000000
+    style UB1,UB2,UB3 fill:#FFA07A,color:#000000
+    style PG1,PG2,PG3 fill:#87CEEB,color:#000000
 ```
 
 ## Growth Strategy

@@ -3,25 +3,36 @@
 ## Ecosystem Overview
 
 ```mermaid
-mindmap
-    root((MEMEFANS Ecosystem))
-        Content Creators
-            Influencers
-            Artists
-            Brands
-            Community Leaders
-        Token Holders
-            Active Users
-            Long-term Investors
-            Strategic Partners
-        Developers
-            Core Team
-            Community Devs
-            Integration Partners
-        Community
-            Moderators
-            Ambassadors
-            Active Members
+graph TD
+    ME((MEMEFANS Ecosystem))
+    
+    ME --> CC[Content Creators]
+    ME --> TH[Token Holders]
+    ME --> DV[Developers]
+    ME --> CM[Community]
+    
+    CC --> IN[Influencers]
+    CC --> AR[Artists]
+    CC --> BR[Brands]
+    CC --> CL[Community Leaders]
+    
+    TH --> AU[Active Users]
+    TH --> LI[Long-term Investors]
+    TH --> SP[Strategic Partners]
+    
+    DV --> CT[Core Team]
+    DV --> CD[Community Devs]
+    DV --> IP[Integration Partners]
+    
+    CM --> MO[Moderators]
+    CM --> AB[Ambassadors]
+    CM --> AM[Active Members]
+    
+    style ME fill:#4682B4,color:#FFFFFF
+    style CC fill:#90EE90,color:#000000
+    style TH fill:#FFB6C1,color:#000000
+    style DV fill:#DDA0DD,color:#000000
+    style CM fill:#98FB98,color:#000000
 ```
 
 ## Community Structure
@@ -121,23 +132,32 @@ graph LR
 
 ### 2. Resource Structure
 ```mermaid
-mindmap
-    root((Learning Resources))
-        Documentation
-            User Guides
-            API Docs
-            Integration Guides
-            Security Guidelines
-        Tutorial Content
-            Video Guides
-            Written Tutorials
-            Interactive Demos
-            Case Studies
-        Community Knowledge
-            FAQs
-            Best Practices
-            Success Stories
-            Tips & Tricks
+graph TD
+    LR((Learning Resources))
+    
+    LR --> D[Documentation]
+    LR --> TC[Tutorial Content]
+    LR --> CK[Community Knowledge]
+    
+    D --> UG[User Guides]
+    D --> AD[API Docs]
+    D --> IG[Integration Guides]
+    D --> SG[Security Guidelines]
+    
+    TC --> VG[Video Guides]
+    TC --> WT[Written Tutorials]
+    TC --> ID[Interactive Demos]
+    TC --> CS[Case Studies]
+    
+    CK --> F[FAQs]
+    CK --> BP[Best Practices]
+    CK --> SS[Success Stories]
+    CK --> TT[Tips & Tricks]
+    
+    style LR fill:#4682B4,color:#FFFFFF
+    style D fill:#90EE90,color:#000000
+    style TC fill:#FFB6C1,color:#000000
+    style CK fill:#DDA0DD,color:#000000
 ```
 
 ## Communication Framework

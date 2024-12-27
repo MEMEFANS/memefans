@@ -48,19 +48,28 @@ graph TD
 
 #### Proposal Process
 ```mermaid
-sequenceDiagram
-    participant A as Author
-    participant C as Community
-    participant V as Voters
-    participant I as Implementation
+graph TD
+    subgraph Proposal Flow
+        P[Proposal Creation] -->|Submit| D[Discussion]
+        D -->|2 Weeks| V[Voting]
+        V -->|1 Week| R[Results]
+        R -->|If Passed| I[Implementation]
+    end
     
-    A->>C: Submit Proposal
-    C->>C: Discussion Period
-    C->>V: Voting Period
-    V->>I: If Approved
-    I->>C: Execute Changes
+    subgraph Requirements
+        T[Token Threshold] -->|Required| P
+        Q[Quorum] -->|Required| V
+        M[Majority] -->|Required| R
+    end
     
-    Note over C,V: Minimum 7 Days
+    style P fill:#4682B4,color:#FFFFFF
+    style D fill:#90EE90,color:#000000
+    style V fill:#FFB6C1,color:#000000
+    style R fill:#DDA0DD,color:#000000
+    style I fill:#98FB98,color:#000000
+    style T fill:#FFA07A,color:#000000
+    style Q fill:#87CEEB,color:#000000
+    style M fill:#F0E68C,color:#000000
 ```
 
 ## Governance
@@ -109,145 +118,56 @@ graph TD
 ## Proposal Process Flow
 
 ```mermaid
-sequenceDiagram
-    participant U as User
-    participant P as Platform
-    participant V as Voting System
-    participant G as Governance
+graph TD
+    subgraph Proposal Flow
+        U[User] -->|Submit Proposal| P[Platform]
+        P -->|Initiate Voting| V[Voting System]
+        V -->|Start Governance Process| G[Governance]
+        G -->|Process Started| V
+        V -->|Voting Started| P
+        P -->|Proposal Active| U
+    end
     
-    U->>P: Submit Proposal
-    P->>V: Initiate Voting
-    V->>G: Start Governance Process
-    G-->>V: Process Started
-    V-->>P: Voting Started
-    P-->>U: Proposal Active
+    subgraph Requirements
+        T[Token Threshold] -->|Required| P
+        Q[Quorum] -->|Required| V
+        M[Majority] -->|Required| G
+    end
     
-    Note over U,P: Proposal Submission
-    Note over P,V: Voting Initiation
-    Note over V,G: Governance Process
+    style U fill:#4682B4,color:#FFFFFF
+    style P fill:#90EE90,color:#000000
+    style V fill:#FFB6C1,color:#000000
+    style G fill:#DDA0DD,color:#000000
+    style T fill:#FFA07A,color:#000000
+    style Q fill:#87CEEB,color:#000000
+    style M fill:#F0E68C,color:#000000
 ```
 
 ## Voting System Flow
 
 ```mermaid
 graph TD
-    A[Voting System] -->|Submit| B[Vote Submission]
-    A -->|Process| C[Vote Processing]
-    A -->|Result| D[Result Processing]
-    
-    subgraph Vote Submission
-    B -->|Cast| E[Cast Vote]
-    B -->|Verify| F[Vote Verification]
-    B -->|Record| G[Vote Recording]
+    subgraph Voting Process
+        VP[Vote Proposal] -->|Submit| VC[Vote Collection]
+        VC -->|Process| VV[Vote Validation]
+        VV -->|Calculate| VR[Vote Results]
+        VR -->|Execute| VA[Vote Action]
     end
     
-    subgraph Vote Processing
-    C -->|Count| H[Vote Counting]
-    C -->|Validate| I[Vote Validation]
-    C -->|Analyze| J[Vote Analysis]
+    subgraph Vote Requirements
+        VT[Vote Threshold] -->|Required| VP
+        VQ[Vote Quorum] -->|Required| VV
+        VM[Vote Majority] -->|Required| VR
     end
     
-    subgraph Result Processing
-    D -->|Calculate| K[Result Calculation]
-    D -->|Announce| L[Result Announcement]
-    D -->|Execute| M[Result Execution]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-```
-
-## Rights Management Flow
-
-```mermaid
-graph TD
-    A[Rights Management] -->|Define| B[Rights Definition]
-    A -->|Assign| C[Rights Assignment]
-    A -->|Control| D[Rights Control]
-    
-    subgraph Rights Definition
-    B -->|Create| E[Create Rights]
-    B -->|Modify| F[Modify Rights]
-    B -->|Delete| G[Delete Rights]
-    end
-    
-    subgraph Rights Assignment
-    C -->|User| H[User Rights]
-    C -->|Role| I[Role Rights]
-    C -->|Group| J[Group Rights]
-    end
-    
-    subgraph Rights Control
-    D -->|Monitor| K[Rights Monitoring]
-    D -->|Enforce| L[Rights Enforcement]
-    D -->|Audit| M[Rights Audit]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-```
-
-## Compliance Flow
-
-```mermaid
-graph TD
-    A[Compliance] -->|Policy| B[Policy Management]
-    A -->|Monitor| C[Monitoring System]
-    A -->|Report| D[Reporting System]
-    
-    subgraph Policy Management
-    B -->|Create| E[Policy Creation]
-    B -->|Update| F[Policy Update]
-    B -->|Enforce| G[Policy Enforcement]
-    end
-    
-    subgraph Monitoring System
-    C -->|Track| H[Activity Tracking]
-    C -->|Analyze| I[Data Analysis]
-    C -->|Alert| J[Alert System]
-    end
-    
-    subgraph Reporting System
-    D -->|Generate| K[Report Generation]
-    D -->|Review| L[Report Review]
-    D -->|Act| M[Action Items]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
+    style VP fill:#4682B4,color:#FFFFFF
+    style VC fill:#90EE90,color:#000000
+    style VV fill:#FFB6C1,color:#000000
+    style VR fill:#DDA0DD,color:#000000
+    style VA fill:#98FB98,color:#000000
+    style VT fill:#FFA07A,color:#000000
+    style VQ fill:#87CEEB,color:#000000
+    style VM fill:#F0E68C,color:#000000
 ```
 
 ## Voting Mechanism
