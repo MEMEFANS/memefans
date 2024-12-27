@@ -195,14 +195,15 @@ stateDiagram-v2
 ```
 
 ### 2. Growth Metrics
+%%{init: {'theme': 'neutral' }}%%
 ```mermaid
 xychart-beta
-    title "Community Growth Metrics"
+    title "Growth Metrics"
     x-axis [Q1, Q2, Q3, Q4]
     y-axis "Growth %" 0 --> 500
-    line "User Growth" [100, 200, 350, 500]
-    line "Engagement" [150, 250, 400, 450]
-    line "Content Creation" [80, 180, 300, 400]
+    line [100, 200, 350, 500] "User Growth"
+    line [150, 250, 400, 450] "Engagement"
+    line [80, 180, 300, 400] "Content Creation"
 ```
 
 ## Partnership Ecosystem

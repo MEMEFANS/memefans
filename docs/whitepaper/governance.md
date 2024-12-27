@@ -4,8 +4,8 @@
 
 ### 1. Governance Framework
 - **Decision Making Process**
-  <div class="mermaid">
-  graph TD
+```mermaid
+graph TD
     A[Community Proposal] --> B[Discussion Period]
     B --> C[Voting Period]
     C --> D[Implementation]
@@ -16,7 +16,7 @@
     style C fill:#90EE90,color:#000000
     style D fill:#DDA0DD,color:#000000
     style E fill:#FFB6C1,color:#000000
-  </div>
+```
 
 - **Voting Power**
   - 1 FANS = 1 base vote
@@ -67,7 +67,7 @@ sequenceDiagram
 
 ## Governance Framework
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Governance] -->|Structure| B[Governance Structure]
     A -->|Process| C[Governance Process]
@@ -104,11 +104,11 @@ graph TD
     style K fill:#32CD32,color:#000000
     style L fill:#FF69B4,color:#000000
     style M fill:#DEB887,color:#000000
-</div>
+```
 
 ## Proposal Process Flow
 
-<div class="mermaid">
+```mermaid
 sequenceDiagram
     participant U as User
     participant P as Platform
@@ -125,11 +125,11 @@ sequenceDiagram
     Note over U,P: Proposal Submission
     Note over P,V: Voting Initiation
     Note over V,G: Governance Process
-</div>
+```
 
 ## Voting System Flow
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Voting System] -->|Submit| B[Vote Submission]
     A -->|Process| C[Vote Processing]
@@ -166,11 +166,11 @@ graph TD
     style K fill:#32CD32,color:#000000
     style L fill:#FF69B4,color:#000000
     style M fill:#DEB887,color:#000000
-</div>
+```
 
 ## Rights Management Flow
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Rights Management] -->|Define| B[Rights Definition]
     A -->|Assign| C[Rights Assignment]
@@ -207,11 +207,11 @@ graph TD
     style K fill:#32CD32,color:#000000
     style L fill:#FF69B4,color:#000000
     style M fill:#DEB887,color:#000000
-</div>
+```
 
 ## Compliance Flow
 
-<div class="mermaid">
+```mermaid
 graph TD
     A[Compliance] -->|Policy| B[Policy Management]
     A -->|Monitor| C[Monitoring System]
@@ -248,7 +248,7 @@ graph TD
     style K fill:#32CD32,color:#000000
     style L fill:#FF69B4,color:#000000
     style M fill:#DEB887,color:#000000
-</div>
+```
 
 ## Voting Mechanism
 

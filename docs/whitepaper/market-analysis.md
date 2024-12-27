@@ -66,7 +66,7 @@ quadrantChart
     quadrant-2 Platform Focused
     quadrant-3 Token Focused
     quadrant-4 Emerging Players
-    "MEMEFANS": [0.8, 0.9]
+    MEMEFANS: [0.8, 0.9]
     "Competitor A": [0.6, 0.7]
     "Competitor B": [0.4, 0.8]
     "Competitor C": [0.7, 0.5]
