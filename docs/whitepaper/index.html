@@ -19,6 +19,30 @@
         .sidebar {
             padding: 20px;
         }
+        .pagination-item {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        .pagination-item:hover {
+            background-color: #e9ecef;
+        }
+        .pagination-item a {
+            color: var(--theme-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .pagination-item.pagination-item--previous a:before {
+            content: '←';
+            margin-right: 8px;
+        }
+        .pagination-item.pagination-item--next a:after {
+            content: '→';
+            margin-left: 8px;
+        }
     </style>
 </head>
 <body>
@@ -46,6 +70,7 @@
                 nextText: '下一章节',
                 crossChapter: true,
                 crossChapterText: true,
+                routerMode: 'hash'
             },
             copyCode: {
                 buttonText: 'Copy',

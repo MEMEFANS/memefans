@@ -10,18 +10,19 @@
   },
   "permissions": [
     "storage",
-    "activeTab"
-  ],
-  "optional_permissions": [
+    "activeTab",
     "scripting",
     "tabs"
   ],
   "host_permissions": [
     "https://twitter.com/*",
-    "https://x.com/*"
+    "https://x.com/*",
+    "https://api.twitter.com/*",
+    "https://solana-api.projectserum.com/*",
+    "https://special-fluent-dust.solana-mainnet.quiknode.pro/*"
   ],
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://api.twitter.com https://solana-api.projectserum.com;"
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; connect-src 'self' https://api.twitter.com https://solana-api.projectserum.com https://special-fluent-dust.solana-mainnet.quiknode.pro;"
   },
   "action": {
     "default_popup": "popup.html",
@@ -38,8 +39,11 @@
         "https://x.com/*"
       ],
       "js": [
-        "lib/solana-web3.min.js",
-        "lib/bs58.min.js",
+        "lib/buffer.js",
+        "lib/solana-web3.js",
+        "lib/bs58.js",
+        "lib/web3.js",
+        "lib/solana-init.js",
         "config.js",
         "constants.js",
         "wallet.js",
@@ -51,199 +55,27 @@
       "run_at": "document_idle"
     }
   ],
+  "web_accessible_resources": [
+    {
+      "resources": ["images/*", "lib/*", "styles.css"],
+      "matches": ["https://twitter.com/*", "https://x.com/*"]
+    }
+  ],
   "background": {
     "service_worker": "background.js",
     "type": "module"
   },
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "images/*",
-        "lib/*",
-        "styles.css"
-      ],
-      "matches": [
-        "https://twitter.com/*",
-        "https://x.com/*"
-      ]
-    }
-  ],
   "author": "MEMEFANS Team",
   "homepage_url": "https://memefans.github.io/memefans/",
-  "privacy_policy_url": "https://memefans.github.io/memefans/#/chrome-store-privacy-policy",
   "minimum_chrome_version": "88",
   "incognito": "not_allowed",
   "offline_enabled": false,
   "short_name": "MEMEFANS",
-  "key": "${EXTENSION_KEY}",
   "oauth2": {
     "client_id": "${OAUTH_CLIENT_ID}",
     "scopes": [
       "https://www.googleapis.com/auth/userinfo.email"
     ]
-  },
-  "features": {
-    "token_giveaway": {
-      "description": "Basic token giveaway functionality on Twitter/X",
-      "implemented_in": ["content.js", "contract.js", "utils/workflow-manager.js"],
-      "capabilities": [
-        "Create basic token giveaway posts",
-        "Set token amount for distribution",
-        "Simple claim mechanism",
-        "Basic transaction processing",
-        "Automated workflow management"
-      ]
-    },
-    "wallet_integration": {
-      "description": "Solana wallet management",
-      "implemented_in": ["wallet.js", "balance.js", "utils/crypto-manager.js"],
-      "capabilities": [
-        "Import wallet from private key",
-        "Connect to Solana network",
-        "View token balances",
-        "Secure transaction signing",
-        "Encrypted key storage"
-      ]
-    },
-    "token_distribution": {
-      "description": "FANS token distribution system",
-      "implemented_in": ["contract.js", "content.js", "utils/transaction-manager.js"],
-      "capabilities": [
-        "Process token claims",
-        "Batch distribution",
-        "Distribution status tracking",
-        "Zero-gas fee transactions",
-        "Transaction retry mechanism"
-      ]
-    },
-    "social_verification": {
-      "description": "Twitter/X interaction verification",
-      "implemented_in": ["content.js", "utils/social-verifier.js"],
-      "capabilities": [
-        "Track likes and retweets",
-        "Verify user engagement",
-        "Process multiple interactions",
-        "Real-time status updates",
-        "Anti-spam protection"
-      ]
-    },
-    "system_monitoring": {
-      "description": "System performance and health monitoring",
-      "implemented_in": ["utils/monitor-manager.js", "utils/log-manager.js"],
-      "capabilities": [
-        "Performance metrics tracking",
-        "Error monitoring and logging",
-        "Resource usage tracking",
-        "Alert system for issues"
-      ]
-    },
-    "security": {
-      "description": "Security and data protection",
-      "implemented_in": ["utils/security-manager.js", "utils/validation-manager.js"],
-      "capabilities": [
-        "Input validation",
-        "Data encryption",
-        "Secure storage",
-        "Access control"
-      ]
-    },
-    "event_management": {
-      "description": "Event handling and processing",
-      "implemented_in": ["utils/event-manager.js", "utils/state-manager.js"],
-      "capabilities": [
-        "Event queue management",
-        "State synchronization",
-        "Event logging",
-        "Error recovery"
-      ]
-    },
-    "user_interface": {
-      "description": "User interface components",
-      "implemented_in": ["popup.html", "popup.js", "popup.css", "styles.css", "utils/ui-manager.js"],
-      "capabilities": [
-        "Token balance display",
-        "Giveaway creation interface",
-        "Claim status tracking",
-        "Settings management",
-        "Responsive design"
-      ]
-    }
-  },
-  "package_files": {
-    "core_files": {
-      "description": "Core functionality files",
-      "files": [
-        "manifest.json",
-        "background.js",
-        "content.js",
-        "popup.html",
-        "popup.js",
-        "popup.css",
-        "styles.css"
-      ]
-    },
-    "wallet_files": {
-      "description": "Wallet and token management",
-      "files": [
-        "wallet.js",
-        "balance.js",
-        "contract.js",
-        "withdraw.html",
-        "withdraw.js"
-      ]
-    },
-    "configuration": {
-      "description": "Configuration and constants",
-      "files": [
-        "config.js",
-        "constants.js"
-      ]
-    },
-    "utility_files": {
-      "description": "Utility managers and helpers",
-      "files": [
-        "utils/api-manager.js",
-        "utils/balance-manager.js",
-        "utils/cache-manager.js",
-        "utils/config-manager.js",
-        "utils/contract-manager.js",
-        "utils/crypto-manager.js",
-        "utils/event-manager.js",
-        "utils/log-manager.js",
-        "utils/monitor-manager.js",
-        "utils/security-manager.js",
-        "utils/social-verifier.js",
-        "utils/state-manager.js",
-        "utils/transaction-manager.js",
-        "utils/ui-manager.js",
-        "utils/validation-manager.js",
-        "utils/workflow-manager.js"
-      ]
-    },
-    "libraries": {
-      "description": "Third-party dependencies",
-      "files": [
-        "lib/solana-web3.min.js",
-        "lib/bs58.min.js"
-      ]
-    },
-    "assets": {
-      "description": "Images and resources",
-      "files": [
-        "images/icon16.png",
-        "images/icon48.png",
-        "images/icon128.png"
-      ]
-    },
-    "development": {
-      "description": "Development and testing files",
-      "files": [
-        "tests/*",
-        "program/*",
-        "server/*",
-        "src/*"
-      ]
-    }
   },
   "commands": {
     "_execute_action": {
