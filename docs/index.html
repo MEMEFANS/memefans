@@ -12,9 +12,10 @@
             --theme-color: #1da1f2;
         }
         .markdown-section {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            overflow-x: auto;
         }
         .sidebar {
             padding: 20px;
@@ -34,6 +35,11 @@
             padding: 10px;
             margin: 10px 0;
             border-radius: 4px;
+            min-width: min-content;
+            overflow-x: auto;
+        }
+        .mermaid svg {
+            min-width: max-content;
         }
         .nav-buttons {
             display: flex;
