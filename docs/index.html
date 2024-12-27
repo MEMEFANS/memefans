@@ -168,6 +168,23 @@
                     });
 
                     hook.afterEach(function(html) {
+                        const currentPath = window.location.hash.toLowerCase();
+                        
+                        // 在首页时显示 Executive Summary 按钮
+                        if (currentPath === '' || currentPath === '#/' || currentPath === '#') {
+                            return html + `
+                                <div class="nav-buttons">
+                                    <button class="nav-button next-chapter" onclick="window.location.hash='#/whitepaper/executive-summary'" style="margin-left: auto;">
+                                        <span class="label">
+                                            <span>Executive Summary</span>
+                                        </span>
+                                        <span class="arrow">→</span>
+                                    </button>
+                                </div>
+                            `;
+                        }
+                        
+                        // 在其他页面显示常规导航按钮
                         const navButtons = `
                             <div class="nav-buttons">
                                 <button class="nav-button prev-chapter" onclick="prevPage()">
