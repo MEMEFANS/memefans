@@ -144,30 +144,55 @@
                 function(hook) {
                     hook.afterEach(function(html, next) {
                         // 检查当前页面是否属于白皮书部分
-                        const path = window.location.hash;
-                        const whitepaperPaths = [
-                            '#/whitepaper/',
-                            '#/executive-summary',
-                            '#/technical-architecture',
-                            '#/token-economics',
-                            '#/market-analysis',
-                            '#/product-features',
-                            '#/business-model',
-                            '#/risk-analysis',
-                            '#/community-ecosystem',
-                            '#/future-development',
-                            '#/governance'
-                        ];
-                        
-                        if (whitepaperPaths.some(p => path.includes(p))) {
-                            html += `
+                        const isWhitepaperPage = () => {
+                            const path = window.location.hash.toLowerCase();
+                            return path.includes('/whitepaper/') || 
+                                   path.includes('executive-summary') ||
+                                   path.includes('technical-architecture') ||
+                                   path.includes('token-economics') ||
+                                   path.includes('market-analysis') ||
+                                   path.includes('product-features') ||
+                                   path.includes('business-model') ||
+                                   path.includes('risk-analysis') ||
+                                   path.includes('community-ecosystem') ||
+                                   path.includes('future-development') ||
+                                   path.includes('governance');
+                        };
+
+                        // 只在白皮书页面添加导航按钮
+                        if (isWhitepaperPage()) {
+                            const nav = `
                                 <div class="navigation-buttons">
                                     <button class="nav-button prev" onclick="previousPage()">上一章</button>
                                     <button class="nav-button next" onclick="nextPage()">下一章</button>
                                 </div>
                             `;
+                            html = html + nav;
                         }
                         next(html);
+                    });
+
+                    // 添加路由变化监听
+                    hook.mounted(function() {
+                        const observer = new MutationObserver(function(mutations) {
+                            mutations.forEach(function(mutation) {
+                                if (mutation.type === 'childList') {
+                                    const buttons = document.querySelector('.navigation-buttons');
+                                    if (buttons) {
+                                        if (!isWhitepaperPage()) {
+                                            buttons.style.display = 'none';
+                                        } else {
+                                            buttons.style.display = 'flex';
+                                        }
+                                    }
+                                }
+                            });
+                        });
+
+                        observer.observe(document.body, {
+                            childList: true,
+                            subtree: true
+                        });
                     });
                 }
             ],
@@ -187,17 +212,6 @@
                 }
             }
         }
-    </script>
-    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
-    <!-- Mermaid 支持 -->
-    <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>
-        var num = 0;
-        mermaid.initialize({ startOnLoad: false });
 
         // Mermaid 初始化
         window.$docsify.plugins = [].concat(function(hook, vm) {
@@ -215,6 +229,17 @@
                 });
             });
         }, window.$docsify.plugins || []);
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+    <!-- Mermaid 支持 -->
+    <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        var num = 0;
+        mermaid.initialize({ startOnLoad: false });
     </script>
 </body>
 </html>
