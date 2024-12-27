@@ -158,13 +158,16 @@
             plugins: [
                 function(hook) {
                     hook.afterEach(function(html) {
-                        const navButtons = `
+                        const currentPath = window.location.hash.slice(2) || 'README.md';
+                        const isHomePage = currentPath === 'README.md';
+                        
+                        // 添加导航按钮
+                        return html + `
                             <div class="nav-buttons">
-                                <button class="nav-button prev-chapter" onclick="prevPage()">上一页</button>
-                                <button class="nav-button next-chapter" onclick="nextPage()">下一页</button>
+                                <a href="javascript:prevPage()" class="pagination-item pagination-item--previous" ${isHomePage ? 'style="visibility: hidden;"' : ''}>Previous</a>
+                                <a href="${isHomePage ? '#/executive-summary' : 'javascript:nextPage()'}" class="pagination-item pagination-item--next">Next</a>
                             </div>
                         `;
-                        return html + navButtons;
                     });
                 }
             ]
