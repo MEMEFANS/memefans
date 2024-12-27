@@ -227,22 +227,6 @@
         });
     </script>
     <script>
-        // 初始化 Mermaid
-        var config = {
-            startOnLoad: true,
-            theme: 'default',
-            logLevel: 'error',
-            securityLevel: 'loose',
-            flowchart: {
-                curve: 'basis',
-                htmlLabels: true
-            },
-            themeVariables: {
-                fontSize: '16px'
-            }
-        };
-        mermaid.initialize(config);
-
         window.$docsify = {
             el: '#app',
             repo: 'MEMEFANS/twitter-token-plugin',
@@ -256,49 +240,8 @@
                 noData: 'No Results',
                 depth: 6
             },
-            markdown: {
-                renderer: {
-                    code: function(code, lang) {
-                        if (lang === "mermaid") {
-                            return '<div class="mermaid">' + code + '</div>';
-                        }
-                        return this.origin.code.apply(this, arguments);
-                    }
-                }
-            },
             plugins: [
                 function(hook) {
-                    // 在每个页面加载完成后重新渲染 Mermaid 图表
-                    hook.doneEach(function() {
-                        Array.from(document.querySelectorAll(".mermaid")).forEach(
-                            (element) => {
-                                // 清除之前的内容
-                                const graphCode = element.textContent;
-                                element.textContent = "";
-                                element.removeAttribute("data-processed");
-                                
-                                try {
-                                    // 重新渲染
-                                    mermaid.render(
-                                        'mermaid-svg-' + Math.random().toString(36).substr(2, 9),
-                                        graphCode,
-                                        function(svgCode) {
-                                            element.innerHTML = svgCode;
-                                        },
-                                        element
-                                    );
-                                } catch (err) {
-                                    console.error("Mermaid rendering failed:", err);
-                                    // 还原原始内容
-                                    element.textContent = graphCode;
-                                }
-                            }
-                        );
-                        
-                        // 更新导航按钮
-                        updateNavButtons();
-                    });
-                    
                     hook.afterEach(function(html) {
                         const navButtons = `
                             <div class="nav-buttons">
@@ -320,12 +263,29 @@
                         `;
                         return html + navButtons;
                     });
+
+                    hook.doneEach(function() {
+                        // 更新导航按钮
+                        updateNavButtons();
+
+                        // 初始化 mermaid
+                        if (typeof mermaid !== 'undefined') {
+                            mermaid.init(undefined, '.mermaid');
+                        }
+                    });
                 }
             ]
         }
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-    <script src="//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mermaid@8.11.0/dist/mermaid.min.js"></script>
+    <script>
+        // 初始化 mermaid
+        mermaid.initialize({ 
+            startOnLoad: false,
+            theme: 'default'
+        });
+    </script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
