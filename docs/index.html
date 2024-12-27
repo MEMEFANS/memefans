@@ -103,7 +103,16 @@
             startOnLoad: false,
             theme: 'default',
             flowchart: {
-                curve: 'basis'
+                curve: 'basis',
+                useMaxWidth: false
+            },
+            sequence: {
+                useMaxWidth: false,
+                showSequenceNumbers: false
+            },
+            securityLevel: 'loose',
+            themeVariables: {
+                fontSize: '16px'
             }
         });
         window.$docsify = {
@@ -133,7 +142,7 @@
                 renderer: {
                     code: function(code, lang) {
                         if (lang === "mermaid") {
-                            return '<div class="mermaid">' + code + '</div>';
+                            return '<pre class="mermaid">' + code + '</pre>';
                         }
                         return this.origin.code.apply(this, arguments);
                     }
@@ -150,6 +159,7 @@
                                 element.classList.add('rendered');
                             } catch (error) {
                                 console.error('Mermaid rendering error:', error);
+                                console.log('Code:', element.textContent);
                             }
                         });
 
