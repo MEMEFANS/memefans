@@ -43,27 +43,54 @@
             border-top: 1px solid #eee;
         }
         .nav-button {
-            background: #1da1f2;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: #666;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px 16px;
             cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            font-size: 14px;
+            transition: all 0.2s ease;
         }
         .nav-button:hover {
-            background: #0c85d0;
-            transform: translateY(-2px);
+            color: #333;
+            border-color: #999;
+            background: #f5f5f5;
         }
         .nav-button:disabled {
-            background: #ccc;
+            opacity: 0.5;
             cursor: not-allowed;
+        }
+        .nav-button .arrow {
+            font-size: 18px;
+        }
+        .nav-button .label {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+        }
+        .nav-button.next-chapter {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+        .nav-button.next-chapter .label {
+            align-items: flex-end;
+        }
+        .nav-button .chapter-title {
+            font-size: 12px;
+            color: #999;
         }
         @media screen and (max-width: 768px) {
             .nav-button {
-                padding: 10px 20px;
-                font-size: 14px;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .nav-button .chapter-title {
+                display: none;
             }
         }
     </style>
@@ -151,19 +178,68 @@
             }
         }
 
-        // 更新按钮状态
+        function getPageTitle(path) {
+            const titles = {
+                '#/': 'Home',
+                '#/quick-start': 'Quick Start',
+                '#/whitepaper/README': 'Whitepaper',
+                '#/whitepaper/executive-summary': 'Executive Summary',
+                '#/whitepaper/technical-architecture': 'Technical Architecture',
+                '#/whitepaper/token-economics': 'Token Economics',
+                '#/whitepaper/market-analysis': 'Market Analysis',
+                '#/whitepaper/product-features': 'Product Features',
+                '#/whitepaper/business-model': 'Business Model',
+                '#/whitepaper/risk-analysis': 'Risk Analysis',
+                '#/whitepaper/community-ecosystem': 'Community & Ecosystem',
+                '#/whitepaper/future-development': 'Future Development',
+                '#/whitepaper/governance': 'Governance',
+                '#/quick-start/installation': 'Installation',
+                '#/quick-start/tutorial': 'Tutorial',
+                '#/quick-start/faq': 'FAQ',
+                '#/SUPPORT': 'Support',
+                '#/chrome-store-privacy-policy': 'Privacy Policy'
+            };
+            return titles[path] || 'Unknown Page';
+        }
+
         function updateNavButtons() {
             const currentIndex = getCurrentPageIndex();
             const prevButton = document.querySelector('.prev-chapter');
             const nextButton = document.querySelector('.next-chapter');
             
             if (prevButton && nextButton) {
-                prevButton.disabled = currentIndex <= 0;
-                nextButton.disabled = currentIndex >= pages.length - 1 || currentIndex === -1;
-                
-                // 如果按钮被禁用，添加提示文本
-                prevButton.title = prevButton.disabled ? '已经是第一页' : '前往上一页';
-                nextButton.title = nextButton.disabled ? '已经是最后一页' : '前往下一页';
+                const prevPage = currentIndex > 0 ? pages[currentIndex - 1] : null;
+                const nextPage = currentIndex < pages.length - 1 ? pages[currentIndex + 1] : null;
+
+                prevButton.disabled = !prevPage;
+                nextButton.disabled = !nextPage;
+
+                // 更新按钮内容
+                prevButton.innerHTML = prevPage ? `
+                    <span class="arrow">←</span>
+                    <span class="label">
+                        <span>Previous</span>
+                        <span class="chapter-title">${getPageTitle(prevPage)}</span>
+                    </span>
+                ` : `
+                    <span class="arrow">←</span>
+                    <span class="label">
+                        <span>Previous</span>
+                    </span>
+                `;
+
+                nextButton.innerHTML = nextPage ? `
+                    <span class="label">
+                        <span>Next</span>
+                        <span class="chapter-title">${getPageTitle(nextPage)}</span>
+                    </span>
+                    <span class="arrow">→</span>
+                ` : `
+                    <span class="label">
+                        <span>Next</span>
+                    </span>
+                    <span class="arrow">→</span>
+                `;
             }
         }
 
