@@ -61,9 +61,9 @@
             auto2top: true,
             homepage: 'README.md',
             routerMode: 'hash',
-            basePath: '',
-            relativePath: false,
-            nameLink: '/#/',
+            basePath: '/memefans/docs/',
+            relativePath: true,
+            nameLink: '/memefans/#/',
             alias: {
                 '/.*/_sidebar.md': '/_sidebar.md'
             },
@@ -86,7 +86,13 @@
                         }
                         return this.origin.code.apply(this, arguments);
                     }
-                }
+                },
+                smartypants: true,
+                breaks: false,
+                pedantic: false,
+                gfm: true,
+                tables: true,
+                xhtml: false
             },
             plugins: [
                 function(hook) {
