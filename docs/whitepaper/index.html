@@ -19,77 +19,80 @@
         .sidebar {
             padding: 20px;
         }
-        /* 修改翻页按钮样式 */
-        .page-nav {
+        /* 修改导航按钮样式 */
+        .navigation-buttons {
             position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 999; /* 提高层级 */
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px; /* 增大按钮尺寸 */
-            height: 100px;
-            background: rgba(29, 161, 242, 0.15);
+            gap: 20px;
+            z-index: 999;
+        }
+        .nav-button {
+            padding: 12px 24px;
+            background: rgba(29, 161, 242, 0.9);
+            color: white;
+            border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        .page-nav:hover {
-            background: rgba(29, 161, 242, 0.25);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        .page-nav.prev {
-            left: calc(300px + 20px); /* 侧边栏宽度 + 间距 */
-        }
-        .page-nav.next {
-            right: 20px;
-        }
-        .page-nav::before {
-            content: '';
-            width: 16px; /* 增大箭头尺寸 */
-            height: 16px;
-            border-top: 3px solid #1da1f2;
-            border-right: 3px solid #1da1f2;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
-        .page-nav.prev::before {
-            transform: rotate(-135deg);
-            margin-left: 6px; /* 调整箭头位置 */
+        .nav-button:hover {
+            background: rgba(29, 161, 242, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
         }
-        .page-nav.next::before {
-            transform: rotate(45deg);
-            margin-right: 6px;
+        .nav-button:active {
+            transform: translateY(0);
+        }
+        .nav-button.prev::before {
+            content: '←';
+            font-size: 20px;
+        }
+        .nav-button.next::after {
+            content: '→';
+            font-size: 20px;
         }
         /* 移动端适配 */
         @media screen and (max-width: 768px) {
-            .page-nav {
-                width: 40px; /* 移动端稍微缩小按钮 */
-                height: 80px;
+            .navigation-buttons {
+                bottom: 20px;
+                flex-direction: column;
+                gap: 10px;
             }
-            .page-nav.prev {
-                left: 20px;
-            }
-            .page-nav::before {
-                width: 12px;
-                height: 12px;
+            .nav-button {
+                padding: 10px 20px;
+                font-size: 14px;
             }
         }
-        /* 确保按钮在内容区域可见 */
-        @media screen and (min-width: 769px) {
-            .content {
-                margin-left: 300px;
-                margin-right: 0;
-            }
+        /* 键盘快捷键提示 */
+        .nav-button::after {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-left: 8px;
+        }
+        .nav-button.prev::after {
+            content: '(←)';
+        }
+        .nav-button.next::after {
+            content: '(→)';
         }
     </style>
 </head>
 <body>
     <div id="app"></div>
-    <!-- 添加翻页按钮到内容区域 -->
-    <div class="page-nav prev" onclick="previousPage()" title="上一章"></div>
-    <div class="page-nav next" onclick="nextPage()" title="下一章"></div>
+    <!-- 添加导航按钮 -->
+    <div class="navigation-buttons">
+        <button class="nav-button prev" onclick="previousPage()">上一章</button>
+        <button class="nav-button next" onclick="nextPage()">下一章</button>
+    </div>
     
     <script>
         // 翻页功能
@@ -140,6 +143,21 @@
                 buttonText: 'Copy',
                 errorText: 'Error',
                 successText: 'Copied!'
+            },
+            // Mermaid 配置
+            markdown: {
+                renderer: {
+                    code: function(code, lang) {
+                        if (lang === "mermaid") {
+                            return (
+                                '<div class="mermaid">' +
+                                code +
+                                "</div>"
+                            );
+                        }
+                        return this.origin.code.apply(this, arguments);
+                    }
+                }
             }
         }
     </script>
@@ -148,5 +166,28 @@
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+    <!-- Mermaid 支持 -->
+    <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        var num = 0;
+        mermaid.initialize({ startOnLoad: false });
+
+        // Mermaid 初始化
+        window.$docsify.plugins = [].concat(function(hook, vm) {
+            hook.doneEach(function() {
+                var mermaidElements = document.querySelectorAll(".mermaid");
+                mermaidElements.forEach(function(element) {
+                    try {
+                        mermaid.render('mermaid-diagram-' + num++, element.textContent, function(svgCode) {
+                            element.innerHTML = svgCode;
+                        });
+                    } catch (error) {
+                        console.error("Mermaid rendering failed:", error);
+                        element.innerHTML = '<pre>' + error + '</pre>';
+                    }
+                });
+            });
+        }, window.$docsify.plugins || []);
+    </script>
 </body>
 </html>
