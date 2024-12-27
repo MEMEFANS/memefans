@@ -88,11 +88,6 @@
 </head>
 <body>
     <div id="app"></div>
-    <!-- 添加导航按钮 -->
-    <div class="navigation-buttons">
-        <button class="nav-button prev" onclick="previousPage()">上一章</button>
-        <button class="nav-button next" onclick="nextPage()">下一章</button>
-    </div>
     
     <script>
         // 翻页功能
@@ -132,18 +127,31 @@
                 noData: 'No Results',
                 depth: 6
             },
+            // 修改分页配置
             pagination: {
-                previousText: '上一章节',
-                nextText: '下一章节',
+                previousText: '上一章',
+                nextText: '下一章',
                 crossChapter: true,
                 crossChapterText: true,
-                routerMode: 'hash'
             },
             copyCode: {
                 buttonText: 'Copy',
                 errorText: 'Error',
                 successText: 'Copied!'
             },
+            // 添加导航按钮插件
+            plugins: [
+                function(hook) {
+                    hook.afterEach(function(html) {
+                        return html + `
+                            <div class="navigation-buttons">
+                                <button class="nav-button prev" onclick="previousPage()">上一章</button>
+                                <button class="nav-button next" onclick="nextPage()">下一章</button>
+                            </div>
+                        `;
+                    });
+                }
+            ],
             // Mermaid 配置
             markdown: {
                 renderer: {
