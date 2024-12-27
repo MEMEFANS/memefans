@@ -81,51 +81,18 @@
         });
         window.$docsify = {
             el: '#app',
-            name: 'MEMEFANS',
-            repo: '',
+            repo: 'MEMEFANS/twitter-token-plugin',
             loadSidebar: true,
             subMaxLevel: 3,
             auto2top: true,
-            homepage: 'index.md',
-            routerMode: 'hash',
-            basePath: '/memefans/',
-            relativePath: false,
-            nameLink: '/memefans/#/',
-            alias: {
-                '/.*/_sidebar.md': '/_sidebar.md'
-            },
-            mergeNavbar: true,
             search: {
                 maxAge: 86400000,
                 paths: 'auto',
                 placeholder: 'Search',
-                noData: 'No Results!',
+                noData: 'No Results',
                 depth: 6
             },
-            markdown: {
-                renderer: {
-                    code: function(code, lang) {
-                        if (lang === "mermaid") {
-                            return '<div class="mermaid">' + code + '</div>';
-                        }
-                        return this.origin.code.apply(this, arguments);
-                    }
-                }
-            },
             plugins: [
-                function(hook) {
-                    hook.doneEach(function() {
-                        const mermaidElements = document.querySelectorAll('.mermaid:not(.rendered)');
-                        mermaidElements.forEach(element => {
-                            try {
-                                mermaid.init(undefined, element);
-                                element.classList.add('rendered');
-                            } catch (error) {
-                                console.error('Mermaid rendering error:', error);
-                            }
-                        });
-                    });
-                },
                 function(hook) {
                     hook.afterEach(function(html) {
                         const navButtons = `
@@ -138,12 +105,13 @@
                     });
                 }
             ]
-        };
+        }
 
-        // 所有文档页面的顺序
+        // 所有文档页面的顺序，根据 _sidebar.md 的结构
         const pages = [
             '#/',
-            '#/introduction',
+            '#/quick-start',
+            '#/whitepaper/README',  // 白皮书首页
             '#/whitepaper/executive-summary',
             '#/whitepaper/technical-architecture',
             '#/whitepaper/token-economics',
@@ -154,18 +122,11 @@
             '#/whitepaper/community-ecosystem',
             '#/whitepaper/future-development',
             '#/whitepaper/governance',
-            '#/technical-documentation/integration-guide',
-            '#/technical-documentation/smart-contracts',
-            '#/technical-documentation/security-risk-control',
-            '#/technical-documentation/system-maintenance',
-            '#/user-documentation/quick-start',
-            '#/user-documentation/installation',
-            '#/user-documentation/tutorial',
-            '#/user-documentation/user-guide',
-            '#/user-documentation/use-cases',
-            '#/user-documentation/faq',
-            '#/legal-privacy/privacy-security',
-            '#/legal-privacy/security-audit'
+            '#/quick-start/installation',
+            '#/quick-start/tutorial',
+            '#/quick-start/faq',
+            '#/SUPPORT',
+            '#/chrome-store-privacy-policy'
         ];
 
         function getCurrentPageIndex() {
@@ -199,6 +160,10 @@
             if (prevButton && nextButton) {
                 prevButton.disabled = currentIndex <= 0;
                 nextButton.disabled = currentIndex >= pages.length - 1 || currentIndex === -1;
+                
+                // 如果按钮被禁用，添加提示文本
+                prevButton.title = prevButton.disabled ? '已经是第一页' : '前往上一页';
+                nextButton.title = nextButton.disabled ? '已经是最后一页' : '前往下一页';
             }
         }
 
@@ -206,6 +171,20 @@
         window.addEventListener('hashchange', updateNavButtons);
         // 初始化时也检查一次
         window.addEventListener('load', updateNavButtons);
+
+        // 添加键盘快捷键支持
+        document.addEventListener('keydown', function(e) {
+            // 避免在输入框中触发
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                return;
+            }
+            
+            if (e.key === 'ArrowLeft') {
+                prevPage();
+            } else if (e.key === 'ArrowRight') {
+                nextPage();
+            }
+        });
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
