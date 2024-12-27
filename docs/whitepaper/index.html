@@ -19,113 +19,96 @@
         .sidebar {
             padding: 20px;
         }
-        /* 添加固定定位的翻页按钮 */
+        /* 修改翻页按钮样式 */
         .page-nav {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            z-index: 100;
+            z-index: 999; /* 提高层级 */
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 80px;
-            background: rgba(29, 161, 242, 0.1);
-            border-radius: 4px;
+            width: 50px; /* 增大按钮尺寸 */
+            height: 100px;
+            background: rgba(29, 161, 242, 0.15);
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         .page-nav:hover {
-            background: rgba(29, 161, 242, 0.2);
+            background: rgba(29, 161, 242, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         .page-nav.prev {
-            left: 300px; /* 侧边栏宽度 + 间距 */
+            left: calc(300px + 20px); /* 侧边栏宽度 + 间距 */
         }
         .page-nav.next {
             right: 20px;
         }
         .page-nav::before {
             content: '';
-            width: 12px;
-            height: 12px;
-            border-top: 2px solid #1da1f2;
-            border-right: 2px solid #1da1f2;
+            width: 16px; /* 增大箭头尺寸 */
+            height: 16px;
+            border-top: 3px solid #1da1f2;
+            border-right: 3px solid #1da1f2;
             transition: all 0.3s ease;
         }
         .page-nav.prev::before {
             transform: rotate(-135deg);
+            margin-left: 6px; /* 调整箭头位置 */
         }
         .page-nav.next::before {
             transform: rotate(45deg);
+            margin-right: 6px;
         }
         /* 移动端适配 */
         @media screen and (max-width: 768px) {
+            .page-nav {
+                width: 40px; /* 移动端稍微缩小按钮 */
+                height: 80px;
+            }
             .page-nav.prev {
                 left: 20px;
             }
+            .page-nav::before {
+                width: 12px;
+                height: 12px;
+            }
         }
-        .pagination-item {
-            margin: 20px 0;
-            padding: 10px;
-            border-radius: 4px;
-            background-color: #f8f9fa;
-            transition: all 0.3s ease;
-        }
-        .pagination-item:hover {
-            background-color: #e9ecef;
-        }
-        .pagination-item a {
-            color: var(--theme-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        .pagination-item.pagination-item--previous a:before {
-            content: '←';
-            margin-right: 8px;
-        }
-        .pagination-item.pagination-item--next a:after {
-            content: '→';
-            margin-left: 8px;
+        /* 确保按钮在内容区域可见 */
+        @media screen and (min-width: 769px) {
+            .content {
+                margin-left: 300px;
+                margin-right: 0;
+            }
         }
     </style>
 </head>
 <body>
     <div id="app"></div>
-    <!-- 添加翻页按钮 -->
+    <!-- 添加翻页按钮到内容区域 -->
     <div class="page-nav prev" onclick="previousPage()" title="上一章"></div>
     <div class="page-nav next" onclick="nextPage()" title="下一章"></div>
     
     <script>
         // 翻页功能
         function previousPage() {
-            const event = new KeyboardEvent('keydown', {
-                key: 'ArrowLeft',
-                keyCode: 37,
-                which: 37,
-                bubbles: true
-            });
-            document.dispatchEvent(event);
+            const prevLink = document.querySelector('.pagination-item--previous a');
+            if (prevLink) prevLink.click();
         }
 
         function nextPage() {
-            const event = new KeyboardEvent('keydown', {
-                key: 'ArrowRight',
-                keyCode: 39,
-                which: 39,
-                bubbles: true
-            });
-            document.dispatchEvent(event);
+            const nextLink = document.querySelector('.pagination-item--next a');
+            if (nextLink) nextLink.click();
         }
 
         // 添加键盘事件监听
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowLeft') {
-                const prevLink = document.querySelector('.pagination-item--previous a');
-                if (prevLink) prevLink.click();
+                previousPage();
             } else if (e.key === 'ArrowRight') {
-                const nextLink = document.querySelector('.pagination-item--next a');
-                if (nextLink) nextLink.click();
+                nextPage();
             }
         });
 
