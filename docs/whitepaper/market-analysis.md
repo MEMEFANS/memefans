@@ -246,32 +246,14 @@ graph TD
 ### Growth Metrics
 ```mermaid
 graph TD
-    subgraph Q4[Q4 2024]
-        Q4G[Growth 500%]
-    end
+    Q1[Q1 2024\n100% Growth] --> Q2[Q2 2024\n200% Growth]
+    Q2 --> Q3[Q3 2024\n350% Growth]
+    Q3 --> Q4[Q4 2024\n500% Growth]
     
-    subgraph Q3[Q3 2024]
-        Q3G[Growth 350%]
-    end
-    
-    subgraph Q2[Q2 2024]
-        Q2G[Growth 200%]
-    end
-    
-    subgraph Q1[Q1 2024]
-        Q1G[Growth 100%]
-    end
-    
-    Q1 --> Q2 --> Q3 --> Q4
-    
-    style Q1G fill:#87CEEB,color:#000000
-    style Q2G fill:#90EE90,color:#000000
-    style Q3G fill:#FFB6C1,color:#000000
-    style Q4G fill:#4682B4,color:#FFFFFF
-    style Q1 fill:#F0F8FF,color:#000000
-    style Q2 fill:#F0FFF0,color:#000000
-    style Q3 fill:#FFF0F5,color:#000000
-    style Q4 fill:#F0F8FF,color:#000000
+    style Q1 fill:#87CEEB,color:#000000,stroke:#000000
+    style Q2 fill:#90EE90,color:#000000,stroke:#000000
+    style Q3 fill:#FFB6C1,color:#000000,stroke:#000000
+    style Q4 fill:#4682B4,color:#FFFFFF,stroke:#000000
 ```
 
 ### Strategic Focus Areas
