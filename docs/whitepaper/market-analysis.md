@@ -32,26 +32,18 @@
 ### Market Landscape
 
 ```mermaid
-graph TD
+graph LR
     A[Social Token Market] -->|Segment 1| B[Content Creators]
     A -->|Segment 2| C[Social Platforms]
     A -->|Segment 3| D[Token Platforms]
     B -->|Value| E[Fan Engagement]
     C -->|Value| F[Platform Growth]
     D -->|Value| G[Token Economy]
-    
-    style A fill:#90EE90,color:#000000
-    style B fill:#FFB6C1,color:#000000
-    style C fill:#DDA0DD,color:#000000
-    style D fill:#FFFF00,color:#000000
-    style E fill:#87CEEB,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#98FB98,color:#000000
 ```
 
 ### Market Share Distribution
 ```mermaid
-graph TD
+graph LR
     subgraph Market Share
         CC[Content Creators\n45%]
         SP[Social Platforms\n30%]
@@ -61,11 +53,6 @@ graph TD
     MS((Market Share)) --> CC
     MS --> SP
     MS --> TP
-    
-    style MS fill:#4682B4,color:#FFFFFF
-    style CC fill:#E6E6FA,color:#000000
-    style SP fill:#F0FFF0,color:#000000
-    style TP fill:#98FB98,color:#000000
 ```
 
 ### Industry Trends
@@ -77,7 +64,7 @@ graph TD
 ### Competitive Landscape
 
 ```mermaid
-graph TD
+graph LR
     M((MEMEFANS)) -->|High Integration| H[Market Leaders]
     M -->|High Utility| H
     
@@ -89,14 +76,6 @@ graph TD
     
     C[Competitor C] -->|Medium Integration| P[Platform Focused]
     C -->|Low Utility| P
-    
-    style M fill:#4682B4,color:#FFFFFF,stroke-width:4px
-    style A fill:#90EE90,color:#000000
-    style B fill:#FFB6C1,color:#000000
-    style C fill:#DDA0DD,color:#000000
-    style H fill:#FFA07A,color:#000000
-    style T fill:#87CEEB,color:#000000
-    style P fill:#98FB98,color:#000000
 ```
 
 ### Feature Comparison
@@ -210,7 +189,7 @@ graph TD
 ### Market Landscape
 
 ```mermaid
-graph TD
+graph LR
     Market((Social Token Market)) --> MS[Market Size]
     Market --> TS[Target Segments]
     Market --> CP[Competitive Position]
@@ -224,18 +203,12 @@ graph TD
     TS --> CC[Content Creators]
     TS --> BI[Brand Influencers]
     TS --> CP[Community Projects]
-    
-    style Market fill:#0000FF,color:#FFFFFF
-    style MS fill:#FFFF00,color:#000000
-    style TS fill:#90EE90,color:#000000
-    style CP fill:#DDA0DD,color:#000000
-    style GS fill:#FFB6C1,color:#000000
 ```
 
 ### Market Flow
 
 ```mermaid
-graph TD
+graph LR
     A[Market Entry] -->|Target Selection| B[User Acquisition]
     B -->|Growth Strategy| C[Market Expansion]
     C -->|Partnership| D[Ecosystem Growth]
@@ -245,20 +218,15 @@ graph TD
 
 ### Growth Metrics
 ```mermaid
-graph TD
-    Q1[Q1 2024\n100% Growth] --> Q2[Q2 2024\n200% Growth]
-    Q2 --> Q3[Q3 2024\n350% Growth]
-    Q3 --> Q4[Q4 2024\n500% Growth]
-    
-    style Q1 fill:#87CEEB,color:#000000,stroke:#000000
-    style Q2 fill:#90EE90,color:#000000,stroke:#000000
-    style Q3 fill:#FFB6C1,color:#000000,stroke:#000000
-    style Q4 fill:#4682B4,color:#FFFFFF,stroke:#000000
+graph LR
+    Q1[Q1: 100%] --> Q2[Q2: 200%]
+    Q2 --> Q3[Q3: 350%]
+    Q3 --> Q4[Q4: 500%]
 ```
 
 ### Strategic Focus Areas
 ```mermaid
-graph TD
+graph LR
     A[Growth Strategy] -->|Acquisition| B[User Acquisition]
     A -->|Retention| C[User Retention]
     A -->|Expansion| D[Market Expansion]
@@ -383,7 +351,7 @@ graph TD
 
 ### Launch Mechanism
 ```mermaid
-graph TD
+graph LR
     A[FANS Launch] -->|Equal Access| B[Public Trading]
     B -->|Natural Price| C[Market Value]
     C -->|Community Driven| D[Organic Growth]
@@ -411,8 +379,8 @@ graph TD
 
 ## Market Analysis Flowchart
 
-<div class="mermaid">
-graph TD
+```mermaid
+graph LR
     A[Market Analysis] -->|Segments| B[Market Segments]
     A -->|Size| C[Market Size]
     A -->|Growth| D[Growth Potential]
@@ -434,24 +402,10 @@ graph TD
     D -->|Mid| L[Mid Term]
     D -->|Long| M[Long Term]
     end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+```
 
-<div class="mermaid">
-graph TD
+```mermaid
+graph LR
     A[Competition] -->|Direct| B[Direct Competitors]
     A -->|Indirect| C[Indirect Competitors]
     A -->|Future| D[Future Competitors]
@@ -473,24 +427,10 @@ graph TD
     D -->|Potential| L[Potential Entrants]
     D -->|Evolution| M[Market Evolution]
     end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+```
 
-<div class="mermaid">
-graph TD
+```mermaid
+graph LR
     A[Market Trends] -->|Current| B[Current Trends]
     A -->|Emerging| C[Emerging Trends]
     A -->|Future| D[Future Trends]
@@ -512,24 +452,10 @@ graph TD
     D -->|Disruption| L[Disruption]
     D -->|Evolution| M[Evolution]
     end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+```
 
-<div class="mermaid">
-graph TD
+```mermaid
+graph LR
     A[Growth Strategy] -->|Acquisition| B[User Acquisition]
     A -->|Retention| C[User Retention]
     A -->|Expansion| D[Market Expansion]
@@ -551,24 +477,10 @@ graph TD
     D -->|Vertical| L[Vertical Expansion]
     D -->|Integration| M[Platform Integration]
     end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+```
 
-<div class="mermaid">
-graph TD
+```mermaid
+graph LR
     A[Risk Analysis] -->|Market| B[Market Risks]
     A -->|Technical| C[Technical Risks]
     A -->|Business| D[Business Risks]
@@ -590,20 +502,6 @@ graph TD
     D -->|Operational| L[Operational Risk]
     D -->|Strategic| M[Strategic Risk]
     end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+```
 
 [Continue to Product Features →](product-features.md)
