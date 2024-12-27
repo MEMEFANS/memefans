@@ -98,84 +98,6 @@
 <body>
     <div id="app"></div>
     <script>
-        window.$docsify = {
-            el: '#app',
-            repo: 'MEMEFANS/twitter-token-plugin',
-            loadSidebar: true,
-            subMaxLevel: 3,
-            auto2top: true,
-            search: {
-                maxAge: 86400000,
-                paths: 'auto',
-                placeholder: 'Search',
-                noData: 'No Results',
-                depth: 6
-            },
-            markdown: {
-                renderer: {
-                    code: function(code, lang) {
-                        if (lang === "mermaid") {
-                            return '<div class="mermaid">' + code + '</div>';
-                        }
-                        return this.origin.code.apply(this, arguments);
-                    }
-                }
-            },
-            plugins: [
-                function(hook) {
-                    hook.doneEach(function() {
-                        // 初始化 Mermaid
-                        if (window.mermaid) {
-                            mermaid.initialize({
-                                startOnLoad: true,
-                                theme: 'default',
-                                securityLevel: 'loose',
-                                themeVariables: {
-                                    fontSize: '16px'
-                                }
-                            });
-                            
-                            // 重新渲染所有 mermaid 图表
-                            const elements = document.querySelectorAll('.mermaid:not(.rendered)');
-                            elements.forEach(element => {
-                                try {
-                                    mermaid.init(undefined, element);
-                                    element.classList.add('rendered');
-                                } catch (error) {
-                                    console.error('Mermaid rendering error:', error);
-                                }
-                            });
-                        }
-                        
-                        // 更新导航按钮
-                        updateNavButtons();
-                    });
-                    
-                    hook.afterEach(function(html) {
-                        const navButtons = `
-                            <div class="nav-buttons">
-                                <button class="nav-button prev-chapter" onclick="prevPage()">
-                                    <span class="arrow">←</span>
-                                    <span class="label">
-                                        <span>Previous</span>
-                                        <span class="chapter-title"></span>
-                                    </span>
-                                </button>
-                                <button class="nav-button next-chapter" onclick="nextPage()">
-                                    <span class="label">
-                                        <span>Next</span>
-                                        <span class="chapter-title"></span>
-                                    </span>
-                                    <span class="arrow">→</span>
-                                </button>
-                            </div>
-                        `;
-                        return html + navButtons;
-                    });
-                }
-            ]
-        }
-
         // 所有文档页面的顺序，根据 _sidebar.md 的结构
         const pages = [
             '#/',
@@ -304,8 +226,106 @@
             }
         });
     </script>
+    <script>
+        // 初始化 Mermaid
+        var config = {
+            startOnLoad: true,
+            theme: 'default',
+            logLevel: 'error',
+            securityLevel: 'loose',
+            flowchart: {
+                curve: 'basis',
+                htmlLabels: true
+            },
+            themeVariables: {
+                fontSize: '16px'
+            }
+        };
+        mermaid.initialize(config);
+
+        window.$docsify = {
+            el: '#app',
+            repo: 'MEMEFANS/twitter-token-plugin',
+            loadSidebar: true,
+            subMaxLevel: 3,
+            auto2top: true,
+            search: {
+                maxAge: 86400000,
+                paths: 'auto',
+                placeholder: 'Search',
+                noData: 'No Results',
+                depth: 6
+            },
+            markdown: {
+                renderer: {
+                    code: function(code, lang) {
+                        if (lang === "mermaid") {
+                            return '<div class="mermaid">' + code + '</div>';
+                        }
+                        return this.origin.code.apply(this, arguments);
+                    }
+                }
+            },
+            plugins: [
+                function(hook) {
+                    // 在每个页面加载完成后重新渲染 Mermaid 图表
+                    hook.doneEach(function() {
+                        Array.from(document.querySelectorAll(".mermaid")).forEach(
+                            (element) => {
+                                // 清除之前的内容
+                                const graphCode = element.textContent;
+                                element.textContent = "";
+                                element.removeAttribute("data-processed");
+                                
+                                try {
+                                    // 重新渲染
+                                    mermaid.render(
+                                        'mermaid-svg-' + Math.random().toString(36).substr(2, 9),
+                                        graphCode,
+                                        function(svgCode) {
+                                            element.innerHTML = svgCode;
+                                        },
+                                        element
+                                    );
+                                } catch (err) {
+                                    console.error("Mermaid rendering failed:", err);
+                                    // 还原原始内容
+                                    element.textContent = graphCode;
+                                }
+                            }
+                        );
+                        
+                        // 更新导航按钮
+                        updateNavButtons();
+                    });
+                    
+                    hook.afterEach(function(html) {
+                        const navButtons = `
+                            <div class="nav-buttons">
+                                <button class="nav-button prev-chapter" onclick="prevPage()">
+                                    <span class="arrow">←</span>
+                                    <span class="label">
+                                        <span>Previous</span>
+                                        <span class="chapter-title"></span>
+                                    </span>
+                                </button>
+                                <button class="nav-button next-chapter" onclick="nextPage()">
+                                    <span class="label">
+                                        <span>Next</span>
+                                        <span class="chapter-title"></span>
+                                    </span>
+                                    <span class="arrow">→</span>
+                                </button>
+                            </div>
+                        `;
+                        return html + navButtons;
+                    });
+                }
+            ]
+        }
+    </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-    <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
