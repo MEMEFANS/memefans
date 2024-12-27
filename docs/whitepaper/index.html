@@ -74,6 +74,37 @@
                 right: 20px;
             }
         }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+        }
+        .nav-button {
+            background: #1da1f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background: #0c85d0;
+            transform: translateY(-2px);
+        }
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        @media screen and (max-width: 768px) {
+            .nav-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -123,19 +154,69 @@
                         return this.origin.code.apply(this, arguments);
                     }
                 }
+            },
+            plugins: [
+                function(hook) {
+                    hook.afterEach(function(html) {
+                        const navButtons = `
+                            <div class="nav-buttons">
+                                <button class="nav-button prev-chapter" onclick="prevChapter()">上一章</button>
+                                <button class="nav-button next-chapter" onclick="nextChapter()">下一章</button>
+                            </div>
+                        `;
+                        return html + navButtons;
+                    });
+                }
+            ]
+        }
+
+        // 章节顺序
+        const chapters = [
+            '#/whitepaper/executive-summary',
+            '#/whitepaper/technical-architecture',
+            '#/whitepaper/token-economics',
+            '#/whitepaper/market-analysis',
+            '#/whitepaper/product-features',
+            '#/whitepaper/business-model',
+            '#/whitepaper/risk-analysis',
+            '#/whitepaper/community-ecosystem',
+            '#/whitepaper/future-development',
+            '#/whitepaper/governance'
+        ];
+
+        function getCurrentChapterIndex() {
+            const currentPath = window.location.hash;
+            return chapters.indexOf(currentPath);
+        }
+
+        function prevChapter() {
+            const currentIndex = getCurrentChapterIndex();
+            if (currentIndex > 0) {
+                window.location.hash = chapters[currentIndex - 1];
             }
         }
 
-        // 添加键盘事件监听
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') {
-                const prevLink = document.querySelector('.pagination-item--previous');
-                if (prevLink) prevLink.click();
-            } else if (e.key === 'ArrowRight') {
-                const nextLink = document.querySelector('.pagination-item--next');
-                if (nextLink) nextLink.click();
+        function nextChapter() {
+            const currentIndex = getCurrentChapterIndex();
+            if (currentIndex < chapters.length - 1) {
+                window.location.hash = chapters[currentIndex + 1];
             }
-        });
+        }
+
+        // 更新按钮状态
+        function updateNavButtons() {
+            const currentIndex = getCurrentChapterIndex();
+            const prevButton = document.querySelector('.prev-chapter');
+            const nextButton = document.querySelector('.next-chapter');
+            
+            if (prevButton && nextButton) {
+                prevButton.disabled = currentIndex <= 0;
+                nextButton.disabled = currentIndex >= chapters.length - 1 || currentIndex === -1;
+            }
+        }
+
+        // 监听路由变化
+        window.addEventListener('hashchange', updateNavButtons);
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
