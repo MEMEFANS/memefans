@@ -20,21 +20,15 @@
             padding: 20px;
         }
         /* 修改导航按钮样式 */
-        .navigation-buttons {
+        .pagination-item {
             position: fixed;
             bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
             z-index: 999;
-        }
-        .nav-button {
-            padding: 12px 24px;
             background: rgba(29, 161, 242, 0.9);
-            color: white;
+            color: white !important;
             border: none;
             border-radius: 8px;
+            padding: 12px 24px;
             cursor: pointer;
             font-size: 16px;
             font-weight: 500;
@@ -43,46 +37,42 @@
             gap: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            text-decoration: none !important;
         }
-        .nav-button:hover {
+        .pagination-item:hover {
             background: rgba(29, 161, 242, 1);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             transform: translateY(-2px);
         }
-        .nav-button:active {
+        .pagination-item:active {
             transform: translateY(0);
         }
-        .nav-button.prev::before {
+        .pagination-item--previous {
+            left: 30%;
+        }
+        .pagination-item--next {
+            right: 30%;
+        }
+        .pagination-item--previous::before {
             content: '←';
             font-size: 20px;
         }
-        .nav-button.next::after {
+        .pagination-item--next::after {
             content: '→';
             font-size: 20px;
         }
         /* 移动端适配 */
         @media screen and (max-width: 768px) {
-            .navigation-buttons {
-                bottom: 20px;
-                flex-direction: column;
-                gap: 10px;
-            }
-            .nav-button {
+            .pagination-item {
                 padding: 10px 20px;
                 font-size: 14px;
             }
-        }
-        /* 键盘快捷键提示 */
-        .nav-button::after {
-            font-size: 12px;
-            opacity: 0.7;
-            margin-left: 8px;
-        }
-        .nav-button.prev::after {
-            content: '(←)';
-        }
-        .nav-button.next::after {
-            content: '(→)';
+            .pagination-item--previous {
+                left: 20px;
+            }
+            .pagination-item--next {
+                right: 20px;
+            }
         }
     </style>
 </head>
@@ -90,26 +80,6 @@
     <div id="app"></div>
     
     <script>
-        // 翻页功能
-        function previousPage() {
-            const prevLink = document.querySelector('.pagination-item--previous a');
-            if (prevLink) prevLink.click();
-        }
-
-        function nextPage() {
-            const nextLink = document.querySelector('.pagination-item--next a');
-            if (nextLink) nextLink.click();
-        }
-
-        // 添加键盘事件监听
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') {
-                previousPage();
-            } else if (e.key === 'ArrowRight') {
-                nextPage();
-            }
-        });
-
         window.$docsify = {
             el: '#app',
             name: 'MEMEFANS Whitepaper',
@@ -139,63 +109,6 @@
                 errorText: 'Error',
                 successText: 'Copied!'
             },
-            // 添加导航按钮插件
-            plugins: [
-                function(hook) {
-                    hook.afterEach(function(html, next) {
-                        // 检查当前页面是否属于白皮书部分
-                        const isWhitepaperPage = () => {
-                            const path = window.location.hash.toLowerCase();
-                            return path.includes('/whitepaper/') || 
-                                   path.includes('executive-summary') ||
-                                   path.includes('technical-architecture') ||
-                                   path.includes('token-economics') ||
-                                   path.includes('market-analysis') ||
-                                   path.includes('product-features') ||
-                                   path.includes('business-model') ||
-                                   path.includes('risk-analysis') ||
-                                   path.includes('community-ecosystem') ||
-                                   path.includes('future-development') ||
-                                   path.includes('governance');
-                        };
-
-                        // 只在白皮书页面添加导航按钮
-                        if (isWhitepaperPage()) {
-                            const nav = `
-                                <div class="navigation-buttons">
-                                    <button class="nav-button prev" onclick="previousPage()">上一章</button>
-                                    <button class="nav-button next" onclick="nextPage()">下一章</button>
-                                </div>
-                            `;
-                            html = html + nav;
-                        }
-                        next(html);
-                    });
-
-                    // 添加路由变化监听
-                    hook.mounted(function() {
-                        const observer = new MutationObserver(function(mutations) {
-                            mutations.forEach(function(mutation) {
-                                if (mutation.type === 'childList') {
-                                    const buttons = document.querySelector('.navigation-buttons');
-                                    if (buttons) {
-                                        if (!isWhitepaperPage()) {
-                                            buttons.style.display = 'none';
-                                        } else {
-                                            buttons.style.display = 'flex';
-                                        }
-                                    }
-                                }
-                            });
-                        });
-
-                        observer.observe(document.body, {
-                            childList: true,
-                            subtree: true
-                        });
-                    });
-                }
-            ],
             // Mermaid 配置
             markdown: {
                 renderer: {
@@ -213,22 +126,16 @@
             }
         }
 
-        // Mermaid 初始化
-        window.$docsify.plugins = [].concat(function(hook, vm) {
-            hook.doneEach(function() {
-                var mermaidElements = document.querySelectorAll(".mermaid");
-                mermaidElements.forEach(function(element) {
-                    try {
-                        mermaid.render('mermaid-diagram-' + num++, element.textContent, function(svgCode) {
-                            element.innerHTML = svgCode;
-                        });
-                    } catch (error) {
-                        console.error("Mermaid rendering failed:", error);
-                        element.innerHTML = '<pre>' + error + '</pre>';
-                    }
-                });
-            });
-        }, window.$docsify.plugins || []);
+        // 添加键盘事件监听
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                const prevLink = document.querySelector('.pagination-item--previous');
+                if (prevLink) prevLink.click();
+            } else if (e.key === 'ArrowRight') {
+                const nextLink = document.querySelector('.pagination-item--next');
+                if (nextLink) nextLink.click();
+            }
+        });
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
