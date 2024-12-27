@@ -51,11 +51,21 @@ graph TD
 
 ### Market Share Distribution
 ```mermaid
-pie
-    title Market Share Distribution
-    "Content Creators" : 45
-    "Social Platforms" : 30
-    "Token Platforms" : 25
+graph TD
+    subgraph Market Share
+        CC[Content Creators\n45%]
+        SP[Social Platforms\n30%]
+        TP[Token Platforms\n25%]
+    end
+    
+    MS((Market Share)) --> CC
+    MS --> SP
+    MS --> TP
+    
+    style MS fill:#4682B4,color:#FFFFFF
+    style CC fill:#E6E6FA,color:#000000
+    style SP fill:#F0FFF0,color:#000000
+    style TP fill:#98FB98,color:#000000
 ```
 
 ### Industry Trends
