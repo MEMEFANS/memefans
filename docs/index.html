@@ -41,17 +41,6 @@
     <div id="app"></div>
     <script src="//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
-        var num = 0;
-        mermaid.initialize({
-            startOnLoad: false,
-            theme: 'default',
-            securityLevel: 'loose',
-            themeVariables: {
-                fontSize: '16px'
-            }
-        });
-    </script>
-    <script>
         window.$docsify = {
             el: '#app',
             name: 'MEMEFANS',
@@ -81,19 +70,36 @@
                     code: function(code, lang) {
                         if (lang === "mermaid") {
                             return (
-                                '<div class="mermaid">' + code + "</div>"
+                                '<div class="mermaid">' + mermaid.render('mermaid-svg-' + num++, code) + "</div>"
                             );
                         }
                         return this.origin.code.apply(this, arguments);
                     }
-                },
-                smartypants: true,
-                breaks: false,
-                pedantic: false,
-                gfm: true,
-                tables: true,
-                xhtml: false
-            }
+                }
+            },
+            plugins: [
+                function(hook, vm) {
+                    hook.ready(function() {
+                        mermaid.initialize({
+                            startOnLoad: false,
+                            securityLevel: 'loose',
+                            theme: 'default'
+                        });
+                    });
+                    hook.doneEach(function() {
+                        document.querySelectorAll('.mermaid').forEach((element, index) => {
+                            const graphDefinition = element.textContent || element.innerText;
+                            if (!element.hasAttribute('data-processed')) {
+                                const id = 'mermaid-' + index;
+                                mermaid.render(id, graphDefinition).then(({svg}) => {
+                                    element.innerHTML = svg;
+                                    element.setAttribute('data-processed', 'true');
+                                });
+                            }
+                        });
+                    });
+                }
+            ]
         };
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
@@ -102,5 +108,6 @@
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </body>
 </html>
