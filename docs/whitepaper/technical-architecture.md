@@ -38,6 +38,15 @@ graph TD
     style E fill:#87CEEB,color:#000000
     style F fill:#FFA07A,color:#000000
     style G fill:#98FB98,color:#000000
+    style H fill:#DDA0DD,color:#000000
+    style I fill:#FFB6C1,color:#000000
+    style J fill:#90EE90,color:#000000
+    style K fill:#87CEEB,color:#000000
+    style L fill:#FFFF00,color:#000000
+    style M fill:#FFA07A,color:#000000
+    style N fill:#98FB98,color:#000000
+    style O fill:#DDA0DD,color:#000000
+    style P fill:#FFB6C1,color:#000000
 ```
 
 ## Architecture Layers
@@ -442,3 +451,11 @@ graph TD
     
     style A fill:#f9f,stroke:#333,stroke-width:4px
     style B fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    style C fill:#f9f,stroke:#333,stroke-width:4px
+    style D fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    style E fill:#f9f,stroke:#333,stroke-width:4px
+    style F fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    style G fill:#f9f,stroke:#333,stroke-width:4px
+    style H fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+    style I fill:#f9f,stroke:#333,stroke-width:4px
+    style J fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5

@@ -8,17 +8,37 @@ graph TD
     A --> C[Secondary]
     A --> D[Tertiary]
     
-    B --> B1[Transaction Fees]
-    B --> B2[Gift Processing]
-    B --> B3[Token Exchange]
+    subgraph Primary Revenue
+        B --> B1[Transaction Fees]
+        B --> B2[Gift Processing]
+        B --> B3[Token Exchange]
+    end
     
-    C --> C1[Creator Pro]
-    C --> C2[VIP Features]
-    C --> C3[Enterprise API]
+    subgraph Secondary Revenue
+        C --> C1[Creator Pro]
+        C --> C2[VIP Features]
+        C --> C3[Enterprise API]
+    end
     
-    D --> D1[Sponsorships]
-    D --> D2[Integrations]
-    D --> D3[Advertising]
+    subgraph Additional Revenue
+        D --> D1[Sponsorships]
+        D --> D2[Integrations]
+        D --> D3[Advertising]
+    end
+    
+    style A fill:#4682B4,color:#FFFFFF
+    style B fill:#90EE90,color:#000000
+    style C fill:#FFB6C1,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style B1 fill:#98FB98,color:#000000
+    style B2 fill:#FFA07A,color:#000000
+    style B3 fill:#87CEEB,color:#000000
+    style C1 fill:#F0E68C,color:#000000
+    style C2 fill:#E6E6FA,color:#000000
+    style C3 fill:#FFF0F5,color:#000000
+    style D1 fill:#B0E0E6,color:#000000
+    style D2 fill:#FFE4E1,color:#000000
+    style D3 fill:#F0FFF0,color:#000000
 ```
 
 ## Value Proposition

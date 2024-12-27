@@ -39,11 +39,20 @@ graph TD
     B -->|Value| E[Fan Engagement]
     C -->|Value| F[Platform Growth]
     D -->|Value| G[Token Economy]
+    
+    style A fill:#90EE90,color:#000000
+    style B fill:#FFB6C1,color:#000000
+    style C fill:#DDA0DD,color:#000000
+    style D fill:#FFFF00,color:#000000
+    style E fill:#87CEEB,color:#000000
+    style F fill:#FFA07A,color:#000000
+    style G fill:#98FB98,color:#000000
 ```
 
 ### Market Share Distribution
 ```mermaid
-pie title Market Share Distribution
+pie
+    title Market Share Distribution
     "Content Creators" : 45
     "Social Platforms" : 30
     "Token Platforms" : 25

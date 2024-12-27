@@ -91,19 +91,19 @@ graph TD
     D -->|Review| M[Review Process]
     end
     
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
+    style A fill:#4682B4,color:#FFFFFF
+    style B fill:#90EE90,color:#000000
+    style C fill:#FFB6C1,color:#000000
     style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
+    style E fill:#98FB98,color:#000000
     style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
+    style G fill:#87CEEB,color:#000000
+    style H fill:#F0E68C,color:#000000
+    style I fill:#E6E6FA,color:#000000
+    style J fill:#FFF0F5,color:#000000
+    style K fill:#B0E0E6,color:#000000
+    style L fill:#FFE4E1,color:#000000
+    style M fill:#F0FFF0,color:#000000
 ```
 
 ## Proposal Process Flow
