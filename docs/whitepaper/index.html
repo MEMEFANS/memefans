@@ -19,6 +19,51 @@
         .sidebar {
             padding: 20px;
         }
+        /* 添加固定定位的翻页按钮 */
+        .page-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 80px;
+            background: rgba(29, 161, 242, 0.1);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .page-nav:hover {
+            background: rgba(29, 161, 242, 0.2);
+        }
+        .page-nav.prev {
+            left: 300px; /* 侧边栏宽度 + 间距 */
+        }
+        .page-nav.next {
+            right: 20px;
+        }
+        .page-nav::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border-top: 2px solid #1da1f2;
+            border-right: 2px solid #1da1f2;
+            transition: all 0.3s ease;
+        }
+        .page-nav.prev::before {
+            transform: rotate(-135deg);
+        }
+        .page-nav.next::before {
+            transform: rotate(45deg);
+        }
+        /* 移动端适配 */
+        @media screen and (max-width: 768px) {
+            .page-nav.prev {
+                left: 20px;
+            }
+        }
         .pagination-item {
             margin: 20px 0;
             padding: 10px;
@@ -47,7 +92,43 @@
 </head>
 <body>
     <div id="app"></div>
+    <!-- 添加翻页按钮 -->
+    <div class="page-nav prev" onclick="previousPage()" title="上一章"></div>
+    <div class="page-nav next" onclick="nextPage()" title="下一章"></div>
+    
     <script>
+        // 翻页功能
+        function previousPage() {
+            const event = new KeyboardEvent('keydown', {
+                key: 'ArrowLeft',
+                keyCode: 37,
+                which: 37,
+                bubbles: true
+            });
+            document.dispatchEvent(event);
+        }
+
+        function nextPage() {
+            const event = new KeyboardEvent('keydown', {
+                key: 'ArrowRight',
+                keyCode: 39,
+                which: 39,
+                bubbles: true
+            });
+            document.dispatchEvent(event);
+        }
+
+        // 添加键盘事件监听
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                const prevLink = document.querySelector('.pagination-item--previous a');
+                if (prevLink) prevLink.click();
+            } else if (e.key === 'ArrowRight') {
+                const nextLink = document.querySelector('.pagination-item--next a');
+                if (nextLink) nextLink.click();
+            }
+        });
+
         window.$docsify = {
             el: '#app',
             name: 'MEMEFANS Whitepaper',
