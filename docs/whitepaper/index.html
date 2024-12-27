@@ -142,13 +142,32 @@
             // 添加导航按钮插件
             plugins: [
                 function(hook) {
-                    hook.afterEach(function(html) {
-                        return html + `
-                            <div class="navigation-buttons">
-                                <button class="nav-button prev" onclick="previousPage()">上一章</button>
-                                <button class="nav-button next" onclick="nextPage()">下一章</button>
-                            </div>
-                        `;
+                    hook.afterEach(function(html, next) {
+                        // 检查当前页面是否属于白皮书部分
+                        const path = window.location.hash;
+                        const whitepaperPaths = [
+                            '#/whitepaper/',
+                            '#/executive-summary',
+                            '#/technical-architecture',
+                            '#/token-economics',
+                            '#/market-analysis',
+                            '#/product-features',
+                            '#/business-model',
+                            '#/risk-analysis',
+                            '#/community-ecosystem',
+                            '#/future-development',
+                            '#/governance'
+                        ];
+                        
+                        if (whitepaperPaths.some(p => path.includes(p))) {
+                            html += `
+                                <div class="navigation-buttons">
+                                    <button class="nav-button prev" onclick="previousPage()">上一章</button>
+                                    <button class="nav-button next" onclick="nextPage()">下一章</button>
+                                </div>
+                            `;
+                        }
+                        next(html);
                     });
                 }
             ],
