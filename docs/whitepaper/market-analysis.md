@@ -511,4 +511,4 @@ graph LR
     end
 ```
 
-[← Previous](executive-summary.md) [Next →](product-features.md)
+[← Previous](token-economics.md) [Next →](product-features.md)
