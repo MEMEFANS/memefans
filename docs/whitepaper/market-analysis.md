@@ -67,18 +67,41 @@ pie
 ### Competitive Landscape
 
 ```mermaid
-quadrantChart
-    title Competitor Positioning
-    x-axis Low Platform Integration --> High Platform Integration
-    y-axis Low Token Utility --> High Token Utility
-    quadrant-1 Market Leaders
-    quadrant-2 Platform Focused
-    quadrant-3 Token Focused
-    quadrant-4 Emerging Players
-    MEMEFANS: [0.8, 0.9]
-    "Competitor A": [0.6, 0.7]
-    "Competitor B": [0.4, 0.8]
-    "Competitor C": [0.7, 0.5]
+graph TD
+    subgraph Market Leaders
+        ML[MEMEFANS]
+        MA[Competitor A]
+    end
+    
+    subgraph Platform Focused
+        PF[Competitor C]
+    end
+    
+    subgraph Token Focused
+        TF[Competitor B]
+    end
+    
+    subgraph Integration & Utility
+        PI[Platform Integration]
+        TU[Token Utility]
+    end
+    
+    PI -->|High| ML
+    PI -->|Medium| MA
+    PI -->|Medium| PF
+    PI -->|Low| TF
+    
+    TU -->|High| ML
+    TU -->|Medium| MA
+    TU -->|Low| PF
+    TU -->|High| TF
+    
+    style ML fill:#4682B4,color:#FFFFFF
+    style MA fill:#90EE90,color:#000000
+    style PF fill:#FFB6C1,color:#000000
+    style TF fill:#DDA0DD,color:#000000
+    style PI fill:#FFA07A,color:#000000
+    style TU fill:#87CEEB,color:#000000
 ```
 
 ### Feature Comparison
