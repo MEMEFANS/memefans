@@ -1,3 +1,35 @@
+<style>
+.markdown-body {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.markdown-body h1 {
+    font-size: 28px;
+    margin-top: 32px;
+}
+
+.markdown-body h2 {
+    font-size: 24px;
+    margin-top: 28px;
+}
+
+.markdown-body h3 {
+    font-size: 20px;
+    margin-top: 24px;
+}
+
+.markdown-body p {
+    font-size: 16px;
+    margin: 16px 0;
+}
+
+.mermaid {
+    width: 80%;
+    margin: 20px auto;
+}
+</style>
+
 # Product Features
 
 ## Core Features Overview
@@ -5,6 +37,7 @@
 MEMEFANS provides a comprehensive suite of features designed to empower creators and engage communities.
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 flowchart TD
     MEMEFANS((MEMEFANS))
     
@@ -51,12 +84,12 @@ flowchart TD
     M4 --> R3
     
     %% Styles
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px
-    classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px,rx:20,ry:20
-    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px
-    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px
-    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px
-    classDef subgraph fill:transparent,stroke:#DFE1E6,color:#172B4D
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px,font-size:12px
+    classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px,rx:20,ry:20,font-size:14px
+    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px,font-size:12px
+    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px,font-size:12px
+    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px,font-size:12px
+    classDef subgraph fill:transparent,stroke:#DFE1E6,color:#172B4D,font-size:13px
     
     class MEMEFANS platform
     class T1,T2,T3,T4,T5 tech
@@ -70,6 +103,7 @@ flowchart TD
 ### Gift Flow Process
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 sequenceDiagram
     participant U as User
     participant E as Extension
@@ -91,6 +125,7 @@ sequenceDiagram
 ### Batch Processing System
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 graph TD
     A[Batch Request] -->|Collect| B[Transaction Queue]
     B -->|Optimize| C[Gas Optimization]
@@ -122,6 +157,7 @@ graph TD
 ### Content Management System
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 graph TD
     A[Content Creation] -->|Post| B[Content Types]
     B -->|Store| C[Content Storage]
@@ -178,6 +214,7 @@ graph TD
 ### Analytics Dashboard
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 graph TD
     A[Analytics Engine] -->|Collect| B[Data Sources]
     B -->|Process| C[Analysis]
@@ -233,6 +270,7 @@ graph TD
 ### Interaction System
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 graph TD
     A[User Interactions] -->|Enable| B[Social Actions]
     B -->|Generate| C[Engagement]
@@ -291,6 +329,7 @@ graph TD
 ### Wallet System
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 graph TD
     A[Wallet Integration] -->|Connect| B[Web3 Wallet]
     B -->|Manage| C[Token Operations]
@@ -346,6 +385,7 @@ graph TD
 ### Browser Extension
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 graph TD
     A[Extension] -->|Inject| B[Web Interface]
     B -->|Monitor| C[User Actions]
@@ -612,6 +652,7 @@ For support or feedback, please visit our GitHub repository or contact us throug
 ## Core Features Overview
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 flowchart TD
     MEMEFANS((MEMEFANS))
     
@@ -658,12 +699,12 @@ flowchart TD
     M4 --> R3
     
     %% Styles
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px
-    classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px,rx:20,ry:20
-    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px
-    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px
-    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px
-    classDef subgraph fill:transparent,stroke:#DFE1E6,color:#172B4D
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px,font-size:12px
+    classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px,rx:20,ry:20,font-size:14px
+    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px,font-size:12px
+    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px,font-size:12px
+    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px,font-size:12px
+    classDef subgraph fill:transparent,stroke:#DFE1E6,color:#172B4D,font-size:13px
     
     class MEMEFANS platform
     class T1,T2,T3,T4,T5 tech
@@ -675,6 +716,7 @@ flowchart TD
 ## Content Management Flow
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 sequenceDiagram
     participant C as Creator
     participant P as Platform
@@ -696,6 +738,7 @@ sequenceDiagram
 ## User Interaction Flow
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 graph TD
     A[User Interaction] -->|Content| B[Content Actions]
     A -->|Social| C[Social Actions]
@@ -737,6 +780,7 @@ graph TD
 ## Creator Tools Flow
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 graph TD
     A[Creator Tools] -->|Content| B[Content Tools]
     A -->|Analytics| C[Analytics Tools]
@@ -778,6 +822,7 @@ graph TD
 ## Monetization Flow
 
 <div class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px' }}}%%
 graph TD
     A[Monetization] -->|Revenue| B[Revenue Streams]
     A -->|Payment| C[Payment Process]
