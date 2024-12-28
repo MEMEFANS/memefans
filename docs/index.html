@@ -11,10 +11,7 @@
         :root {
             --theme-color: #1da1f2;
         }
-        .markdown-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px 15px;
+        body {
             font-size: 16px;
             line-height: 1.6;
         }
@@ -30,22 +27,45 @@
             flex-direction: column;
             align-items: center;
         }
+        main {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .markdown-section {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 15px;
+        }
         .markdown-section > * {
             width: 100%;
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
+        /* 统一所有内容元素的宽度 */
+        .markdown-section h1,
+        .markdown-section h2,
+        .markdown-section h3,
+        .markdown-section h4,
+        .markdown-section h5,
+        .markdown-section h6,
+        .markdown-section p,
         .markdown-section ul,
         .markdown-section ol,
-        .markdown-section p,
         .markdown-section blockquote,
         .markdown-section table,
-        .markdown-section pre {
+        .markdown-section pre,
+        .markdown-section .mermaid {
             width: 100%;
             max-width: 900px;
             margin: 1em auto;
         }
+        /* 列表样式 */
         .markdown-section ul,
         .markdown-section ol {
             padding-left: 2em;
@@ -60,23 +80,12 @@
             width: auto;
             max-width: none;
         }
-        .markdown-section h1 {
-            font-size: 2em;
-            margin: 1em 0;
-        }
-        .markdown-section h2 {
-            font-size: 1.6em;
-            margin: 1em 0;
-        }
-        .markdown-section h3 {
-            font-size: 1.3em;
-            margin: 1em 0;
-        }
-        .markdown-section p,
-        .markdown-section li {
-            font-size: 1.1em;
-            margin: 1em 0;
-            line-height: 1.6;
+        /* 确保图片和图表居中且不超出最大宽度 */
+        .markdown-section img,
+        .markdown-section svg {
+            display: block;
+            max-width: 900px;
+            margin: 1em auto;
         }
         .mermaid {
             text-align: center;
