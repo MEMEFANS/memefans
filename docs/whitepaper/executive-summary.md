@@ -1,5 +1,7 @@
 # MEMEFANS: The Future of Social Token Distribution
 
+<div style="text-align: center;">
+
 ## Project Overview
 
 MEMEFANS is a revolutionary social token distribution platform that seamlessly integrates with Twitter to enable content creators and their communities to engage in meaningful token-based interactions. Our platform leverages blockchain technology to create a transparent, efficient, and user-friendly ecosystem for social token distribution.
@@ -186,3 +188,5 @@ graph LR
   - Staking rewards
   - Liquidity incentives
   - Community treasury
+
+</div>

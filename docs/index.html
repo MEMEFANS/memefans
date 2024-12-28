@@ -13,9 +13,10 @@
         }
         .markdown-section {
             max-width: 100%;
-            margin: 0;
+            margin: 0 auto;
             padding: 20px;
             overflow-x: auto;
+            text-align: center;
         }
         .content {
             padding-top: 0;
@@ -25,6 +26,20 @@
             padding-bottom: 40px;
             overflow-y: auto;
             width: calc(100% - 300px);
+        }
+        @media screen and (max-width: 768px) {
+            .content {
+                left: 0;
+                width: 100%;
+            }
+            .markdown-section {
+                padding: 10px;
+            }
+            .mermaid {
+                width: 100%;
+                margin: 10px 0;
+                padding: 10px;
+            }
         }
         .sidebar {
             padding: 20px;
