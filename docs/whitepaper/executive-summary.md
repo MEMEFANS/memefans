@@ -7,7 +7,17 @@ MEMEFANS is a revolutionary social token distribution platform that seamlessly i
 ## Platform Overview
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': { 'fontSize': '14px'}, 'flowchart': {'width': 800, 'height': 500 }}}%%
+%%{
+  init: {
+    'theme': 'default',
+    'themeVariables': { 'fontSize': '14px'},
+    'flowchart': {
+      'diagramPadding': 8,
+      'htmlLabels': true,
+      'curve': 'basis'
+    }
+  }
+}%%
 graph TD
     MEMEFANS((MEMEFANS)) --> CF[Core Features]
     MEMEFANS --> TECH[Technology]
@@ -44,7 +54,17 @@ graph TD
 ## System Architecture
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': { 'fontSize': '14px'}, 'flowchart': {'width': 700, 'height': 400 }}}%%
+%%{
+  init: {
+    'theme': 'default',
+    'themeVariables': { 'fontSize': '14px'},
+    'flowchart': {
+      'diagramPadding': 8,
+      'htmlLabels': true,
+      'curve': 'basis'
+    }
+  }
+}%%
 graph TD
     A[Social Media Users] -->|Interact| B[MEMEFANS Extension]
     B -->|Process Transactions| C[Zero-Gas System]
@@ -66,7 +86,17 @@ graph TD
 ### Zero-Gas Model
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': { 'fontSize': '14px'}, 'flowchart': {'width': 600, 'height': 300 }}}%%
+%%{
+  init: {
+    'theme': 'default',
+    'themeVariables': { 'fontSize': '14px'},
+    'flowchart': {
+      'diagramPadding': 8,
+      'htmlLabels': true,
+      'curve': 'basis'
+    }
+  }
+}%%
 graph LR
     A[User Action] -->|Trigger| B[Batch Queue]
     B -->|Accumulate| C[Process Batch]
@@ -86,7 +116,17 @@ graph LR
 ### Social Integration
 
 ```mermaid
-%%{init: {'theme': 'default', 'themeVariables': { 'fontSize': '14px'}, 'flowchart': {'width': 600, 'height': 300 }}}%%
+%%{
+  init: {
+    'theme': 'default',
+    'themeVariables': { 'fontSize': '14px'},
+    'flowchart': {
+      'diagramPadding': 8,
+      'htmlLabels': true,
+      'curve': 'basis'
+    }
+  }
+}%%
 graph LR
     A[Twitter] -->|Connect| B[MEMEFANS]
     B -->|Monitor| C[Engagement]
