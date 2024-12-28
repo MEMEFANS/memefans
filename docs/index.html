@@ -37,11 +37,28 @@
             margin-right: auto;
         }
         .markdown-section ul,
-        .markdown-section ol {
+        .markdown-section ol,
+        .markdown-section p,
+        .markdown-section blockquote,
+        .markdown-section table,
+        .markdown-section pre {
             width: 100%;
             max-width: 900px;
-            padding-left: 2em;
             margin: 1em auto;
+        }
+        .markdown-section ul,
+        .markdown-section ol {
+            padding-left: 2em;
+        }
+        .markdown-section li {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 0.5em 0;
+        }
+        .markdown-section li p {
+            margin: 0.5em 0;
+            width: auto;
+            max-width: none;
         }
         .markdown-section h1 {
             font-size: 2em;
