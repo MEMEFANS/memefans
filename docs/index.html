@@ -441,19 +441,14 @@
         }
     </script>
     <script>
-        // Sidebar toggle
-        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
-            document.body.classList.toggle('close');
+        // 添加路由切换事件监听
+        window.addEventListener('hashchange', function() {
+            window.scrollTo(0, 0);
         });
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768 && 
-                !e.target.closest('.sidebar') && 
-                !e.target.closest('.sidebar-toggle') && 
-                document.body.classList.contains('close')) {
-                document.body.classList.remove('close');
-            }
+        
+        // 页面加载完成后也滚动到顶部
+        window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
         });
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
