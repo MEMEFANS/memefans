@@ -5,6 +5,22 @@
 MEMEFANS is built on a modular, scalable microservices architecture based on the Solana blockchain. The system consists of the following core components:
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'default',
+    'themeVariables': { 
+      'fontSize': '14px',
+      'fontFamily': 'arial',
+      'nodeSpacing': 50,
+      'rankSpacing': 50
+    },
+    'flowchart': {
+      'diagramPadding': 20,
+      'htmlLabels': true,
+      'curve': 'basis'
+    }
+  }
+}%%
 graph TD
     subgraph Frontend [Chrome Extension]
         A[User Interface] -->|Interact| B[Built-in Wallet]
@@ -436,6 +452,22 @@ class BlockchainService {
   - Testing procedures
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'default',
+    'themeVariables': { 
+      'fontSize': '14px',
+      'fontFamily': 'arial',
+      'nodeSpacing': 50,
+      'rankSpacing': 50
+    },
+    'flowchart': {
+      'diagramPadding': 20,
+      'htmlLabels': true,
+      'curve': 'basis'
+    }
+  }
+}%%
 graph TD
     A[Chrome Extension] -->|Interacts with| B[Solana Network]
     A -->|Manages| C[User Wallet]
