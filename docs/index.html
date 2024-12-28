@@ -15,7 +15,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 30px 15px;
-            text-align: center;
         }
         .content {
             padding-top: 0;
@@ -25,62 +24,12 @@
             padding-bottom: 40px;
             overflow-y: auto;
             width: calc(100% - 300px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        @media screen and (max-width: 768px) {
-            .content {
-                left: 0;
-                width: 100%;
-                transition: transform .25s ease-out;
-            }
-            .markdown-section {
-                padding: 10px;
-            }
-            .mermaid {
-                width: 100%;
-                margin: 5px 0;
-                padding: 5px;
-                font-size: 10px;
-                transform: scale(0.9);
-                transform-origin: center center;
-            }
-            .sidebar {
-                transform: translateX(-300px);
-                transition: transform .25s ease-out;
-            }
-            .sidebar-toggle {
-                display: block;
-            }
-            body.close .sidebar {
-                transform: translateX(0);
-            }
-            body.close .content {
-                transform: translateX(300px);
-            }
-        }
-        .sidebar-toggle {
-            background-color: transparent;
-            border: 0;
-            outline: none;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            text-align: center;
-            transition: opacity .3s;
-            width: 30px;
-            width: 284px;
-            z-index: 4;
-            cursor: pointer;
-        }
-        .sidebar-toggle:hover .sidebar-toggle-button {
-            opacity: .4;
-        }
-        .sidebar-toggle span {
-            background-color: var(--theme-color, #42b983);
-            display: block;
-            margin-bottom: 4px;
-            width: 16px;
-            height: 2px;
+        .markdown-section > * {
+            width: 100%;
         }
         .mermaid {
             text-align: center;
@@ -99,6 +48,24 @@
         .mermaid svg {
             max-width: 100%;
             height: auto !important;
+        }
+        @media screen and (max-width: 768px) {
+            .content {
+                left: 0;
+                width: 100%;
+                transition: transform .25s ease-out;
+            }
+            .markdown-section {
+                padding: 10px;
+            }
+            .mermaid {
+                width: 100%;
+                margin: 5px 0;
+                padding: 5px;
+                font-size: 10px;
+                transform: scale(0.9);
+                transform-origin: center center;
+            }
         }
         .nav-buttons {
             display: flex;
