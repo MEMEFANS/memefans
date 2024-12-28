@@ -5,16 +5,15 @@
 MEMEFANS provides a comprehensive suite of features designed to empower creators and engage communities.
 
 <div class="mermaid">
-graph TD
+flowchart TD
     MEMEFANS((MEMEFANS))
     
-    subgraph Technology[Technical Foundation]
-        direction TB
-        T1[Analytics Dashboard]
-        T2[Solana Blockchain]
-        T3[PUMP DEX Integration]
-        T4[Chrome Extension]
-        T5[Smart Contracts]
+    subgraph Tech[Technical Foundation]
+        T1[Analytics\nDashboard]
+        T2[Solana\nBlockchain]
+        T3[PUMP DEX\nIntegration]
+        T4[Chrome\nExtension]
+        T5[Smart\nContracts]
         
         T2 --> T5
         T5 --> T3
@@ -22,30 +21,28 @@ graph TD
     end
     
     subgraph Market[Market Ecosystem]
-        direction TB
-        M1[Content Creators]
-        M2[Social Influencers]
-        M3[Community Managers]
-        M4[Brand Partners]
+        M1[Content\nCreators]
+        M2[Social\nInfluencers]
+        M3[Community\nManagers]
+        M4[Brand\nPartners]
         
         M1 --> M2
         M2 --> M3
         M3 --> M4
     end
     
-    subgraph Revenue[Revenue Model]
-        direction TB
-        R1[Transaction Fees]
-        R2[Premium Features]
-        R3[Partnership Revenue]
+    subgraph Rev[Revenue Model]
+        R1[Transaction\nFees]
+        R2[Premium\nFeatures]
+        R3[Partnership\nRevenue]
         
         R1 --> R2
         R2 --> R3
     end
     
-    MEMEFANS --> Technology
+    MEMEFANS --> Tech
     MEMEFANS --> Market
-    MEMEFANS --> Revenue
+    MEMEFANS --> Rev
     
     %% Cross-component relationships
     T4 --> M1
@@ -53,20 +50,19 @@ graph TD
     T3 --> R1
     M4 --> R3
     
+    %% Styles
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px
     classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px,rx:20,ry:20
-    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
-    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
-    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
-    classDef subgraph fill:#F4F5F7,stroke:#DFE1E6,color:#172B4D,stroke-width:1px
+    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px
+    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px
+    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px
+    classDef subgraph fill:transparent,stroke:#DFE1E6,color:#172B4D
     
     class MEMEFANS platform
     class T1,T2,T3,T4,T5 tech
     class M1,M2,M3,M4 market
     class R1,R2,R3 revenue
-    class Technology,Market,Revenue subgraph
-    
-    %% Layout direction
-    direction TB
+    class Tech,Market,Rev subgraph
 </div>
 
 ## Gift System Architecture
@@ -616,16 +612,15 @@ For support or feedback, please visit our GitHub repository or contact us throug
 ## Core Features Overview
 
 <div class="mermaid">
-graph TD
+flowchart TD
     MEMEFANS((MEMEFANS))
     
-    subgraph Technology[Technical Foundation]
-        direction TB
-        T1[Analytics Dashboard]
-        T2[Solana Blockchain]
-        T3[PUMP DEX Integration]
-        T4[Chrome Extension]
-        T5[Smart Contracts]
+    subgraph Tech[Technical Foundation]
+        T1[Analytics\nDashboard]
+        T2[Solana\nBlockchain]
+        T3[PUMP DEX\nIntegration]
+        T4[Chrome\nExtension]
+        T5[Smart\nContracts]
         
         T2 --> T5
         T5 --> T3
@@ -633,30 +628,28 @@ graph TD
     end
     
     subgraph Market[Market Ecosystem]
-        direction TB
-        M1[Content Creators]
-        M2[Social Influencers]
-        M3[Community Managers]
-        M4[Brand Partners]
+        M1[Content\nCreators]
+        M2[Social\nInfluencers]
+        M3[Community\nManagers]
+        M4[Brand\nPartners]
         
         M1 --> M2
         M2 --> M3
         M3 --> M4
     end
     
-    subgraph Revenue[Revenue Model]
-        direction TB
-        R1[Transaction Fees]
-        R2[Premium Features]
-        R3[Partnership Revenue]
+    subgraph Rev[Revenue Model]
+        R1[Transaction\nFees]
+        R2[Premium\nFeatures]
+        R3[Partnership\nRevenue]
         
         R1 --> R2
         R2 --> R3
     end
     
-    MEMEFANS --> Technology
+    MEMEFANS --> Tech
     MEMEFANS --> Market
-    MEMEFANS --> Revenue
+    MEMEFANS --> Rev
     
     %% Cross-component relationships
     T4 --> M1
@@ -664,20 +657,19 @@ graph TD
     T3 --> R1
     M4 --> R3
     
+    %% Styles
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px
     classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px,rx:20,ry:20
-    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
-    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
-    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px,rx:10,ry:10
-    classDef subgraph fill:#F4F5F7,stroke:#DFE1E6,color:#172B4D,stroke-width:1px
+    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px
+    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px
+    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px
+    classDef subgraph fill:transparent,stroke:#DFE1E6,color:#172B4D
     
     class MEMEFANS platform
     class T1,T2,T3,T4,T5 tech
     class M1,M2,M3,M4 market
     class R1,R2,R3 revenue
-    class Technology,Market,Revenue subgraph
-    
-    %% Layout direction
-    direction TB
+    class Tech,Market,Rev subgraph
 </div>
 
 ## Content Management Flow
