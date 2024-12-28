@@ -12,39 +12,46 @@ MEMEFANS is a revolutionary social token distribution platform that seamlessly i
 %%{
   init: {
     'theme': 'default',
-    'themeVariables': { 'fontSize': '14px'},
+    'themeVariables': { 
+      'fontSize': '12px',
+      'fontFamily': 'arial',
+      'nodeSpacing': 30,
+      'rankSpacing': 30
+    },
     'flowchart': {
-      'diagramPadding': 8,
+      'diagramPadding': 4,
       'htmlLabels': true,
-      'curve': 'basis'
+      'curve': 'basis',
+      'rankSpacing': 30,
+      'nodeSpacing': 30
     }
   }
 }%%
 graph TD
-    MEMEFANS((MEMEFANS)) --> CF[Core Features]
-    MEMEFANS --> TECH[Technology]
-    MEMEFANS --> MF[Market Focus]
-    MEMEFANS --> RS[Revenue Streams]
+    MEMEFANS((MEMEFANS)) --> CF[Core<br/>Features]
+    MEMEFANS --> TECH[Tech]
+    MEMEFANS --> MF[Market<br/>Focus]
+    MEMEFANS --> RS[Revenue]
     
-    CF --> ZG[Zero-Gas Model]
-    CF --> SI[Social Integration]
-    CF --> TD[Token Distribution]
-    CF --> AD[Analytics Dashboard]
+    CF --> ZG[Zero-Gas]
+    CF --> SI[Social<br/>Integration]
+    CF --> TD[Token<br/>Distribution]
+    CF --> AD[Analytics]
     
-    TECH --> SB[Solana Blockchain]
-    TECH --> PI[PUMP DEX Integration]
-    TECH --> CE[Chrome Extension]
-    TECH --> SC[Smart Contracts]
+    TECH --> SB[Solana]
+    TECH --> PI[PUMP DEX]
+    TECH --> CE[Extension]
+    TECH --> SC[Contracts]
     
-    MF --> CC[Content Creators]
-    MF --> SI2[Social Influencers]
-    MF --> CM[Community Managers]
-    MF --> BP[Brand Partners]
+    MF --> CC[Creators]
+    MF --> SI2[Influencers]
+    MF --> CM[Community]
+    MF --> BP[Partners]
     
-    RS --> TF[Transaction Fees]
-    RS --> PF[Premium Features]
-    RS --> PR[Partnership Revenue]
-    RS --> TVG[Token Value Growth]
+    RS --> TF[Fees]
+    RS --> PF[Premium]
+    RS --> PR[Partners]
+    RS --> TVG[Growth]
     
     style MEMEFANS fill:#0000FF,color:#FFFFFF
     style CF fill:#FFFF00,color:#000000
@@ -59,21 +66,26 @@ graph TD
 %%{
   init: {
     'theme': 'default',
-    'themeVariables': { 'fontSize': '14px'},
+    'themeVariables': { 
+      'fontSize': '12px',
+      'fontFamily': 'arial',
+      'nodeSpacing': 25,
+      'rankSpacing': 25
+    },
     'flowchart': {
-      'diagramPadding': 8,
+      'diagramPadding': 4,
       'htmlLabels': true,
       'curve': 'basis'
     }
   }
 }%%
 graph TD
-    A[Social Media Users] -->|Interact| B[MEMEFANS Extension]
-    B -->|Process Transactions| C[Zero-Gas System]
-    C -->|Batch Processing| D[Blockchain]
-    B -->|Manage| E[User Wallet]
-    E -->|Secure Storage| F[Token Assets]
-    B -->|Track| G[Engagement Analytics]
+    A[Users] -->|Interact| B[Extension]
+    B -->|Process| C[Zero-Gas]
+    C -->|Batch| D[Chain]
+    B -->|Manage| E[Wallet]
+    E -->|Store| F[Assets]
+    B -->|Track| G[Analytics]
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#dfd,stroke:#333,stroke-width:2px
@@ -91,19 +103,24 @@ graph TD
 %%{
   init: {
     'theme': 'default',
-    'themeVariables': { 'fontSize': '14px'},
+    'themeVariables': { 
+      'fontSize': '12px',
+      'fontFamily': 'arial',
+      'nodeSpacing': 20,
+      'rankSpacing': 20
+    },
     'flowchart': {
-      'diagramPadding': 8,
+      'diagramPadding': 4,
       'htmlLabels': true,
       'curve': 'basis'
     }
   }
 }%%
 graph LR
-    A[User Action] -->|Trigger| B[Batch Queue]
-    B -->|Accumulate| C[Process Batch]
-    C -->|Optimize| D[Submit to Chain]
-    D -->|Confirm| E[Update Balance]
+    A[Action] -->|Trigger| B[Queue]
+    B -->|Process| C[Batch]
+    C -->|Submit| D[Chain]
+    D -->|Update| E[Balance]
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#dfd,stroke:#333,stroke-width:2px
@@ -121,19 +138,24 @@ graph LR
 %%{
   init: {
     'theme': 'default',
-    'themeVariables': { 'fontSize': '14px'},
+    'themeVariables': { 
+      'fontSize': '12px',
+      'fontFamily': 'arial',
+      'nodeSpacing': 20,
+      'rankSpacing': 20
+    },
     'flowchart': {
-      'diagramPadding': 8,
+      'diagramPadding': 4,
       'htmlLabels': true,
       'curve': 'basis'
     }
   }
 }%%
 graph LR
-    A[Twitter] -->|Connect| B[MEMEFANS]
-    B -->|Monitor| C[Engagement]
-    C -->|Trigger| D[Token Distribution]
-    D -->|Update| E[User Balance]
+    A[Twitter] -->|Link| B[MEMEFANS]
+    B -->|Track| C[Activity]
+    C -->|Give| D[Tokens]
+    D -->|Add| E[Balance]
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#dfd,stroke:#333,stroke-width:2px
