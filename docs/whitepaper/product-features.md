@@ -33,42 +33,7 @@
 
 # Product Features
 
-```mermaid
-graph TD
-    MEMEFANS((MEMEFANS))
-    
-    MEMEFANS --> A[Social Features]
-    MEMEFANS --> B[Token Integration]
-    MEMEFANS --> C[Platform Integration]
-    MEMEFANS --> D[Chrome Extension]
-    
-    subgraph Social
-        A --> A1[Comments System]
-        A --> A2[Like & Share]
-        A --> A3[Community Tools]
-    end
-    
-    subgraph Token
-        B --> B1[Gift System]
-        B --> B2[Wallet Integration]
-        B --> B3[Transaction System]
-    end
-    
-    subgraph Platform
-        C --> C1[Content Management]
-        C --> C2[User Management]
-        C --> C3[Analytics]
-    end
-    
-    subgraph Extension
-        D --> D1[Browser Interface]
-        D --> D2[Wallet Connect]
-        D --> D3[Quick Actions]
-    end
-    
-    style MEMEFANS fill:#f96,stroke:#333,stroke-width:4px
-    style A,B,C,D fill:#bbf,stroke:#333,stroke-width:2px
-```
+![Product Features](../assets/images/product-features.png)
 
 ## Core Features Overview
 
@@ -136,50 +101,18 @@ The platform consists of four main components:
 
 ## ROI Timeline
 
-```mermaid
-gantt
-    dateFormat YYYY-MM-DD
-    axisFormat " "
-    
-    section Technical
-    Development :done, dev1, 2024-01-01, 90d
-    Investment  :done, inv1, after dev1, 60d
-    Returns     :done, ret1, after inv1, 120d
-    
-    section Marketing
-    Investment  :done, inv2, 2024-03-01, 90d
-    Returns     :done, ret2, after inv2, 150d
-    
-    section Operations
-    Investment  :done, inv3, 2024-02-01, 120d
-    Returns     :done, ret3, after inv3, 180d
+### Technical Phase
+- Development: Initial platform development and infrastructure setup
+- Investment: Technical resource allocation and system optimization
+- Returns: Platform stability and scalability improvements
 
-    %% 隐藏时间轴和网格线
-    %%{
-        init: {
-            'theme': 'base',
-            'themeVariables': {
-                'primaryColor': '#9999ff',
-                'gridColor': '#ffffff',
-                'todayLineColor': '#ffffff',
-                'sectionBkgColor': '#f5f5ff',
-                'sectionBkgColor2': '#fffff5'
-            }
-        }
-    }%%
-```
+### Marketing Phase
+- Investment: Market expansion and user acquisition strategies
+- Returns: Growing user base and increased platform visibility
 
-<style>
-.mermaid {
-    background: white;
-}
-.tick, .grid, .today {
-    display: none !important;
-}
-.section {
-    opacity: 0.3;
-}
-</style>
+### Operations Phase
+- Investment: Community management and operational infrastructure
+- Returns: Enhanced user engagement and sustainable growth
 
 ## User Interaction Flow
 
