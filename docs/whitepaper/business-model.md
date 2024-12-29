@@ -366,36 +366,27 @@ Year 3:
 
 ### Investment Overview
 
-Our investment strategy is divided into three main areas:
+```mermaid
+graph TD
+    A[Total Investment] -->|Allocation| B[Technical Development]
+    A -->|Allocation| C[Marketing]
+    A -->|Allocation| D[Operations]
+    B -->|Return| E[Efficiency]
+    C -->|Return| F[User Growth]
+    D -->|Return| G[Platform Value]
+    E -->|Combined| H[Total ROI]
+    F -->|Combined| H
+    G -->|Combined| H
 
-1. **Technical Development**
-   - Primary investment in platform infrastructure
-   - Returns through improved efficiency and scalability
-
-2. **Marketing**
-   - Focus on user acquisition and brand awareness
-   - Returns measured in user growth and engagement
-
-3. **Operations**
-   - Investment in team and processes
-   - Returns through platform value and sustainability
-
-All three areas combine to generate our total ROI, with each component contributing to both immediate and long-term value creation.
-
-## ROI Timeline
-
-### Technical Phase
-- Development: Initial platform development and infrastructure setup
-- Investment: Technical resource allocation and system optimization
-- Returns: Platform stability and scalability improvements
-
-### Marketing Phase
-- Investment: Market expansion and user acquisition strategies
-- Returns: Growing user base and increased platform visibility
-
-### Operations Phase
-- Investment: Community management and operational infrastructure
-- Returns: Enhanced user engagement and sustainable growth
+    style A fill:#0000FF,color:#FFFFFF
+    style B fill:#FFFF00,color:#000000
+    style C fill:#90EE90,color:#000000
+    style D fill:#DDA0DD,color:#000000
+    style E fill:#FFB6C1,color:#000000
+    style F fill:#87CEEB,color:#000000
+    style G fill:#FFA07A,color:#000000
+    style H fill:#98FB98,color:#000000
+```
 
 ## User Category ROI Analysis
 
