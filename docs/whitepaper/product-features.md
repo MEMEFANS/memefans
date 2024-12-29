@@ -141,19 +141,20 @@ gantt
     title ROI Timeline
     dateFormat YYYY-MM-DD
     axisFormat %Y-%m
+    todayMarker off
     
     section Technical
-    Development    :dev, 2025-01-01, 2025-03-31
-    Investment     :inv1, 2025-03-01, 2025-06-30
-    Returns        :ret1, 2025-06-01, 2026-01-01
+    Development :2025-01-01, 2025-03-31
+    Investment  :2025-03-01, 2025-06-30
+    Returns     :2025-06-01, 2026-01-01
     
     section Marketing
-    Investment     :inv2, 2025-02-01, 2025-05-31
-    Returns        :ret2, 2025-05-01, 2026-01-01
+    Investment  :2025-02-01, 2025-05-31
+    Returns     :2025-05-01, 2026-01-01
     
     section Operations
-    Investment     :inv3, 2025-03-01, 2025-07-31
-    Returns        :ret3, 2025-07-01, 2026-01-01
+    Investment  :2025-03-01, 2025-07-31
+    Returns     :2025-07-01, 2026-01-01
 ```
 
 ## User Interaction Flow
