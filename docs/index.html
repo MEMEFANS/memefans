@@ -257,7 +257,11 @@
                 renderer: {
                     code: function(code, lang) {
                         if (lang === "mermaid") {
-                            return '<div class="mermaid">' + code + "</div>";
+                            return (
+                                '<div class="mermaid">' +
+                                code.replace(/2024-\d{2}/g, '').replace(/\|\|\|/g, '') +
+                                '</div>'
+                            );
                         }
                         return this.origin.code.apply(this, arguments);
                     }
