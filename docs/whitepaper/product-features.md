@@ -38,7 +38,6 @@
 MEMEFANS provides a comprehensive suite of features designed to empower creators and engage communities.
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 graph TD
     MEMEFANS((MEMEFANS))
     
@@ -48,10 +47,6 @@ graph TD
         T3[PUMP DEX Integration]
         T4[Chrome Extension]
         T5[Smart Contracts]
-        
-        T2 --> T5
-        T5 --> T3
-        T4 --> T1
     end
     
     subgraph Market[Market Ecosystem]
@@ -59,44 +54,38 @@ graph TD
         M2[Social Influencers]
         M3[Community Managers]
         M4[Brand Partners]
-        
-        M1 --> M2
-        M2 --> M3
-        M3 --> M4
     end
     
     subgraph Rev[Revenue Model]
         R1[Transaction Fees]
         R2[Premium Features]
         R3[Partnership Revenue]
-        
-        R1 --> R2
-        R2 --> R3
     end
+    
+    T2 --> T5
+    T5 --> T3
+    T4 --> T1
+    
+    M1 --> M2
+    M2 --> M3
+    M3 --> M4
+    
+    R1 --> R2
+    R2 --> R3
     
     MEMEFANS --> Tech
     MEMEFANS --> Market
     MEMEFANS --> Rev
     
-    %% Cross-component relationships
     T4 --> M1
     T1 --> M3
     T3 --> R1
     M4 --> R3
-    
-    %% Styles
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px,font-size:10px
-    classDef platform fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px,rx:20,ry:20,font-size:12px
-    classDef tech fill:#36B37E,stroke:#1F845A,color:#FFFFFF,stroke-width:1px,font-size:10px
-    classDef market fill:#FF5630,stroke:#DE350B,color:#FFFFFF,stroke-width:1px,font-size:10px
-    classDef revenue fill:#6554C0,stroke:#403294,color:#FFFFFF,stroke-width:1px,font-size:10px
-    classDef subgraph fill:transparent,stroke:#DFE1E6,color:#172B4D,font-size:11px
-    
-    class MEMEFANS platform
-    class T1,T2,T3,T4,T5 tech
-    class M1,M2,M3,M4 market
-    class R1,R2,R3 revenue
-    class Tech,Market,Rev subgraph
+
+    style MEMEFANS fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px
+    style T1,T2,T3,T4,T5 fill:#36B37E,stroke:#1F845A,color:#FFFFFF
+    style M1,M2,M3,M4 fill:#FF5630,stroke:#DE350B,color:#FFFFFF
+    style R1,R2,R3 fill:#6554C0,stroke:#403294,color:#FFFFFF
 </div>
 
 ## Gift System Architecture
@@ -104,7 +93,6 @@ graph TD
 ### Gift Flow Process
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 sequenceDiagram
     participant U as User
     participant E as Extension
@@ -126,7 +114,6 @@ sequenceDiagram
 ### Batch Processing System
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 graph TD
     A[Batch Request] -->|Collect| B[Transaction Queue]
     B -->|Optimize| C[Gas Optimization]
@@ -158,7 +145,6 @@ graph TD
 ### Content Management System
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 graph TD
     A[Content Creation] -->|Post| B[Content Types]
     B -->|Store| C[Content Storage]
@@ -215,7 +201,6 @@ graph TD
 ### Analytics Dashboard
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 graph TD
     A[Analytics Engine] -->|Collect| B[Data Sources]
     B -->|Process| C[Analysis]
@@ -271,7 +256,6 @@ graph TD
 ### Interaction System
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 graph TD
     A[User Interactions] -->|Enable| B[Social Actions]
     B -->|Generate| C[Engagement]
@@ -330,7 +314,6 @@ graph TD
 ### Wallet System
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 graph TD
     A[Wallet Integration] -->|Connect| B[Web3 Wallet]
     B -->|Manage| C[Token Operations]
@@ -386,7 +369,6 @@ graph TD
 ### Browser Extension
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 graph TD
     A[Extension] -->|Inject| B[Web Interface]
     B -->|Monitor| C[User Actions]
@@ -653,7 +635,6 @@ For support or feedback, please visit our GitHub repository or contact us throug
 ## Core Features Overview
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 graph TD
     MEMEFANS((MEMEFANS))
     
@@ -663,10 +644,6 @@ graph TD
         T3[PUMP DEX Integration]
         T4[Chrome Extension]
         T5[Smart Contracts]
-        
-        T2 --> T5
-        T5 --> T3
-        T4 --> T1
     end
     
     subgraph Market[Market Ecosystem]
@@ -674,10 +651,6 @@ graph TD
         M2[Social Influencers]
         M3[Community Managers]
         M4[Brand Partners]
-        
-        M1 --> M2
-        M2 --> M3
-        M3 --> M4
     end
     
     subgraph Features[Core Features]
@@ -685,28 +658,19 @@ graph TD
         F2[Social Interaction]
         F3[Token Economics]
         F4[Governance]
-        
-        F1 --> F2
-        F2 --> F3
-        F3 --> F4
     end
     
     MEMEFANS --> Tech
     MEMEFANS --> Market
     MEMEFANS --> Features
     
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
-    classDef highlight fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
-    classDef special fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
-    
-    class MEMEFANS highlight;
-    class Tech,Market,Features special;
+    style MEMEFANS fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px
+    style Tech,Market,Features fill:#f9f9f9,stroke:#333,stroke-width:1px
 </div>
 
 ## Content Management Flow
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 sequenceDiagram
     participant C as Creator
     participant P as Platform
@@ -728,7 +692,6 @@ sequenceDiagram
 ## User Interaction Flow
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 graph TD
     A[User Interaction] -->|Content| B[Content Actions]
     A -->|Social| C[Social Actions]
@@ -770,7 +733,6 @@ graph TD
 ## Creator Tools Flow
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 graph TD
     A[Creator Tools] -->|Content| B[Content Tools]
     A -->|Analytics| C[Analytics Tools]
@@ -812,7 +774,6 @@ graph TD
 ## Monetization Flow
 
 <div class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '12px', 'nodeSpacing': 40, 'rankSpacing': 40 }}}%%
 graph TD
     A[Monetization] -->|Revenue| B[Revenue Streams]
     A -->|Payment| C[Payment Process]
