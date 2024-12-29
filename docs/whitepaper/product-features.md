@@ -243,6 +243,63 @@ The monetization process includes:
 2. **Payment Processing**: Secure transaction processing and verification
 3. **Settlement & Payout**: Automated settlement and payout to creators
 
+## Integration Flow
+
+The platform components work together seamlessly:
+
+```mermaid
+graph TD
+    A[Chrome Extension] -->|User Interface| B[Platform Core]
+    B -->|Transaction| C[Smart Contracts]
+    C -->|Liquidity| D[PUMP DEX]
+    B -->|Data| E[Analytics Dashboard]
+    
+    subgraph User Layer
+    A
+    end
+    
+    subgraph Platform Layer
+    B
+    E
+    end
+    
+    subgraph Blockchain Layer
+    C
+    D
+    end
+    
+    F[Content Creator] -->|Uses| A
+    G[Community Manager] -->|Monitors| E
+    H[Brand Partner] -->|Integrates| B
+    
+    style A fill:#f96,stroke:#333,stroke-width:2px
+    style B fill:#96f,stroke:#333,stroke-width:2px
+    style C,D fill:#9cf,stroke:#333,stroke-width:2px
+    style E fill:#f9f,stroke:#333,stroke-width:2px
+```
+
+The integration process follows these key steps:
+
+1. **User Interface Integration**
+   - Content creators interact through the Chrome Extension
+   - Extension provides seamless access to platform features
+   - User actions are captured and processed
+
+2. **Platform Core Processing**
+   - Transactions are processed via Smart Contracts
+   - DEX provides liquidity for token operations
+   - Analytics Dashboard monitors all activities
+
+3. **Data Flow Management**
+   - User actions generate platform metrics
+   - Analytics Dashboard provides real-time insights
+   - Community managers utilize data for optimization
+
+4. **Stakeholder Integration**
+   - Content creators engage through the extension
+   - Community managers monitor through analytics
+   - Brand partners integrate through platform APIs
+
 ## Platform Integration
 
 ### Browser Extension
@@ -616,6 +673,4 @@ graph LR
 
     style A fill:#f96,stroke:#333,stroke-width:4px
     style E,F,G fill:#bbf,stroke:#333,stroke-width:2px
-```
-
 ```
