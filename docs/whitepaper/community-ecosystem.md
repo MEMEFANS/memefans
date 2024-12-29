@@ -97,16 +97,24 @@ graph TD
 
 ### 2. Event Calendar
 ```mermaid
-gantt
-    title Community Events Schedule
-    dateFormat YYYY-MM
-    section Regular Events
-    Weekly AMAs        :2024-01, 12M
-    Monthly Contests   :2024-01, 12M
-    section Special Events
-    Platform Launch    :2024-03, 2M
-    Summer Festival    :2024-06, 3M
-    Winter Campaign    :2024-12, 2M
+graph TD
+    subgraph Community Events
+        WE[Weekly Events] --> AMA[AMA Sessions]
+        WE --> CT[Community Training]
+        WE --> RW[Rewards Distribution]
+        
+        ME[Monthly Events] --> HC[Hackathons]
+        ME --> CC[Creator Contests]
+        ME --> CM[Community Meetings]
+        
+        QE[Quarterly Events] --> GV[Governance Voting]
+        QE --> PR[Platform Reviews]
+        QE --> UP[Updates & Planning]
+    end
+    
+    style WE fill:#90EE90,color:#000000
+    style ME fill:#FFB6C1,color:#000000
+    style QE fill:#DDA0DD,color:#000000
 ```
 
 ## Educational Hub
