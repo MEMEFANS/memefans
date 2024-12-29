@@ -244,7 +244,7 @@
                 renderer: {
                     code: function(code, lang) {
                         if (lang === "mermaid") {
-                            return '<pre class="mermaid">' + code + '</pre>';
+                            return '<div class="mermaid">' + code + "</div>";
                         }
                         return this.origin.code.apply(this, arguments);
                     }
@@ -252,6 +252,14 @@
             },
             plugins: [
                 function(hook) {
+                    hook.mounted(function() {
+                        scrollToTop();
+                    });
+
+                    hook.ready(function() {
+                        scrollToTop();
+                    });
+
                     hook.doneEach(function() {
                         // 初始化 mermaid 图表
                         const mermaidElements = document.querySelectorAll('.mermaid:not(.rendered)');
@@ -269,10 +277,7 @@
                         updateNavButtons();
                         
                         // 确保滚动到顶部
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
+                        scrollToTop();
                     });
 
                     hook.afterEach(function(html) {
@@ -282,7 +287,7 @@
                         if (currentPath === '' || currentPath === '#/' || currentPath === '#') {
                             return html + `
                                 <div class="nav-buttons">
-                                    <button class="nav-button next-chapter" onclick="window.location.hash='#/whitepaper/executive-summary'" style="margin-left: auto;">
+                                    <button class="nav-button next-chapter" onclick="nextToExecutiveSummary()" style="margin-left: auto;">
                                         <span class="label">
                                             <span>Executive Summary</span>
                                         </span>
@@ -316,6 +321,16 @@
                 }
             ],
         };
+
+        // 滚动到顶部的通用函数
+        function scrollToTop() {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                document.querySelector('.content').scrollTop = 0;
+            }, 100);
+        }
 
         // 所有文档页面的顺序
         const pages = [
@@ -359,9 +374,7 @@
             if (currentIndex > 0) {
                 const targetHash = pages[currentIndex - 1];
                 window.location.hash = targetHash;
-                // 强制滚动到顶部
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
+                scrollToTop();
             }
         }
 
@@ -370,10 +383,13 @@
             if (currentIndex < pages.length - 1) {
                 const targetHash = pages[currentIndex + 1];
                 window.location.hash = targetHash;
-                // 强制滚动到顶部
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
+                scrollToTop();
             }
+        }
+
+        function nextToExecutiveSummary() {
+            window.location.hash = '#/whitepaper/executive-summary';
+            scrollToTop();
         }
 
         function updateNavButtons() {
@@ -451,12 +467,12 @@
     <script>
         // 添加路由切换事件监听
         window.addEventListener('hashchange', function() {
-            window.scrollTo(0, 0);
+            scrollToTop();
         });
         
         // 页面加载完成后也滚动到顶部
         window.addEventListener('load', function() {
-            window.scrollTo(0, 0);
+            scrollToTop();
         });
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
