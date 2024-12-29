@@ -137,42 +137,31 @@ The platform consists of four main components:
 ## ROI Timeline
 
 ```mermaid
-graph TB
-    subgraph Technical["Technical"]
-        direction LR
-        T1[Development] --> T2[Investment] --> T3[Returns]
-    end
-    
-    subgraph Marketing["Marketing"]
-        direction LR
-        M1[Investment] --> M2[Returns]
-    end
-    
-    subgraph Operations["Operations"]
-        direction LR
-        O1[Investment] --> O2[Returns]
-    end
-
-    %% 设置布局
-    Technical --> Marketing
-    Marketing --> Operations
-    
-    %% 设置样式
-    classDef default fill:#9999ff,stroke:#333,stroke-width:1px
-    classDef techBg fill:#f5f5ff,stroke:none
-    classDef mktBg fill:#ffffff,stroke:none
-    classDef opsBg fill:#fffff5,stroke:none
-    
-    class T1,T2,T3 default
-    class M1,M2 default
-    class O1,O2 default
-    class Technical techBg
-    class Marketing mktBg
-    class Operations opsBg
-
-    %% 调整方向和位置
-    %%{init: {'flowchart': {'nodeSpacing': 50, 'rankSpacing': 30}}}%%
+timeline
+    section Technical
+        Development : Investment : Returns
+    section Marketing
+        Investment : Returns
+    section Operations
+        Investment : Returns
 ```
+
+<style>
+.mermaid {
+    background: white;
+}
+.section {
+    fill: #f5f5ff;
+    stroke: none;
+}
+.task {
+    fill: #9999ff;
+    stroke: #333;
+}
+.task-text {
+    fill: white;
+}
+</style>
 
 ## User Interaction Flow
 
