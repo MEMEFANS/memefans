@@ -201,6 +201,19 @@
             overflow-x: auto;
             padding: 0;
         }
+        html, body {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        .content {
+            scroll-behavior: smooth;
+        }
+        main {
+            scroll-behavior: smooth;
+        }
+        .markdown-section {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
@@ -324,12 +337,13 @@
 
         // 滚动到顶部的通用函数
         function scrollToTop() {
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-                document.querySelector('.content').scrollTop = 0;
-            }, 100);
+            const content = document.querySelector('.content');
+            if (content) {
+                content.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
         }
 
         // 所有文档页面的顺序
@@ -374,7 +388,8 @@
             if (currentIndex > 0) {
                 const targetHash = pages[currentIndex - 1];
                 window.location.hash = targetHash;
-                scrollToTop();
+                // 确保在内容加载后滚动
+                setTimeout(scrollToTop, 100);
             }
         }
 
@@ -383,13 +398,15 @@
             if (currentIndex < pages.length - 1) {
                 const targetHash = pages[currentIndex + 1];
                 window.location.hash = targetHash;
-                scrollToTop();
+                // 确保在内容加载后滚动
+                setTimeout(scrollToTop, 100);
             }
         }
 
         function nextToExecutiveSummary() {
             window.location.hash = '#/whitepaper/executive-summary';
-            scrollToTop();
+            // 确保在内容加载后滚动
+            setTimeout(scrollToTop, 100);
         }
 
         function updateNavButtons() {
@@ -467,11 +484,16 @@
     <script>
         // 添加路由切换事件监听
         window.addEventListener('hashchange', function() {
+            setTimeout(scrollToTop, 100);
+        });
+        
+        // 页面加载完成后滚动到顶部
+        window.addEventListener('load', function() {
             scrollToTop();
         });
         
-        // 页面加载完成后也滚动到顶部
-        window.addEventListener('load', function() {
+        // DOMContentLoaded 时滚动到顶部
+        document.addEventListener('DOMContentLoaded', function() {
             scrollToTop();
         });
     </script>
