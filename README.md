@@ -4,8 +4,7 @@ MEMEFANS is a Chrome extension that enables seamless FANS token distribution thr
 
 ## Documentation
 
-Visit our comprehensive documentation and whitepaper at:
-[MEMEFANS Documentation](https://memefans.github.io/twitter-token-plugin/)
+Visit our comprehensive documentation and whitepaper at: [MEMEFANS Documentation](https://memefans.github.io/memefans/)
 
 ## Key Features
 
@@ -23,12 +22,12 @@ Visit our comprehensive documentation and whitepaper at:
 
 ## Resources
 
-- [Whitepaper](https://memefans.github.io/twitter-token-plugin/#/whitepaper/)
-- [Technical Documentation](https://memefans.github.io/twitter-token-plugin/#/technical-architecture)
-- [Integration Guide](https://memefans.github.io/twitter-token-plugin/#/integration-guide)
+- [Whitepaper](https://memefans.github.io/memefans/#/whitepaper/executive-summary)
+- [Technical Documentation](https://memefans.github.io/memefans/#/whitepaper/technical-architecture)
+- [Integration Guide](https://memefans.github.io/memefans/#/whitepaper/integration-guide)
 
 ## Community
 
-- Twitter: [@MEMEFANS_io](https://twitter.com/MEMEFANS_io)
+- Twitter: [@Memefans_Gift](https://twitter.com/Memefans_Gift)
 - Discord: [Join our community](https://discord.gg/memefans)
 - Telegram: [MEMEFANS Official](https://t.me/memefans)
