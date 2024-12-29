@@ -138,22 +138,8 @@ The platform consists of four main components:
 
 ```mermaid
 gantt
-    %%{init: {
-        'theme': 'base',
-        'themeVariables': {
-            'primaryColor': '#9999ff',
-            'primaryTextColor': '#fff',
-            'primaryBorderColor': '#7777ff',
-            'lineColor': '#ffffff',
-            'gridColor': '#ffffff',
-            'sectionBkgColor': '#f5f5ff',
-            'sectionBkgColor2': '#fffff5'
-        }
-    }}%%
-    
     dateFormat YYYY-MM-DD
-    axisFormat ""
-    todayMarker off
+    axisFormat " "
     
     section Technical
     Development :done, dev1, 2024-01-01, 90d
@@ -167,6 +153,20 @@ gantt
     section Operations
     Investment  :done, inv3, 2024-02-01, 120d
     Returns     :done, ret3, after inv3, 180d
+
+    %% 隐藏时间轴和网格线
+    %%{
+        init: {
+            'theme': 'base',
+            'themeVariables': {
+                'primaryColor': '#9999ff',
+                'gridColor': '#ffffff',
+                'todayLineColor': '#ffffff',
+                'sectionBkgColor': '#f5f5ff',
+                'sectionBkgColor2': '#fffff5'
+            }
+        }
+    }%%
 ```
 
 <style>
@@ -178,9 +178,6 @@ gantt
 }
 .section {
     opacity: 0.3;
-}
-.task {
-    stroke-width: 1px;
 }
 </style>
 
