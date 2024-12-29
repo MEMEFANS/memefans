@@ -37,387 +37,94 @@
 
 MEMEFANS provides a comprehensive suite of features designed to empower creators and engage communities.
 
-<div class="mermaid">
-graph TD
-    MEMEFANS((MEMEFANS))
-    
-    subgraph Tech[Technical Foundation]
-        T1[Analytics Dashboard]
-        T2[Solana Blockchain]
-        T3[PUMP DEX Integration]
-        T4[Chrome Extension]
-        T5[Smart Contracts]
-    end
-    
-    subgraph Market[Market Ecosystem]
-        M1[Content Creators]
-        M2[Social Influencers]
-        M3[Community Managers]
-        M4[Brand Partners]
-    end
-    
-    subgraph Rev[Revenue Model]
-        R1[Transaction Fees]
-        R2[Premium Features]
-        R3[Partnership Revenue]
-    end
-    
-    T2 --> T5
-    T5 --> T3
-    T4 --> T1
-    
-    M1 --> M2
-    M2 --> M3
-    M3 --> M4
-    
-    R1 --> R2
-    R2 --> R3
-    
-    MEMEFANS --> Tech
-    MEMEFANS --> Market
-    MEMEFANS --> Rev
-    
-    T4 --> M1
-    T1 --> M3
-    T3 --> R1
-    M4 --> R3
+### Technical Foundation
+- **Analytics Dashboard**: Real-time tracking and visualization of platform metrics
+- **Solana Blockchain**: High-performance blockchain infrastructure
+- **PUMP DEX Integration**: Seamless token trading and liquidity management
+- **Chrome Extension**: User-friendly browser interface
+- **Smart Contracts**: Secure and automated transaction handling
 
-    style MEMEFANS fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px
-    style T1,T2,T3,T4,T5 fill:#36B37E,stroke:#1F845A,color:#FFFFFF
-    style M1,M2,M3,M4 fill:#FF5630,stroke:#DE350B,color:#FFFFFF
-    style R1,R2,R3 fill:#6554C0,stroke:#403294,color:#FFFFFF
-</div>
+### Market Ecosystem
+- **Content Creators**: Primary content producers and community leaders
+- **Social Influencers**: Key opinion leaders and trend setters
+- **Community Managers**: Engagement and moderation specialists
+- **Brand Partners**: Strategic collaborators and advertisers
+
+### Revenue Model
+- **Transaction Fees**: Sustainable revenue from platform activities
+- **Premium Features**: Enhanced capabilities for power users
+- **Partnership Revenue**: Strategic collaborations and integrations
+
+### Key Relationships
+- Chrome Extension facilitates content creator onboarding
+- Analytics Dashboard supports community management
+- DEX Integration enables transaction fee collection
+- Brand Partners contribute to partnership revenue
+
+### Integration Flow
+The platform components work together seamlessly:
+1. Content creators interact through the Chrome Extension
+2. Transactions are processed via Smart Contracts
+3. DEX provides liquidity for token operations
+4. Analytics Dashboard monitors all activities
+5. Community managers utilize data for optimization
 
 ## Gift System Architecture
 
 ### Gift Flow Process
 
-<div class="mermaid">
-sequenceDiagram
-    participant U as User
-    participant E as Extension
-    participant C as Contract
-    participant P as Pool
-    participant R as Recipient
-    
-    U->>E: Click Gift Button
-    E->>C: Initialize Gift
-    C->>P: Check Balance
-    P-->>C: Confirm Funds
-    C->>R: Record Gift
-    R->>E: Claim Available
-    E->>U: Update UI
-    
-    Note over U,R: Zero-Gas Gift Flow
-</div>
+1. User clicks the gift button
+2. Extension initializes the gift
+3. Contract checks the balance
+4. Pool confirms funds
+5. Contract records the gift
+6. Recipient claims the gift
+7. Extension updates the UI
 
 ### Batch Processing System
 
-<div class="mermaid">
-graph TD
-    A[Batch Request] -->|Collect| B[Transaction Queue]
-    B -->|Optimize| C[Gas Optimization]
-    C -->|Execute| D[Smart Contract]
-    D -->|Update| E[User Balances]
-    
-    subgraph Processing
-    F[Queue Management]
-    G[Priority System]
-    H[Error Handling]
-    end
-    
-    B --> F
-    C --> G
-    D --> H
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-</div>
+1. Batch request is collected
+2. Transactions are optimized
+3. Smart contract executes
+4. User balances are updated
 
 ## Creator Tools
 
 ### Content Management System
 
-<div class="mermaid">
-graph TD
-    A[Content Creation] -->|Post| B[Content Types]
-    B -->|Store| C[Content Storage]
-    C -->|Serve| D[Content Delivery]
-    
-    subgraph Content Types
-    E[Text Posts]
-    F[Images]
-    G[Videos]
-    H[Links]
-    end
-    
-    subgraph Storage System
-    I[Local Cache]
-    J[Cloud Storage]
-    K[IPFS]
-    end
-    
-    subgraph Delivery
-    L[CDN]
-    M[Edge Caching]
-    N[Load Balancing]
-    end
-    
-    B --> E
-    B --> F
-    B --> G
-    B --> H
-    
-    C --> I
-    C --> J
-    C --> K
-    
-    D --> L
-    D --> M
-    D --> N
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-    style N fill:#8A2BE2,color:#FFFFFF
-</div>
+1. Content creation
+2. Content storage
+3. Content delivery
 
 ### Analytics Dashboard
 
-<div class="mermaid">
-graph TD
-    A[Analytics Engine] -->|Collect| B[Data Sources]
-    B -->|Process| C[Analysis]
-    C -->|Display| D[Dashboard]
-    
-    subgraph Data Collection
-    E[User Interactions]
-    F[Gift Statistics]
-    G[Content Performance]
-    end
-    
-    subgraph Analysis Tools
-    H[Trend Analysis]
-    I[Revenue Tracking]
-    J[Audience Insights]
-    end
-    
-    subgraph Visualization
-    K[Charts]
-    L[Reports]
-    M[Alerts]
-    end
-    
-    B --> E
-    B --> F
-    B --> G
-    
-    C --> H
-    C --> I
-    C --> J
-    
-    D --> K
-    D --> L
-    D --> M
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+1. Data collection
+2. Analysis
+3. Visualization
 
 ## Social Features
 
 ### Interaction System
 
-<div class="mermaid">
-graph TD
-    A[User Interactions] -->|Enable| B[Social Actions]
-    B -->|Generate| C[Engagement]
-    C -->|Create| D[Community]
-    
-    subgraph Actions
-    E[Like]
-    F[Comment]
-    G[Share]
-    H[Follow]
-    end
-    
-    subgraph Engagement
-    I[Notifications]
-    J[Activity Feed]
-    K[Trending]
-    end
-    
-    subgraph Community
-    L[Groups]
-    M[Direct Messages]
-    N[Events]
-    end
-    
-    B --> E
-    B --> F
-    B --> G
-    B --> H
-    
-    C --> I
-    C --> J
-    C --> K
-    
-    D --> L
-    D --> M
-    D --> N
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-    style N fill:#8A2BE2,color:#FFFFFF
-</div>
+1. User interactions
+2. Social actions
+3. Engagement metrics
 
 ## Token Integration
 
 ### Wallet System
 
-<div class="mermaid">
-graph TD
-    A[Wallet Integration] -->|Connect| B[Web3 Wallet]
-    B -->|Manage| C[Token Operations]
-    C -->|Enable| D[Features]
-    
-    subgraph Wallet Features
-    E[Balance Check]
-    F[Send/Receive]
-    G[Transaction History]
-    end
-    
-    subgraph Operations
-    H[Gift Sending]
-    I[Token Staking]
-    J[Rewards Claim]
-    end
-    
-    subgraph Advanced
-    K[Multi-Wallet]
-    L[Hardware Support]
-    M[Recovery]
-    end
-    
-    B --> E
-    B --> F
-    B --> G
-    
-    C --> H
-    C --> I
-    C --> J
-    
-    D --> K
-    D --> L
-    D --> M
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+1. Wallet integration
+2. Token operations
+3. Features enablement
 
 ## Platform Integration
 
 ### Browser Extension
 
-<div class="mermaid">
-graph TD
-    A[Extension] -->|Inject| B[Web Interface]
-    B -->|Monitor| C[User Actions]
-    C -->|Process| D[Transactions]
-    
-    subgraph UI Components
-    E[Gift Button]
-    F[Wallet Panel]
-    G[Settings]
-    end
-    
-    subgraph Background
-    H[State Management]
-    I[Network Requests]
-    J[Cache]
-    end
-    
-    subgraph Security
-    K[Authentication]
-    L[Encryption]
-    M[Permissions]
-    end
-    
-    B --> E
-    B --> F
-    B --> G
-    
-    C --> H
-    C --> I
-    C --> J
-    
-    D --> K
-    D --> L
-    D --> M
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+1. Extension injects into web interface
+2. User actions are monitored
+3. Transactions are processed
 
 ## Chrome Extension Overview
 
@@ -634,180 +341,47 @@ For support or feedback, please visit our GitHub repository or contact us throug
 
 ## Core Features Overview
 
-<div class="mermaid">
-graph TD
-    MEMEFANS((MEMEFANS))
-    
-    subgraph Tech[Technical Foundation]
-        T1[Analytics Dashboard]
-        T2[Solana Blockchain]
-        T3[PUMP DEX Integration]
-        T4[Chrome Extension]
-        T5[Smart Contracts]
-    end
-    
-    subgraph Market[Market Ecosystem]
-        M1[Content Creators]
-        M2[Social Influencers]
-        M3[Community Managers]
-        M4[Brand Partners]
-    end
-    
-    subgraph Features[Core Features]
-        F1[Content Management]
-        F2[Social Interaction]
-        F3[Token Economics]
-        F4[Governance]
-    end
-    
-    MEMEFANS --> Tech
-    MEMEFANS --> Market
-    MEMEFANS --> Features
-    
-    style MEMEFANS fill:#0052CC,stroke:#003380,color:#FFFFFF,stroke-width:2px
-    style Tech,Market,Features fill:#f9f9f9,stroke:#333,stroke-width:1px
-</div>
+MEMEFANS provides a comprehensive suite of features designed to empower creators and engage communities.
+
+### Technical Foundation
+- **Analytics Dashboard**: Real-time tracking and visualization of platform metrics
+- **Solana Blockchain**: High-performance blockchain infrastructure
+- **PUMP DEX Integration**: Seamless token trading and liquidity management
+- **Chrome Extension**: User-friendly browser interface
+- **Smart Contracts**: Secure and automated transaction handling
+
+### Market Ecosystem
+- **Content Creators**: Primary content producers and community leaders
+- **Social Influencers**: Key opinion leaders and trend setters
+- **Community Managers**: Engagement and moderation specialists
+- **Brand Partners**: Strategic collaborators and advertisers
+
+### Core Features
+- **Content Management**: Creation, storage, and delivery of content
+- **Social Interaction**: User engagement and community building
+- **Token Economics**: Token creation, distribution, and management
+- **Governance**: Community decision-making and participation
 
 ## Content Management Flow
 
-<div class="mermaid">
-sequenceDiagram
-    participant C as Creator
-    participant P as Platform
-    participant S as Storage
-    participant U as Users
-    
-    C->>P: Upload Content
-    P->>S: Store Content
-    S-->>P: Content Stored
-    P->>U: Content Available
-    U->>P: View Content
-    P->>C: Analytics Update
-    
-    Note over C,P: Content Creation
-    Note over P,S: Storage Process
-    Note over P,U: Distribution
-</div>
+1. Content creation
+2. Content storage
+3. Content delivery
 
 ## User Interaction Flow
 
-<div class="mermaid">
-graph TD
-    A[User Interaction] -->|Content| B[Content Actions]
-    A -->|Social| C[Social Actions]
-    A -->|Financial| D[Financial Actions]
-    
-    subgraph Content Actions
-    B -->|View| E[View Content]
-    B -->|Like| F[Like Content]
-    B -->|Comment| G[Add Comment]
-    end
-    
-    subgraph Social Actions
-    C -->|Follow| H[Follow User]
-    C -->|Share| I[Share Content]
-    C -->|Message| J[Send Message]
-    end
-    
-    subgraph Financial Actions
-    D -->|Gift| K[Send Gift]
-    D -->|Subscribe| L[Subscribe]
-    D -->|Purchase| M[Buy Content]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+1. User interactions
+2. Social actions
+3. Engagement metrics
 
 ## Creator Tools Flow
 
-<div class="mermaid">
-graph TD
-    A[Creator Tools] -->|Content| B[Content Tools]
-    A -->|Analytics| C[Analytics Tools]
-    A -->|Management| D[Management Tools]
-    
-    subgraph Content Tools
-    B -->|Create| E[Creation Tools]
-    B -->|Edit| F[Editing Tools]
-    B -->|Schedule| G[Scheduling]
-    end
-    
-    subgraph Analytics Tools
-    C -->|Performance| H[Performance Stats]
-    C -->|Audience| I[Audience Stats]
-    C -->|Revenue| J[Revenue Stats]
-    end
-    
-    subgraph Management Tools
-    D -->|Community| K[Community Management]
-    D -->|Content| L[Content Management]
-    D -->|Revenue| M[Revenue Management]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+1. Content creation
+2. Analytics and reporting
+3. Management and optimization
 
 ## Monetization Flow
 
-<div class="mermaid">
-graph TD
-    A[Monetization] -->|Revenue| B[Revenue Streams]
-    A -->|Payment| C[Payment Process]
-    A -->|Payout| D[Payout Process]
-    
-    subgraph Revenue Streams
-    B -->|Gifts| E[Gift Revenue]
-    B -->|Subs| F[Subscription Revenue]
-    B -->|Content| G[Content Sales]
-    end
-    
-    subgraph Payment Process
-    C -->|Process| H[Payment Processing]
-    C -->|Verify| I[Verification]
-    C -->|Record| J[Recording]
-    end
-    
-    subgraph Payout Process
-    D -->|Calculate| K[Calculation]
-    D -->|Schedule| L[Scheduling]
-    D -->|Transfer| M[Transfer]
-    end
-    
-    style A fill:#0000FF,color:#FFFFFF
-    style B fill:#FFFF00,color:#000000
-    style C fill:#90EE90,color:#000000
-    style D fill:#DDA0DD,color:#000000
-    style E fill:#FFB6C1,color:#000000
-    style F fill:#FFA07A,color:#000000
-    style G fill:#20B2AA,color:#000000
-    style H fill:#BA55D3,color:#000000
-    style I fill:#4682B4,color:#FFFFFF
-    style J fill:#FF6347,color:#000000
-    style K fill:#32CD32,color:#000000
-    style L fill:#FF69B4,color:#000000
-    style M fill:#DEB887,color:#000000
-</div>
+1. Revenue streams
+2. Payment processing
+3. Payout process
