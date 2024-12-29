@@ -265,16 +265,18 @@
             },
             plugins: [
                 function(hook) {
-                    hook.mounted(function() {
-                        scrollToTop();
-                    });
-
                     hook.ready(function() {
-                        scrollToTop();
+                        // 在 Docsify 准备就绪时初始化滚动位置
+                        window.$docsify.scrollToTop = function() {
+                            const main = document.querySelector('#main');
+                            if (main) {
+                                main.scrollTo(0, 0);
+                            }
+                        };
                     });
 
                     hook.doneEach(function() {
-                        // 初始化 mermaid 图表
+                        // 在每次页面渲染完成后执行
                         const mermaidElements = document.querySelectorAll('.mermaid:not(.rendered)');
                         mermaidElements.forEach(element => {
                             try {
@@ -282,15 +284,14 @@
                                 element.classList.add('rendered');
                             } catch (error) {
                                 console.error('Mermaid rendering error:', error);
-                                console.log('Code:', element.textContent);
                             }
                         });
 
                         // 更新导航按钮
                         updateNavButtons();
                         
-                        // 确保滚动到顶部
-                        scrollToTop();
+                        // 在内容渲染完成后滚动到顶部
+                        window.$docsify.scrollToTop();
                     });
 
                     hook.afterEach(function(html) {
@@ -335,17 +336,6 @@
             ],
         };
 
-        // 滚动到顶部的通用函数
-        function scrollToTop() {
-            const content = document.querySelector('.content');
-            if (content) {
-                content.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
         // 所有文档页面的顺序
         const pages = [
             '#/',
@@ -388,8 +378,6 @@
             if (currentIndex > 0) {
                 const targetHash = pages[currentIndex - 1];
                 window.location.hash = targetHash;
-                // 确保在内容加载后滚动
-                setTimeout(scrollToTop, 100);
             }
         }
 
@@ -398,15 +386,11 @@
             if (currentIndex < pages.length - 1) {
                 const targetHash = pages[currentIndex + 1];
                 window.location.hash = targetHash;
-                // 确保在内容加载后滚动
-                setTimeout(scrollToTop, 100);
             }
         }
 
         function nextToExecutiveSummary() {
             window.location.hash = '#/whitepaper/executive-summary';
-            // 确保在内容加载后滚动
-            setTimeout(scrollToTop, 100);
         }
 
         function updateNavButtons() {
@@ -484,17 +468,19 @@
     <script>
         // 添加路由切换事件监听
         window.addEventListener('hashchange', function() {
-            setTimeout(scrollToTop, 100);
+            setTimeout(function() {
+                window.$docsify.scrollToTop();
+            }, 100);
         });
         
         // 页面加载完成后滚动到顶部
         window.addEventListener('load', function() {
-            scrollToTop();
+            window.$docsify.scrollToTop();
         });
         
         // DOMContentLoaded 时滚动到顶部
         document.addEventListener('DOMContentLoaded', function() {
-            scrollToTop();
+            window.$docsify.scrollToTop();
         });
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
