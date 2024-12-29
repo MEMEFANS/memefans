@@ -137,23 +137,34 @@ The platform consists of four main components:
 ## ROI Timeline
 
 ```mermaid
-gantt
-    title ROI Timeline
-    dateFormat YYYY-MM-DD
-    axisFormat %Y/%m
+graph TB
+    subgraph Timeline [2025 Q1 - 2026 Q1]
+        subgraph Technical
+            T1[Development<br>Q1 2025]
+            T2[Investment<br>Q1-Q2 2025]
+            T3[Returns<br>Q2 2025 - Q1 2026]
+            T1 --> T2 --> T3
+        end
+        
+        subgraph Marketing
+            M1[Investment<br>Q1-Q2 2025]
+            M2[Returns<br>Q2 2025 - Q1 2026]
+            M1 --> M2
+        end
+        
+        subgraph Operations
+            O1[Investment<br>Q1-Q2 2025]
+            O2[Returns<br>Q3 2025 - Q1 2026]
+            O1 --> O2
+        end
+    end
     
-    section Technical
-    Development    :active, dev1, 2024-04-01, 2024-06-30
-    Investment     :active, inv1, 2024-05-01, 2024-07-31
-    Returns        :active, ret1, 2024-07-01, 2025-01-01
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef phase fill:#b8c4ff,stroke:#333,stroke-width:2px
+    classDef returns fill:#98ff98,stroke:#333,stroke-width:2px
     
-    section Marketing
-    Investment     :active, inv2, 2024-05-15, 2024-08-15
-    Returns        :active, ret2, 2024-08-01, 2025-01-01
-    
-    section Operations
-    Investment     :active, inv3, 2024-06-01, 2024-09-30
-    Returns        :active, ret3, 2024-09-15, 2025-01-01
+    class T1,T2,M1,O1 phase
+    class T3,M2,O2 returns
 ```
 
 ## User Interaction Flow
@@ -550,7 +561,6 @@ graph TD
 
     style A fill:#f96,stroke:#333,stroke-width:4px
     style B,C,D fill:#bbf,stroke:#333,stroke-width:2px
-
 ```
 
 ## Revenue Model
