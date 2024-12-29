@@ -137,34 +137,23 @@ The platform consists of four main components:
 ## ROI Timeline
 
 ```mermaid
-graph TB
-    subgraph Timeline [2025 Q1 - 2026 Q1]
-        subgraph Technical
-            T1[Development<br>Q1 2025]
-            T2[Investment<br>Q1-Q2 2025]
-            T3[Returns<br>Q2 2025 - Q1 2026]
-            T1 --> T2 --> T3
-        end
-        
-        subgraph Marketing
-            M1[Investment<br>Q1-Q2 2025]
-            M2[Returns<br>Q2 2025 - Q1 2026]
-            M1 --> M2
-        end
-        
-        subgraph Operations
-            O1[Investment<br>Q1-Q2 2025]
-            O2[Returns<br>Q3 2025 - Q1 2026]
-            O1 --> O2
-        end
-    end
+gantt
+    title ROI Timeline
+    dateFormat YYYY-MM-DD
+    axisFormat %Y-%m
     
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px
-    classDef phase fill:#b8c4ff,stroke:#333,stroke-width:2px
-    classDef returns fill:#98ff98,stroke:#333,stroke-width:2px
+    section Technical
+    Development    :crit, active, t1, 2025-01-01, 90d
+    Investment     :crit, active, t2, after t1, 90d
+    Returns        :active, t3, after t2, 2026-01-01
     
-    class T1,T2,M1,O1 phase
-    class T3,M2,O2 returns
+    section Marketing
+    Investment     :crit, active, m1, 2025-02-01, 90d
+    Returns        :active, m2, after m1, 2026-01-01
+    
+    section Operations
+    Investment     :crit, active, o1, 2025-03-01, 120d
+    Returns        :active, o2, after o1, 2026-01-01
 ```
 
 ## User Interaction Flow
