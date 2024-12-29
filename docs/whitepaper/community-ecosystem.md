@@ -98,9 +98,9 @@ graph TD
     QE --> PR[Platform Reviews]
     QE --> UP[Updates & Planning]
     
-    style WE fill:#90EE90,color:#000000
-    style ME fill:#FFB6C1,color:#000000
-    style QE fill:#DDA0DD,color:#000000
+    style WE fill:#90EE90,color:#000000,stroke:#333,stroke-width:2px
+    style ME fill:#FFB6C1,color:#000000,stroke:#333,stroke-width:2px
+    style QE fill:#DDA0DD,color:#000000,stroke:#333,stroke-width:2px
 ```
 
 ## Educational Hub
