@@ -137,48 +137,23 @@ The platform consists of four main components:
 ## ROI Timeline
 
 ```mermaid
-%%{init: { 'logLevel': 'debug', 'theme': 'base', 'themeVariables': { 'fontSize': '16px' } } }%%
-graph LR
-    %% Technical Track
-    T1[Development<br>2025 Q1]
-    T2[Investment<br>2025 Q2]
-    T3[Returns<br>2025 Q3-2026 Q1]
-    T1 --> T2 --> T3
+gantt
+    title ROI Timeline
+    dateFormat YYYY-MM-DD
+    axisFormat %Y-%m
     
-    %% Marketing Track
-    M1[Investment<br>2025 Q1-Q2]
-    M2[Returns<br>2025 Q2-2026 Q1]
-    M1 --> M2
+    section Technical
+    Development    :dev, 2025-01-01, 2025-03-31
+    Investment     :inv1, 2025-03-01, 2025-06-30
+    Returns        :ret1, 2025-06-01, 2026-01-01
     
-    %% Operations Track
-    O1[Investment<br>2025 Q1-Q2]
-    O2[Returns<br>2025 Q3-2026 Q1]
-    O1 --> O2
+    section Marketing
+    Investment     :inv2, 2025-02-01, 2025-05-31
+    Returns        :ret2, 2025-05-01, 2026-01-01
     
-    %% Styling
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px
-    classDef phase fill:#b8c4ff,stroke:#333,stroke-width:1px
-    classDef returns fill:#98ff98,stroke:#333,stroke-width:1px
-    
-    class T1,T2,M1,O1 phase
-    class T3,M2,O2 returns
-    
-    %% Group by department
-    subgraph Technical
-        T1
-        T2
-        T3
-    end
-    
-    subgraph Marketing
-        M1
-        M2
-    end
-    
-    subgraph Operations
-        O1
-        O2
-    end
+    section Operations
+    Investment     :inv3, 2025-03-01, 2025-07-31
+    Returns        :ret3, 2025-07-01, 2026-01-01
 ```
 
 ## User Interaction Flow
