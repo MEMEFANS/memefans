@@ -141,52 +141,46 @@ gantt
     %%{init: {
         'theme': 'base',
         'themeVariables': {
-            'fontFamily': 'arial',
-            'backgroundColor': '#ffffff',
-            'tertiaryColor': '#ffffff',
             'primaryColor': '#9999ff',
-            'secondaryColor': '#9999ff',
+            'primaryTextColor': '#fff',
+            'primaryBorderColor': '#7777ff',
+            'lineColor': '#ffffff',
             'gridColor': '#ffffff',
-            'textColor': '#333333',
-            'lineColor': '#ffffff'
+            'sectionBkgColor': '#f5f5ff',
+            'sectionBkgColor2': '#fffff5'
         }
     }}%%
     
-    title ROI Timeline
     dateFormat YYYY-MM-DD
-    axisFormat " "
+    axisFormat ""
     todayMarker off
     
     section Technical
-    Development :active, dev1, 2024-01-01, 90d
-    Investment  :active, inv1, after dev1, 60d
-    Returns     :active, ret1, after inv1, 120d
+    Development :done, dev1, 2024-01-01, 90d
+    Investment  :done, inv1, after dev1, 60d
+    Returns     :done, ret1, after inv1, 120d
     
     section Marketing
-    Investment  :active, inv2, 2024-03-01, 90d
-    Returns     :active, ret2, after inv2, 150d
+    Investment  :done, inv2, 2024-03-01, 90d
+    Returns     :done, ret2, after inv2, 150d
     
     section Operations
-    Investment  :active, inv3, 2024-02-01, 120d
-    Returns     :active, ret3, after inv3, 180d
+    Investment  :done, inv3, 2024-02-01, 120d
+    Returns     :done, ret3, after inv3, 180d
 ```
 
 <style>
 .mermaid {
     background: white;
 }
+.tick, .grid, .today {
+    display: none !important;
+}
 .section {
-    fill: #f5f5ff !important;
     opacity: 0.3;
 }
-.grid {
-    display: none !important;
-}
-.tick {
-    display: none !important;
-}
-.today {
-    display: none !important;
+.task {
+    stroke-width: 1px;
 }
 </style>
 
