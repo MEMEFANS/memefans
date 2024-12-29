@@ -37,6 +37,47 @@
 
 MEMEFANS provides a comprehensive suite of features designed to empower creators and engage communities.
 
+```mermaid
+graph TD
+    A[MEMEFANS Platform] --> B[Creator Tools]
+    A --> C[Social Features]
+    A --> D[Token System]
+    A --> E[Analytics]
+
+    subgraph Creator Tools
+        B --> B1[Content Management]
+        B --> B2[Monetization]
+        B --> B3[Analytics Dashboard]
+    end
+
+    subgraph Social Features
+        C --> C1[Comments]
+        C --> C2[Likes]
+        C --> C3[Sharing]
+    end
+
+    subgraph Token System
+        D --> D1[Gift System]
+        D --> D2[Rewards]
+        D --> D3[Staking]
+    end
+
+    subgraph Analytics
+        E --> E1[User Metrics]
+        E --> E2[Content Performance]
+        E --> E3[Revenue Tracking]
+    end
+
+    style A fill:#f9f,stroke:#333,stroke-width:4px
+    style B,C,D,E fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+The platform consists of four main components:
+1. **Creator Tools**: Comprehensive tools for content creation, monetization, and analytics
+2. **Social Features**: Interactive features for community engagement
+3. **Token System**: Blockchain-based token economy for rewards and transactions
+4. **Analytics**: Detailed metrics and insights for performance tracking
+
 ### Technical Foundation
 - **Analytics Dashboard**: Real-time tracking and visualization of platform metrics
 - **Solana Blockchain**: High-performance blockchain infrastructure
@@ -50,73 +91,157 @@ MEMEFANS provides a comprehensive suite of features designed to empower creators
 - **Community Managers**: Engagement and moderation specialists
 - **Brand Partners**: Strategic collaborators and advertisers
 
-### Revenue Model
-- **Transaction Fees**: Sustainable revenue from platform activities
-- **Premium Features**: Enhanced capabilities for power users
-- **Partnership Revenue**: Strategic collaborations and integrations
+### Core Features
+- **Content Management**: Creation, storage, and delivery of content
+- **Social Interaction**: User engagement and community building
+- **Token Economics**: Token creation, distribution, and management
+- **Governance**: Community decision-making and participation
 
-### Key Relationships
-- Chrome Extension facilitates content creator onboarding
-- Analytics Dashboard supports community management
-- DEX Integration enables transaction fee collection
-- Brand Partners contribute to partnership revenue
+## User Interaction Flow
 
-### Integration Flow
-The platform components work together seamlessly:
-1. Content creators interact through the Chrome Extension
-2. Transactions are processed via Smart Contracts
-3. DEX provides liquidity for token operations
-4. Analytics Dashboard monitors all activities
-5. Community managers utilize data for optimization
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant E as Extension
+    participant P as Platform
+    participant B as Blockchain
 
-## Gift System Architecture
+    U->>E: Open Extension
+    E->>P: Connect Wallet
+    P->>B: Verify Account
+    B-->>P: Account Verified
+    P-->>E: Connection Success
+    E-->>U: Ready to Use
 
-### Gift Flow Process
+    Note over U,E: User Interaction
+    U->>E: Create Content
+    E->>P: Upload Content
+    P-->>E: Content Published
+    E-->>U: Success Notification
 
-1. User clicks the gift button
-2. Extension initializes the gift
-3. Contract checks the balance
-4. Pool confirms funds
-5. Contract records the gift
-6. Recipient claims the gift
-7. Extension updates the UI
+    Note over U,B: Token Operations
+    U->>E: Send Gift
+    E->>P: Process Gift
+    P->>B: Execute Transaction
+    B-->>P: Transaction Complete
+    P-->>E: Gift Sent
+    E-->>U: Gift Confirmation
+```
 
-### Batch Processing System
+The user interaction process involves three main phases:
+1. **Connection Phase**: User connects wallet and verifies account
+2. **Content Phase**: User creates and publishes content
+3. **Transaction Phase**: User performs token operations like sending gifts
 
-1. Batch request is collected
-2. Transactions are optimized
-3. Smart contract executes
-4. User balances are updated
+## Content Management Flow
 
-## Creator Tools
+```mermaid
+graph LR
+    A[Content Creation] -->|Upload| B[Processing]
+    B -->|Store| C[Storage]
+    B -->|Index| D[Search Index]
+    C -->|Serve| E[CDN]
+    D -->|Query| F[Search API]
+    E -->|Deliver| G[Users]
+    F -->|Results| G
 
-### Content Management System
+    subgraph Backend
+    B
+    C
+    D
+    end
 
-1. Content creation
-2. Content storage
-3. Content delivery
+    subgraph Frontend
+    A
+    G
+    end
 
-### Analytics Dashboard
+    subgraph Services
+    E
+    F
+    end
 
-1. Data collection
-2. Analysis
-3. Visualization
+    style A fill:#f96,stroke:#333,stroke-width:2px
+    style G fill:#96f,stroke:#333,stroke-width:2px
+    style E,F fill:#9cf,stroke:#333,stroke-width:2px
+```
 
-## Social Features
+The content management flow involves the following steps:
+1. **Content Creation**: Users create content using the platform's tools and features
+2. **Content Processing**: Content is processed and prepared for storage
+3. **Storage & Indexing**: Content is stored and indexed for efficient retrieval
+4. **Content Delivery**: Content is delivered to users through CDN and search services
 
-### Interaction System
+## Creator Tools Flow
 
-1. User interactions
-2. Social actions
-3. Engagement metrics
+```mermaid
+graph TD
+    A[Creator Dashboard] --> B[Content Tools]
+    A --> C[Analytics Tools]
+    A --> D[Management Tools]
 
-## Token Integration
+    subgraph Content Creation
+        B --> B1[Post Editor]
+        B --> B2[Media Upload]
+        B --> B3[Scheduling]
+    end
 
-### Wallet System
+    subgraph Analytics
+        C --> C1[Performance]
+        C --> C2[Audience]
+        C --> C3[Revenue]
+    end
 
-1. Wallet integration
-2. Token operations
-3. Features enablement
+    subgraph Management
+        D --> D1[Comments]
+        D --> D2[Community]
+        D --> D3[Settings]
+    end
+
+    style A fill:#f96,stroke:#333,stroke-width:4px
+    style B,C,D fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+Creator tools provide three main functionalities:
+1. **Content Creation**: Advanced tools for creating, editing, and scheduling content
+2. **Analytics**: Comprehensive data analysis for performance tracking
+3. **Management**: Tools for community management and platform settings
+
+## Monetization Flow
+
+```mermaid
+graph LR
+    A[Revenue Sources] --> B[Gifts]
+    A --> C[Subscriptions]
+    A --> D[Content Sales]
+
+    B --> E[Processing]
+    C --> E
+    D --> E
+
+    E --> F[Settlement]
+    F --> G[Payout]
+
+    subgraph Payment Flow
+        E
+        F
+        G
+    end
+
+    subgraph Revenue Types
+        B
+        C
+        D
+    end
+
+    style A fill:#f96,stroke:#333,stroke-width:4px
+    style E,F,G fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+The monetization process includes:
+1. **Revenue Generation**: Multiple revenue streams including gifts, subscriptions, and content sales
+2. **Payment Processing**: Secure transaction processing and verification
+3. **Settlement & Payout**: Automated settlement and payout to creators
 
 ## Platform Integration
 
@@ -126,32 +251,32 @@ The platform components work together seamlessly:
 2. User actions are monitored
 3. Transactions are processed
 
-## Chrome Extension Overview
+### Chrome Extension Overview
 
-### Short Description
+#### Short Description
 MEMEFANS is a Chrome extension that seamlessly connects your Twitter account with the Solana blockchain, allowing you to participate in token giveaways with just a few clicks.
 
-### Key Features
+#### Key Features
 - One-click connection to your Solana wallet
 - Automatic verification of Twitter interactions
 - Secure token claiming system
 - Real-time balance checking
 - Easy token withdrawal to your wallet
 
-### How It Works
+#### How It Works
 1. Connect your Twitter account and Solana wallet
 2. Find supported token giveaways on Twitter
 3. Like and retweet to participate
 4. Claim your tokens directly through the extension
 5. Withdraw tokens to your wallet anytime
 
-### Security Features
+#### Security Features
 - No private keys stored
 - Secure wallet connection
 - Open source code
 - Regular security audits
 
-### Support
+#### Support
 For support or feedback, please visit our GitHub repository or contact us through Twitter.
 
 ## Feature Details
@@ -362,27 +487,135 @@ MEMEFANS provides a comprehensive suite of features designed to empower creators
 - **Token Economics**: Token creation, distribution, and management
 - **Governance**: Community decision-making and participation
 
-## Content Management Flow
-
-The content management flow involves the following steps:
-1. Content creation: Users create content using the platform's tools and features.
-2. Content storage: The created content is stored on the platform's servers.
-3. Content delivery: The stored content is delivered to the users through the platform's interface.
-
 ## User Interaction Flow
 
-1. User interactions
-2. Social actions
-3. Engagement metrics
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant E as Extension
+    participant P as Platform
+    participant B as Blockchain
+
+    U->>E: Open Extension
+    E->>P: Connect Wallet
+    P->>B: Verify Account
+    B-->>P: Account Verified
+    P-->>E: Connection Success
+    E-->>U: Ready to Use
+
+    Note over U,E: User Interaction
+    U->>E: Create Content
+    E->>P: Upload Content
+    P-->>E: Content Published
+    E-->>U: Success Notification
+
+    Note over U,B: Token Operations
+    U->>E: Send Gift
+    E->>P: Process Gift
+    P->>B: Execute Transaction
+    B-->>P: Transaction Complete
+    P-->>E: Gift Sent
+    E-->>U: Gift Confirmation
+```
+
+## Content Management Flow
+
+```mermaid
+graph LR
+    A[Content Creation] -->|Upload| B[Processing]
+    B -->|Store| C[Storage]
+    B -->|Index| D[Search Index]
+    C -->|Serve| E[CDN]
+    D -->|Query| F[Search API]
+    E -->|Deliver| G[Users]
+    F -->|Results| G
+
+    subgraph Backend
+    B
+    C
+    D
+    end
+
+    subgraph Frontend
+    A
+    G
+    end
+
+    subgraph Services
+    E
+    F
+    end
+
+    style A fill:#f96,stroke:#333,stroke-width:2px
+    style G fill:#96f,stroke:#333,stroke-width:2px
+    style E,F fill:#9cf,stroke:#333,stroke-width:2px
+```
+
+The content management flow involves the following steps:
+1. **Content Creation**: Users create content using the platform's tools and features
+2. **Content Processing**: Content is processed and prepared for storage
+3. **Storage & Indexing**: Content is stored and indexed for efficient retrieval
+4. **Content Delivery**: Content is delivered to users through CDN and search services
 
 ## Creator Tools Flow
 
-1. Content creation
-2. Analytics and reporting
-3. Management and optimization
+```mermaid
+graph TD
+    A[Creator Dashboard] --> B[Content Tools]
+    A --> C[Analytics Tools]
+    A --> D[Management Tools]
+
+    subgraph Content Creation
+        B --> B1[Post Editor]
+        B --> B2[Media Upload]
+        B --> B3[Scheduling]
+    end
+
+    subgraph Analytics
+        C --> C1[Performance]
+        C --> C2[Audience]
+        C --> C3[Revenue]
+    end
+
+    subgraph Management
+        D --> D1[Comments]
+        D --> D2[Community]
+        D --> D3[Settings]
+    end
+
+    style A fill:#f96,stroke:#333,stroke-width:4px
+    style B,C,D fill:#bbf,stroke:#333,stroke-width:2px
+```
 
 ## Monetization Flow
 
-1. Revenue streams
-2. Payment processing
-3. Payout process
+```mermaid
+graph LR
+    A[Revenue Sources] --> B[Gifts]
+    A --> C[Subscriptions]
+    A --> D[Content Sales]
+
+    B --> E[Processing]
+    C --> E
+    D --> E
+
+    E --> F[Settlement]
+    F --> G[Payout]
+
+    subgraph Payment Flow
+        E
+        F
+        G
+    end
+
+    subgraph Revenue Types
+        B
+        C
+        D
+    end
+
+    style A fill:#f96,stroke:#333,stroke-width:4px
+    style E,F,G fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+```
