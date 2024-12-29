@@ -140,20 +140,20 @@ The platform consists of four main components:
 gantt
     title ROI Timeline
     dateFormat YYYY-MM-DD
-    axisFormat %Y-%m-%d
+    axisFormat %Y/%m
     
     section Technical
-    Development    :2024-01-01, 2024-03-31
-    Investment     :2024-02-01, 2024-04-30
-    Returns        :2024-04-01, 2024-12-31
+    Development    :active, dev1, 2024-04-01, 2024-06-30
+    Investment     :active, inv1, 2024-05-01, 2024-07-31
+    Returns        :active, ret1, 2024-07-01, 2025-01-01
     
     section Marketing
-    Investment     :2024-03-01, 2024-05-31
-    Returns        :2024-05-01, 2024-12-31
+    Investment     :active, inv2, 2024-05-15, 2024-08-15
+    Returns        :active, ret2, 2024-08-01, 2025-01-01
     
     section Operations
-    Investment     :2024-02-15, 2024-06-30
-    Returns        :2024-06-01, 2024-12-31
+    Investment     :active, inv3, 2024-06-01, 2024-09-30
+    Returns        :active, ret3, 2024-09-15, 2025-01-01
 ```
 
 ## User Interaction Flow
@@ -360,6 +360,7 @@ graph LR
     
     style A fill:#f96,stroke:#333,stroke-width:4px
     style B,C,D,E fill:#bbf,stroke:#333,stroke-width:2px
+
 ```
 
 ### Technical Foundation
@@ -589,3 +590,5 @@ graph LR
     
     style A fill:#f96,stroke:#333,stroke-width:4px
     style B,C,D,E fill:#bbf,stroke:#333,stroke-width:2px
+
+```
