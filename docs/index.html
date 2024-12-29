@@ -228,8 +228,9 @@
             name: 'MEMEFANS',
             repo: '',
             loadSidebar: true,
-            subMaxLevel: 3,
+            subMaxLevel: 2,
             auto2top: true,
+            search: false,
             homepage: 'index.md',
             routerMode: 'hash',
             basePath: '/memefans/',
@@ -239,13 +240,6 @@
                 '/.*/_sidebar.md': '/_sidebar.md'
             },
             mergeNavbar: true,
-            search: {
-                maxAge: 86400000,
-                paths: 'auto',
-                placeholder: 'Search',
-                noData: 'No Results!',
-                depth: 6
-            },
             markdown: {
                 renderer: {
                     code: function(code, lang) {
@@ -363,14 +357,22 @@
         function prevPage() {
             const currentIndex = getCurrentPageIndex();
             if (currentIndex > 0) {
-                window.location.hash = pages[currentIndex - 1];
+                const targetHash = pages[currentIndex - 1];
+                window.location.hash = targetHash;
+                // 强制滚动到顶部
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
             }
         }
 
         function nextPage() {
             const currentIndex = getCurrentPageIndex();
             if (currentIndex < pages.length - 1) {
-                window.location.hash = pages[currentIndex + 1];
+                const targetHash = pages[currentIndex + 1];
+                window.location.hash = targetHash;
+                // 强制滚动到顶部
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
             }
         }
 
@@ -458,7 +460,6 @@
         });
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
