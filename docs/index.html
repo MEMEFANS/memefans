@@ -358,6 +358,12 @@
             const currentIndex = getCurrentPageIndex();
             if (currentIndex > 0) {
                 window.location.hash = pages[currentIndex - 1];
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }, 100);
             }
         }
 
@@ -365,6 +371,12 @@
             const currentIndex = getCurrentPageIndex();
             if (currentIndex < pages.length - 1) {
                 window.location.hash = pages[currentIndex + 1];
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }, 100);
             }
         }
 
