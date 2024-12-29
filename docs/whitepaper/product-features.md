@@ -139,22 +139,20 @@ The platform consists of four main components:
 ```mermaid
 gantt
     title ROI Timeline
-    dateFormat YYYY-MM-DD
-    axisFormat %Y-%m
-    todayMarker off
+    dateFormat  YYYY-MM-DD
+    axisFormat ""
     
     section Technical
-    Development :2025-01-01, 2025-03-31
-    Investment  :2025-03-01, 2025-06-30
-    Returns     :2025-06-01, 2026-01-01
+    Development    :done, dev1, 2024-01-01, 120d
+    Returns        :done, ret1, after dev1, 90d
     
     section Marketing
-    Investment  :2025-02-01, 2025-05-31
-    Returns     :2025-05-01, 2026-01-01
+    Investment     :done, inv1, 2024-03-01, 60d
+    Returns        :done, ret2, after inv1, 120d
     
     section Operations
-    Investment  :2025-03-01, 2025-07-31
-    Returns     :2025-07-01, 2026-01-01
+    Investment     :done, inv2, 2024-02-15, 90d
+    Returns        :done, ret3, after inv2, 150d
 ```
 
 ## User Interaction Flow
@@ -590,5 +588,3 @@ graph LR
     
     style A fill:#f96,stroke:#333,stroke-width:4px
     style B,C,D,E fill:#bbf,stroke:#333,stroke-width:2px
-
-```
