@@ -74,21 +74,6 @@ MEMEFANS platform consists of four main components:
 - **Community Managers**: Engagement and moderation specialists
 - **Brand Partners**: Strategic collaborators and advertisers
 
-## ROI Timeline
-
-### Technical Phase
-- Development: Initial platform development and infrastructure setup
-- Investment: Technical resource allocation and system optimization
-- Returns: Platform stability and scalability improvements
-
-### Marketing Phase
-- Investment: Market expansion and user acquisition strategies
-- Returns: Growing user base and increased platform visibility
-
-### Operations Phase
-- Investment: Community management and operational infrastructure
-- Returns: Enhanced user engagement and sustainable growth
-
 ## User Interaction Flow
 
 ```mermaid
