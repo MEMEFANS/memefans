@@ -33,6 +33,43 @@
 
 # Product Features
 
+```mermaid
+graph TD
+    MEMEFANS((MEMEFANS))
+    
+    MEMEFANS --> A[Social Features]
+    MEMEFANS --> B[Token Integration]
+    MEMEFANS --> C[Platform Integration]
+    MEMEFANS --> D[Chrome Extension]
+    
+    subgraph Social
+        A --> A1[Comments System]
+        A --> A2[Like & Share]
+        A --> A3[Community Tools]
+    end
+    
+    subgraph Token
+        B --> B1[Gift System]
+        B --> B2[Wallet Integration]
+        B --> B3[Transaction System]
+    end
+    
+    subgraph Platform
+        C --> C1[Content Management]
+        C --> C2[User Management]
+        C --> C3[Analytics]
+    end
+    
+    subgraph Extension
+        D --> D1[Browser Interface]
+        D --> D2[Wallet Connect]
+        D --> D3[Quick Actions]
+    end
+    
+    style MEMEFANS fill:#f96,stroke:#333,stroke-width:4px
+    style A,B,C,D fill:#bbf,stroke:#333,stroke-width:2px
+```
+
 ## Core Features Overview
 
 MEMEFANS provides a comprehensive suite of features designed to empower creators and engage communities.
@@ -85,11 +122,61 @@ The platform consists of four main components:
 - **Chrome Extension**: User-friendly browser interface
 - **Smart Contracts**: Secure and automated transaction handling
 
+```mermaid
+graph TD
+    A[Technical Foundation] --> B[Analytics Dashboard]
+    A --> C[Solana Blockchain]
+    A --> D[PUMP DEX]
+    A --> E[Chrome Extension]
+    A --> F[Smart Contracts]
+    
+    B -->|Metrics| B1[Real-time Tracking]
+    B -->|Data| B2[Visualization]
+    
+    C -->|Infrastructure| C1[High Performance]
+    C -->|Security| C2[Decentralization]
+    
+    D -->|Trading| D1[Token Exchange]
+    D -->|Management| D2[Liquidity Pool]
+    
+    E -->|Interface| E1[User Friendly]
+    E -->|Integration| E2[Browser Based]
+    
+    F -->|Automation| F1[Transaction Handling]
+    F -->|Security| F2[Smart Rules]
+    
+    style A fill:#f96,stroke:#333,stroke-width:4px
+    style B,C,D,E,F fill:#bbf,stroke:#333,stroke-width:2px
+```
+
 ### Market Ecosystem
 - **Content Creators**: Primary content producers and community leaders
 - **Social Influencers**: Key opinion leaders and trend setters
 - **Community Managers**: Engagement and moderation specialists
 - **Brand Partners**: Strategic collaborators and advertisers
+
+```mermaid
+graph LR
+    A[Market Ecosystem] --> B[Content Creators]
+    A --> C[Social Influencers]
+    A --> D[Community Managers]
+    A --> E[Brand Partners]
+    
+    B -->|Create| B1[Original Content]
+    B -->|Lead| B2[Communities]
+    
+    C -->|Set| C1[Trends]
+    C -->|Drive| C2[Engagement]
+    
+    D -->|Manage| D1[Community]
+    D -->|Handle| D2[Moderation]
+    
+    E -->|Provide| E1[Collaborations]
+    E -->|Support| E2[Advertising]
+    
+    style A fill:#f96,stroke:#333,stroke-width:4px
+    style B,C,D,E fill:#bbf,stroke:#333,stroke-width:2px
+```
 
 ### Core Features
 - **Content Management**: Creation, storage, and delivery of content
@@ -127,11 +214,6 @@ sequenceDiagram
     P-->>E: Gift Sent
     E-->>U: Gift Confirmation
 ```
-
-The user interaction process involves three main phases:
-1. **Connection Phase**: User connects wallet and verifies account
-2. **Content Phase**: User creates and publishes content
-3. **Transaction Phase**: User performs token operations like sending gifts
 
 ## Content Management Flow
 
@@ -211,35 +293,25 @@ Creator tools provide three main functionalities:
 
 ```mermaid
 graph LR
-    A[Revenue Sources] --> B[Gifts]
-    A --> C[Subscriptions]
-    A --> D[Content Sales]
-
-    B --> E[Processing]
-    C --> E
-    D --> E
-
-    E --> F[Settlement]
-    F --> G[Payout]
-
-    subgraph Payment Flow
-        E
-        F
-        G
-    end
-
-    subgraph Revenue Types
-        B
-        C
-        D
-    end
-
+    A[Revenue Sources] --> B[Transaction Fees]
+    A --> C[Premium Features]
+    A --> D[Partnership Revenue]
+    
+    B -->|Platform| B1[Activity Based]
+    B -->|Sustainable| B2[Revenue Stream]
+    
+    C -->|Enhanced| C1[Capabilities]
+    C -->|Power| C2[User Features]
+    
+    D -->|Strategic| D1[Collaborations]
+    D -->|Business| D2[Integrations]
+    
     style A fill:#f96,stroke:#333,stroke-width:4px
-    style E,F,G fill:#bbf,stroke:#333,stroke-width:2px
+    style B,C,D fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
 The monetization process includes:
-1. **Revenue Generation**: Multiple revenue streams including gifts, subscriptions, and content sales
+1. **Revenue Generation**: Multiple revenue streams including transaction fees, premium features, and partnership revenue
 2. **Payment Processing**: Secure transaction processing and verification
 3. **Settlement & Payout**: Automated settlement and payout to creators
 
@@ -300,179 +372,42 @@ The integration process follows these key steps:
    - Community managers monitor through analytics
    - Brand partners integrate through platform APIs
 
-## Platform Integration
+## Key Relationships
 
-### Browser Extension
+```mermaid
+graph LR
+    A[Platform Core] --> B[Chrome Extension]
+    A --> C[Analytics Dashboard]
+    A --> D[DEX Integration]
+    A --> E[Brand Partners]
+    
+    B -->|Enables| B1[Creator Onboarding]
+    C -->|Supports| C1[Community Management]
+    D -->|Enables| D1[Fee Collection]
+    E -->|Drives| E1[Partnership Revenue]
+    
+    style A fill:#f96,stroke:#333,stroke-width:4px
+    style B,C,D,E fill:#bbf,stroke:#333,stroke-width:2px
+```
 
-1. Extension injects into web interface
-2. User actions are monitored
-3. Transactions are processed
+### Technical Foundation
+- **Analytics Dashboard**: Real-time tracking and visualization of platform metrics
+- **Solana Blockchain**: High-performance blockchain infrastructure
+- **PUMP DEX Integration**: Seamless token trading and liquidity management
+- **Chrome Extension**: User-friendly browser interface
+- **Smart Contracts**: Secure and automated transaction handling
 
-### Chrome Extension Overview
+### Market Ecosystem
+- **Content Creators**: Primary content producers and community leaders
+- **Social Influencers**: Key opinion leaders and trend setters
+- **Community Managers**: Engagement and moderation specialists
+- **Brand Partners**: Strategic collaborators and advertisers
 
-#### Short Description
-MEMEFANS is a Chrome extension that seamlessly connects your Twitter account with the Solana blockchain, allowing you to participate in token giveaways with just a few clicks.
-
-#### Key Features
-- One-click connection to your Solana wallet
-- Automatic verification of Twitter interactions
-- Secure token claiming system
-- Real-time balance checking
-- Easy token withdrawal to your wallet
-
-#### How It Works
-1. Connect your Twitter account and Solana wallet
-2. Find supported token giveaways on Twitter
-3. Like and retweet to participate
-4. Claim your tokens directly through the extension
-5. Withdraw tokens to your wallet anytime
-
-#### Security Features
-- No private keys stored
-- Secure wallet connection
-- Open source code
-- Regular security audits
-
-#### Support
-For support or feedback, please visit our GitHub repository or contact us through Twitter.
-
-## Feature Details
-
-### 1. Token Creation & Management
-
-#### Token Creation
-- **Process Flow**
-  1. Connect wallet
-  2. Set token parameters
-  3. Initialize on Solana
-  4. Configure distribution rules
-
-- **Parameters**
-  - Token name
-  - Symbol
-  - Initial supply
-  - Distribution rules
-  - Reward mechanisms
-
-#### Distribution Management
-- **Distribution Methods**
-  - Manual distribution
-  - Automated rules
-  - Scheduled releases
-  - Event-triggered
-
-- **Rules Engine**
-  - Engagement metrics
-  - Time-based rules
-  - Complex conditions
-  - Custom formulas
-
-### 2. Social Media Integration
-
-#### Twitter Integration
-- **Account Connection**
-  - OAuth authentication
-  - Profile verification
-  - Activity monitoring
-  - Engagement tracking
-
-- **Engagement Metrics**
-  - Likes
-  - Retweets
-  - Comments
-  - Follower growth
-  - Engagement rate
-
-#### Automated Actions
-- **Event Triggers**
-  - New followers
-  - High engagement posts
-  - Viral content
-  - Community milestones
-
-- **Response Actions**
-  - Token distribution
-  - Bonus rewards
-  - Achievement badges
-  - Special announcements
-
-### 3. Analytics & Reporting
-
-#### Real-time Analytics
-- **Metrics Tracked**
-  - Token circulation
-  - User engagement
-  - Distribution patterns
-  - Community growth
-
-- **Visualization**
-  - Time-series graphs
-  - Distribution maps
-  - User rankings
-  - Trend analysis
-
-#### Performance Reports
-- **Report Types**
-  - Daily summaries
-  - Weekly analytics
-  - Monthly reviews
-  - Custom periods
-
-- **Export Options**
-  - CSV download
-  - PDF reports
-  - API access
-  - Data integration
-
-### 4. Security Features
-
-#### Wallet Security
-- **Protection Measures**
-  - Multi-sig support
-  - Transaction limits
-  - Whitelist control
-  - Emergency freeze
-
-- **Authentication**
-  - 2FA support
-  - Hardware wallet
-  - Session management
-  - Activity logs
-
-#### Transaction Security
-- **Safety Features**
-  - Transaction preview
-  - Gas optimization
-  - Slippage protection
-  - Fail-safe mechanisms
-
-### 5. Advanced Features
-
-#### Governance Tools
-- **Proposal System**
-  - Create proposals
-  - Voting mechanism
-  - Result execution
-  - History tracking
-
-- **Community Management**
-  - Role assignment
-  - Permission control
-  - Moderation tools
-  - Reward management
-
-#### Integration APIs
-- **API Features**
-  - Token management
-  - Distribution control
-  - Analytics access
-  - Webhook support
-
-- **Documentation**
-  - API reference
-  - Code examples
-  - SDKs
-  - Integration guides
+### Core Features
+- **Content Management**: Creation, storage, and delivery of content
+- **Social Interaction**: User engagement and community building
+- **Token Economics**: Token creation, distribution, and management
+- **Governance**: Community decision-making and participation
 
 ## User Experience
 
@@ -642,35 +577,47 @@ graph TD
 
     style A fill:#f96,stroke:#333,stroke-width:4px
     style B,C,D fill:#bbf,stroke:#333,stroke-width:2px
+
 ```
 
-## Monetization Flow
+## Revenue Model
+
+```mermaid
+graph TD
+    A[Revenue Model] --> B[Transaction Fees]
+    A --> C[Premium Features]
+    A --> D[Partnership Revenue]
+    
+    B -->|Platform| B1[Activity Based]
+    B -->|Sustainable| B2[Revenue Stream]
+    
+    C -->|Enhanced| C1[Capabilities]
+    C -->|Power| C2[User Features]
+    
+    D -->|Strategic| D1[Collaborations]
+    D -->|Business| D2[Integrations]
+    
+    style A fill:#f96,stroke:#333,stroke-width:4px
+    style B,C,D fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+## Key Relationships
 
 ```mermaid
 graph LR
-    A[Revenue Sources] --> B[Gifts]
-    A --> C[Subscriptions]
-    A --> D[Content Sales]
-
-    B --> E[Processing]
-    C --> E
-    D --> E
-
-    E --> F[Settlement]
-    F --> G[Payout]
-
-    subgraph Payment Flow
-        E
-        F
-        G
-    end
-
-    subgraph Revenue Types
-        B
-        C
-        D
-    end
-
+    A[Platform Core] --> B[Chrome Extension]
+    A --> C[Analytics Dashboard]
+    A --> D[DEX Integration]
+    A --> E[Brand Partners]
+    
+    B -->|Enables| B1[Creator Onboarding]
+    C -->|Supports| C1[Community Management]
+    D -->|Enables| D1[Fee Collection]
+    E -->|Drives| E1[Partnership Revenue]
+    
     style A fill:#f96,stroke:#333,stroke-width:4px
-    style E,F,G fill:#bbf,stroke:#333,stroke-width:2px
+    style B,C,D,E fill:#bbf,stroke:#333,stroke-width:2px
 ```
+
+### Technical Foundation
+{{ ... }}
