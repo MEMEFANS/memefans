@@ -259,59 +259,17 @@
             plugins: [
                 function(hook) {
                     hook.doneEach(function() {
-                        // 初始化 mermaid 图表
-                        const mermaidElements = document.querySelectorAll('.mermaid:not(.rendered)');
-                        mermaidElements.forEach(element => {
-                            try {
-                                mermaid.init(undefined, element);
-                                element.classList.add('rendered');
-                            } catch (error) {
-                                console.error('Mermaid rendering error:', error);
-                                console.log('Code:', element.textContent);
-                            }
-                        });
-
+                        // 初始化 Mermaid
+                        mermaid.init(undefined, '.mermaid');
+                        
                         // 更新导航按钮
                         updateNavButtons();
-                    });
-
-                    hook.afterEach(function(html) {
-                        const currentPath = window.location.hash.toLowerCase();
                         
-                        // 在首页时显示 Executive Summary 按钮
-                        if (currentPath === '' || currentPath === '#/' || currentPath === '#') {
-                            return html + `
-                                <div class="nav-buttons">
-                                    <button class="nav-button next-chapter" onclick="window.location.hash='#/whitepaper/executive-summary'" style="margin-left: auto;">
-                                        <span class="label">
-                                            <span>Executive Summary</span>
-                                        </span>
-                                        <span class="arrow">→</span>
-                                    </button>
-                                </div>
-                            `;
-                        }
-                        
-                        // 在其他页面显示常规导航按钮
-                        const navButtons = `
-                            <div class="nav-buttons">
-                                <button class="nav-button prev-chapter" onclick="prevPage()">
-                                    <span class="arrow">←</span>
-                                    <span class="label">
-                                        <span>Previous</span>
-                                        <span class="chapter-title"></span>
-                                    </span>
-                                </button>
-                                <button class="nav-button next-chapter" onclick="nextPage()">
-                                    <span class="label">
-                                        <span>Next</span>
-                                        <span class="chapter-title"></span>
-                                    </span>
-                                    <span class="arrow">→</span>
-                                </button>
-                            </div>
-                        `;
-                        return html + navButtons;
+                        // 确保滚动到顶部
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
                     });
                 }
             ]
@@ -358,12 +316,6 @@
             const currentIndex = getCurrentPageIndex();
             if (currentIndex > 0) {
                 window.location.hash = pages[currentIndex - 1];
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }, 100);
             }
         }
 
@@ -371,12 +323,6 @@
             const currentIndex = getCurrentPageIndex();
             if (currentIndex < pages.length - 1) {
                 window.location.hash = pages[currentIndex + 1];
-                setTimeout(() => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }, 100);
             }
         }
 
