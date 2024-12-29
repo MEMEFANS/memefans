@@ -122,67 +122,39 @@ The platform consists of four main components:
 - **Chrome Extension**: User-friendly browser interface
 - **Smart Contracts**: Secure and automated transaction handling
 
-```mermaid
-graph TD
-    A[Technical Foundation] --> B[Analytics Dashboard]
-    A --> C[Solana Blockchain]
-    A --> D[PUMP DEX]
-    A --> E[Chrome Extension]
-    A --> F[Smart Contracts]
-    
-    B -->|Metrics| B1[Real-time Tracking]
-    B -->|Data| B2[Visualization]
-    
-    C -->|Infrastructure| C1[High Performance]
-    C -->|Security| C2[Decentralization]
-    
-    D -->|Trading| D1[Token Exchange]
-    D -->|Management| D2[Liquidity Pool]
-    
-    E -->|Interface| E1[User Friendly]
-    E -->|Integration| E2[Browser Based]
-    
-    F -->|Automation| F1[Transaction Handling]
-    F -->|Security| F2[Smart Rules]
-    
-    style A fill:#f96,stroke:#333,stroke-width:4px
-    style B,C,D,E,F fill:#bbf,stroke:#333,stroke-width:2px
-```
-
 ### Market Ecosystem
 - **Content Creators**: Primary content producers and community leaders
 - **Social Influencers**: Key opinion leaders and trend setters
 - **Community Managers**: Engagement and moderation specialists
 - **Brand Partners**: Strategic collaborators and advertisers
 
-```mermaid
-graph LR
-    A[Market Ecosystem] --> B[Content Creators]
-    A --> C[Social Influencers]
-    A --> D[Community Managers]
-    A --> E[Brand Partners]
-    
-    B -->|Create| B1[Original Content]
-    B -->|Lead| B2[Communities]
-    
-    C -->|Set| C1[Trends]
-    C -->|Drive| C2[Engagement]
-    
-    D -->|Manage| D1[Community]
-    D -->|Handle| D2[Moderation]
-    
-    E -->|Provide| E1[Collaborations]
-    E -->|Support| E2[Advertising]
-    
-    style A fill:#f96,stroke:#333,stroke-width:4px
-    style B,C,D,E fill:#bbf,stroke:#333,stroke-width:2px
-```
-
 ### Core Features
 - **Content Management**: Creation, storage, and delivery of content
 - **Social Interaction**: User engagement and community building
 - **Token Economics**: Token creation, distribution, and management
 - **Governance**: Community decision-making and participation
+
+## ROI Timeline
+
+```mermaid
+gantt
+    title ROI Timeline
+    dateFormat YYYY-MM-DD
+    axisFormat %Y-%m-%d
+    
+    section Technical
+    Development    :2024-01-01, 2024-03-31
+    Investment     :2024-02-01, 2024-04-30
+    Returns        :2024-04-01, 2024-12-31
+    
+    section Marketing
+    Investment     :2024-03-01, 2024-05-31
+    Returns        :2024-05-01, 2024-12-31
+    
+    section Operations
+    Investment     :2024-02-15, 2024-06-30
+    Returns        :2024-06-01, 2024-12-31
+```
 
 ## User Interaction Flow
 
@@ -617,7 +589,3 @@ graph LR
     
     style A fill:#f96,stroke:#333,stroke-width:4px
     style B,C,D,E fill:#bbf,stroke:#333,stroke-width:2px
-```
-
-### Technical Foundation
-{{ ... }}
