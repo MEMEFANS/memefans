@@ -137,13 +137,38 @@ The platform consists of four main components:
 ## ROI Timeline
 
 ```mermaid
-timeline
+gantt
+    %%{init: {
+        'theme': 'base',
+        'themeVariables': {
+            'fontFamily': 'arial',
+            'backgroundColor': '#ffffff',
+            'tertiaryColor': '#ffffff',
+            'primaryColor': '#9999ff',
+            'secondaryColor': '#9999ff',
+            'gridColor': '#ffffff',
+            'textColor': '#333333',
+            'lineColor': '#ffffff'
+        }
+    }}%%
+    
+    title ROI Timeline
+    dateFormat YYYY-MM-DD
+    axisFormat " "
+    todayMarker off
+    
     section Technical
-        Development : Investment : Returns
+    Development :active, dev1, 2024-01-01, 90d
+    Investment  :active, inv1, after dev1, 60d
+    Returns     :active, ret1, after inv1, 120d
+    
     section Marketing
-        Investment : Returns
+    Investment  :active, inv2, 2024-03-01, 90d
+    Returns     :active, ret2, after inv2, 150d
+    
     section Operations
-        Investment : Returns
+    Investment  :active, inv3, 2024-02-01, 120d
+    Returns     :active, ret3, after inv3, 180d
 ```
 
 <style>
@@ -151,15 +176,17 @@ timeline
     background: white;
 }
 .section {
-    fill: #f5f5ff;
-    stroke: none;
+    fill: #f5f5ff !important;
+    opacity: 0.3;
 }
-.task {
-    fill: #9999ff;
-    stroke: #333;
+.grid {
+    display: none !important;
 }
-.task-text {
-    fill: white;
+.tick {
+    display: none !important;
+}
+.today {
+    display: none !important;
 }
 </style>
 
