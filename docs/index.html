@@ -220,39 +220,36 @@
     <div id="app"></div>
     <script src="//cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js"></script>
     <script>
+        // Initialize mermaid
         mermaid.initialize({
-            startOnLoad: false,
+            startOnLoad: true,
             theme: 'default',
-            flowchart: {
-                curve: 'basis',
-                useMaxWidth: false
-            },
-            sequence: {
-                useMaxWidth: false,
-                showSequenceNumbers: false
-            },
             securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
             themeVariables: {
-                fontSize: '16px'
+                fontSize: '16px',
+                fontFamily: 'arial'
             }
         });
+    </script>
+    <script>
         window.$docsify = {
-            el: '#app',
             name: 'MEMEFANS',
             repo: '',
             loadSidebar: true,
-            subMaxLevel: 2,
+            subMaxLevel: 3,
             auto2top: true,
-            search: false,
-            homepage: 'index.md',
-            routerMode: 'hash',
-            basePath: '/memefans/',
-            relativePath: false,
-            nameLink: '/memefans/#/',
-            alias: {
-                '/.*/_sidebar.md': '/_sidebar.md'
+            search: {
+                maxAge: 86400000,
+                paths: 'auto',
+                placeholder: 'Search',
+                noData: 'No Results',
+                depth: 6
             },
-            mergeNavbar: true,
             markdown: {
                 renderer: {
                     code: function(code, lang) {
