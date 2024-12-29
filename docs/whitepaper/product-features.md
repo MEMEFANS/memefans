@@ -364,9 +364,10 @@ MEMEFANS provides a comprehensive suite of features designed to empower creators
 
 ## Content Management Flow
 
-1. Content creation
-2. Content storage
-3. Content delivery
+The content management flow involves the following steps:
+1. Content creation: Users create content using the platform's tools and features.
+2. Content storage: The created content is stored on the platform's servers.
+3. Content delivery: The stored content is delivered to the users through the platform's interface.
 
 ## User Interaction Flow
 
