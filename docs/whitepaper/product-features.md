@@ -137,22 +137,26 @@ The platform consists of four main components:
 ## ROI Timeline
 
 ```mermaid
-gantt
-    title ROI Timeline
-    dateFormat  YYYY-MM-DD
-    axisFormat ""
+graph LR
+    subgraph Technical
+        T1[Development] --> T2[Investment] --> T3[Returns]
+    end
     
-    section Technical
-    Development    :done, dev1, 2024-01-01, 120d
-    Returns        :done, ret1, after dev1, 90d
+    subgraph Marketing
+        M1[Investment] --> M2[Returns]
+    end
     
-    section Marketing
-    Investment     :done, inv1, 2024-03-01, 60d
-    Returns        :done, ret2, after inv1, 120d
-    
-    section Operations
-    Investment     :done, inv2, 2024-02-15, 90d
-    Returns        :done, ret3, after inv2, 150d
+    subgraph Operations
+        O1[Investment] --> O2[Returns]
+    end
+
+    style T1 fill:#9999ff,stroke:#333
+    style T2 fill:#9999ff,stroke:#333
+    style T3 fill:#9999ff,stroke:#333
+    style M1 fill:#9999ff,stroke:#333
+    style M2 fill:#9999ff,stroke:#333
+    style O1 fill:#9999ff,stroke:#333
+    style O2 fill:#9999ff,stroke:#333
 ```
 
 ## User Interaction Flow
@@ -588,3 +592,5 @@ graph LR
     
     style A fill:#f96,stroke:#333,stroke-width:4px
     style B,C,D,E fill:#bbf,stroke:#333,stroke-width:2px
+
+```
