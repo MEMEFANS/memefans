@@ -40,23 +40,15 @@ graph TD
 ### 1. Governance Framework
 ```mermaid
 flowchart TD
-    subgraph Proposal Process
-        CP[Community Proposals] --> IR[Initial Review]
-        IR --> CV[Community Vote]
-        CV --> IM[Implementation]
-        IM --> FB[Feedback]
-        FB -->|Iterate| CP
-    end
-
-    subgraph Voting Power
-        TH[Token Holdings] -->|Influence| CV
-        AL[Activity Level] -->|Influence| CV
-        RP[Reputation] -->|Influence| CV
-    end
-
-    IR -->|Pass| CV
-    CV -->|Approve| IM
-    IM -->|Execute| FB
+    CP[Community Proposals] --> IR[Initial Review]
+    IR --> CV[Community Vote]
+    CV --> IM[Implementation]
+    IM --> FB[Feedback]
+    FB -->|Iterate| CP
+    
+    TH[Token Holdings] -->|Influence| CV
+    AL[Activity Level] -->|Influence| CV
+    RP[Reputation] -->|Influence| CV
 ```
 
 ### 2. Engagement Flow
@@ -82,35 +74,29 @@ journey
 ### 1. Reward System
 ```mermaid
 graph TD
-    subgraph Activity Rewards
-        GS[Gift Sending] -->|Points| DR[Daily Rewards]
-        CC[Content Creation] -->|Points| DR
-        CH[Community Help] -->|Points| DR
-    end
+    GS[Gift Sending] -->|Points| DR[Daily Rewards]
+    CC[Content Creation] -->|Points| DR
+    CH[Community Help] -->|Points| DR
     
-    subgraph Achievement System
-        DR -->|Accumulate| UL[User Level]
-        UL -->|Unlock| SF[Special Features]
-        UL -->|Access| EE[Exclusive Events]
-    end
+    DR -->|Accumulate| UL[User Level]
+    UL -->|Unlock| SF[Special Features]
+    UL -->|Access| EE[Exclusive Events]
 ```
 
 ### 2. Event Calendar
 ```mermaid
 graph TD
-    subgraph Community Events
-        WE[Weekly Events] --> AMA[AMA Sessions]
-        WE --> CT[Community Training]
-        WE --> RW[Rewards Distribution]
-        
-        ME[Monthly Events] --> HC[Hackathons]
-        ME --> CC[Creator Contests]
-        ME --> CM[Community Meetings]
-        
-        QE[Quarterly Events] --> GV[Governance Voting]
-        QE --> PR[Platform Reviews]
-        QE --> UP[Updates & Planning]
-    end
+    WE[Weekly Events] --> AMA[AMA Sessions]
+    WE --> CT[Community Training]
+    WE --> RW[Rewards Distribution]
+    
+    ME[Monthly Events] --> HC[Hackathons]
+    ME --> CC[Creator Contests]
+    ME --> CM[Community Meetings]
+    
+    QE[Quarterly Events] --> GV[Governance Voting]
+    QE --> PR[Platform Reviews]
+    QE --> UP[Updates & Planning]
     
     style WE fill:#90EE90,color:#000000
     style ME fill:#FFB6C1,color:#000000
@@ -122,20 +108,14 @@ graph TD
 ### 1. Learning Path
 ```mermaid
 graph LR
-    subgraph Beginner
-        PB[Platform Basics] -->|Complete| FG[Feature Guide]
-        FG -->|Master| BO[Basic Operations]
-    end
+    PB[Platform Basics] -->|Complete| FG[Feature Guide]
+    FG -->|Master| BO[Basic Operations]
     
-    subgraph Intermediate
-        AF[Advanced Features] -->|Learn| IG[Integration Guide]
-        IG -->|Practice| CR[Community Role]
-    end
+    AF[Advanced Features] -->|Learn| IG[Integration Guide]
+    IG -->|Practice| CR[Community Role]
     
-    subgraph Advanced
-        TS[Technical Skills] -->|Develop| CG[Contribution Guide]
-        CG -->|Lead| CL[Community Leadership]
-    end
+    TS[Technical Skills] -->|Develop| CG[Contribution Guide]
+    CG -->|Lead| CL[Community Leadership]
 ```
 
 ### 2. Resource Structure
@@ -173,17 +153,13 @@ graph TD
 ### 1. Channel Structure
 ```mermaid
 graph TD
-    subgraph Official Channels
-        XP[X Platform] -->|Updates| C[Community]
-        D[Discord] -->|Discussion| C
-        T[Telegram] -->|Support| C
-    end
+    XP[X Platform] -->|Updates| C[Community]
+    D[Discord] -->|Discussion| C
+    T[Telegram] -->|Support| C
     
-    subgraph Community Channels
-        C -->|Feedback| PT[Product Team]
-        C -->|Issues| ST[Support Team]
-        C -->|Ideas| DT[Development Team]
-    end
+    C -->|Feedback| PT[Product Team]
+    C -->|Issues| ST[Support Team]
+    C -->|Ideas| DT[Development Team]
 ```
 
 ### 2. Information Flow
@@ -236,33 +212,25 @@ pie
 ### 1. Partnership Network
 ```mermaid
 graph TD
-    subgraph Core Partners
-        SP[Social Platforms] -->|Integration| M[MEMEFANS]
-        WP[Wallet Providers] -->|Services| M
-        DP[DeFi Platforms] -->|Collaboration| M
-    end
+    SP[Social Platforms] -->|Integration| M[MEMEFANS]
+    WP[Wallet Providers] -->|Services| M
+    DP[DeFi Platforms] -->|Collaboration| M
     
-    subgraph Support Partners
-        M -->|Service| S[Security]
-        M -->|Support| I[Infrastructure]
-        M -->|Enhance| UX[User Experience]
-    end
+    M -->|Service| S[Security]
+    M -->|Support| I[Infrastructure]
+    M -->|Enhance| UX[User Experience]
 ```
 
 ### 2. Value Flow
 ```mermaid
 graph LR
-    subgraph Value Creation
-        PN[Partner Network] -->|Generate| UV[User Value]
-        UV -->|Create| PV[Platform Value]
-        PV -->|Enhance| EV[Ecosystem Value]
-    end
+    PN[Partner Network] -->|Generate| UV[User Value]
+    UV -->|Create| PV[Platform Value]
+    PV -->|Enhance| EV[Ecosystem Value]
     
-    subgraph Value Distribution
-        EV -->|Share| PB[Partner Benefits]
-        EV -->|Reward| UB[User Benefits]
-        EV -->|Grow| PN
-    end
+    EV -->|Share| PB[Partner Benefits]
+    EV -->|Reward| UB[User Benefits]
+    EV -->|Grow| PN
 ```
 
 ## Innovation Pipeline
@@ -270,13 +238,11 @@ graph LR
 ### 1. Development Process
 ```mermaid
 graph TD
-    subgraph Innovation Cycle
-        R[Research] -->|Insights| I[Ideation]
-        I -->|Concepts| D[Development]
-        D -->|Features| T[Testing]
-        T -->|Feedback| IM[Implementation]
-        IM -->|Learning| R
-    end
+    R[Research] -->|Insights| I[Ideation]
+    I -->|Concepts| D[Development]
+    D -->|Features| T[Testing]
+    T -->|Feedback| IM[Implementation]
+    IM -->|Learning| R
 ```
 
 ### 2. Feature Timeline
@@ -302,17 +268,13 @@ timeline
 ### 1. Value Creation
 ```mermaid
 graph TD
-    subgraph Economic Flow
-        UA[User Activity] -->|Generate| PV[Platform Value]
-        PV -->|Create| TV[Token Value]
-        TV -->|Enhance| EV[Ecosystem Value]
-    end
+    UA[User Activity] -->|Generate| PV[Platform Value]
+    PV -->|Create| TV[Token Value]
+    TV -->|Enhance| EV[Ecosystem Value]
     
-    subgraph Value Distribution
-        EV -->|Reward| U[Users]
-        EV -->|Support| D[Development]
-        EV -->|Grow| C[Community]
-    end
+    EV -->|Reward| U[Users]
+    EV -->|Support| D[Development]
+    EV -->|Grow| C[Community]
 ```
 
 ### 2. Resource Allocation
