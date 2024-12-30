@@ -3,8 +3,9 @@ const QUICKNODE_RPC_URL = 'https://special-fluent-dust.solana-mainnet.quiknode.p
 const FANS_TOKEN_MINT = 'EViQB8r2we14B4sA6jEg5Ujb85WepzKUcf7YwGeGpump';
 const USDC_TOKEN_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 const RAYDIUM_FANS_USDC_POOL = '2yN5KZa6zJdFo8wbXZjPcUQhptw8yZHVH8Ycr6LnLGJV';
-const POOL_ADDRESS = '2yN5KZa6zJdFo8wbXZjPcUQhptw8yZHVH8Ycr6LnLGJV';
-const FEE_ACCOUNT = '2yN5KZa6zJdFo8wbXZjPcUQhptw8yZHVH8Ycr6LnLGJV';
+const POOL_ADDRESS = 'YOUR_POOL_ADDRESS';  // 需要替换为实际的存储池地址
+const FEE_ADDRESS = 'YOUR_FEE_ADDRESS';    // 需要替换为实际的手续费地址
+const FEE_PERCENTAGE = 0.01;               // 1% 手续费
 const TOKEN_PROGRAM_ID = 'Gg6F31mmNziJW1s1qpqjKg5akw4N3B3j4XQ2knjV4J5';
 
 // 初始化连接和钱包
@@ -368,6 +369,149 @@ function setupAutoRefresh() {
   }, 30000);
 }
 
+// 存储池相关函数
+async function createStoragePool(totalAmount) {
+  try {
+    if (!wallet) {
+      throw new Error('请先连接钱包');
+    }
+
+    // 创建新的存储池账户
+    const poolKeypair = solanaWeb3.Keypair.generate();
+    const poolAccount = poolKeypair.publicKey;
+
+    // 创建交易
+    const transaction = new solanaWeb3.Transaction();
+
+    // 获取用户的代币账户
+    const userTokenAccount = await getOrCreateAssociatedTokenAccount(
+      connection,
+      wallet,
+      new solanaWeb3.PublicKey(FANS_TOKEN_MINT),
+      wallet.publicKey
+    );
+
+    // 获取存储池的代币账户
+    const poolTokenAccount = await getOrCreateAssociatedTokenAccount(
+      connection,
+      wallet,
+      new solanaWeb3.PublicKey(FANS_TOKEN_MINT),
+      poolAccount
+    );
+
+    // 获取手续费账户
+    const feeTokenAccount = await getOrCreateAssociatedTokenAccount(
+      connection,
+      wallet,
+      new solanaWeb3.PublicKey(FANS_TOKEN_MINT),
+      new solanaWeb3.PublicKey(FEE_ADDRESS)
+    );
+
+    // 计算手续费
+    const feeAmount = Math.floor(totalAmount * FEE_PERCENTAGE);
+    const poolAmount = totalAmount - feeAmount;
+
+    // 添加转账到存储池的指令
+    transaction.add(
+      createTransferInstruction(
+        userTokenAccount.address,
+        poolTokenAccount.address,
+        wallet.publicKey,
+        poolAmount,
+        [],
+        TOKEN_PROGRAM_ID
+      )
+    );
+
+    // 添加转账手续费的指令
+    transaction.add(
+      createTransferInstruction(
+        userTokenAccount.address,
+        feeTokenAccount.address,
+        wallet.publicKey,
+        feeAmount,
+        [],
+        TOKEN_PROGRAM_ID
+      )
+    );
+
+    // 发送交易
+    const signature = await connection.sendTransaction(transaction, [wallet]);
+    await connection.confirmTransaction(signature);
+
+    // 返回存储池信息
+    return {
+      success: true,
+      poolAddress: poolAccount.toString(),
+      signature,
+      poolAmount,
+      feeAmount
+    };
+  } catch (error) {
+    console.error('创建存储池失败:', error);
+    throw error;
+  }
+}
+
+// 修改创建赠送函数，添加存储池交互
+async function createAirdrop(tweetUrl, totalTokens, numPackages, isRandom, tokensPerPackage, minTokens, maxTokens, requirements) {
+  try {
+    if (!wallet) {
+      throw new Error('请先连接钱包');
+    }
+
+    if (!tweetUrl) {
+      throw new Error('请输入推文链接');
+    }
+
+    if (totalTokens <= 0) {
+      throw new Error('总代币数量必须大于0');
+    }
+
+    if (numPackages <= 0) {
+      throw new Error('礼物包数量必须大于0');
+    }
+
+    // 创建存储池
+    const poolResult = await createStoragePool(totalTokens * 1e9);
+    
+    // 创建赠送记录
+    const airdrop = {
+      id: generateUniqueId(),
+      tweetUrl,
+      totalTokens,
+      numPackages,
+      isRandom,
+      tokensPerPackage: isRandom ? { min: minTokens, max: maxTokens } : tokensPerPackage,
+      requirements,
+      createdAt: new Date().toISOString(),
+      status: 'active',
+      creator: wallet.publicKey.toString(),
+      poolAccount: poolResult.poolAddress,
+      remainingPackages: numPackages,
+      claimedBy: []
+    };
+
+    // 保存赠送记录
+    const { airdrops = [] } = await chrome.storage.local.get('airdrops');
+    airdrops.push(airdrop);
+    await chrome.storage.local.set({ airdrops });
+
+    // 发送交易
+    const signature = await connection.sendTransaction(new solanaWeb3.Transaction(), [wallet]);
+    await connection.confirmTransaction(signature);
+    console.log('赠送创建成功，交易签名:', signature);
+
+    // 刷新余额
+    await refreshBalance();
+
+    return { success: true, signature, airdropId: airdrop.id };
+  } catch (error) {
+    console.error('创建赠送失败:', error);
+    throw error;
+  }
+}
+
 // 导入钱包按钮点击事件
 document.addEventListener('DOMContentLoaded', () => {
   // 导入钱包按钮点击事件
@@ -642,61 +786,11 @@ async function createAirdrop(tweetUrl, totalTokens, numPackages, isRandom, token
       throw new Error('礼物包数量必须大于0');
     }
 
-    // 创建赠送交易
-    const transaction = new solanaWeb3.Transaction();
+    // 创建存储池
+    const poolResult = await createStoragePool(totalTokens * 1e9);
     
-    // 获取用户的代币账户
-    const userTokenAccount = await getOrCreateAssociatedTokenAccount(
-      connection,
-      wallet,
-      new solanaWeb3.PublicKey(FANS_TOKEN_MINT),
-      wallet.publicKey
-    );
-
-    // 获取存储池的代币账户
-    const poolTokenAccount = await getOrCreateAssociatedTokenAccount(
-      connection,
-      wallet,
-      new solanaWeb3.PublicKey(FANS_TOKEN_MINT),
-      new solanaWeb3.PublicKey(POOL_ADDRESS)
-    );
-
-    // 计算所需代币数量（包含1%手续费）
-    const totalAmount = Math.floor(totalTokens * 1e9); // FANS有9位小数
-    const feeAmount = Math.floor(totalTokens * 0.01 * 1e9); // 1%手续费
-
-    // 检查余额
-    const balance = await connection.getTokenAccountBalance(userTokenAccount.address);
-    if (balance.value.uiAmount < totalTokens * 1.01) {
-      throw new Error('余额不足（需要额外1%手续费）');
-    }
-
-    // 添加转账指令：将代币转入存储池
-    transaction.add(
-      createTransferInstruction(
-        userTokenAccount.address,
-        poolTokenAccount.address,
-        wallet.publicKey,
-        totalAmount,
-        [],
-        TOKEN_PROGRAM_ID
-      )
-    );
-
-    // 添加手续费转账指令
-    transaction.add(
-      createTransferInstruction(
-        userTokenAccount.address,
-        FEE_ACCOUNT,  // 手续费接收账户
-        wallet.publicKey,
-        feeAmount,
-        [],
-        TOKEN_PROGRAM_ID
-      )
-    );
-
     // 创建赠送记录
-    const airdropData = {
+    const airdrop = {
       id: generateUniqueId(),
       tweetUrl,
       totalTokens,
@@ -707,25 +801,25 @@ async function createAirdrop(tweetUrl, totalTokens, numPackages, isRandom, token
       createdAt: new Date().toISOString(),
       status: 'active',
       creator: wallet.publicKey.toString(),
-      poolAccount: poolTokenAccount.address.toString(),
+      poolAccount: poolResult.poolAddress,
       remainingPackages: numPackages,
       claimedBy: []
     };
 
     // 保存赠送记录
     const { airdrops = [] } = await chrome.storage.local.get('airdrops');
-    airdrops.push(airdropData);
+    airdrops.push(airdrop);
     await chrome.storage.local.set({ airdrops });
 
     // 发送交易
-    const signature = await connection.sendTransaction(transaction, [wallet]);
+    const signature = await connection.sendTransaction(new solanaWeb3.Transaction(), [wallet]);
     await connection.confirmTransaction(signature);
     console.log('赠送创建成功，交易签名:', signature);
 
     // 刷新余额
     await refreshBalance();
 
-    return { success: true, signature, airdropId: airdropData.id };
+    return { success: true, signature, airdropId: airdrop.id };
   } catch (error) {
     console.error('创建赠送失败:', error);
     throw error;
@@ -736,6 +830,138 @@ async function createAirdrop(tweetUrl, totalTokens, numPackages, isRandom, token
 function generateUniqueId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
+
+// 代币领取相关函数
+async function claimAirdrop(airdropId, userAddress) {
+  try {
+    if (!wallet) {
+      throw new Error('请先连接钱包');
+    }
+
+    // 获取赠送记录
+    const { airdrops = [] } = await chrome.storage.local.get('airdrops');
+    const airdrop = airdrops.find(a => a.id === airdropId);
+    
+    if (!airdrop) {
+      throw new Error('找不到赠送记录');
+    }
+
+    if (airdrop.remainingPackages <= 0) {
+      throw new Error('赠送已结束');
+    }
+
+    if (airdrop.claimedBy.includes(userAddress)) {
+      throw new Error('您已经领取过了');
+    }
+
+    // 验证 Twitter 要求
+    const tweetId = getTweetIdFromUrl(airdrop.tweetUrl);
+    const verifyResult = await verifyTwitterRequirements(tweetId, userAddress, airdrop.requirements);
+    
+    if (!verifyResult.success) {
+      const failed = Object.entries(verifyResult.details)
+        .filter(([, success]) => !success)
+        .map(([requirement]) => requirement);
+      throw new Error(`请先完成以下要求: ${failed.join(', ')}`);
+    }
+
+    // 创建领取交易
+    const transaction = new solanaWeb3.Transaction();
+    
+    // 获取用户的代币账户
+    const userTokenAccount = await getOrCreateAssociatedTokenAccount(
+      connection,
+      wallet,
+      new solanaWeb3.PublicKey(FANS_TOKEN_MINT),
+      new solanaWeb3.PublicKey(userAddress)
+    );
+
+    // 获取存储池的代币账户
+    const poolTokenAccount = await getOrCreateAssociatedTokenAccount(
+      connection,
+      wallet,
+      new solanaWeb3.PublicKey(FANS_TOKEN_MINT),
+      new solanaWeb3.PublicKey(airdrop.poolAccount)
+    );
+
+    // 计算领取数量
+    let claimAmount;
+    if (airdrop.isRandom) {
+      const min = airdrop.tokensPerPackage.min * 1e9;
+      const max = airdrop.tokensPerPackage.max * 1e9;
+      claimAmount = Math.floor(Math.random() * (max - min + 1) + min);
+    } else {
+      claimAmount = Math.floor(airdrop.tokensPerPackage * 1e9);
+    }
+
+    // 添加转账指令
+    transaction.add(
+      createTransferInstruction(
+        poolTokenAccount.address,
+        userTokenAccount.address,
+        new solanaWeb3.PublicKey(airdrop.poolAccount),
+        claimAmount,
+        [],
+        TOKEN_PROGRAM_ID
+      )
+    );
+
+    // 发送交易
+    const signature = await connection.sendTransaction(transaction, [wallet]);
+    await connection.confirmTransaction(signature);
+
+    // 更新赠送记录
+    airdrop.remainingPackages--;
+    airdrop.claimedBy.push(userAddress);
+    await chrome.storage.local.set({ airdrops });
+
+    // 刷新余额
+    await refreshBalance();
+
+    return {
+      success: true,
+      signature,
+      amount: claimAmount / 1e9
+    };
+  } catch (error) {
+    console.error('领取代币失败:', error);
+    throw error;
+  }
+}
+
+// 添加领取按钮点击事件
+document.addEventListener('DOMContentLoaded', () => {
+  const claimButtons = document.querySelectorAll('.claim-button');
+  claimButtons.forEach(button => {
+    button.addEventListener('click', async () => {
+      try {
+        const airdropId = button.dataset.airdropId;
+        const userAddress = wallet.publicKey.toString();
+        
+        // 显示加载状态
+        button.disabled = true;
+        button.textContent = '领取中...';
+        
+        // 领取代币
+        const result = await claimAirdrop(airdropId, userAddress);
+        
+        // 显示成功消息
+        showSuccess(`成功领取 ${result.amount} FANS`);
+        
+        // 刷新界面
+        button.textContent = '已领取';
+        button.disabled = true;
+      } catch (error) {
+        console.error('领取失败:', error);
+        showError(error.message);
+        
+        // 恢复按钮状态
+        button.disabled = false;
+        button.textContent = '领取';
+      }
+    });
+  });
+});
 
 // 创建赠送按钮点击事件
 document.getElementById('create-airdrop').addEventListener('click', async () => {
