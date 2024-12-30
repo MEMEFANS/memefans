@@ -126,17 +126,16 @@ class BalanceManager {
       
       // 获取所有余额信息
       const result = await chrome.storage.local.get([
-        'pendingAmount',
-        'totalAmount',
         'claims',
         'withdrawHistory'
       ]);
 
-      // 计算实际的待提现金额
-      let pendingAmount = result.totalAmount || 0;
-      const withdrawHistory = result.withdrawHistory || [];
+      // 计算已领取的总金额
+      const claims = result.claims || [];
+      let pendingAmount = claims.reduce((total, claim) => total + claim.amount, 0);
       
       // 减去所有已完成的提现
+      const withdrawHistory = result.withdrawHistory || [];
       withdrawHistory.forEach(withdrawal => {
         if (withdrawal.status === 'completed') {
           pendingAmount -= withdrawal.amount;

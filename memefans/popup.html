@@ -32,14 +32,13 @@
     }
 
     .balance-text {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: bold;
       color: #1a73e8;
       display: block;
     }
 
-    #wallet-address {
-      word-break: break-all;
+    .address-box {
       padding: 12px;
       background: #fff;
       border-radius: 8px;
@@ -47,6 +46,7 @@
       margin: 8px 0;
       font-family: monospace;
       font-size: 12px;
+      word-break: break-all;
       line-height: 1.4;
     }
 
@@ -65,31 +65,47 @@
       border: 1px solid #ffe0b2;
     }
 
-    button {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-
-    .withdraw-button {
-      background: #fbbc05;
-      color: white;
-    }
-
     .action-button {
-      background: #34a853;
+      background: #40b37c;
       color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
     }
 
-    button:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
+    .action-button:hover {
+      background: #359268;
+    }
+
+    .action-button.secondary {
+      background: #6c757d;
+    }
+
+    .action-button.secondary:hover {
+      background: #5a6268;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .button-group .action-button {
+      flex: 1;
+      font-size: 13px;
+      padding: 8px;
+      border-radius: 6px;
+      min-width: 80px;
+    }
+
+    .button-group.small-buttons {
+      margin-top: 16px;
+    }
+
+    .button-group.small-buttons .action-button {
+      padding: 6px;
+      font-size: 12px;
     }
 
     button:active {
@@ -100,20 +116,35 @@
       margin: 12px 0;
     }
 
-    #private-key-input {
+    .input-box {
       width: 100%;
       padding: 10px;
-      margin: 8px 0;
       border: 1px solid #e0e0e0;
       border-radius: 8px;
       font-size: 14px;
+      margin-bottom: 12px;
       box-sizing: border-box;
     }
 
-    #private-key-input:focus {
-      border-color: #1a73e8;
+    .input-box:focus {
       outline: none;
-      box-shadow: 0 0 0 2px rgba(26,115,232,0.2);
+      border-color: #40b37c;
+    }
+
+    .private-key-display {
+      padding: 12px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      margin: 8px 0;
+      font-family: monospace;
+      font-size: 12px;
+      word-break: break-all;
+      line-height: 1.4;
+    }
+
+    .import-container {
+      margin: 12px 0;
     }
 
     .history-section {
@@ -166,7 +197,7 @@
       color: #34a853;
     }
 
-    .giveaway-section {
+    .airdrop-section {
       background: #fff3e0;
       border-radius: 12px;
       padding: 16px;
@@ -174,14 +205,14 @@
       border: 2px solid #ffe0b2;
     }
 
-    .giveaway-section h3 {
+    .airdrop-section h3 {
       color: #e65100;
       font-size: 16px;
       margin-bottom: 16px;
       text-align: center;
     }
 
-    #create-giveaway {
+    #create-airdrop {
       background: #ff9800;
       color: white;
       font-weight: bold;
@@ -190,19 +221,8 @@
       margin-top: 16px;
     }
 
-    #create-giveaway:hover {
+    #create-airdrop:hover {
       background: #f57c00;
-    }
-
-    .input-group {
-      margin: 12px 0;
-    }
-
-    .input-group label {
-      display: block;
-      margin-bottom: 4px;
-      color: #666;
-      font-size: 12px;
     }
 
     .checkbox-group {
@@ -247,7 +267,7 @@
 <body>
   <div class="wallet-section">
     <h3>钱包地址</h3>
-    <div id="wallet-address"></div>
+    <div id="wallet-address" class="address-box"></div>
     
     <h3>SOL 余额</h3>
     <div class="balance-container">
@@ -260,23 +280,22 @@
     </div>
     
     <h3>累计待提现</h3>
-    <div class="balance-container">
+    <div class="balance-container" style="display: flex; align-items: center; justify-content: space-between;">
       <span id="accumulated-balance" class="balance-text">0.00 FANS</span>
+      <button id="withdrawButton" class="action-button small">Claim</button>
     </div>
-    <div class="fee-info">
-      提现需要支付 gas 费用，建议累积到一定数量再提现
-    </div>
-    
-    <button id="withdrawButton" class="action-button">
-      提取代币
-    </button>
-    <button id="test-connection" class="action-button">测试连接</button>
-    <button id="refresh-balance" class="action-button">刷新余额</button>
-    
-    <div class="input-group">
-      <input type="text" id="private-key-input" placeholder="输入SOL私钥">
+
+    <div class="button-group small-buttons">
       <button id="import-wallet" class="action-button">导入钱包</button>
+      <button id="export-wallet" class="action-button">导出私钥</button>
     </div>
+
+    <input type="text" id="private-key-input" placeholder="请输入私钥" class="input-box" style="display: none;">
+    <div class="button-group">
+      <button id="confirm-import" class="action-button" style="display: none;">确认导入</button>
+      <button id="cancel-import" class="action-button secondary" style="display: none;">取消</button>
+    </div>
+    <div id="private-key-display" class="private-key-display" style="display: none;"></div>
   </div>
 
   <!-- 添加提现记录部分 -->
@@ -288,34 +307,36 @@
     <div id="withdrawals-list" class="history-list"></div>
   </div>
 
-  <div class="giveaway-section">
+  <div class="airdrop-section">
     <h3>创建代币赠送</h3>
-    
+      
     <div class="input-group">
       <label>推文链接</label>
-      <input type="text" id="tweet-url" placeholder="输入推文链接">
+      <input type="text" id="tweet-url" class="input-box" placeholder="输入推文链接">
     </div>
 
     <div class="input-group">
       <label>总代币数量</label>
-      <input type="number" id="total-tokens" placeholder="输入总代币数量">
+      <input type="number" id="total-tokens" class="input-box" placeholder="输入总代币数量" min="0" step="0.0001">
     </div>
 
     <div class="input-group">
       <label>礼物包数量</label>
-      <input type="number" id="num-packages" placeholder="输入礼物包数量">
+      <input type="number" id="num-packages" class="input-box" placeholder="输入礼物包数量" min="1" value="1">
     </div>
 
     <div class="input-group">
       <label>每个礼物包代币数量</label>
-      <select id="distribution-type">
+      <select id="distribution-type" class="input-box">
         <option value="fixed">固定数量</option>
         <option value="random">随机数量</option>
       </select>
-      <input type="number" id="tokens-per-package" placeholder="输入每个礼物包的代币数量">
+      <div id="fixed-amount">
+        <input type="number" id="tokens-per-package" class="input-box" placeholder="自动计算" readonly>
+      </div>
       <div id="random-range" style="display: none;">
-        <input type="number" id="min-tokens" placeholder="最小代币数量">
-        <input type="number" id="max-tokens" placeholder="最大代币数量">
+        <input type="number" id="min-tokens" class="input-box" placeholder="最小代币数量" step="0.0001">
+        <input type="number" id="max-tokens" class="input-box" placeholder="最大代币数量" step="0.0001">
       </div>
     </div>
 
@@ -343,7 +364,9 @@
       注意：每次发送礼物包将收取 1% 的手续费
     </div>
 
-    <button id="create-giveaway">创建赠送</button>
+    <div class="button-group">
+      <button id="create-airdrop" class="action-button">创建赠送</button>
+    </div>
   </div>
 
   <div id="connection-status"></div>
@@ -410,17 +433,6 @@
         }
       });
 
-      // 测试连接按钮
-      document.getElementById('test-connection').addEventListener('click', testConnection);
-      
-      // 刷新余额按钮
-      document.getElementById('refresh-balance').addEventListener('click', async () => {
-        const wallet = await chrome.storage.local.get(['wallet']);
-        if (wallet && wallet.publicKey) {
-          await refreshBalances(wallet.publicKey);
-        }
-      });
-      
       // 导入钱包按钮
       document.getElementById('import-wallet').addEventListener('click', importWallet);
     });
