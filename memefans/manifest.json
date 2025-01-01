@@ -1,13 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "MEMEFANS - Social Token Platform",
-  "version": "1.0.0",
-  "description": "MEMEFANS is a comprehensive social token platform that enables users to participate in the FANS token ecosystem through Twitter/X. Features include automatic verification of social interactions, secure token claiming, real-time balance tracking, and seamless wallet integration.",
-  "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
-  },
+  "name": "MemeFans",
+  "version": "1.0",
+  "description": "MemeFans Chrome Extension",
   "permissions": [
     "storage",
     "activeTab",
@@ -19,71 +14,23 @@
     "https://x.com/*",
     "https://api.twitter.com/*",
     "https://solana-api.projectserum.com/*",
-    "https://special-fluent-dust.solana-mainnet.quiknode.pro/*"
+    "https://special-fluent-dust.solana-mainnet.quiknode.pro/*",
+    "https://api.devnet.solana.com/*"
   ],
-  "content_security_policy": {
-    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; connect-src 'self' https://api.twitter.com https://solana-api.projectserum.com https://special-fluent-dust.solana-mainnet.quiknode.pro;"
-  },
   "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
-    }
+    "default_popup": "popup.html"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://twitter.com/*",
-        "https://x.com/*"
-      ],
-      "js": [
-        "lib/buffer.js",
-        "lib/solana-web3.js",
-        "lib/bs58.js",
-        "lib/web3.js",
-        "lib/solana-init.js",
-        "config.js",
-        "constants.js",
-        "wallet.js",
-        "balance.js",
-        "contract.js",
-        "content.js"
-      ],
-      "css": ["styles.css"],
-      "run_at": "document_idle"
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["images/*", "lib/*", "styles.css"],
-      "matches": ["https://twitter.com/*", "https://x.com/*"]
-    }
-  ],
-  "background": {
-    "service_worker": "background.js",
-    "type": "module"
-  },
-  "author": "MEMEFANS Team",
-  "homepage_url": "https://memefans.github.io/memefans/",
-  "minimum_chrome_version": "88",
-  "incognito": "not_allowed",
-  "offline_enabled": false,
-  "short_name": "MEMEFANS",
-  "oauth2": {
-    "client_id": "${OAUTH_CLIENT_ID}",
-    "scopes": [
-      "https://www.googleapis.com/auth/userinfo.email"
-    ]
-  },
-  "commands": {
-    "_execute_action": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+F",
-        "mac": "Command+Shift+F"
-      },
-      "description": "Open MEMEFANS popup"
-    }
-  }
+  "web_accessible_resources": [{
+    "resources": [
+      "lib/buffer.js",
+      "lib/solana-web3.js",
+      "lib/bs58.js",
+      "lib/solana-init.js",
+      "init.js",
+      "popup.js",
+      "calculation.js",
+      "airdrop.js"
+    ],
+    "matches": ["<all_urls>"]
+  }]
 }

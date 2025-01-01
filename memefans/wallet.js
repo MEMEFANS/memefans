@@ -3,6 +3,8 @@ class WalletManager {
   constructor() {
     this.wallet = null;
     this.connection = null;
+    this.state = 'UNINITIALIZED';
+    this.lastError = null;
   }
 
   // 从私钥导入钱包

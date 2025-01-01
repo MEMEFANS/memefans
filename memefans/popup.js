@@ -1,6 +1,9 @@
 // 常量定义
-const QUICKNODE_RPC_URL = 'https://special-fluent-dust.solana-mainnet.quiknode.pro/6e0fc13eb7512bc5c4ed3c311e778ac9739c0025';
-const FANS_TOKEN_MINT = 'EViQB8r2we14B4sA6jEg5Ujb85WepzKUcf7YwGeGpump';
+const ENV = 'development'; // 设置为开发环境
+const FANS_TOKEN_MINT = ENV === 'development' 
+  ? '6xfa7wnrsNR3DsK5xHuSGWjYLayFQUiemb8FmnvLBwes'  // 开发环境
+  : 'FANSXnVq6k3R9buRNBJ5kP3xFVKHNkgC5yYvZsHgiZ9f'; // 生产环境
+const MEME_TOKEN_MINT = 'METAmTMXwdb8gYzyCPfXXFmZZw4rUsXX58PNsDg7zjL';
 const USDC_TOKEN_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 const RAYDIUM_FANS_USDC_POOL = '2yN5KZa6zJdFo8wbXZjPcUQhptw8yZHVH8Ycr6LnLGJV';
 const POOL_ADDRESS = 'YOUR_POOL_ADDRESS';  // 需要替换为实际的存储池地址
@@ -241,119 +244,71 @@ async function initSavedWallet() {
 
 // 刷新余额
 async function refreshBalance() {
+  console.log('==================== 开始刷新余额 ====================');
   try {
-    if (!wallet || !connection) {
-      console.error(' 钱包或连接未初始化');
-      return;
+    // 确保连接已初始化
+    const conn = await initConnection();
+    console.log('连接状态:', conn ? '已连接' : '未连接');
+    
+    // 获取钱包信息
+    const walletAddress = wallet ? wallet.publicKey.toString() : null;
+    console.log('钱包地址:', walletAddress);
+    
+    if (!wallet || !conn) {
+      throw new Error('钱包未连接');
     }
 
-    console.log('==================== 余额刷新开始 ====================');
-    
-    // 获取 UI 元素
-    const solBalanceElement = document.getElementById('sol-balance');
-    const fansBalanceElement = document.getElementById('fans-balance');
-    const accumulatedBalanceElement = document.getElementById('accumulated-balance');
-    
-    if (!solBalanceElement || !fansBalanceElement || !accumulatedBalanceElement) {
-      console.error(' 找不到余额显示元素');
-      return;
-    }
-
-    // 先更新代币价格
+    // 更新代币价格
     await updateTokenPrices();
+    console.log('代币价格:', tokenPrices);
 
     // 获取 SOL 余额
-    const balance = await connection.getBalance(wallet.publicKey);
-    const solBalance = balance / solanaWeb3.LAMPORTS_PER_SOL;
+    const solBalance = await conn.getBalance(wallet.publicKey);
+    console.log('SOL 余额 (lamports):', solBalance);
+    const solBalanceDisplay = solBalance / solanaWeb3.LAMPORTS_PER_SOL;
     
-    // 计算 SOL 的 USD 价值
-    const solUsdValue = solBalance * tokenPrices.SOL;
-    console.log(' SOL 余额计算:');
-    console.log('   原始余额:', balance);
-    console.log('   SOL 余额:', solBalance);
-    console.log('   SOL 价格:', tokenPrices.SOL);
-    console.log('   USD 价值:', solUsdValue);
+    // 获取 FANS 代币账户
+    const fansTokenAccount = await conn.getTokenAccountsByOwner(wallet.publicKey, {
+      mint: new solanaWeb3.PublicKey(FANS_TOKEN_MINT)
+    });
+    console.log('FANS 代币账户:', fansTokenAccount);
     
-    // 更新 SOL 余额显示
-    solBalanceElement.textContent = `${solBalance.toFixed(4)} SOL ($${solUsdValue.toFixed(2)})`;
-
-    // 获取 FANS 代币余额
-    try {
-      const mintPubkey = new solanaWeb3.PublicKey(FANS_TOKEN_MINT);
-      const tokenAccounts = await connection.getTokenAccountsByOwner(
-        wallet.publicKey,
-        { mint: mintPubkey }
-      );
-      
-      let tokenBalance = 0;
-      if (tokenAccounts.value.length > 0) {
-        const tokenAccount = tokenAccounts.value[0];
-        const tokenBalanceResponse = await connection.getTokenAccountBalance(
-          tokenAccount.pubkey
-        );
-        
-        if (tokenBalanceResponse.value.uiAmountString) {
-          tokenBalance = parseFloat(tokenBalanceResponse.value.uiAmountString);
-          
-          // 计算 FANS 的 USD 价值
-          const fansUsdValue = tokenBalance * tokenPrices.FANS;
-          console.log(' FANS 余额计算:');
-          console.log('   代币余额:', tokenBalance);
-          console.log('   FANS 价格:', tokenPrices.FANS);
-          console.log('   USD 价值:', fansUsdValue);
-          
-          // 更新 FANS 余额显示
-          fansBalanceElement.textContent = `${tokenBalance.toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-          })} FANS ($${fansUsdValue.toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-          })})`;
-        }
-      }
-      
-      // 获取待提现金额
-      const { pendingAmount } = await BalanceManager.getUserBalance();
-      const pendingUsdValue = pendingAmount * tokenPrices.FANS;
-      console.log(' 待提现金额计算:');
-      console.log('   待提现数量:', pendingAmount);
-      console.log('   FANS 价格:', tokenPrices.FANS);
-      console.log('   USD 价值:', pendingUsdValue);
-      
-      // 更新待提现金额显示
-      accumulatedBalanceElement.textContent = `${pendingAmount.toLocaleString('en-US', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      })} FANS ($${pendingUsdValue.toLocaleString('en-US', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      })})`;
-      
-    } catch (error) {
-      console.error(' 获取FANS余额失败:', error);
-      fansBalanceElement.textContent = '获取失败';
-      accumulatedBalanceElement.textContent = '获取失败';
+    // 更新余额显示
+    document.getElementById('sol-balance').textContent = `${solBalanceDisplay.toFixed(4)} SOL`;
+    
+    if (fansTokenAccount.value.length > 0) {
+      const tokenBalance = await conn.getTokenAccountBalance(fansTokenAccount.value[0].pubkey);
+      console.log('FANS 代币余额:', tokenBalance);
+      document.getElementById('fans-balance').textContent = `${parseFloat(tokenBalance.value.amount) / Math.pow(10, tokenBalance.value.decimals)} FANS`;
+    } else {
+      console.log('未找到 FANS 代币账户');
+      document.getElementById('fans-balance').textContent = '0.00 FANS';
     }
-
-    console.log('==================== 余额刷新结束 ====================\n');
-    showSuccess('余额已更新');
+    
   } catch (error) {
-    console.error(' 刷新余额失败:', error);
-    showError('刷新余额失败：' + error.message);
+    console.error('刷新余额失败:', error);
+    document.getElementById('sol-balance').textContent = '获取失败';
+    document.getElementById('fans-balance').textContent = '获取失败';
   }
+  console.log('==================== 余额刷新结束 ====================\n');
 }
 
 // 初始化连接
 async function initConnection() {
   try {
     if (!connection) {
-      console.log('正在初始化连接...');
-      connection = new solanaWeb3.Connection(QUICKNODE_RPC_URL);
-      console.log('连接初始化成功');
+      // 使用配置文件中的RPC URL
+      const rpcUrl = ENV === 'development' 
+        ? 'https://api.devnet.solana.com'
+        : 'https://white-empty-shard.solana-mainnet.quiknode.pro/ff813f8ec04d7e6eb1879195a437da9dc36aeeac/';
+      
+      connection = new solanaWeb3.Connection(rpcUrl);
+      console.log('已连接到Solana网络:', rpcUrl);
+      console.log('当前环境:', ENV);
     }
+    return connection;
   } catch (error) {
-    console.error('初始化连接失败:', error);
+    console.error('连接Solana网络失败:', error);
     throw error;
   }
 }
@@ -455,25 +410,43 @@ async function createStoragePool(totalAmount) {
 
 // 修改创建赠送函数，添加存储池交互
 async function createAirdrop(tweetUrl, totalTokens, numPackages, isRandom, tokensPerPackage, minTokens, maxTokens, requirements) {
+  console.log('开始创建代币赠送...');
+  console.log('参数:', {
+    tweetUrl,
+    totalTokens,
+    numPackages,
+    isRandom,
+    tokensPerPackage,
+    minTokens,
+    maxTokens,
+    requirements
+  });
+
   try {
     if (!wallet) {
-      throw new Error('请先连接钱包');
+      console.error('钱包未初始化');
+      throw new Error('请先导入钱包');
     }
 
     if (!tweetUrl) {
+      console.error('缺少推文链接');
       throw new Error('请输入推文链接');
     }
 
     if (totalTokens <= 0) {
+      console.error('总代币数量无效:', totalTokens);
       throw new Error('总代币数量必须大于0');
     }
 
     if (numPackages <= 0) {
+      console.error('礼物包数量无效:', numPackages);
       throw new Error('礼物包数量必须大于0');
     }
 
+    console.log('创建存储池...');
     // 创建存储池
     const poolResult = await createStoragePool(totalTokens * 1e9);
+    console.log('存储池创建成功:', poolResult);
     
     // 创建赠送记录
     const airdrop = {
@@ -491,19 +464,28 @@ async function createAirdrop(tweetUrl, totalTokens, numPackages, isRandom, token
       remainingPackages: numPackages,
       claimedBy: []
     };
+    console.log('赠送记录创建成功:', airdrop);
 
     // 保存赠送记录
+    console.log('保存赠送记录...');
     const { airdrops = [] } = await chrome.storage.local.get('airdrops');
     airdrops.push(airdrop);
     await chrome.storage.local.set({ airdrops });
+    console.log('赠送记录已保存');
 
     // 发送交易
-    const signature = await connection.sendTransaction(new solanaWeb3.Transaction(), [wallet]);
+    console.log('发送交易...');
+    const transaction = new solanaWeb3.Transaction();
+    // TODO: 添加实际的交易指令
+    const signature = await connection.sendTransaction(transaction, [wallet]);
+    console.log('交易已发送，等待确认...');
     await connection.confirmTransaction(signature);
-    console.log('赠送创建成功，交易签名:', signature);
+    console.log('交易确认成功，签名:', signature);
 
     // 刷新余额
+    console.log('刷新余额...');
     await refreshBalance();
+    console.log('余额已刷新');
 
     return { success: true, signature, airdropId: airdrop.id };
   } catch (error) {
@@ -614,74 +596,45 @@ document.getElementById('export-wallet').addEventListener('click', async () => {
 });
 
 // 代币计算相关
-document.addEventListener('DOMContentLoaded', () => {
-  const totalTokensInput = document.getElementById('total-tokens');
-  const numPackagesInput = document.getElementById('num-packages');
-  const tokensPerPackageInput = document.getElementById('tokens-per-package');
-  const distributionTypeSelect = document.getElementById('distribution-type');
-  const fixedAmountDiv = document.getElementById('fixed-amount');
-  const randomRangeDiv = document.getElementById('random-range');
-  const minTokensInput = document.getElementById('min-tokens');
-  const maxTokensInput = document.getElementById('max-tokens');
+function initializeTokenCalculation() {
+  const totalTokens = document.getElementById('total-tokens');
+  const numPackages = document.getElementById('num-packages');
+  const result = document.getElementById('token-result');
+  const distributionType = document.getElementById('distribution-type');
+  const randomRange = document.getElementById('random-range');
+  const minTokens = document.getElementById('min-tokens');
+  const maxTokens = document.getElementById('max-tokens');
 
-  // 监听分发类型的变化
-  distributionTypeSelect.addEventListener('change', () => {
-    const isRandom = distributionTypeSelect.value === 'random';
-    fixedAmountDiv.style.display = isRandom ? 'none' : 'block';
-    randomRangeDiv.style.display = isRandom ? 'block' : 'none';
+  if (!totalTokens || !numPackages || !result || !distributionType || !randomRange || !minTokens || !maxTokens) {
+    console.error('找不到必需的DOM元素');
+    return;
+  }
+
+  function calculate() {
+    const total = parseFloat(totalTokens.value) || 0;
+    const packages = parseInt(numPackages.value) || 1;
     
-    if (!isRandom) {
-      // 切换到固定数量时，重新计算每个包的数量
-      updateTokensPerPackage();
-    } else {
-      // 切换到随机数量时，设置默认的最小最大值
-      const avgTokens = parseFloat(tokensPerPackageInput.value) || 0;
-      if (avgTokens > 0) {
-        minTokensInput.value = (avgTokens * 0.5).toFixed(4);
-        maxTokensInput.value = (avgTokens * 1.5).toFixed(4);
-      }
-    }
-  });
-
-  // 监听总代币数量和礼物包数量的变化
-  function updateTokensPerPackage() {
-    const totalTokens = parseFloat(totalTokensInput.value) || 0;
-    const numPackages = parseInt(numPackagesInput.value) || 1;
-    
-    if (totalTokens > 0 && numPackages > 0) {
-      // 计算每个礼物包的代币数量（保留4位小数）
-      const tokensPerPackage = (totalTokens / numPackages).toFixed(4);
-      tokensPerPackageInput.value = tokensPerPackage;
-
-      // 如果是随机模式，也更新最小最大值
-      if (distributionTypeSelect.value === 'random') {
-        minTokensInput.value = (tokensPerPackage * 0.5).toFixed(4);
-        maxTokensInput.value = (tokensPerPackage * 1.5).toFixed(4);
+    if (total > 0 && packages > 0) {
+      const perPackage = (total / packages).toFixed(4);
+      result.textContent = perPackage;
+      
+      if (distributionType.value === 'random') {
+        randomRange.style.display = 'block';
+        minTokens.value = (perPackage * 0.5).toFixed(4);
+        maxTokens.value = (perPackage * 1.5).toFixed(4);
+      } else {
+        randomRange.style.display = 'none';
       }
     }
   }
 
-  // 添加输入事件监听器
-  totalTokensInput.addEventListener('input', updateTokensPerPackage);
-  numPackagesInput.addEventListener('input', updateTokensPerPackage);
-
-  // 监听最小最大值的变化
-  minTokensInput.addEventListener('input', () => {
-    const min = parseFloat(minTokensInput.value) || 0;
-    const max = parseFloat(maxTokensInput.value) || 0;
-    if (min > max && max > 0) {
-      minTokensInput.value = max;
-    }
-  });
-
-  maxTokensInput.addEventListener('input', () => {
-    const min = parseFloat(minTokensInput.value) || 0;
-    const max = parseFloat(maxTokensInput.value) || 0;
-    if (max < min && min > 0) {
-      maxTokensInput.value = min;
-    }
-  });
-});
+  totalTokens.addEventListener('input', calculate);
+  numPackages.addEventListener('input', calculate);
+  distributionType.addEventListener('change', calculate);
+  
+  // 初始计算
+  calculate();
+}
 
 // 页面加载时初始化
 document.addEventListener('DOMContentLoaded', async () => {
@@ -692,6 +645,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const walletAddressElement = document.getElementById('wallet-address');
     const privateKeyInput = document.getElementById('private-key-input');
     const privateKeyDisplay = document.getElementById('private-key-display');
+    const createAirdropButton = document.getElementById('create-airdrop');
     
     if (!walletAddressElement || !privateKeyInput || !privateKeyDisplay) {
       throw new Error('找不到必要的界面元素');
@@ -710,8 +664,75 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 初始化保存的钱包
     await initSavedWallet();
     
+    // 代币计算相关
+    initializeTokenCalculation();
+    
     // 设置自动刷新
     setupAutoRefresh();
+
+    // 添加创建赠送按钮点击事件
+    if (createAirdropButton) {
+      createAirdropButton.addEventListener('click', async () => {
+        try {
+          const tweetUrl = document.getElementById('tweet-url').value;
+          const totalTokens = parseFloat(document.getElementById('total-tokens').value);
+          const numPackages = parseInt(document.getElementById('num-packages').value);
+          const distributionType = document.getElementById('distribution-type').value;
+          const tokensPerPackage = document.getElementById('token-result').textContent;
+          
+          // 获取领取要求
+          const requirements = {
+            follow: document.getElementById('require-follow').checked,
+            like: document.getElementById('require-like').checked,
+            retweet: document.getElementById('require-retweet').checked,
+            comment: document.getElementById('require-comment').checked
+          };
+          
+          // 验证输入
+          if (!tweetUrl) throw new Error('请输入推文链接');
+          if (!totalTokens || totalTokens <= 0) throw new Error('请输入有效的代币数量');
+          if (!numPackages || numPackages <= 0) throw new Error('请输入有效的礼物包数量');
+          
+          console.log('创建赠送参数:', {
+            tweetUrl,
+            totalTokens,
+            numPackages,
+            distributionType,
+            tokensPerPackage,
+            requirements
+          });
+
+          // 调用创建赠送函数
+          const result = await createAirdrop(
+            tweetUrl,
+            totalTokens,
+            numPackages,
+            distributionType === 'random',
+            parseFloat(tokensPerPackage),
+            distributionType === 'random' ? parseFloat(document.getElementById('min-tokens').value) : null,
+            distributionType === 'random' ? parseFloat(document.getElementById('max-tokens').value) : null,
+            requirements
+          );
+
+          if (result.success) {
+            alert('赠送创建成功！');
+            // 清空输入
+            document.getElementById('tweet-url').value = '';
+            document.getElementById('total-tokens').value = '';
+            document.getElementById('num-packages').value = '1';
+            document.getElementById('token-result').textContent = '0.0000';
+            // 刷新余额
+            await refreshBalance();
+          }
+        } catch (error) {
+          console.error('创建赠送失败:', error);
+          showError(error.message);
+        }
+      });
+      console.log('创建赠送按钮事件已绑定');
+    } else {
+      console.error('找不到创建赠送按钮');
+    }
 
   } catch (error) {
     console.error('初始化失败:', error);
@@ -769,25 +790,43 @@ function waitForSolanaWeb3() {
 
 // 创建代币赠送
 async function createAirdrop(tweetUrl, totalTokens, numPackages, isRandom, tokensPerPackage, minTokens, maxTokens, requirements) {
+  console.log('开始创建代币赠送...');
+  console.log('参数:', {
+    tweetUrl,
+    totalTokens,
+    numPackages,
+    isRandom,
+    tokensPerPackage,
+    minTokens,
+    maxTokens,
+    requirements
+  });
+
   try {
     if (!wallet) {
+      console.error('钱包未初始化');
       throw new Error('请先导入钱包');
     }
 
     if (!tweetUrl) {
+      console.error('缺少推文链接');
       throw new Error('请输入推文链接');
     }
 
     if (totalTokens <= 0) {
+      console.error('总代币数量无效:', totalTokens);
       throw new Error('总代币数量必须大于0');
     }
 
     if (numPackages <= 0) {
+      console.error('礼物包数量无效:', numPackages);
       throw new Error('礼物包数量必须大于0');
     }
 
+    console.log('创建存储池...');
     // 创建存储池
     const poolResult = await createStoragePool(totalTokens * 1e9);
+    console.log('存储池创建成功:', poolResult);
     
     // 创建赠送记录
     const airdrop = {
@@ -805,19 +844,28 @@ async function createAirdrop(tweetUrl, totalTokens, numPackages, isRandom, token
       remainingPackages: numPackages,
       claimedBy: []
     };
+    console.log('赠送记录创建成功:', airdrop);
 
     // 保存赠送记录
+    console.log('保存赠送记录...');
     const { airdrops = [] } = await chrome.storage.local.get('airdrops');
     airdrops.push(airdrop);
     await chrome.storage.local.set({ airdrops });
+    console.log('赠送记录已保存');
 
     // 发送交易
-    const signature = await connection.sendTransaction(new solanaWeb3.Transaction(), [wallet]);
+    console.log('发送交易...');
+    const transaction = new solanaWeb3.Transaction();
+    // TODO: 添加实际的交易指令
+    const signature = await connection.sendTransaction(transaction, [wallet]);
+    console.log('交易已发送，等待确认...');
     await connection.confirmTransaction(signature);
-    console.log('赠送创建成功，交易签名:', signature);
+    console.log('交易确认成功，签名:', signature);
 
     // 刷新余额
+    console.log('刷新余额...');
     await refreshBalance();
+    console.log('余额已刷新');
 
     return { success: true, signature, airdropId: airdrop.id };
   } catch (error) {
@@ -963,57 +1011,102 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// 创建赠送按钮点击事件
-document.getElementById('create-airdrop').addEventListener('click', async () => {
+import { getOrCreateAssociatedTokenAccount } from '@solana/spl_token';
+
+// 定义 showError 函数
+window.showError = function(message) {
+  console.error(message);
+  const statusMessage = document.getElementById('status-message');
+  if (statusMessage) {
+    statusMessage.textContent = message;
+    statusMessage.className = 'status-message error';
+    setTimeout(() => {
+      statusMessage.className = 'status-message';
+    }, 3000);
+  }
+};
+
+window.createAirdrop = async function(tweetUrl, totalTokens, numPackages, isRandom, tokensPerPackage, minTokens, maxTokens, requirements) {
+  console.log('开始创建代币赠送...');
+  console.log('参数:', {
+    tweetUrl,
+    totalTokens,
+    numPackages,
+    isRandom,
+    tokensPerPackage,
+    minTokens,
+    maxTokens,
+    requirements
+  });
+
   try {
-    const tweetUrl = document.getElementById('tweet-url').value.trim();
-    const totalTokens = parseFloat(document.getElementById('total-tokens').value);
-    const numPackages = parseInt(document.getElementById('num-packages').value);
-    const isRandom = document.getElementById('distribution-type').value === 'random';
-    
-    let tokensPerPackage = 0;
-    let minTokens = 0;
-    let maxTokens = 0;
-    
-    if (isRandom) {
-      minTokens = parseFloat(document.getElementById('min-tokens').value);
-      maxTokens = parseFloat(document.getElementById('max-tokens').value);
-    } else {
-      tokensPerPackage = parseFloat(document.getElementById('tokens-per-package').value);
+    if (!wallet) {
+      console.error('钱包未初始化');
+      throw new Error('请先导入钱包');
     }
 
-    // 收集领取要求
-    const requirements = {
-      follow: document.getElementById('require-follow').checked,
-      like: document.getElementById('require-like').checked,
-      retweet: document.getElementById('require-retweet').checked,
-      comment: document.getElementById('require-comment').checked
-    };
+    if (!tweetUrl) {
+      console.error('缺少推文链接');
+      throw new Error('请输入推文链接');
+    }
 
-    // 创建赠送
-    await createAirdrop(
+    if (totalTokens <= 0) {
+      console.error('总代币数量无效:', totalTokens);
+      throw new Error('总代币数量必须大于0');
+    }
+
+    if (numPackages <= 0) {
+      console.error('礼物包数量无效:', numPackages);
+      throw new Error('礼物包数量必须大于0');
+    }
+
+    console.log('创建存储池...');
+    // 创建存储池
+    const poolResult = await createStoragePool(totalTokens * 1e9);
+    console.log('存储池创建成功:', poolResult);
+    
+    // 创建赠送记录
+    const airdrop = {
+      id: generateUniqueId(),
       tweetUrl,
       totalTokens,
       numPackages,
       isRandom,
-      tokensPerPackage,
-      minTokens,
-      maxTokens,
-      requirements
-    );
+      tokensPerPackage: isRandom ? { min: minTokens, max: maxTokens } : tokensPerPackage,
+      requirements,
+      createdAt: new Date().toISOString(),
+      status: 'active',
+      creator: wallet.publicKey.toString(),
+      poolAccount: poolResult.poolAddress,
+      remainingPackages: numPackages,
+      claimedBy: []
+    };
+    console.log('赠送记录创建成功:', airdrop);
 
-    showSuccess('赠送创建成功');
-    
-    // 清空输入
-    document.getElementById('tweet-url').value = '';
-    document.getElementById('total-tokens').value = '';
-    document.getElementById('num-packages').value = '1';
-    document.getElementById('tokens-per-package').value = '';
-    document.getElementById('min-tokens').value = '';
-    document.getElementById('max-tokens').value = '';
-    
+    // 保存赠送记录
+    console.log('保存赠送记录...');
+    const { airdrops = [] } = await chrome.storage.local.get('airdrops');
+    airdrops.push(airdrop);
+    await chrome.storage.local.set({ airdrops });
+    console.log('赠送记录已保存');
+
+    // 发送交易
+    console.log('发送交易...');
+    const transaction = new solanaWeb3.Transaction();
+    // TODO: 添加实际的交易指令
+    const signature = await connection.sendTransaction(transaction, [wallet]);
+    console.log('交易已发送，等待确认...');
+    await connection.confirmTransaction(signature);
+    console.log('交易确认成功，签名:', signature);
+
+    // 刷新余额
+    console.log('刷新余额...');
+    await refreshBalance();
+    console.log('余额已刷新');
+
+    return { success: true, signature, airdropId: airdrop.id };
   } catch (error) {
     console.error('创建赠送失败:', error);
-    showError(error.message);
+    throw error;
   }
-});
+};

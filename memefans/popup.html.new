@@ -293,21 +293,7 @@
       <label>
         <input type="checkbox" id="require-like">
         需要点赞
-<div id="connection-status"></div>
-
-<!-- 加载依赖库 -->
-<script src="lib/buffer.js"></script>
-<script src="lib/solana-web3.js"></script>
-<script src="lib/bs58.js"></script>
-<script src="lib/solana-init.js"></script>
-
-<!-- 加载应用代码 -->
-<script src="init.js"></script>
-<script src="popup.js"></script>
-<script src="calculation.js"></script>
-<script src="airdrop.js"></script>
-</body>
-</html>      </label>
+      </label>
       <label>
         <input type="checkbox" id="require-retweet">
         需要转发
@@ -329,9 +315,16 @@
 
   <div id="connection-status"></div>
   
-  <script src="buffer.js"></script>
-  <script src="solana-web3.js"></script>
-  <script src="bs58.js"></script>
+  <!-- 加载依赖库 -->
+  <script src="lib/buffer.js"></script>
+  <script src="lib/solana-web3.js"></script>
+  <script src="lib/bs58.js"></script>
+  <script src="lib/solana-init.js"></script>
+  
+  <!-- 加载应用代码 -->
   <script src="init.js"></script>
+  <script src="popup.js"></script>
+  <script src="calculation.js"></script>
+  <script src="airdrop.js"></script>
 </body>
 </html>

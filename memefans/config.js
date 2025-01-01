@@ -1,5 +1,5 @@
 // 环境配置
-export const ENV = process.env.NODE_ENV || 'development';
+export const ENV = 'development';
 
 // 网络配置
 export const NETWORK_CONFIG = {
@@ -14,7 +14,7 @@ export const NETWORK_CONFIG = {
         commitment: 'confirmed'
     },
     production: {
-        rpc: 'https://api.mainnet-beta.solana.com',
+        rpc: 'https://white-empty-shard.solana-mainnet.quiknode.pro/ff813f8ec04d7e6eb1879195a437da9dc36aeeac/',
         wsEndpoint: 'wss://api.mainnet-beta.solana.com',
         commitment: 'confirmed'
     }
@@ -24,12 +24,17 @@ export const NETWORK_CONFIG = {
 export const SOLANA_NETWORK = ENV === 'production' ? 'mainnet-beta' : 'devnet';
 export const SOLANA_RPC_URL = NETWORK_CONFIG[ENV].rpc;
 
+// 系统程序ID
+export const SYSTEM_PROGRAM_ID = '11111111111111111111111111111111';
+export const TOKEN_PROGRAM_ID = 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA';
+export const ASSOCIATED_TOKEN_PROGRAM_ID = 'ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL';
+
 // 测试环境配置
 export const TEST_CONFIG = {
-    MOCK_PROGRAM_ID: 'TEST_PROGRAM_ID_11111111111111111111111111111111',
-    MOCK_GIVEAWAY_ADDRESS: 'TEST_ADDRESS_22222222222222222222222222222222',
-    MOCK_TOKEN_MINT: 'TEST_TOKEN_33333333333333333333333333333333',
-    MOCK_FEE_RECEIVER: 'TEST_RECEIVER_44444444444444444444444444444444'
+    MOCK_PROGRAM_ID: '2GGiVEZcSpRRKx4CCCr12HXEsnfdY96u6GNjEAnqougx',
+    MOCK_GIVEAWAY_ADDRESS: '2GGiVEZcSpRRKx4CCCr12HXEsnfdY96u6GNjEAnqougx',
+    MOCK_TOKEN_MINT: '6xfa7wnrsNR3DsK5xHuSGWjYLayFQUiemb8FmnvLBwes',
+    MOCK_FEE_RECEIVER: '2GGiVEZcSpRRKx4CCCr12HXEsnfdY96u6GNjEAnqougx'
 };
 
 // 合约配置
@@ -42,14 +47,14 @@ export const CONTRACT_CONFIG = {
     },
     development: {
         GIVEAWAY_POOL: {
-            address: 'DEVELOPMENT_CONTRACT_ADDRESS',  // 开发环境下将由部署脚本自动填充
-            program: 'DEVELOPMENT_PROGRAM_ID'        // 开发环境下将由部署脚本自动填充
+            address: '2GGiVEZcSpRRKx4CCCr12HXEsnfdY96u6GNjEAnqougx',
+            program: '2GGiVEZcSpRRKx4CCCr12HXEsnfdY96u6GNjEAnqougx'
         }
     },
     production: {
         GIVEAWAY_POOL: {
-            address: 'GvWbr3RjqxA5Rp3YyNQvVGGYDwKP1ZhNd4nKM9WJqp4T',  // 生产环境下的合约地址
-            program: 'FANSXnVq6k3R9buRNBJ5kP3xFVKHNkgC5yYvZsHgiZ9f'   // 生产环境下的程序ID
+            address: 'GvWbr3RjqxA5Rp3YyNQvVGGYDwKP1ZhNd4nKM9WJqp4T',
+            program: 'GvWbr3RjqxA5Rp3YyNQvVGGYDwKP1ZhNd4nKM9WJqp4T'
         }
     }
 };
@@ -97,15 +102,18 @@ export const CURRENT_API_CONFIG = API_CONFIG[ENV];
 export const TOKEN_CONFIG = {
     test: {
         FANS_TOKEN_MINT: TEST_CONFIG.MOCK_TOKEN_MINT,
+        MEME_TOKEN_MINT: 'METAmTMXwdb8gYzyCPfXXFmZZw4rUsXX58PNsDg7zjL',
         FEE_RECEIVER: TEST_CONFIG.MOCK_FEE_RECEIVER
     },
     development: {
-        FANS_TOKEN_MINT: 'FANSdevXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',   // 开发环境代币地址（待定）
-        FEE_RECEIVER: 'DEVELOPMENT_FEE_RECEIVER'      // 开发环境手续费接收地址（待定）
+        FANS_TOKEN_MINT: '6xfa7wnrsNR3DsK5xHuSGWjYLayFQUiemb8FmnvLBwes',
+        MEME_TOKEN_MINT: 'METAmTMXwdb8gYzyCPfXXFmZZw4rUsXX58PNsDg7zjL',
+        FEE_RECEIVER: '2GGiVEZcSpRRKx4CCCr12HXEsnfdY96u6GNjEAnqougx'
     },
     production: {
-        FANS_TOKEN_MINT: 'EViQB8r2we14B4sA6jEg5Ujb85WepzKUcf7YwGeGpump',  // 主网代币地址
-        FEE_RECEIVER: 'FANSXnVq6k3R9buRNBJ5kP3xFVKHNkgC5yYvZsHgiZ9f'   // 生产环境手续费接收地址
+        FANS_TOKEN_MINT: 'FANSXnVq6k3R9buRNBJ5kP3xFVKHNkgC5yYvZsHgiZ9f',
+        MEME_TOKEN_MINT: 'METAmTMXwdb8gYzyCPfXXFmZZw4rUsXX58PNsDg7zjL',
+        FEE_RECEIVER: 'GvWbr3RjqxA5Rp3YyNQvVGGYDwKP1ZhNd4nKM9WJqp4T'
     }
 };
 
