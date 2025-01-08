@@ -10,6 +10,8 @@ const POOL_ADDRESS = 'YOUR_POOL_ADDRESS';  // 需要替换为实际的存储池�
 const FEE_ADDRESS = 'YOUR_FEE_ADDRESS';    // 需要替换为实际的手续费地址
 const FEE_PERCENTAGE = 0.01;               // 1% 手续费
 const TOKEN_PROGRAM_ID = 'Gg6F31mmNziJW1s1qpqjKg5akw4N3B3j4XQ2knjV4J5';
+const ASSOCIATED_TOKEN_PROGRAM_ID = 'ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL';
+const TOKEN_KEY = 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA';
 
 // 初始化连接和钱包
 let connection = null;
@@ -267,23 +269,46 @@ async function refreshBalance() {
     console.log('SOL 余额 (lamports):', solBalance);
     const solBalanceDisplay = solBalance / solanaWeb3.LAMPORTS_PER_SOL;
     
-    // 获取 FANS 代币账户
-    const fansTokenAccount = await conn.getTokenAccountsByOwner(wallet.publicKey, {
-      mint: new solanaWeb3.PublicKey(FANS_TOKEN_MINT)
-    });
-    console.log('FANS 代币账户:', fansTokenAccount);
-    
-    // 更新余额显示
-    document.getElementById('sol-balance').textContent = `${solBalanceDisplay.toFixed(4)} SOL`;
-    
-    if (fansTokenAccount.value.length > 0) {
-      const tokenBalance = await conn.getTokenAccountBalance(fansTokenAccount.value[0].pubkey);
-      console.log('FANS 代币余额:', tokenBalance);
-      document.getElementById('fans-balance').textContent = `${parseFloat(tokenBalance.value.amount) / Math.pow(10, tokenBalance.value.decimals)} FANS`;
-    } else {
-      console.log('未找到 FANS 代币账户');
+    // 获取 FANS 代币余额
+    try {
+      // 获取关联代币账户地址
+      const associatedAddress = await solanaWeb3.PublicKey.findProgramAddress(
+        [
+          wallet.publicKey.toBuffer(),
+          new solanaWeb3.PublicKey(TOKEN_KEY).toBuffer(),
+          new solanaWeb3.PublicKey(FANS_TOKEN_MINT).toBuffer()
+        ],
+        new solanaWeb3.PublicKey(ASSOCIATED_TOKEN_PROGRAM_ID)
+      );
+      
+      console.log('关联代币账户地址:', associatedAddress[0].toString());
+
+      // 获取代币账户信息
+      const accountInfo = await conn.getAccountInfo(associatedAddress[0]);
+      
+      if (accountInfo) {
+        console.log('找到代币账户:', accountInfo);
+        const tokenBalance = await conn.getTokenAccountBalance(associatedAddress[0]);
+        console.log('代币账户余额数据:', tokenBalance);
+        
+        const fansBalance = parseFloat(tokenBalance.value.amount) / Math.pow(10, tokenBalance.value.decimals);
+        console.log('FANS 余额:', fansBalance);
+        
+        // 更新界面显示
+        document.getElementById('fans-balance').textContent = `${fansBalance.toLocaleString()} FANS`;
+      } else {
+        console.log('未找到代币账户，显示 0 余额');
+        document.getElementById('fans-balance').textContent = '0.00 FANS';
+      }
+    } catch (error) {
+      console.error('获取 FANS 代币余额失败:', error);
+      console.error('错误详情:', error.message);
+      console.error('错误堆栈:', error.stack);
       document.getElementById('fans-balance').textContent = '0.00 FANS';
     }
+    
+    // 更新 SOL 余额显示
+    document.getElementById('sol-balance').textContent = `${solBalanceDisplay.toFixed(4)} SOL`;
     
   } catch (error) {
     console.error('刷新余额失败:', error);
@@ -1010,8 +1035,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-
-import { getOrCreateAssociatedTokenAccount } from '@solana/spl_token';
 
 // 定义 showError 函数
 window.showError = function(message) {

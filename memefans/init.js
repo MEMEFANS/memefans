@@ -1,150 +1,155 @@
-// 刷新余额
-async function refreshBalance() {
+// 等待 Solana 初始化完成
+function waitForSolanaInit() {
+  return new Promise((resolve, reject) => {
+    if (window.connection) {
+      resolve();
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      reject(new Error('等待 Solana 初始化超时'));
+    }, 10000); // 10 秒超时
+
+    window.addEventListener('solana-initialized', () => {
+      clearTimeout(timeout);
+      resolve();
+    });
+
+    window.addEventListener('solana-init-failed', (event) => {
+      clearTimeout(timeout);
+      reject(event.detail);
+    });
+  });
+}
+
+// 初始化钱包
+async function initializeWallet() {
   try {
-    console.log('开始刷新余额...');
-    // 获取钱包
+    console.log('开始初始化钱包...');
     const result = await chrome.storage.local.get(['walletKey']);
-    console.log('获取到的钱包数据:', result);
-    
-    if (!result.walletKey) {
-      console.error('未找到钱包');
+    if (result.walletKey) {
+      console.log('找到钱包密钥');
+      const secretKey = Uint8Array.from(Array.isArray(result.walletKey) ? result.walletKey : JSON.parse(result.walletKey));
+      const wallet = window.solanaWeb3.Keypair.fromSecretKey(secretKey);
+      window.publicKey = wallet.publicKey;
+      const address = wallet.publicKey.toString();
+      console.log('钱包地址:', address);
+      document.getElementById('wallet-address').textContent = address;
+      return true;
+    } else {
+      console.log('未找到钱包');
+      document.getElementById('wallet-address').textContent = '请先创建或导入钱包';
+      return false;
+    }
+  } catch (error) {
+    console.error('初始化钱包失败:', error);
+    return false;
+  }
+}
+
+// 刷新 SOL 余额
+async function refreshSolBalance() {
+  try {
+    if (!window.publicKey) {
+      console.log('未找到钱包地址');
       return;
     }
 
-    // 导入钱包
-    let secretKey;
-    try {
-      if (typeof result.walletKey === 'string') {
-        secretKey = Uint8Array.from(JSON.parse(result.walletKey));
-      } else if (Array.isArray(result.walletKey)) {
-        secretKey = Uint8Array.from(result.walletKey);
-      } else {
-        throw new Error('无效的钱包数据格式');
-      }
-    } catch (error) {
-      console.error('处理钱包数据失败:', error);
+    if (!window.connection) {
+      console.error('Solana 连接未初始化');
       return;
     }
 
-    const wallet = solanaWeb3.Keypair.fromSecretKey(secretKey);
-    console.log('钱包地址:', wallet.publicKey.toString());
-
-    // 显示钱包地址
-    document.getElementById('wallet-address').textContent = wallet.publicKey.toString();
+    console.log('开始获取 SOL 余额...');
+    console.log('钱包地址:', window.publicKey.toString());
+    console.log('使用的网络:', window.connection._rpcEndpoint);
 
     // 获取 SOL 余额
-    const solBalance = await window.connection.getBalance(wallet.publicKey);
-    const solBalanceDisplay = solBalance / solanaWeb3.LAMPORTS_PER_SOL;
-    console.log('SOL 余额:', solBalanceDisplay);
-    document.getElementById('sol-balance').textContent = `${solBalanceDisplay.toFixed(4)} SOL`;
-
-    // 获取 FANS 代币余额
-    const FANS_TOKEN_MINT = '6xfa7wnrsNR3DsK5xHuSGWjYLayFQUiemb8FmnvLBwes';
-    const fansTokenAccount = await window.connection.getTokenAccountsByOwner(wallet.publicKey, {
-      mint: new solanaWeb3.PublicKey(FANS_TOKEN_MINT),
-      programId: solanaWeb3.TOKEN_PROGRAM_ID
-    });
-
-    if (fansTokenAccount.value.length > 0) {
-      const tokenBalance = await window.connection.getTokenAccountBalance(fansTokenAccount.value[0].pubkey);
-      const fansBalance = parseFloat(tokenBalance.value.amount) / Math.pow(10, tokenBalance.value.decimals);
-      console.log('FANS 余额:', fansBalance);
-      document.getElementById('fans-balance').textContent = `${fansBalance.toLocaleString()} FANS`;
-    } else {
-      console.log('未找到 FANS 代币账户');
-      document.getElementById('fans-balance').textContent = '0.00 FANS';
-    }
-
-  } catch (error) {
-    console.error('刷新余额失败:', error);
-    console.error('错误堆栈:', error.stack);
-  }
-}
-
-// 初始化页面
-function initializePage() {
-  console.log('开始初始化页面...');
-  
-  // 获取钱包信息
-  chrome.storage.local.get(['walletKey'], function(result) {
-    console.log('获取到的存储钱包信息:', result);
+    const balance = await window.connection.getBalance(window.publicKey);
+    console.log('原始 SOL 余额 (lamports):', balance);
     
-    if (result.walletKey) {
-      try {
-        let secretKey;
-        if (typeof result.walletKey === 'string') {
-          secretKey = Uint8Array.from(JSON.parse(result.walletKey));
-        } else if (Array.isArray(result.walletKey)) {
-          secretKey = Uint8Array.from(result.walletKey);
-        } else {
-          throw new Error('无效的钱包数据格式');
-        }
-
-        const wallet = solanaWeb3.Keypair.fromSecretKey(secretKey);
-        console.log('已生成钱包:', wallet.publicKey.toString());
-        
-        // 保存钱包到 window 对象
-        window.wallet = wallet;
-        window.connection = new solanaWeb3.Connection('https://api.devnet.solana.com', 'confirmed');
-        
-        // 显示钱包地址
-        document.getElementById('wallet-address').textContent = wallet.publicKey.toString();
-        console.log('已更新钱包地址显示:', wallet.publicKey.toString());
-        
-        // 刷新余额
-        refreshBalance();
-      } catch (error) {
-        console.error('处理钱包数据时出错:', error);
-      }
-    } else {
-      console.log('未找到已保存的钱包信息');
-    }
-  });
-
-  // 绑定导入钱包按钮事件
-  const importButton = document.getElementById('import-wallet');
-  if (importButton) {
-    importButton.addEventListener('click', async function() {
-      const privateKey = document.getElementById('private-key-input').value;
-      if (!privateKey) {
-        alert('请输入私钥');
-        return;
-      }
-
-      try {
-        console.log('开始导入钱包...');
-        const secretKey = bs58.decode(privateKey);
-        const wallet = solanaWeb3.Keypair.fromSecretKey(secretKey);
-        console.log('已生成钱包:', wallet.publicKey.toString());
-        
-        // 保存钱包信息
-        await chrome.storage.local.set({ walletKey: Array.from(secretKey) });
-        console.log('已保存钱包信息');
-        
-        // 保存钱包到 window 对象
-        window.wallet = wallet;
-        window.connection = new solanaWeb3.Connection('https://api.devnet.solana.com', 'confirmed');
-        
-        // 显示钱包地址
-        document.getElementById('wallet-address').textContent = wallet.publicKey.toString();
-        console.log('已更新显示的钱包地址');
-        
-        // 刷新余额
-        refreshBalance();
-        
-        // 清空输入
-        document.getElementById('private-key-input').value = '';
-        
-      } catch (error) {
-        console.error('导入钱包失败:', error);
-        alert('导入钱包失败，请检查私钥是否正确');
-      }
-    });
+    const solBalance = balance / window.solanaWeb3.LAMPORTS_PER_SOL;
+    console.log('转换后的 SOL 余额:', solBalance);
+    
+    document.getElementById('sol-balance').textContent = solBalance.toFixed(4) + ' SOL';
+  } catch (error) {
+    console.error('获取 SOL 余额失败:', error);
+    document.getElementById('sol-balance').textContent = '获取失败';
   }
 }
 
-// 绑定事件
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM加载完成，开始初始化...');
-  initializePage();
+// 刷新 FANS 代币余额
+async function refreshFansBalance() {
+  try {
+    if (!window.publicKey || !window.FANS_TOKEN_MINT) {
+      console.log('未找到钱包地址或代币 Mint 地址');
+      return;
+    }
+
+    console.log('开始获取 FANS 余额...');
+    console.log('钱包地址:', window.publicKey.toString());
+    console.log('FANS Token Mint:', window.FANS_TOKEN_MINT.toString());
+
+    // 获取代币账户
+    const accounts = await window.connection.getParsedTokenAccountsByOwner(
+      window.publicKey,
+      { mint: window.FANS_TOKEN_MINT }
+    );
+    console.log('找到的代币账户:', accounts);
+
+    if (accounts.value.length > 0) {
+      // 获取代币余额
+      const accountInfo = await window.connection.getTokenAccountBalance(accounts.value[0].pubkey);
+      console.log('代币账户信息:', accountInfo);
+      
+      const fansBalance = accountInfo.value.uiAmount;
+      console.log('FANS 余额:', fansBalance);
+      
+      document.getElementById('fans-balance').textContent = fansBalance.toFixed(2) + ' FANS';
+      document.getElementById('accumulated-balance').textContent = fansBalance.toFixed(2) + ' FANS';
+    } else {
+      console.log('未找到 FANS 代币账户，可能需要创建');
+      document.getElementById('fans-balance').textContent = '0.00 FANS';
+      document.getElementById('accumulated-balance').textContent = '0.00 FANS';
+    }
+  } catch (error) {
+    console.error('获取 FANS 余额失败:', error);
+    document.getElementById('fans-balance').textContent = '获取失败';
+    document.getElementById('accumulated-balance').textContent = '获取失败';
+  }
+}
+
+// 刷新所有余额
+async function refreshAllBalances() {
+  await refreshSolBalance();
+  await refreshFansBalance();
+}
+
+// 监听 Solana 初始化完成事件
+window.addEventListener('solana-initialized', async () => {
+  try {
+    console.log('Solana 初始化完成，开始初始化钱包');
+    // 初始化钱包
+    const hasWallet = await initializeWallet();
+    if (hasWallet) {
+      console.log('钱包初始化成功，开始获取余额');
+      // 初始刷新余额
+      await refreshAllBalances();
+      // 每 30 秒刷新一次余额
+      setInterval(refreshAllBalances, 30000);
+    }
+  } catch (error) {
+    console.error('钱包初始化或余额刷新失败:', error);
+  }
 });
+
+// 开始初始化页面
+async function initializePage() {
+  try {
+  } catch (error) {
+    console.error('初始化页面失败:', error);
+  }
+}
+
+// 开始初始化页面
+initializePage();

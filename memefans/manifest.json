@@ -14,17 +14,21 @@
     "https://x.com/*",
     "https://api.twitter.com/*",
     "https://solana-api.projectserum.com/*",
-    "https://special-fluent-dust.solana-mainnet.quiknode.pro/*",
-    "https://api.devnet.solana.com/*"
+    "https://api.devnet.solana.com/*",
+    "wss://api.devnet.solana.com/*"
   ],
   "action": {
     "default_popup": "popup.html"
   },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
   "web_accessible_resources": [{
     "resources": [
-      "lib/buffer.js",
+      "lib/browser-buffer.js",
       "lib/solana-web3.js",
       "lib/bs58.js",
+      "lib/spl-token.js",
       "lib/solana-init.js",
       "init.js",
       "popup.js",
