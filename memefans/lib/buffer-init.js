@@ -2,20 +2,30 @@
 (function() {
   'use strict';
   
+  let initialized = false;
+  
   // 确保 buffer 全局变量存在
   window.buffer = window.buffer || {};
   
   // 等待 browser-buffer.js 加载完成
   function initBuffer() {
-    if (typeof buffer !== 'undefined' && buffer.Buffer) {
-      window.Buffer = buffer.Buffer;
+    if (!initialized && window.Buffer) {
       console.log('Buffer 初始化成功');
-    } else {
+      initialized = true;
+      return true;
+    } else if (!initialized) {
       console.log('等待 Buffer 加载...');
-      setTimeout(initBuffer, 10);
+      return false;
     }
+    return true;
   }
   
   // 开始初始化
-  initBuffer();
+  function startInit() {
+    if (!initBuffer()) {
+      setTimeout(startInit, 10);
+    }
+  }
+  
+  startInit();
 })();

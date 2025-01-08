@@ -2,331 +2,598 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      width: 320px;
-      padding: 20px;
-      font-family: Arial, sans-serif;
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #ec4899;
+      --secondary-dark: #db2777;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text: #1f2937;
+      --text-light: #6b7280;
+      --border: #e5e7eb;
+      --bg: #f9fafb;
+      --bg-dark: #111827;
+      --white: #ffffff;
+      
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      
+      --radius-sm: 0.375rem;
+      --radius: 0.5rem;
+      --radius-lg: 0.75rem;
+      
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
     }
-    
-    .wallet-section {
-      margin-bottom: 20px;
-    }
-    
-    h3 {
-      margin: 10px 0;
-      color: #333;
-    }
-    
-    .address-box {
-      background: #f5f5f5;
-      padding: 10px;
-      border-radius: 4px;
-      word-break: break-all;
-      font-family: monospace;
-      margin-bottom: 15px;
-    }
-    
-    .balance-container {
-      background: #f9f9f9;
-      padding: 10px;
-      border-radius: 4px;
-      margin-bottom: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .balance-text {
-      font-size: 16px;
-      color: #333;
-    }
-    
-    .action-button {
-      background: #4CAF50;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background 0.3s;
-    }
-    
-    .action-button:hover {
-      background: #45a049;
-    }
-    
-    .action-button.small {
-      padding: 6px 12px;
-      font-size: 12px;
-    }
-    
-    .action-button.secondary {
-      background: #f44336;
-    }
-    
-    .action-button.secondary:hover {
-      background: #da190b;
-    }
-    
-    .button-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 15px;
-    }
-    
-    .small-buttons {
-      justify-content: flex-start;
-    }
-    
-    .input-box {
-      width: 100%;
-      padding: 8px;
-      margin: 5px 0;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+
+    * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
-    
-    .private-key-display {
-      background: #f5f5f5;
-      padding: 10px;
-      border-radius: 4px;
+
+    body {
+      width: 380px;
+      padding: var(--space-6);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+
+    .header {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: var(--space-6);
+      position: relative;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -0.75rem;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    #switch-lang {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid currentColor;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    #switch-lang:hover {
+      background: var(--primary);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      box-shadow: var(--shadow);
+      margin-bottom: var(--space-6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .wallet-address {
+      margin-bottom: var(--space-6);
+      padding: var(--space-3);
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .address-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+      font-family: 'SF Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--text);
       word-break: break-all;
-      font-family: monospace;
-      margin-top: 10px;
     }
-    
-    .history-section {
-      margin-top: 20px;
+
+    .btn-icon {
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      padding: var(--space-2);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    
-    .history-list {
-      max-height: 200px;
-      overflow-y: auto;
-      background: #f5f5f5;
-      padding: 10px;
-      border-radius: 4px;
+
+    .btn-icon:hover {
+      color: var(--primary);
+      background: rgba(37, 99, 235, 0.1);
     }
-    
-    .history-item {
-      padding: 8px;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    .history-item:last-child {
-      border-bottom: none;
-    }
-    
-    .airdrop-section {
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid #ddd;
-    }
-    
-    .input-group {
-      margin-bottom: 15px;
-    }
-    
-    .input-group label {
-      display: block;
-      margin-bottom: 5px;
-      color: #666;
-    }
-    
-    .checkbox-group {
-      margin: 15px 0;
-    }
-    
-    .checkbox-group label {
-      display: block;
-      margin: 5px 0;
-      color: #666;
-    }
-    
-    .fee-info {
-      font-size: 12px;
-      color: #666;
-      margin: 10px 0;
-    }
-    
-    #connection-status {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      padding: 5px 10px;
-      border-radius: 4px;
-      font-size: 12px;
-    }
-    
-    .status-message {
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 4px;
-      display: none;
-    }
-    
-    .status-message.success {
-      background: #e8f5e9;
-      color: #2e7d32;
-      display: block;
-    }
-    
-    .status-message.error {
-      background: #ffebee;
-      color: #c62828;
-      display: block;
-    }
-    
-    .distribution-group {
-      margin-top: 10px;
-    }
-    
-    .result-container {
-      margin-top: 10px;
-      padding: 12px;
-      background-color: #f8f9fa;
-      border: 1px solid #e9ecef;
-      border-radius: 6px;
+
+    .balance-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: var(--space-4);
+      background: var(--bg);
+      border-radius: var(--radius);
+      margin-bottom: var(--space-2);
+      transition: transform 0.2s;
     }
-    
-    .result-label {
-      color: #495057;
-      font-size: 14px;
+
+    .balance-row:hover {
+      transform: translateX(4px);
     }
-    
-    .result-value {
+
+    .balance-label {
+      color: var(--text-light);
       font-weight: 500;
-      color: #2196F3;
-      font-size: 16px;
-      font-family: monospace;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .balance-value {
+      font-family: 'SF Mono', monospace;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: var(--space-3);
+      margin: var(--space-6) 0;
+    }
+
+    .btn {
+      flex: 1;
+      padding: var(--space-3) var(--space-4);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--white);
+    }
+
+    .btn-secondary:hover {
+      background: var(--secondary-dark);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-4);
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: var(--space-2);
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: var(--space-3);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      transition: all 0.2s;
+      background: var(--bg);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .requirements-group {
+      background: var(--bg);
+      padding: var(--space-4);
+      border-radius: var(--radius);
+      margin-top: var(--space-3);
+    }
+
+    .form-check {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--space-3);
+      cursor: pointer;
+    }
+
+    .form-check:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-check-input {
+      margin-right: var(--space-3);
+      width: 1rem;
+      height: 1rem;
+      cursor: pointer;
+    }
+
+    .form-check-label {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .alert {
+      padding: var(--space-3) var(--space-4);
+      margin: var(--space-4) 0;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .alert-info {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--white);
+      padding: var(--space-6);
+      border-radius: var(--radius-lg);
+      width: 90%;
+      max-width: 500px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .private-key-text {
+      padding: var(--space-4);
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      font-family: 'SF Mono', monospace;
+      font-size: 0.875rem;
+      word-break: break-all;
+      margin-bottom: var(--space-4);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    #connection-status {
+      position: fixed;
+      bottom: var(--space-4);
+      right: var(--space-4);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius);
+      background: var(--bg-dark);
+      color: var(--white);
+      font-size: 0.813rem;
+      backdrop-filter: blur(4px);
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
     }
   </style>
 </head>
 <body>
-  <div class="wallet-section">
-    <h3>钱包地址</h3>
-    <div id="wallet-address" class="address-box"></div>
-    
-    <h3>SOL 余额</h3>
-    <div class="balance-container">
-      <span id="sol-balance">0.0000 SOL</span>
-    </div>
-    
-    <h3>FANS 余额</h3>
-    <div class="balance-container">
-      <span id="fans-balance" class="balance-text">0.00 FANS</span>
-    </div>
-    
-    <h3>累计待提现</h3>
-    <div class="balance-container" style="display: flex; align-items: center; justify-content: space-between;">
-      <span id="accumulated-balance" class="balance-text">0.00 FANS</span>
-      <button id="withdrawButton" class="action-button small">Claim</button>
-    </div>
-
-    <div class="button-group small-buttons">
-      <button id="import-wallet" class="action-button">导入钱包</button>
-      <button id="export-wallet" class="action-button">导出私钥</button>
-    </div>
-
-    <input type="text" id="private-key-input" placeholder="请输入私钥" class="input-box" style="display: none;">
-    <div class="button-group">
-      <button id="confirm-import" class="action-button" style="display: none;">确认导入</button>
-      <button id="cancel-import" class="action-button secondary" style="display: none;">取消</button>
-    </div>
-    <div id="private-key-display" class="private-key-display" style="display: none;"></div>
+  <div class="header">
+    <button id="switch-lang">🌐 Switch to Chinese</button>
   </div>
 
-  <!-- 添加提现记录部分 -->
-  <div class="history-section">
-    <h3>领取记录</h3>
-    <div id="claims-list" class="history-list"></div>
+  <div class="card">
+    <h2 class="card-title">
+      <i class="fas fa-wallet"></i>
+      <span data-i18n="wallet">Wallet</span>
+    </h2>
     
-    <h3>提现记录</h3>
-    <div id="withdrawals-list" class="history-list"></div>
-  </div>
-
-  <div class="airdrop-section">
-    <h3>创建代币赠送</h3>
+    <div id="wallet-info">
+      <div class="wallet-address">
+        <div class="address-box">
+          <span id="wallet-address">Not Connected</span>
+          <button id="copy-address" class="btn-icon" title="Copy Address">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+      </div>
       
-    <div class="input-group">
-      <label>推文链接</label>
-      <input type="text" id="tweet-url" class="input-box" placeholder="输入推文链接">
-    </div>
+      <div class="balance-row">
+        <span class="balance-label">
+          <i class="fas fa-coins"></i>
+          <span>SOL</span>
+        </span>
+        <span id="sol-balance" class="balance-value">0</span>
+      </div>
+      
+      <div class="balance-row">
+        <span class="balance-label">
+          <i class="fas fa-coins"></i>
+          <span>FANS</span>
+        </span>
+        <span id="fans-balance" class="balance-value">0</span>
+      </div>
+      
+      <div class="balance-row">
+        <span class="balance-label">
+          <i class="fas fa-clock"></i>
+          <span data-i18n="pendingWithdrawal">Pending Withdrawal</span>
+        </span>
+        <span id="pending-withdrawal" class="balance-value">0</span>
+      </div>
 
-    <div class="input-group">
-      <label>总代币数量</label>
-      <input type="number" id="total-tokens" class="input-box" placeholder="输入总代币数量" min="0" step="0.0001">
+      <div class="btn-group">
+        <button id="import-wallet" class="btn btn-primary">
+          <i class="fas fa-file-import"></i>
+          <span data-i18n="importWallet">Import Wallet</span>
+        </button>
+        <button id="export-wallet" class="btn btn-secondary">
+          <i class="fas fa-file-export"></i>
+          <span data-i18n="exportKey">Export Key</span>
+        </button>
+      </div>
     </div>
+  </div>
 
-    <div class="input-group">
-      <label>礼物包数量</label>
-      <input type="number" id="num-packages" class="input-box" placeholder="输入礼物包数量" min="1" value="1">
+  <div class="card">
+    <h2 class="card-title">
+      <i class="fas fa-gift"></i>
+      <span data-i18n="createGiveaway">Create Token Giveaway</span>
+    </h2>
+    
+    <div class="form-group">
+      <label class="form-label" data-i18n="tweetUrl">Tweet URL</label>
+      <input type="text" id="tweet-url" class="form-control" data-i18n-placeholder="enterTweetUrl">
     </div>
-
-    <div class="input-group">
-      <label>每个礼物包代币数量</label>
-      <select id="distribution-type" class="input-box">
-        <option value="fixed">固定数量</option>
-        <option value="random">随机数量</option>
+    
+    <div class="form-group">
+      <label class="form-label" data-i18n="totalTokens">Total Tokens</label>
+      <input type="number" id="total-tokens" class="form-control" data-i18n-placeholder="enterTokenAmount">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label" data-i18n="numPackages">Number of Packages</label>
+      <input type="number" id="num-packages" class="form-control" data-i18n-placeholder="enterNumPackages">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label" data-i18n="tokensPerPackage">Tokens Per Package</label>
+      <div class="form-control" id="token-result">0</div>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label" data-i18n="distribution">Distribution Type</label>
+      <select id="distribution-type" class="form-control">
+        <option value="fixed" data-i18n="fixed">Fixed Amount</option>
+        <option value="random" data-i18n="random">Random Amount</option>
       </select>
-      <div class="result-container">
-        <span class="result-label">每个礼物包代币数量：</span>
-        <span id="token-result" class="result-value">0.0000</span>
+      
+      <div id="random-range" style="display: none;">
+        <div class="form-group">
+          <label class="form-label" data-i18n="minTokens">Minimum Tokens</label>
+          <input type="number" id="min-tokens" class="form-control">
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="maxTokens">Maximum Tokens</label>
+          <input type="number" id="max-tokens" class="form-control">
+        </div>
       </div>
-      <div id="random-range" style="display: none; margin-top: 10px;">
-        <input type="number" id="min-tokens" class="input-box" placeholder="最小代币数量" step="0.0001">
-        <input type="number" id="max-tokens" class="input-box" placeholder="最大代币数量" step="0.0001">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label" data-i18n="requirements">Requirements</label>
+      <div class="requirements-group">
+        <div class="form-check">
+          <input type="checkbox" id="require-follow" class="form-check-input">
+          <label class="form-check-label" for="require-follow">
+            <i class="fas fa-user-plus"></i>
+            <span data-i18n="requireFollow">Require Follow</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="require-like" class="form-check-input">
+          <label class="form-check-label" for="require-like">
+            <i class="fas fa-heart"></i>
+            <span data-i18n="requireLike">Require Like</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="require-retweet" class="form-check-input">
+          <label class="form-check-label" for="require-retweet">
+            <i class="fas fa-retweet"></i>
+            <span data-i18n="requireRetweet">Require Retweet</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="require-comment" class="form-check-input">
+          <label class="form-check-label" for="require-comment">
+            <i class="fas fa-comment"></i>
+            <span data-i18n="requireComment">Require Comment</span>
+          </label>
+        </div>
       </div>
     </div>
-
-    <div class="checkbox-group">
-      <h4>领取要求</h4>
-      <label>
-        <input type="checkbox" id="require-follow">
-        需要关注
-      </label>
-      <label>
-        <input type="checkbox" id="require-like">
-        需要点赞
-      </label>
-      <label>
-        <input type="checkbox" id="require-retweet">
-        需要转发
-      </label>
-      <label>
-        <input type="checkbox" id="require-comment">
-        需要评论
-      </label>
+    
+    <div class="alert alert-info">
+      <i class="fas fa-info-circle"></i>
+      <span data-i18n="feeNotice">Note: Each giveaway will be charged 1% fee</span>
     </div>
+    
+    <button id="create-airdrop" class="btn btn-primary">
+      <i class="fas fa-paper-plane"></i>
+      <span data-i18n="createButton">Create Giveaway</span>
+    </button>
+  </div>
 
-    <div class="fee-info">
-      注意：每次发送礼物包将收取 1% 的手续费
-    </div>
+  <div class="card">
+    <h2 class="card-title">
+      <i class="fas fa-history"></i>
+      <span data-i18n="claimHistory">Claim History</span>
+    </h2>
+    <div id="claim-history"></div>
+  </div>
 
-    <div class="button-group">
-      <button id="create-airdrop" class="action-button" type="button" style="cursor: pointer;">创建赠送</button>
-    </div>
+  <div class="card">
+    <h2 class="card-title">
+      <i class="fas fa-exchange-alt"></i>
+      <span data-i18n="withdrawHistory">Withdrawal History</span>
+    </h2>
+    <div id="withdraw-history"></div>
   </div>
 
   <div id="connection-status"></div>
+
+  <!-- 导入对话框 -->
+  <div id="import-dialog" class="modal">
+    <div class="modal-content">
+      <h2 class="card-title">
+        <i class="fas fa-file-import"></i>
+        <span data-i18n="importWallet">Import Wallet</span>
+      </h2>
+      <div class="form-group">
+        <label class="form-label" for="private-key" data-i18n="enterPrivateKey">Enter Private Key</label>
+        <input type="text" id="private-key" class="form-control" data-i18n-placeholder="enterPrivateKey">
+      </div>
+      <div class="btn-group">
+        <button id="confirm-import" class="btn btn-primary">
+          <i class="fas fa-check"></i>
+          <span data-i18n="confirm">Confirm</span>
+        </button>
+        <button id="cancel-import" class="btn btn-secondary">
+          <i class="fas fa-times"></i>
+          <span data-i18n="cancel">Cancel</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 私钥显示对话框 -->
+  <div id="private-key-display" class="modal">
+    <div class="modal-content">
+      <h2 class="card-title">
+        <i class="fas fa-key"></i>
+        <span data-i18n="privateKey">Private Key</span>
+      </h2>
+      <div class="form-group">
+        <div class="private-key-text"></div>
+      </div>
+      <div class="btn-group">
+        <button id="copy-key" class="btn btn-primary">
+          <i class="fas fa-copy"></i>
+          <span data-i18n="copy">Copy</span>
+        </button>
+        <button id="close-key" class="btn btn-secondary">
+          <i class="fas fa-times"></i>
+          <span data-i18n="close">Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   
-  <!-- 基础依赖库 -->
-  <script src="lib/browser-buffer.js"></script>
+  <script src="lib/buffer.js"></script>
   <script src="lib/buffer-init.js"></script>
   <script src="lib/bs58.js"></script>
   <script src="lib/solana-web3.js"></script>
+  <script src="lib/solana-init.js"></script>
   <script src="lib/spl-token.js"></script>
-
-  <!-- 业务代码 -->
-  <script defer src="lib/solana-init.js"></script>
-  <script defer src="init.js"></script>
-  <script defer src="popup.js"></script>
-  <script defer src="calculation.js"></script>
-  <script defer src="airdrop.js"></script>
+  <script src="i18n.js"></script>
+  <script src="popup.js"></script>
 </body>
 </html>
